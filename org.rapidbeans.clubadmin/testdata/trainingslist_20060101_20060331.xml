@@ -1,0 +1,1180 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.clubadmin.domain.TrainingsList"
+	from="20060101"
+	to="20060331"
+	trainerhour="45 min"
+	>
+	<club
+		id="Budo-Club Ismaning"
+		name="Budo-Club Ismaning"
+		>
+		<department
+			id="Budo-Club Ismaning/Aikido"
+			name="Aikido"
+			trainers="Blümel_Martin_,Blümel_Ulrike_,Dahlheimer_Berit_,Dautovic_Damir_,Höppner_Christoph_"
+			>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule"
+				dayofweek="monday"
+				timestart="19:00"
+				location="Eurythmiesaal 1 Waldorfschule"
+				name="Meditation I"
+				timeend="20:30"
+				>
+				<trainerplanning
+					id="17"
+					role="Trainer"
+					defaulttrainers="Blümel_Ulrike_"
+					/>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060102"
+					date="20060102"
+					state="closed"
+					>
+					<heldbytrainer
+						id="203"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060109"
+					date="20060109"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="210"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060116"
+					date="20060116"
+					state="closed"
+					>
+					<heldbytrainer
+						id="217"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060123"
+					date="20060123"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="224"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060130"
+					date="20060130"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="231"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060206"
+					date="20060206"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="238"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060213"
+					date="20060213"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="245"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060220"
+					date="20060220"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="252"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060227"
+					date="20060227"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="259"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060306"
+					date="20060306"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="266"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060313"
+					date="20060313"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="273"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060320"
+					date="20060320"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="280"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060327"
+					date="20060327"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="287"
+						role="Trainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd"
+				dayofweek="monday"
+				timestart="19:30"
+				location="Turnhalle Grundschule Süd"
+				name="Iaido/Aikido Erwachsene"
+				timeend="21:30"
+				>
+				<trainerplanning
+					id="11"
+					role="Trainer"
+					defaulttrainers="Dahlheimer_Berit_"
+					/>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060102"
+					date="20060102"
+					state="closed"
+					>
+					<heldbytrainer
+						id="204"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060109"
+					date="20060109"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="211"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060116"
+					date="20060116"
+					state="closed"
+					>
+					<heldbytrainer
+						id="218"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060123"
+					date="20060123"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="225"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060130"
+					date="20060130"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="232"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060206"
+					date="20060206"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="239"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060213"
+					date="20060213"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="246"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060220"
+					date="20060220"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="253"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060227"
+					date="20060227"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="260"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060306"
+					date="20060306"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="267"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060313"
+					date="20060313"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="274"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060320"
+					date="20060320"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="281"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20060327"
+					date="20060327"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="288"
+						role="Trainer"
+						trainer="Dahlheimer_Berit_"
+						/>
+				</training>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule"
+				dayofweek="monday"
+				timestart="20:30"
+				location="Eurythmiesaal 1 Waldorfschule"
+				name="Meditation II"
+				timeend="22:00"
+				>
+				<trainerplanning
+					id="18"
+					role="Trainer"
+					defaulttrainers="Blümel_Martin_"
+					/>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060102"
+					date="20060102"
+					state="closed"
+					>
+					<heldbytrainer
+						id="205"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060109"
+					date="20060109"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="212"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060116"
+					date="20060116"
+					state="closed"
+					>
+					<heldbytrainer
+						id="219"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060123"
+					date="20060123"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="226"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060130"
+					date="20060130"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="233"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060206"
+					date="20060206"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="240"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060213"
+					date="20060213"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="247"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060220"
+					date="20060220"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="254"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060227"
+					date="20060227"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="261"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060306"
+					date="20060306"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="268"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060313"
+					date="20060313"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="275"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060320"
+					date="20060320"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="282"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule/20060327"
+					date="20060327"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="289"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd"
+				dayofweek="tuesday"
+				timestart="16:30"
+				location="Turnhalle Grundschule Süd"
+				name="Aikido Kinder"
+				timeend="18:00"
+				>
+				<trainerplanning
+					id="12"
+					role="Trainer"
+					defaulttrainers="Dautovic_Damir_"
+					/>
+				<trainerplanning
+					id="13"
+					role="Cotrainer"
+					defaulttrainers="Blümel_Ulrike_"
+					/>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060103"
+					date="20060103"
+					state="closed"
+					>
+					<heldbytrainer
+						id="206"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="207"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060110"
+					date="20060110"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="213"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="214"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060117"
+					date="20060117"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="220"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="221"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060124"
+					date="20060124"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="227"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="228"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060131"
+					date="20060131"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="234"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="235"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060207"
+					date="20060207"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="241"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="242"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060214"
+					date="20060214"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="248"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="249"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060221"
+					date="20060221"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="255"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="256"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060228"
+					date="20060228"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="262"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="263"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060307"
+					date="20060307"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="269"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="270"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060314"
+					date="20060314"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="276"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="277"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060321"
+					date="20060321"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="283"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="284"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd/20060328"
+					date="20060328"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="290"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+					<heldbytrainer
+						id="291"
+						role="Cotrainer"
+						trainer="Blümel_Ulrike_"
+						/>
+				</training>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd"
+				dayofweek="tuesday"
+				timestart="18:00"
+				location="Turnhalle Grundschule Süd"
+				name="Aikido Kinder/Erwachsene"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="14"
+					role="Trainer"
+					defaulttrainers="Dautovic_Damir_"
+					/>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060103"
+					date="20060103"
+					state="closed"
+					>
+					<heldbytrainer
+						id="208"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060110"
+					date="20060110"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="215"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060117"
+					date="20060117"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="222"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060124"
+					date="20060124"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="229"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060131"
+					date="20060131"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="236"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060207"
+					date="20060207"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="243"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060214"
+					date="20060214"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="250"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060221"
+					date="20060221"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="257"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060228"
+					date="20060228"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="264"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060307"
+					date="20060307"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="271"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060314"
+					date="20060314"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="278"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060321"
+					date="20060321"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="285"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20060328"
+					date="20060328"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="292"
+						role="Trainer"
+						trainer="Dautovic_Damir_"
+						/>
+				</training>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd"
+				dayofweek="thursday"
+				timestart="20:00"
+				location="Turnhalle Grundschule Süd"
+				name="Aikido Erwachsene"
+				timeend="21:30"
+				>
+				<trainerplanning
+					id="15"
+					role="Trainer"
+					defaulttrainers="Blümel_Martin_,Höppner_Christoph_"
+					/>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060105"
+					date="20060105"
+					state="closed"
+					>
+					<heldbytrainer
+						id="209"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060112"
+					date="20060112"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="216"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060119"
+					date="20060119"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="223"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060126"
+					date="20060126"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="230"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060202"
+					date="20060202"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="237"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060209"
+					date="20060209"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="244"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060216"
+					date="20060216"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="251"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060223"
+					date="20060223"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="258"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060302"
+					date="20060302"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="265"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060309"
+					date="20060309"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="272"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060316"
+					date="20060316"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="279"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060323"
+					date="20060323"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="286"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+				<training
+					id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20060330"
+					date="20060330"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="293"
+						role="Trainer"
+						trainer="Blümel_Martin_"
+						/>
+				</training>
+			</trainingdate>
+		</department>
+		<department
+			id="Budo-Club Ismaning/Tang Soo Do"
+			name="Tang Soo Do"
+			trainers="Igel_Alf_"
+			/>
+	</club>
+	<trainer
+		id="Blümel_Martin_"
+		lastname="Blümel"
+		firstname="Martin"
+		middlename=""
+		email="martin.bluemel@web.de"
+		trainerattributes="Fachübungsleiter"
+		trainerplannings="18,15"
+		trainingsheld="205,209,212,216,219,223,226,230,233,237,240,244,247,251,254,258,261,265,268,272,275,279,282,286,289,293"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<trainer
+		id="Blümel_Ulrike_"
+		lastname="Blümel"
+		firstname="Ulrike"
+		middlename=""
+		email="martin.bluemel@web.de"
+		trainerattributes=""
+		trainerplannings="17,13"
+		trainingsheld="203,207,210,214,217,221,224,228,231,235,238,242,245,249,252,256,259,263,266,270,273,277,280,284,287,291"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<trainer
+		id="Dahlheimer_Berit_"
+		lastname="Dahlheimer"
+		firstname="Berit"
+		middlename=""
+		trainerattributes="Trainer A,Trainer B"
+		trainerplannings="11"
+		trainingsheld="204,211,218,225,232,239,246,253,260,267,274,281,288"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<trainer
+		id="Dautovic_Damir_"
+		lastname="Dautovic"
+		firstname="Damir"
+		middlename=""
+		trainerattributes=""
+		trainerplannings="12,14"
+		trainingsheld="206,208,213,215,220,222,227,229,234,236,241,243,248,250,255,257,262,264,269,271,276,278,283,285,290,292"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<trainer
+		id="Höppner_Christoph_"
+		lastname="Höppner"
+		firstname="Christoph"
+		middlename=""
+		trainerattributes=""
+		trainerplannings="15"
+		trainingsheld=""
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<trainer
+		id="Igel_Alf_"
+		lastname="Igel"
+		firstname="Alf"
+		middlename=""
+		email="alf@igel.com"
+		trainerattributes=""
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<trainerrole
+		id="Trainer"
+		name="Trainer"
+		>
+		<salary
+			id="Trainer_Fachübungsleiter"
+			rolename="Trainer"
+			trainerattribute="Fachübungsleiter"
+			money="10 euro"
+			time="45 min"
+			/>
+		<salary
+			id="Trainer_null"
+			rolename="Trainer"
+			money="7.50 euro"
+			time="45 min"
+			/>
+	</trainerrole>
+	<trainerrole
+		id="Cotrainer"
+		name="Cotrainer"
+		>
+		<salary
+			id="Cotrainer_null"
+			rolename="Cotrainer"
+			money="5 euro"
+			time="45 min"
+			/>
+	</trainerrole>
+	<sport
+		id="Iaido"
+		name="Iaido"
+		/>
+	<sport
+		id="Zen"
+		name="Zen"
+		/>
+	<trainerattribute
+		id="Fachübungsleiter"
+		name="Fachübungsleiter"
+		/>
+	<trainerattribute
+		id="Trainer A"
+		name="Trainer A"
+		/>
+	<trainerattribute
+		id="Trainer B"
+		name="Trainer B"
+		/>
+	<trainerattribute
+		id="Trainer C"
+		name="Trainer C"
+		/>
+	<location
+		id="Eurythmiesaal 1 Waldorfschule"
+		name="Eurythmiesaal 1 Waldorfschule"
+		street="Dorfstraße 52"
+		city="85737 Ismaning"
+		closedons="20051222_Weihnachtsferien,20060116_Schulputztag"
+		/>
+	<location
+		id="Turnhalle Grundschule Süd"
+		name="Turnhalle Grundschule Süd"
+		street="Camerloher Straße 20"
+		city="85737 Ismaning"
+		closedons="20051222_Weihnachtsferien"
+		/>
+	<closingperiod
+		id="20051222_Weihnachtsferien"
+		from="20051222"
+		name="Weihnachtsferien"
+		to="20060108"
+		oneday="false"
+		locations="Eurythmiesaal 1 Waldorfschule,Turnhalle Grundschule Süd"
+		/>
+	<closingperiod
+		id="20060116_Schulputztag"
+		from="20060116"
+		name="Schulputztag"
+		to="20060116"
+		oneday="true"
+		locations="Eurythmiesaal 1 Waldorfschule"
+		/>
+</rb:bean>

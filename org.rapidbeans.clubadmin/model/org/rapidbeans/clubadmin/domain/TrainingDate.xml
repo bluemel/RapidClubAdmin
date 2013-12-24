@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.TrainingDate"
+	idtype="keypropswithparentscope"
+	idtypeparentscopedepth="2"
+	>
+	<property name="dayofweek"
+		type="choice"
+		enum="org.rapidbeans.domain.math.DayOfWeek"
+		key="true"
+	/>
+	<property name="timestart"
+		type="quantity"
+		key="true"
+		quantity="org.rapidbeans.domain.math.TimeOfDay"
+		propclass="TrainingDatePropTimestart"
+	    >
+	</property>
+	<property name="location"
+		type="association"
+		key="true"
+		targettype="Location"
+		maxmult="1"
+	/>
+	<property name="name"
+		type="string"
+		mandatory="true"
+	/>
+	<property name="timeend"
+		type="quantity"
+		mandatory="true"
+		quantity="org.rapidbeans.domain.math.TimeOfDay"
+		propclass="TrainingDatePropTimeend"
+	/>
+	<property name="trainerplannings"
+		type="association"
+		composition="true"
+		targettype="TrainerPlanning"
+	/>
+	<property name="sport"
+		type="association"
+		targettype="Sport"
+		maxmult="1"
+	/>
+	<property name="trainings" 
+		type="association"
+		composition="true"
+		targettype="TrainingRegular"
+		sorting="byId"
+	/>
+	<codegen mode="split"/>
+</beantype>

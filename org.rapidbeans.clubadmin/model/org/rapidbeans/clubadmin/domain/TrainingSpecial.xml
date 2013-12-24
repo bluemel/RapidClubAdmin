@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.TrainingSpecial"
+	extends="org.rapidbeans.clubadmin.domain.Training"
+	idtype="keypropswithparentscope"
+	idtypeparentscopedepth="2"
+	>
+	<property name="timestart"
+		type="quantity"
+		quantity="org.rapidbeans.domain.math.TimeOfDay"
+		key="true"
+		propclass="TrainingSpecialPropTimestart"
+	/>
+	<property name="location"
+		type="association"
+		targettype="Location"
+		key="true"
+		maxmult="1"
+	/>
+	<property name="date"
+		type="date"
+		key="true"
+	/>
+	<property name="timeend"
+		type="quantity"
+		quantity="org.rapidbeans.domain.math.TimeOfDay"
+		mandatory="true"
+		propclass="TrainingSpecialPropTimeend"
+	/>
+	<property name="dayofweek"
+		type="choice"
+		enum="org.rapidbeans.domain.math.DayOfWeek"
+		transient="true"
+		propclass="TrainingSpecialPropDayofweek"
+	/>
+	<codegen mode="split"/>
+</beantype>

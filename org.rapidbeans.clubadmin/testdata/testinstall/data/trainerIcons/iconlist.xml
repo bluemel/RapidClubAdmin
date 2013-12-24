@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.clubadmin.presentation.IconInfoList"
+	>
+	<icon
+		trainerid="Klinsmann_Jürgen_"
+		lastupload="201002240101010"
+		/>
+	<icon
+		trainerid="Löw_Joachim_Jogi"
+		lastupload="20100224101010"
+		/>
+	<icon
+		trainerid="Department_FC Hintertupfingen_Fußball"
+		lastupload="20100241101010"
+		/>
+</rb:bean>

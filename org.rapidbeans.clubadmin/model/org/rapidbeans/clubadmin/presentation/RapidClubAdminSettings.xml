@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.presentation.RapidClubAdminSettings"
+	extends="org.rapidbeans.presentation.settings.Settings">
+	<property name="backupfolder"
+		type="file"
+		filetype="directory"
+		mustexist="false"
+	/>
+    <property name="exportfile"
+        type="file"
+        filetype="file"
+        mustexist="true"
+		suffix="mdb"
+    />
+    <property name="reportfolder"
+        type="file"
+        filetype="directory"
+        mustexist="true"
+    />
+	<property name="defaultdatafileloadinitially"
+		type="boolean"
+		default="true"
+	/>
+	<property name="workingdepartment"/>
+	<property name="shareiconsoverweb"
+		type="boolean"
+		default="true"
+	/>
+	<property name="pleasedontnag"
+		type="boolean"
+		default="false"
+	/>
+	<codegen mode="joint"/>
+</beantype>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JNLP File for RapidClubAdmin Application -->
+<jnlp spec="1.5+" codebase="http://trainer.budo-club-ismaning.de/rapidclubadmin" href="rapidClubAdmin.jnlp">
+	<information>
+		<title>Rapid Club Admin, @@@customer@@@</title>
+		<vendor>Martin Bluemel</vendor>
+		<homepage href="rapidClubAdminApplet.html"/>
+		<description>Rapid Club Admin Application for @@@customer@@@</description>
+		<description kind="short">Martin Bluemel's tiny little trainings
+administration and more.</description>
+			<icon href="rapidClubAdmin32.png"/>
+			<icon kind="splash" href="rapidClubAdminSplash.jpg"/>
+<!--
+		<association>
+			<mime-type="application-x/swingset2-file"/>
+			<extensions="swingset2"/>
+		</association>
+-->
+		<shortcut online="false">
+			<desktop/>
+<!--
+			<menu submenu="My Corporation Apps"/>
+-->
+		</shortcut>
+    	</information>
+    	<security>
+		<all-permissions/>
+    	</security>
+    	<resources>
+		<j2se version="1.5+" java-vm-args=""/>
+		<jar href="rapidclubadmin-@@@version@@@.jar"/>
+		<jar href="rapidbeans-framework-@@@version_framework@@@.jar"/>
+		<jar href="jcalendar-@@@version_jcalendar@@@.jar"/>
+    	</resources>
+    	<application-desc main-class="org.rapidbeans.clubadmin.RapidClubAdmin">
+    		<argument>-server</argument>
+    		<argument>@@@server@@@</argument>
+    		<argument>-root</argument>
+    		<argument>@@@remotedir@@@</argument>
+    	</application-desc>
+    </jnlp>

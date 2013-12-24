@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.clubadmin.presentation.Settings"
+	>
+	<basic
+		folderdoc="testdata\.rapidclubadmin"
+		defaultencoding="ISO-8859-1"
+		defaultencodingusage="newdocs"
+		>
+		<gui
+			docViewOpenWindowBehaviour="maximized"
+			treeViewShowBeanLinks="true"
+			/>
+	</basic>
+<!--
+	<authn
+		loginsavecred="true"
+		>
+		<cred
+			logname="bluemel"
+			pwd="ka19th11"
+			/>
+	</authn>
+-->
+	<authn/>
+	<settings
+		masterdatafiletype="web"
+		defaultdatafiletype="web"
+		currentTrainingsDataFileRootLocal="testdata"
+		defaultdatafileloadinitially="true"
+		workingdepartment="Budo-Club Ismaning/Aikido"
+		shareiconsoverweb="true"
+		/>
+</rb:bean>

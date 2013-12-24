@@ -1,0 +1,193 @@
+How to set up the development environment for RapidClubAdmin:
+
+
+1) Set up enviroment variables:
+   The following enviroment variables should be defined as
+     Unix (Linux): in your user environment setup script .profile
+     Windows: System or User environment variables
+
+   RAPIDBEANS_PROJECT_HOME
+     The folder where you check out the project's sources
+     (= the parent folder of folder org.rapidbeans.clubadmin)
+
+   RAPIDBEANS_TOOLS_HOME
+     The folder where you install all Java development tools:
+       - JDK
+       - Ant (maybe later on Maven)
+       - Eclipse
+
+   LOCAL_REPOSITORY
+     The folder where you place all 3rd-party Java librairies
+     used for this project
+
+2) Install Subversion and check out code base
+
+  2.1) Subversion:
+    purpose: version control
+    version: 1.5.0, maybe earlier or later versions are also possible.
+    installation: via Subversion installer
+    installation location: anywhere you want
+    Project URL: http://svn.tigris.org
+    Dowload URL: 
+    remarks:
+      - command "svn" should be in you command path after
+        installation
+      - Windows users may (additionally or alternatively) install the
+        Tortoise Client
+        http://tortoise.tigris.org
+
+  2.2) Checkout the code base from subversion:
+   https://svnbroy.informatik.tu-muenchen.de/hummelb/bci
+   Local folder could be named ~/RapidbeansProjects
+
+
+3) Install Java Tools and 3rd-party libraries needed
+
+
+  3.1)
+     Java Tools
+
+
+    3.1.1) JDK
+      purpose: Jave Development Kit containing:
+      * the Java compiler (javac)
+      * the Java virtual machine (JVM, virtual execution platform)
+      * Java runtime libraries (rt.jar, ...)
+      version: 1.6.0
+        Currently we compile for Java 1.5.0 in order to support a
+        broader spectrum of user machines (Mac OS X per default only
+        delivers Java 1.5).
+      installation: via JDK installer
+      installation location: ${RAPIDBEANS_TOOLS_HOME}/JDK/<version>
+      Project URL: http://java.sun.com
+      Dowload URL: 
+
+    3.1.2) Ant
+      purpose: build system
+      version: 1.7.0
+      installation: simply unpack the zip or tar file
+      installation location: ${RAPIDBEANS_TOOLS_HOME}/Eclipse/<version>
+      Project URL: http://www.eclipse.org
+      Download URL: 
+
+    3.1.3) Eclipse
+      purpose: Integrated Development Environment (Java IDE)
+      version: 3.3.2 (maybe we should / could upgrade)
+      installation: simply unpack the zip or tar file
+      installation location: ${RAPIDBEANS_TOOLS_HOME}/Eclipse/<version>
+      Project URL: http://www.eclipse.org
+      Dowload URL: 
+
+      Recommended Eclipse plug-ins:
+ 
+        - Subclipse (Subversion plug-in)
+          version: according to your Subversion version (1.5.0)
+          Project URL: subclips.tigris.org
+          Download URL:
+
+        - XML-Buddy (as XML Editor)
+          version: 2.0.22 or later
+          Project URL:
+          Download URL:
+
+      Required Eclipse settings (Window / Preferences...):
+
+      - General / Editors / Text Editors:
+        Check "Insert spaces for tabs" if not checked
+
+      - Java / Installed JREs
+        Add the development JDK installed in 3.1.1
+
+      - Java / Build Path / Classpath Variables
+        Add classpath variable LOCAL_REPOSITORY according to your environment
+        variable setting.
+
+      - Java / Compiler
+        - Choose "5.0" "as Compiler compliance level"
+        - Check "use default compliance settings" if not checked
+
+      - Java / Code Style / Formatter
+        - import formatter profile ${RAPIDBEANS_PROJECT_HOME}/config/eclipse/codeFormat_Java120.xml
+          and name this "Java 120" and "Apply" this format.
+
+      - Java / Code Style / Code templates
+        Not yet defined. This is a TODO!!!)
+
+      - Team Ignored Resources:
+        Important for your Subversion plugin to differ new files not yet under
+        version control from files that never should be under version control
+        (most of them generated during the build).
+
+        .svn
+        classes
+        classes_test
+        dist
+        dist_temp
+        gensrc
+        testreport
+
+      - ??? anything missing ???
+
+  3.2) Thrid party libraries
+     All 3rd-party libraries have to be maintained in a Maven
+     repository structure. Although we currently use Ant as
+     build tool this is the best way to
+     a) have a world wide accepted unique file structure for
+        third party libraries
+     b) be open for future build tool change to Maven, Ivy and co.
+     Maven project URL: http://maven.apache.org/
+
+     The following libraries are all downloadable from the
+     Maven Central Repository: http://repo1.maven.org/maven2
+
+  3.2.1) JUnit
+     purpose: Java unit test automation framework
+     Maven Group ID: junit
+     Maven Artifact ID: junit
+     version: 3.8.1
+     installation: download from Maven Central Repository into Local Maven Repository
+     ${RAPIDBEANS_HOME}\junit\junit\3.8.1
+
+  3.2.2) RapidBeans Ant Tasks
+    purpose: build system
+    Maven Group ID: org.rapidbeans
+    Maven Artifact ID: rapidbeans-anttasks
+    version: 0.9.1
+    installation: dowload from original vendor into Local Maven Repository
+    Project URL: www.rapidbeans.org
+    Download URL: http://www.rapidbeans.org/releases/latest/index.html
+
+  3.2.3) RapidBeans Framework
+    purpose: domain model centric Java application framework
+    version 0.9.1
+    installation: download from original vendor into Local Maven Repository
+    installation location: ${LOCAL_REPOSITORY}/junit/junit/3.8.1/junit-3.8.1.jar
+
+4) Run the build and the unit tests
+
+   - Open a command prompt or shell and goto 
+     (Windows users should use the tiny but useful "doshere" Exlporer plug-in
+     from MS Power Toys)
+
+   - Set up the environment. I'd recommend to write a short environment setup
+     script "rcaenv" that
+     - simply calls ${RAPIDBEANS_PROJECT_HOME/}
+     - this script could even optionally set up the global environment variables
+       mentioned above before (in case you want to avoid any global environment
+       variable setting).
+
+   - Run command "ant testreport"
+     this should:
+     - generate domain model class source code under folder gensrc
+     - compile the application classes
+     - build the application jar
+     - compile the unit test classes
+     - run the unit tests
+     - pop up the unit test HTML report
+       All tests (>=120) should all have succeeded
+       If pop up does not work out on your development machine
+       simply open file testreport/index.html in a browser.
+
+5) Open Eclipse and run all RapidClubAdmin unit tests in Eclipse
+
+Congratulations you're ready to go now.

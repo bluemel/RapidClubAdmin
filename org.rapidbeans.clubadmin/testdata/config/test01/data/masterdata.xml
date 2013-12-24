@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.clubadmin.domain.MasterData"
+	trainerhour="45 min"
+	>
+	<club
+		id="FC Hintertupfingen"
+		name="FC Hintertupfingen"
+		>
+		<department
+			id="FC Hintertupfingen/Fußball"
+			name="Fußball"
+			trainers="Klinsmann_Jürgen_,Löw_Joachim_Jogi"
+			>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A"
+				dayofweek="tuesday"
+				timestart="18:00"
+				location="Platz A"
+				name="Jugend_B_A"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="1"
+					role="Trainer"
+					defaulttrainers="Löw_Joachim_Jogi"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B"
+				dayofweek="tuesday"
+				timestart="18:00"
+				location="Platz B"
+				name="Kinder_E_D_C"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="2"
+					role="Trainer"
+					defaulttrainers="Klinsmann_Jürgen_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A"
+				dayofweek="tuesday"
+				timestart="19:30"
+				location="Platz A"
+				name="Erwachsene"
+				timeend="21:00"
+				>
+				<trainerplanning
+					id="3"
+					role="Trainer"
+					defaulttrainers="Klinsmann_Jürgen_"
+					/>
+				<trainerplanning
+					id="4"
+					role="Cotrainer"
+					defaulttrainers="Löw_Joachim_Jogi"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A"
+				dayofweek="thursday"
+				timestart="18:00"
+				location="Platz A"
+				name="Jugend_B_A"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="8"
+					role="Trainer"
+					defaulttrainers="Löw_Joachim_Jogi"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B"
+				dayofweek="thursday"
+				timestart="18:00"
+				location="Platz B"
+				name="Kinder_E_D_C"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="7"
+					role="Trainer"
+					defaulttrainers="Klinsmann_Jürgen_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A"
+				dayofweek="thursday"
+				timestart="19:30"
+				location="Platz A"
+				name="Erwachsene"
+				timeend="21:00"
+				>
+				<trainerplanning
+					id="5"
+					role="Trainer"
+					defaulttrainers="Klinsmann_Jürgen_"
+					/>
+				<trainerplanning
+					id="6"
+					role="Cotrainer"
+					defaulttrainers="Löw_Joachim_Jogi"
+					/>
+			</trainingdate>
+		</department>
+	</club>
+	<trainer
+		id="Klinsmann_Jürgen_"
+		lastname="Klinsmann"
+		firstname="Jürgen"
+		middlename=""
+		email="klinsi@hotmail.com"
+		trainerplannings="2,3,5,7"
+		departments="FC Hintertupfingen/Fußball"
+		icon="20100221030228"
+		user="klinsi"
+		salaries="Trainer_Klinsmann_Jürgen_"
+		/>
+	<trainer
+		id="Löw_Joachim_Jogi"
+		lastname="Löw"
+		firstname="Joachim"
+		middlename="Jogi"
+		email="jogi.loew@dfb.de"
+		trainerattributes="Fachübungsleiter,Trainer A"
+		trainerplannings="1,4,6,8"
+		departments="FC Hintertupfingen/Fußball"
+		icon="20100221030302"
+		user="jogi"
+		/>
+	<trainerrole
+		id="Trainer"
+		name="Trainer"
+		>
+		<salary
+			id="Trainer_Trainer A"
+			rolename="Trainer"
+			trainerattribute="Trainer A"
+			money="20 euro"
+			time="45 min"
+			/>
+		<salary
+			id="Trainer_Fachübungsleiter,Trainer A"
+			rolename="Trainer"
+			trainerattribute="Fachübungsleiter,Trainer A"
+			money="25 euro"
+			time="45 min"
+			/>
+		<personalSalary
+			id="Trainer_Klinsmann_Jürgen_"
+			rolename="Trainer"
+			person="Klinsmann_Jürgen_"
+			money="100 euro"
+			time="45 min"
+			/>
+	</trainerrole>
+	<trainerrole
+		id="Cotrainer"
+		name="Cotrainer"
+		>
+		<salary
+			id="Cotrainer_Trainer A"
+			rolename="Cotrainer"
+			trainerattribute="Trainer A"
+			money="10 euro"
+			time="45 min"
+			/>
+		<salary
+			id="Cotrainer_Fachübungsleiter,Trainer A"
+			rolename="Cotrainer"
+			trainerattribute="Fachübungsleiter,Trainer A"
+			money="15 euro"
+			time="45 min"
+			/>
+	</trainerrole>
+	<sport
+		id="Fußball"
+		name="Fußball"
+		shortname="Fußb."
+		/>
+	<trainerattribute
+		id="Fachübungsleiter"
+		name="Fachübungsleiter"
+		/>
+	<trainerattribute
+		id="Trainer A"
+		name="Trainer A"
+		/>
+	<location
+		id="Platz A"
+		name="Platz A"
+		street="Am Anger 1"
+		city="Hintertupfingen"
+		closedons="20100215_Winterferien,20100316_Festtag"
+		/>
+	<location
+		id="Platz B"
+		name="Platz B"
+		street="Am Anger 1"
+		city="Hintertupfingen"
+		closedons="20100215_Winterferien,20100316_Festtag"
+		/>
+	<closingperiod
+		id="20100215_Winterferien"
+		from="20100215"
+		name="Winterferien"
+		to="20100219"
+		locations="Platz A,Platz B"
+		/>
+	<closingperiod
+		id="20100316_Festtag"
+		from="20100316"
+		name="Festtag"
+		to="20100316"
+		locations="Platz A,Platz B"
+		/>
+	<user
+		id="administrator"
+		accountname="administrator"
+		lastname="Administrator"
+		email="michael.schmidt@aol.com"
+		roles="SuperAdministrator"
+		/>
+	<user
+		id="jogi"
+		accountname="jogi"
+		email="jogi.loew@dfb.de"
+		roles="Trainer"
+		isalsotrainer="Löw_Joachim_Jogi"
+		departments=""
+		/>
+	<user
+		id="klinsi"
+		accountname="klinsi"
+		email="klinsi@hotmail.com"
+		roles="Trainer"
+		isalsotrainer="Klinsmann_Jürgen_"
+		departments=""
+		/>
+	<currentbillingperiod
+		id="20100101_20100331"
+		from="20100101"
+		to="20100331"
+		departments="FC Hintertupfingen/Fußball"
+		/>
+</rb:bean>

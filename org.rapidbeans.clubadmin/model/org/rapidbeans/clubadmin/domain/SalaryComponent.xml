@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.SalaryComponent"
+	>
+	<description><![CDATA[defines the part of a salary.]]></description>
+	<property name="salaryComponentType"
+		type="association"
+		mandatory="true"
+		targettype="SalaryComponentType"
+		maxmult="1"
+	/>
+	<property name="description"/>
+	<property name="money"
+		type="quantity"
+		mandatory="true"
+		quantity="org.rapidbeans.domain.finance.Money"
+		minval="0 euro"
+		propclass="SalaryComponentPropMoney"
+	/>
+	<property name="time"
+		type="quantity"
+		mandatory="true"
+		quantity="org.rapidbeans.domain.math.Time"
+		minval="1 min"
+	/>
+    <codegen mode="joint"/>
+</beantype>
