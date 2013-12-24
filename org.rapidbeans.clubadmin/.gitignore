@@ -1,3 +1,9 @@
 antCustomerBci.properties
 antCustomerBluemel.properties
 antCustomerVfrgarching.properties
+classes
+classes_test
+dist
+dist_temp
+gensrc
+testreport
