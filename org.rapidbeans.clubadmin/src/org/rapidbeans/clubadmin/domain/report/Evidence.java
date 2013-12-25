@@ -37,6 +37,7 @@ import org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer;
 import org.rapidbeans.clubadmin.domain.TrainingRegular;
 import org.rapidbeans.clubadmin.domain.TrainingsList;
 import org.rapidbeans.clubadmin.presentation.RapidClubAdminClient;
+import org.rapidbeans.clubadmin.service.Umlaut;
 import org.rapidbeans.core.basic.PropertyDate;
 import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.exception.PropValueNullException;
@@ -49,41 +50,40 @@ import org.rapidbeans.presentation.ApplicationManager;
 import org.rapidbeans.presentation.settings.SettingsAll;
 
 /**
- * Report business logic.
- * Overview of held trainings and trainer hours for one trainer.
- *
+ * Report business logic. Overview of held trainings and trainer hours for one
+ * trainer.
+ * 
  * @author Martin Bluemel
  */
 public final class Evidence {
 
-    private static final Logger log = Logger.getLogger(
-            Evidence.class.getName()); 
+    private static final Logger log = Logger.getLogger(Evidence.class.getName());
 
     /**
-     * Print a Trainer trainings evidence for
-     * a given trainer and a given set of departements.
-     *
-     * @param evidenceFile the report output file
-     * @param templateFile the report template file
-     * @param departments the Departments
-     * @param trainer the trainer
-     * @param singleSheets if true single formulars will be printed,
-     *                     if false coherent sheets will be printed
+     * Print a Trainer trainings evidence for a given trainer and a given set of
+     * departements.
+     * 
+     * @param evidenceFile
+     *            the report output file
+     * @param templateFile
+     *            the report template file
+     * @param departments
+     *            the Departments
+     * @param trainer
+     *            the trainer
+     * @param singleSheets
+     *            if true single formulars will be printed, if false coherent
+     *            sheets will be printed
      */
-    public static void printReportEvidence(
-            final File evidenceFile,
-            final File templateFile,
-            final Department[] departments,
-            final String trainerId,
-            final boolean singleSheets) {
+    public static void printReportEvidence(final File evidenceFile, final File templateFile,
+            final Department[] departments, final String trainerId, final boolean singleSheets) {
 
         try {
             final FileWriter out = new FileWriter(evidenceFile);
             final Template template = readTemplate(templateFile);
             out.write(template.getHeader());
 
-            printReportSheets(out, template, departments, trainerId,
-                    singleSheets);
+            printReportSheets(out, template, departments, trainerId, singleSheets);
 
             out.write(template.getFooter());
             out.close();
@@ -93,21 +93,23 @@ public final class Evidence {
     }
 
     /**
-     * Print a Trainer trainings evidence for
-     * a given trainer and a given set of departements.
-     *
-     * @param evidenceFile the report output file
-     * @param templateFile the report template file
-     * @param departments the Departments
-     * @param trainer the trainer
-     * @param singleSheets if true single formulars will be printed,
-     *                     if false coherent sheets will be printed
+     * Print a Trainer trainings evidence for a given trainer and a given set of
+     * departements.
+     * 
+     * @param evidenceFile
+     *            the report output file
+     * @param templateFile
+     *            the report template file
+     * @param departments
+     *            the Departments
+     * @param trainer
+     *            the trainer
+     * @param singleSheets
+     *            if true single formulars will be printed, if false coherent
+     *            sheets will be printed
      */
-    public static void printReportEvidence(
-            final File evidenceFile,
-            final File templateFile,
-            final Department[] departments,
-            final boolean singleSheets) {
+    public static void printReportEvidence(final File evidenceFile, final File templateFile,
+            final Department[] departments, final boolean singleSheets) {
 
         try {
             final FileWriter out = new FileWriter(evidenceFile);
@@ -117,16 +119,14 @@ public final class Evidence {
             final Collection<Trainer> trainers = new TreeSet<Trainer>();
             for (Department dep : departments) {
                 for (Trainer tr : dep.getTrainers()) {
-                    if (tr.getTrainingsheld() != null
-                            && tr.getTrainingsheld().size() > 0) {
+                    if (tr.getTrainingsheld() != null && tr.getTrainingsheld().size() > 0) {
                         trainers.add(tr);
                     }
                 }
             }
 
             for (Trainer trainer : trainers) {
-                printReportSheets(out, template, departments,
-                        trainer, singleSheets);
+                printReportSheets(out, template, departments, trainer, singleSheets);
             }
 
             out.write(template.getFooter());
@@ -137,49 +137,48 @@ public final class Evidence {
     }
 
     /**
-     * Print report sheets for
-     * a given trainer and a given set of departements.
-     *
-     * @param evidenceFile the report output file
-     * @param templateFile the report template file
-     * @param departments the Departments
-     * @param trainerId the trainer's id
-     * @param singleSheets if true single formulars will be printed,
-     *                     if false coherent sheets will be printed
+     * Print report sheets for a given trainer and a given set of departements.
+     * 
+     * @param evidenceFile
+     *            the report output file
+     * @param templateFile
+     *            the report template file
+     * @param departments
+     *            the Departments
+     * @param trainerId
+     *            the trainer's id
+     * @param singleSheets
+     *            if true single formulars will be printed, if false coherent
+     *            sheets will be printed
      */
-    final static void printReportSheets(
-            final FileWriter out,
-            final Template template,
-            final Department[] departments,
-            final String trainerId,
-            final boolean singleSheets) throws IOException {
+    final static void printReportSheets(final FileWriter out, final Template template, final Department[] departments,
+            final String trainerId, final boolean singleSheets) throws IOException {
         final Trainer trainer = (Trainer) departments[0].getContainer().findBeanByQuery(
                 "org.rapidbeans.clubadmin.domain.Trainer[id = '" + trainerId + "']");
         printReportSheets(out, template, departments, trainer, singleSheets);
     }
 
     /**
-     * Print report sheets for
-     * a given trainer and a given set of departements.
-     *
-     * @param evidenceFile the report output file
-     * @param templateFile the report template file
-     * @param departments the Departments
-     * @param trainer the trainer
-     * @param singleSheets if true single formulars will be printed,
-     *                     if false coherent sheets will be printed
+     * Print report sheets for a given trainer and a given set of departements.
+     * 
+     * @param evidenceFile
+     *            the report output file
+     * @param templateFile
+     *            the report template file
+     * @param departments
+     *            the Departments
+     * @param trainer
+     *            the trainer
+     * @param singleSheets
+     *            if true single formulars will be printed, if false coherent
+     *            sheets will be printed
      */
-    final static void printReportSheets(
-            final FileWriter out,
-            final Template template,
-            final Department[] departments,
-            final Trainer trainer,
-            final boolean singleSheets) throws IOException {
+    final static void printReportSheets(final FileWriter out, final Template template, final Department[] departments,
+            final Trainer trainer, final boolean singleSheets) throws IOException {
         final List<TrainingHeldByTrainer> allTrhbts = new ArrayList<TrainingHeldByTrainer>();
 
         for (Department dep : departments) {
-            final List<TrainingHeldByTrainer> trhbts = Overview.findTrainigsHeld(
-                    trainer, dep);
+            final List<TrainingHeldByTrainer> trhbts = Overview.findTrainigsHeld(trainer, dep);
             for (TrainingHeldByTrainer trhbt : trhbts) {
                 allTrhbts.add(trhbt);
             }
@@ -188,8 +187,7 @@ public final class Evidence {
         final int size = allTrhbts.size();
         for (int i = 0; i < size; i++) {
             for (int j = i + 1; j < size; j++) {
-                if (isGreater((TrainingHeldByTrainer) allTrhbts.get(j),
-                        (TrainingHeldByTrainer) allTrhbts.get(i))) {
+                if (isGreater((TrainingHeldByTrainer) allTrhbts.get(j), (TrainingHeldByTrainer) allTrhbts.get(i))) {
                     final TrainingHeldByTrainer trhbt = (TrainingHeldByTrainer) allTrhbts.get(i);
                     allTrhbts.set(i, allTrhbts.get(j));
                     allTrhbts.set(j, trhbt);
@@ -198,21 +196,20 @@ public final class Evidence {
         }
 
         final Club club = (Club) departments[0].getParentBean();
-        generateSheets(out, template.getBody(), template.getRowcount(),
-                club, null, trainer,
-                allTrhbts, singleSheets);
+        generateSheets(out, template.getBody(), template.getRowcount(), club, null, trainer, allTrhbts, singleSheets);
     }
 
     /**
      * Helper for the bubble sort.
-     *
-     * @param tr1 the first TrainingHeldByTrainer
-     * @param tr2 the second TrainingHeldByTrainer
-     *
+     * 
+     * @param tr1
+     *            the first TrainingHeldByTrainer
+     * @param tr2
+     *            the second TrainingHeldByTrainer
+     * 
      * @return if the first is greater than the second
      */
-    final static boolean isGreater(final TrainingHeldByTrainer tr1,
-            final TrainingHeldByTrainer tr2) {
+    final static boolean isGreater(final TrainingHeldByTrainer tr1, final TrainingHeldByTrainer tr2) {
         boolean isGreater = false;
         final TrainingRegular trn1 = (TrainingRegular) tr1.getParentBean();
         final TrainingRegular trn2 = (TrainingRegular) tr2.getParentBean();
@@ -238,33 +235,32 @@ public final class Evidence {
     }
 
     /**
-     * Print a Trainer trainings evidence for
-     * a given trainer and a given department.
-     *
-     * @param evidenceFile the report output file
-     * @param templateFile the report template file
-     * @param department the department
-     * @param trainer the trainer
-     * @param singleSheets if true single formulars will be printed,
-     *                     if false coherent sheets will be printed
+     * Print a Trainer trainings evidence for a given trainer and a given
+     * department.
+     * 
+     * @param evidenceFile
+     *            the report output file
+     * @param templateFile
+     *            the report template file
+     * @param department
+     *            the department
+     * @param trainer
+     *            the trainer
+     * @param singleSheets
+     *            if true single formulars will be printed, if false coherent
+     *            sheets will be printed
      */
-    public static void printReportEvidence(
-            final File evidenceFile,
-            final File templateFile,
-            final Department department,
-            final Trainer trainer,
-            final boolean singleSheets) {
+    public static void printReportEvidence(final File evidenceFile, final File templateFile,
+            final Department department, final Trainer trainer, final boolean singleSheets) {
         try {
             // query the TrainingHeldByTrainer objects out of the database
-            final List<TrainingHeldByTrainer> allTrhbts =
-                Overview.findTrainigsHeld(trainer, department);
+            final List<TrainingHeldByTrainer> allTrhbts = Overview.findTrainigsHeld(trainer, department);
 
             FileWriter out = new FileWriter(evidenceFile);
             final Template template = readTemplate(templateFile);
             out.write(template.getHeader());
-            generateSheets(out, template.getBody(), template.getRowcount(),
-                    (Club) department.getParentBean(), department, trainer,
-                    allTrhbts, singleSheets);
+            generateSheets(out, template.getBody(), template.getRowcount(), (Club) department.getParentBean(),
+                    department, trainer, allTrhbts, singleSheets);
             out.write(template.getFooter());
             out.close();
         } catch (IOException e) {
@@ -274,7 +270,7 @@ public final class Evidence {
 
     /**
      * Generate single sheets.
-     *
+     * 
      * @param out
      * @param templateBody
      * @param rowCount
@@ -283,28 +279,31 @@ public final class Evidence {
      * @param trainer
      * @param allTrhbts
      * @param singleSheets
-     *
-     * @param out the file writer to put the output to
-     * @param templateBody the template body to fill
-     * @param rowCount determines how many rows per sheet at maximum
-     * @param club the Club
-     * @param department the department for which the traine held trainings
-     * @param trainer the Trainer
-     * @param allTrhbts all the Trainings held by the Trainer
-     * @param singleSheets if true single formulars will be printed,
-     *                     if false coherent sheets will be printed
-     *
-     * @throws IOException if IO fails
+     * 
+     * @param out
+     *            the file writer to put the output to
+     * @param templateBody
+     *            the template body to fill
+     * @param rowCount
+     *            determines how many rows per sheet at maximum
+     * @param club
+     *            the Club
+     * @param department
+     *            the department for which the traine held trainings
+     * @param trainer
+     *            the Trainer
+     * @param allTrhbts
+     *            all the Trainings held by the Trainer
+     * @param singleSheets
+     *            if true single formulars will be printed, if false coherent
+     *            sheets will be printed
+     * 
+     * @throws IOException
+     *             if IO fails
      */
-    private static void generateSheets(
-            final FileWriter out,
-            final String templateBody,
-            final int rowCount,
-            final Club club,
-            final Department department,
-            final Trainer trainer,
-            final List<TrainingHeldByTrainer> allTrhbts,
-            final boolean singleSheets) throws IOException {
+    private static void generateSheets(final FileWriter out, final String templateBody, final int rowCount,
+            final Club club, final Department department, final Trainer trainer,
+            final List<TrainingHeldByTrainer> allTrhbts, final boolean singleSheets) throws IOException {
         int n = 0;
         final int allTrhbtsSize = allTrhbts.size();
         int currentPageNo = 1;
@@ -324,9 +323,8 @@ public final class Evidence {
                 trhbts.add((TrainingHeldByTrainer) allTrhbts.get(i));
                 n++;
             }
-            sumTrainerhours = Evidence.generateEvidenceBody(
-                    out, templateBody, club, department, trainer, trhbts, rowCount,
-                    pageCount, currentPageNo, singleSheets, sumTrainerhours);
+            sumTrainerhours = Evidence.generateEvidenceBody(out, templateBody, club, department, trainer, trhbts,
+                    rowCount, pageCount, currentPageNo, singleSheets, sumTrainerhours);
             if (currentPageNo < pageCount) {
                 currentPageNo++;
             }
@@ -335,67 +333,65 @@ public final class Evidence {
 
     /**
      * Fills the given report template with data.
-     *
-     * @param out the file writer to put the output to
-     * @param rtfTemplate the report template to fills
-     * @param club the Club
-     * @param trainer the Trainer
-     * @param department the department for which the traine held trainings
-     * @param trhbts the Trainings held by the Trainer
-     * @param pageCount the count of pages to print for
-     *        one single Trainer combined with one single department.
-     * @param singleSheets if true single formulars will be printed,
-     *                     if false coherent sheets will be printed
-     * @param uebertrag the "Uebertrag"
-     *
+     * 
+     * @param out
+     *            the file writer to put the output to
+     * @param rtfTemplate
+     *            the report template to fills
+     * @param club
+     *            the Club
+     * @param trainer
+     *            the Trainer
+     * @param department
+     *            the department for which the traine held trainings
+     * @param trhbts
+     *            the Trainings held by the Trainer
+     * @param pageCount
+     *            the count of pages to print for one single Trainer combined
+     *            with one single department.
+     * @param singleSheets
+     *            if true single formulars will be printed, if false coherent
+     *            sheets will be printed
+     * @param uebertrag
+     *            the "Uebertrag"
+     * 
      * @return the time summed up so far
-     *
-     * @throws IOException  i case of IO problems
+     * 
+     * @throws IOException
+     *             i case of IO problems
      */
-    private static Time generateEvidenceBody(
-            final FileWriter out,
-            final String rtfTemplate,
-            final Club club,
-            final Department department,
-            final Trainer trainer,
-            final List<TrainingHeldByTrainer> trhbts,
-            final int rowCount, final int pageCount,
-            final int currentPageNo, final boolean singleSheets,
+    private static Time generateEvidenceBody(final FileWriter out, final String rtfTemplate, final Club club,
+            final Department department, final Trainer trainer, final List<TrainingHeldByTrainer> trhbts,
+            final int rowCount, final int pageCount, final int currentPageNo, final boolean singleSheets,
             final Time uebertrag) throws IOException {
 
         final Map<String, String> map = new HashMap<String, String>();
         final RapidClubAdminClient client = (RapidClubAdminClient) ApplicationManager.getApplication();
         final RapidBeansLocale locale = client.getCurrentLocale();
         final TrainingsList trList = (TrainingsList) trainer.getParentBean();
-        map.put("@YEAR@", PropertyDate.formatDate(trList.getTo(), locale,
-                DateFormat.MEDIUM, DateFormat.YEAR_FIELD));
-        map.put("@TRAINER@", trainer.getFirstname() + " "
-                + trainer.getLastname());
+        map.put("@YEAR@", PropertyDate.formatDate(trList.getTo(), locale, DateFormat.MEDIUM, DateFormat.YEAR_FIELD));
+        map.put("@TRAINER@", Umlaut.encodeRtf(trainer.getFirstname() + " " + trainer.getLastname()));
         if (department != null) {
-            map.put("@CLUB@", club.getName()
-                    + " (Abteilung: " + department.getName() + ")");
+            map.put("@CLUB@", Umlaut.encodeRtf(club.getName() + " (Abteilung: " + department.getName() + ")"));
         } else {
-            map.put("@CLUB@", club.getName());
+            map.put("@CLUB@", Umlaut.encodeRtf(club.getName()));
         }
         if ((!singleSheets) || pageCount == 1) {
-            map.put("@BS@", PropertyDate.formatDate(trList.getFrom(),
-                    locale, DateFormat.MEDIUM, DateFormat.MONTH_FIELD)
-                    + "." + PropertyDate.formatDate(trList.getFrom(),
-                            locale, DateFormat.MEDIUM, DateFormat.YEAR_FIELD));
-            map.put("@BE@", PropertyDate.formatDate(trList.getTo(),
-                    locale, DateFormat.MEDIUM, DateFormat.MONTH_FIELD)
-                    + "." + PropertyDate.formatDate(trList.getTo(),
-                            locale, DateFormat.MEDIUM, DateFormat.YEAR_FIELD));
+            map.put("@BS@",
+                    PropertyDate.formatDate(trList.getFrom(), locale, DateFormat.MEDIUM, DateFormat.MONTH_FIELD)
+                            + "."
+                            + PropertyDate.formatDate(trList.getFrom(), locale, DateFormat.MEDIUM,
+                                    DateFormat.YEAR_FIELD));
+            map.put("@BE@", PropertyDate.formatDate(trList.getTo(), locale, DateFormat.MEDIUM, DateFormat.MONTH_FIELD)
+                    + "." + PropertyDate.formatDate(trList.getTo(), locale, DateFormat.MEDIUM, DateFormat.YEAR_FIELD));
         } else {
-            map.put("@BS@", PropertyDate.formatDate(
-                    ((TrainingRegular) trhbts.get(0).getParentBean()).getDate(), locale));
+            map.put("@BS@",
+                    PropertyDate.formatDate(((TrainingRegular) trhbts.get(0).getParentBean()).getDate(), locale));
             map.put("@BE@", PropertyDate.formatDate(
                     ((TrainingRegular) trhbts.get(trhbts.size() - 1).getParentBean()).getDate(), locale));
         }
         if ((!singleSheets) && (pageCount > 1)) {
-            map.put("@PAGE@", "BLATT "
-                    + Integer.toString(currentPageNo)
-                    + " / " + Integer.toString(pageCount));
+            map.put("@PAGE@", "BLATT " + Integer.toString(currentPageNo) + " / " + Integer.toString(pageCount));
         } else {
             map.put("@PAGE@", "");
         }
@@ -415,15 +411,16 @@ public final class Evidence {
             final Time hoursWorked = training.getTimeWorked(UnitTime.h);
             Time trainerhoursWorked = null;
             try {
-                trainerhoursWorked = new Time(hoursWorked.convert(UnitTime.min).getMagnitude().divide(trainerHour.getMagnitude()), UnitTime.min);
+                trainerhoursWorked = new Time(hoursWorked.convert(UnitTime.min).getMagnitude()
+                        .divide(trainerHour.getMagnitude()), UnitTime.min);
             } catch (ArithmeticException e) {
-                double d = (hoursWorked.convert(UnitTime.min).getMagnitude().doubleValue()) / (trainerHour.getMagnitude().doubleValue());
-                trainerhoursWorked = new Time(new BigDecimal(d), UnitTime.min);             
+                double d = (hoursWorked.convert(UnitTime.min).getMagnitude().doubleValue())
+                        / (trainerHour.getMagnitude().doubleValue());
+                trainerhoursWorked = new Time(new BigDecimal(d), UnitTime.min);
             }
             switch (training.getState()) {
             case checked:
-                sumHours = new Time(sumHours.getMagnitude().add(hoursWorked.getMagnitude()),
-                        UnitTime.h);
+                sumHours = new Time(sumHours.getMagnitude().add(hoursWorked.getMagnitude()), UnitTime.h);
                 try {
                     partipiciantsCount = training.getPartipiciantscount();
                 } catch (PropValueNullException e) {
@@ -431,11 +428,9 @@ public final class Evidence {
                 }
                 lineNo = StringHelper.fillUp(Integer.toString(n), 2, '0', StringHelper.FillMode.left);
                 map.put("@01" + lineNo + "@", training.getProperty("date").toStringGui(locale));
-                map.put("@02" + lineNo + "@",
-                        training.getTimestart().toString() + " - "
+                map.put("@02" + lineNo + "@", training.getTimestart().toString() + " - "
                         + training.getTimeend().toString());
-                map.put("@03" + lineNo + "@",
-                        formatter2.format(trainerhoursWorked.getMagnitude()));
+                map.put("@03" + lineNo + "@", formatter2.format(trainerhoursWorked.getMagnitude()));
                 String sport = "";
                 if (training.getSport() != null) {
                     if (training.getSport().getShortname() != null
@@ -456,18 +451,17 @@ public final class Evidence {
                         sport = dep.getName();
                     }
                 }
-                map.put("@04" + lineNo + "@", sport);
+                map.put("@04" + lineNo + "@", Umlaut.encodeRtf(sport));
                 if (partipiciantsCount == -1) {
                     map.put("@05" + lineNo + "@", "-");
                 } else {
                     map.put("@05" + lineNo + "@", Integer.toString(partipiciantsCount));
                 }
                 if (training.getLocation() != null) {
-                    if (training.getLocation().getStreet() != null
-                            && (!training.getLocation().getStreet().equals(""))) {
-                        map.put("@06" + lineNo + "@", training.getLocation().getStreet());
+                    if (training.getLocation().getStreet() != null && (!training.getLocation().getStreet().equals(""))) {
+                        map.put("@06" + lineNo + "@", Umlaut.encodeRtf(training.getLocation().getStreet()));
                     } else {
-                        map.put("@06" + lineNo + "@", training.getLocation().getName());
+                        map.put("@06" + lineNo + "@", Umlaut.encodeRtf(training.getLocation().getName()));
                     }
                 } else {
                     map.put("@06" + lineNo + "@", "");
@@ -493,23 +487,25 @@ public final class Evidence {
         }
         Time sumTrainerhoursWorked = null;
         try {
-            sumTrainerhoursWorked = new Time(sumHours.convert(UnitTime.min).getMagnitude().divide(trainerHour.getMagnitude()), UnitTime.min);
+            sumTrainerhoursWorked = new Time(sumHours.convert(UnitTime.min).getMagnitude()
+                    .divide(trainerHour.getMagnitude()), UnitTime.min);
         } catch (ArithmeticException e) {
-            double d = (sumHours.convert(UnitTime.min).getMagnitude().doubleValue()) / (trainerHour.getMagnitude().doubleValue());
+            double d = (sumHours.convert(UnitTime.min).getMagnitude().doubleValue())
+                    / (trainerHour.getMagnitude().doubleValue());
             sumTrainerhoursWorked = new Time(new BigDecimal(d), UnitTime.min);
         }
         if (singleSheets || (currentPageNo == pageCount)) {
             map.put("@TSUM@", "Summe");
-            map.put("@F1@",
-                    "Es wird bestätigt, daß die Eintragungen richtig sind.");
+            map.put("@F1@", "Es wird best" + Umlaut.RTF_L_AUML + "tigt, da" + Umlaut.RTF_SUML
+                    + " die Eintragungen richtig sind.");
             map.put("@F2@", "Ismaning, der");
             map.put("@F3@", "Ort, Datum");
             map.put("@F4@", "______________________________");
             map.put("@F5@", "Unterschrift des Vereinsvorsitzenden");
             map.put("@F6@", "________________________");
-            map.put("@F7@", "Unterschrift des Übungsleiters");
+            map.put("@F7@", "Unterschrift des " + Umlaut.RTF_U_UUML + "bungsleiters");
         } else {
-            map.put("@TSUM@", "Übertrag");
+            map.put("@TSUM@", Umlaut.RTF_U_UUML + "bertrag");
             map.put("@F1@", "");
             map.put("@F2@", "");
             map.put("@F3@", "");
@@ -545,8 +541,7 @@ public final class Evidence {
                     final String key = buf.toString();
                     final String val = map.get(key);
                     if (val == null) {
-                        throw new RapidClubAdminBusinessLogicException(
-                                "evidence.rtftemplate.parser.invalid.key",
+                        throw new RapidClubAdminBusinessLogicException("evidence.rtftemplate.parser.invalid.key",
                                 "No value found for key \"" + key + "\"");
                     }
                     out.write(val);
@@ -558,13 +553,12 @@ public final class Evidence {
                     if (buf.length() > 20) {
                         out.write(buf.toString());
                         buf.setLength(0);
-                        state = 0;                        
+                        state = 0;
                     }
                 }
                 break;
             default:
-                throw new RapidClubAdminBusinessLogicException(
-                        "evidence.rtftemplate.parser.invalid.state",
+                throw new RapidClubAdminBusinessLogicException("evidence.rtftemplate.parser.invalid.state",
                         "invalid state " + state);
             }
         }
@@ -576,18 +570,17 @@ public final class Evidence {
     }
 
     /**
-     * find the report template file in the settings dir and copy
-     * it from res if it is not already there.
-     *
+     * find the report template file in the settings dir and copy it from res if
+     * it is not already there.
+     * 
      * @return the report template file.
      */
     public static File findEvidenceReportTemplateFile(final boolean keepLocalTemplateFile) {
         try {
             final Application client = ApplicationManager.getApplication();
             final RapidBeansLocale locale = client.getCurrentLocale();
-            File templateFile = new File(
-                    "res/org/rapidbeans/clubadmin/reports/"
-                    + locale.getName() + "/templateNachweis.rtf");
+            File templateFile = new File("res/org/rapidbeans/clubadmin/reports/" + locale.getName()
+                    + "/templateNachweis.rtf");
             if (templateFile.exists()) {
                 log.fine("exit 1: template file: \"" + templateFile.getAbsolutePath() + "\"");
                 return templateFile;
@@ -597,18 +590,18 @@ public final class Evidence {
             log.fine("searching file \"" + templateFile.getAbsolutePath() + "\"...");
             if (templateFile.exists()) {
                 if (keepLocalTemplateFile) {
-                  log.fine("exit 2: template file: \"" + templateFile.getAbsolutePath() + "\"");
-                  return templateFile;
+                    log.fine("exit 2: template file: \"" + templateFile.getAbsolutePath() + "\"");
+                    return templateFile;
                 } else {
                     log.fine("deleting local template file");
                     templateFile.delete();
                 }
             }
 
-            log.fine("reading resource  \"org/rapidbeans/clubadmin/reports/"
-                    + locale.getName() + "/templateNachweis.rtf\"...");
-            InputStream is = RapidClubAdmin.class.getResourceAsStream("reports/"
-                    + locale.getName() + "/templateNachweis.rtf");
+            log.fine("reading resource  \"org/rapidbeans/clubadmin/reports/" + locale.getName()
+                    + "/templateNachweis.rtf\"...");
+            InputStream is = RapidClubAdmin.class.getResourceAsStream("reports/" + locale.getName()
+                    + "/templateNachweis.rtf");
             if (is == null) {
                 throw new RuntimeException("file \"" + templateFile.getAbsolutePath() + "\" not found");
             }
@@ -640,11 +633,11 @@ public final class Evidence {
         }
     }
 
-    /** 
-     * @return the template file split into
-     *         header, body and footer.
-     *
-     * @throws IOException if IO fails
+    /**
+     * @return the template file split into header, body and footer.
+     * 
+     * @throws IOException
+     *             if IO fails
      */
     protected static Template readTemplate(final File templateFile) throws IOException {
         // read the template file into one string
@@ -704,8 +697,11 @@ public final class Evidence {
      */
     public static class Template {
         private String header = null;
+
         private String body = null;
+
         private String footer = null;
+
         private int rowCount = 0;
 
         /**
@@ -716,7 +712,8 @@ public final class Evidence {
         }
 
         /**
-         * @param header the header to set
+         * @param header
+         *            the header to set
          */
         public void setHeader(String header) {
             this.header = header;
@@ -730,7 +727,8 @@ public final class Evidence {
         }
 
         /**
-         * @param body the body to set
+         * @param body
+         *            the body to set
          */
         public void setBody(String body) {
             this.body = body;
@@ -744,7 +742,8 @@ public final class Evidence {
         }
 
         /**
-         * @param footer the footer to set
+         * @param footer
+         *            the footer to set
          */
         public void setFooter(String footer) {
             this.footer = footer;

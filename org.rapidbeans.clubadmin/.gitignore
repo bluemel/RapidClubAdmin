@@ -2,6 +2,7 @@ antCustomerBci.properties
 antCustomerBluemel.properties
 antCustomerVfrgarching.properties
 classes
+classes_eclipse
 classes_test
 dist
 dist_temp

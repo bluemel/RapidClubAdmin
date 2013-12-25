@@ -8,64 +8,59 @@
 
 package org.rapidbeans.clubadmin.presentation.swing;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.io.File;
 
-import junit.framework.TestCase;
-
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.rapidbeans.clubadmin.domain.TrainingRegular;
 import org.rapidbeans.clubadmin.domain.TrainingSpecial;
+import org.rapidbeans.clubadmin.service.Umlaut;
 import org.rapidbeans.core.basic.BeanSorter;
 import org.rapidbeans.core.type.TypeProperty;
+import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.datasource.Document;
 
 /**
  * training table model tests.
- *
+ * 
  * @author Martin Bluemel
  */
-public class ModelTrainingsTableTest extends TestCase {
+public class ModelTrainingsTableTest {
 
-    /**
-     * set up.
-     */
+    @Before
     public void setUp() {
+        TypePropertyCollection.setDefaultCharSeparator(',');
     }
 
-    /**
-     * tear down.
-     */
+    @After
     public void tearDown() {
         BeanSorter.set(null);
     }
 
+    @Test
     public void testSortTrainings() {
-        Document doc = new Document(
-                new File("testdata/trainingslist_withSpecialTrainings.xml"));
-        TrainingRegular tr01 = (TrainingRegular) doc.findBean(
-                "org.rapidbeans.clubadmin.domain.TrainingRegular",
-                "Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20070903");
+        Document doc = new Document(new File("testdata/trainingslist_withSpecialTrainings.xml"));
+        TrainingRegular tr01 = (TrainingRegular) doc.findBean("org.rapidbeans.clubadmin.domain.TrainingRegular",
+                "Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule S" + Umlaut.L_UUML + "d/20070903");
         assertNotNull(tr01);
-        TrainingRegular tr02 = (TrainingRegular) doc.findBean(
-                "org.rapidbeans.clubadmin.domain.TrainingRegular",
-                "Budo-Club Ismaning/Aikido/monday_20:30_Turnhalle Grundschule Süd/20070903");
+        TrainingRegular tr02 = (TrainingRegular) doc.findBean("org.rapidbeans.clubadmin.domain.TrainingRegular",
+                "Budo-Club Ismaning/Aikido/monday_20:30_Turnhalle Grundschule S" + Umlaut.L_UUML + "d/20070903");
         assertNotNull(tr02);
-        TrainingSpecial tr03 = (TrainingSpecial) doc.findBean(
-                "org.rapidbeans.clubadmin.domain.TrainingSpecial",
-                "Budo-Club Ismaning/Aikido/8:15_Turnhalle Grundschule Süd_20070904");
+        TrainingSpecial tr03 = (TrainingSpecial) doc.findBean("org.rapidbeans.clubadmin.domain.TrainingSpecial",
+                "Budo-Club Ismaning/Aikido/8:15_Turnhalle Grundschule S" + Umlaut.L_UUML + "d_20070904");
         assertNotNull(tr03);
-        TrainingRegular tr04 = (TrainingRegular) doc.findBean(
-                "org.rapidbeans.clubadmin.domain.TrainingRegular",
-                "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20070904");
+        TrainingRegular tr04 = (TrainingRegular) doc.findBean("org.rapidbeans.clubadmin.domain.TrainingRegular",
+                "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule S" + Umlaut.L_UUML + "d/20070904");
         assertNotNull(tr04);
-        TrainingSpecial tr05 = (TrainingSpecial) doc.findBean(
-                "org.rapidbeans.clubadmin.domain.TrainingSpecial",
-                "Budo-Club Ismaning/Aikido/22:00_Turnhalle Grundschule Süd_20070904");
+        TrainingSpecial tr05 = (TrainingSpecial) doc.findBean("org.rapidbeans.clubadmin.domain.TrainingSpecial",
+                "Budo-Club Ismaning/Aikido/22:00_Turnhalle Grundschule S" + Umlaut.L_UUML + "d_20070904");
         assertNotNull(tr05);
 
-        final TypeProperty[] proptypes = {
-                tr01.getProperty("date").getType(),
-                tr01.getProperty("timestart").getType()
-                };
+        final TypeProperty[] proptypes = { tr01.getProperty("date").getType(), tr01.getProperty("timestart").getType() };
         BeanSorter.set(proptypes);
 
         assertEquals(-1, tr01.compareTo(tr02));
@@ -97,19 +92,19 @@ public class ModelTrainingsTableTest extends TestCase {
     /**
      * Test the model sorting with different training subclasses.
      */
+    @Test
     public void testModelSorting() {
-        Document doc = new Document(
-                new File("testdata/trainingslist_withSpecialTrainings.xml"));
+        Document doc = new Document(new File("testdata/trainingslist_withSpecialTrainings.xml"));
         ModelTrainingsTable model = new ModelTrainingsTable(doc);
-        assertEquals("Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd/20070903",
+        assertEquals("Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule S" + Umlaut.L_UUML + "d/20070903",
                 model.getTrainingAt(0).getIdString());
-        assertEquals("Budo-Club Ismaning/Aikido/monday_20:30_Turnhalle Grundschule Süd/20070903",
+        assertEquals("Budo-Club Ismaning/Aikido/monday_20:30_Turnhalle Grundschule S" + Umlaut.L_UUML + "d/20070903",
                 model.getTrainingAt(1).getIdString());
-        assertEquals("Budo-Club Ismaning/Aikido/8:15_Turnhalle Grundschule Süd_20070904",
-                model.getTrainingAt(2).getIdString());
-        assertEquals("Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20070904",
+        assertEquals("Budo-Club Ismaning/Aikido/8:15_Turnhalle Grundschule S" + Umlaut.L_UUML + "d_20070904", model
+                .getTrainingAt(2).getIdString());
+        assertEquals("Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule S" + Umlaut.L_UUML + "d/20070904",
                 model.getTrainingAt(3).getIdString());
-        assertEquals("Budo-Club Ismaning/Aikido/22:00_Turnhalle Grundschule Süd_20070904",
-                model.getTrainingAt(4).getIdString());
+        assertEquals("Budo-Club Ismaning/Aikido/22:00_Turnhalle Grundschule S" + Umlaut.L_UUML + "d_20070904", model
+                .getTrainingAt(4).getIdString());
     }
 }

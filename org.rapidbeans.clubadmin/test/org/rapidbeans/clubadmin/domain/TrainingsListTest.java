@@ -1,5 +1,11 @@
 package org.rapidbeans.clubadmin.domain;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+
 import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -7,16 +13,18 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
 
-import junit.framework.TestCase;
-
+import org.junit.Before;
+import org.junit.Test;
+import org.rapidbeans.clubadmin.service.Umlaut;
+import org.rapidbeans.core.basic.BeanSorter;
 import org.rapidbeans.core.basic.IdGeneratorNumeric;
 import org.rapidbeans.core.basic.IdKeyprops;
 import org.rapidbeans.core.basic.IdKeypropswithparentscope;
-import org.rapidbeans.core.basic.BeanSorter;
 import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.common.RapidBeanDeserializer;
-import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.core.type.TypeProperty;
+import org.rapidbeans.core.type.TypePropertyCollection;
+import org.rapidbeans.core.type.TypeRapidBean;
 import org.rapidbeans.datasource.Document;
 import org.rapidbeans.datasource.query.Query;
 import org.rapidbeans.domain.math.DayOfWeek;
@@ -24,19 +32,25 @@ import org.rapidbeans.domain.math.TimeOfDay;
 
 /**
  * UnitTests for TrainingsList.
- *
+ * 
  * @author Martin Bluemel
  */
-public class TrainingsListTest extends TestCase {
+public class TrainingsListTest {
 
     /**
      * Date formatter.
      */
     static final DateFormat DFDATE = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.GERMAN);
 
+    @Before
+    public void setUp() {
+        TypePropertyCollection.setDefaultCharSeparator(',');
+    }
+
     /**
      * Test method for getType().
      */
+    @Test
     public void testGetType() {
         TrainingsList period = new TrainingsList();
         TypeRapidBean type = period.getType();
@@ -45,9 +59,11 @@ public class TrainingsListTest extends TestCase {
 
     /**
      * Test method for TrainingsList().
-     *
-     * @throws ParseException if parsing fails
+     * 
+     * @throws ParseException
+     *             if parsing fails
      */
+    @Test
     public void testTrainingsList() throws ParseException {
         final TrainingsList period = new TrainingsList();
         period.setFrom(DFDATE.parse("01.01.2006"));
@@ -58,9 +74,11 @@ public class TrainingsListTest extends TestCase {
 
     /**
      * Test method for TrainingsList(String).
-     *
-     * @throws ParseException if parsing fails
+     * 
+     * @throws ParseException
+     *             if parsing fails
      */
+    @Test
     public void testTrainingsListString() throws ParseException {
         final String s = "\"20060101\" \"20060331\"";
         final TrainingsList period = new TrainingsList(s);
@@ -70,28 +88,31 @@ public class TrainingsListTest extends TestCase {
 
     /**
      * Test method for TrainingsList(String[]).
-     *
-     * @throws ParseException if parsing fails
+     * 
+     * @throws ParseException
+     *             if parsing fails
      */
+    @Test
     public void testTrainingsListStringArray() throws ParseException {
-        final String[] sa = {"20060101", "20060331"};
+        final String[] sa = { "20060101", "20060331" };
         final TrainingsList period = new TrainingsList(sa);
         assertEquals(DFDATE.parse("01.01.2006"), period.getFrom());
         assertEquals(DFDATE.parse("31.03.2006"), period.getTo());
     }
 
     /**
-     * Test method for deserializing a document file.
-     * Links are not resolved.
+     * Test method for deserializing a document file. Links are not resolved.
      */
+    @Test
     public void testDeserializeFile() {
         IdGeneratorNumeric numericIdGenerator = new IdGeneratorNumeric();
         numericIdGenerator.setMode(IdGeneratorNumeric.GENERATION_STRATEGY_COMPACT);
         TypeRapidBean.forName("org.rapidbeans.clubadmin.domain.TrainerPlanning").setIdGenerator(numericIdGenerator);
-        TypeRapidBean.forName("org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer").setIdGenerator(numericIdGenerator);
+        TypeRapidBean.forName("org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer").setIdGenerator(
+                numericIdGenerator);
 
-        MasterData period = (MasterData) (new RapidBeanDeserializer()).loadBean(
-                null, new File("testdata/masterdata.xml"));
+        MasterData period = (MasterData) (new RapidBeanDeserializer()).loadBean(null, new File(
+                "testdata/masterdata.xml"));
         Collection<Trainer> trainers = period.getTrainers();
         assertEquals(6, trainers.size());
         int i = 1;
@@ -117,15 +138,12 @@ public class TrainingsListTest extends TestCase {
             switch (i) {
             case 1:
                 assertSame(IdKeypropswithparentscope.class, date.getId().getClass());
-                assertEquals("Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule",
-                        date.getIdString());
+                assertEquals("Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule", date.getIdString());
                 assertEquals(DayOfWeek.monday, date.getDayofweek());
                 assertEquals(new TimeOfDay("19:00"), date.getTimestart());
                 assertEquals(new TimeOfDay("20:30"), date.getTimeend());
-                assertEquals(90, date.getTimeend().getMagnitudeLong()
-                        - date.getTimestart().getMagnitudeLong());
-                assertNotNull(((TrainerPlanning) date.getTrainerplannings().iterator().next()).
-                    getDefaulttrainers());
+                assertEquals(90, date.getTimeend().getMagnitudeLong() - date.getTimestart().getMagnitudeLong());
+                assertNotNull(((TrainerPlanning) date.getTrainerplannings().iterator().next()).getDefaulttrainers());
                 break;
             default:
                 break;
@@ -135,146 +153,154 @@ public class TrainingsListTest extends TestCase {
     }
 
     /**
-     * Test method for loading a document from a file.
-     * Links should be resolved.
+     * Test method for loading a document from a file. Links should be resolved.
      */
+    @Test
     public void testLoadDocument() {
-        IdGeneratorNumeric idGenerator = new IdGeneratorNumeric();
-        TypeRapidBean.forName("org.rapidbeans.clubadmin.domain.TrainerPlanning").setIdGenerator(idGenerator);
-        TypeRapidBean.forName("org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer").setIdGenerator(idGenerator);
-        Document doc = new Document("masterdata", new File("testdata/trainingslist_20060101_20060331.xml"));
-        TrainingsList period = (TrainingsList) doc.getRoot();
-        Collection<Trainer> trainers = period.getTrainers();
-        assertEquals(6, trainers.size());
-        int i = 1;
-        for (Trainer trainer : trainers) {
-            switch (i) {
-            case 1:
-                assertSame(IdKeyprops.class, trainer.getId().getClass());
-                assertEquals("Blümel_Martin_", trainer.getIdString());
-                assertEquals("Blümel", trainer.getLastname());
-                break;
-            default:
-                break;
-            }
-            i++;
-        }
-
-        Collection<RapidBean> trainingdates = doc.findBeansByType("org.rapidbeans.clubadmin.domain.TrainingDate");
-        assertEquals(6, trainingdates.size());
-
-        //Trainer defaulttrainer;
-        TrainingDate date;
-        for (RapidBean b : trainingdates) {
-            date = (TrainingDate) b;
-            if (date.getIdString().equals("Iaido/Aikido Erwachsene")) {
-                assertSame(IdKeyprops.class, date.getId().getClass());
-                assertEquals(DayOfWeek.monday, date.getDayofweek());
-                assertEquals(new TimeOfDay("19:30"), date.getTimestart());
-                assertEquals(new TimeOfDay("21:30"), date.getTimeend());
-                assertEquals(120, date.getTimeend().getMagnitudeLong()
-                        - date.getTimestart().getMagnitudeLong());
-                Collection<TrainerPlanning> plannedTrainers = date.getTrainerplannings();
-                assertEquals(1, plannedTrainers.size());
-            }
-        }
-
-//        Collection<CreditInstitute> creditinstitutes = period.getCreditinstitutes();
-//        assertEquals(5, creditinstitutes.size());
-//        i = 1;
-//        for (CreditInstitute inst : creditinstitutes) {
-//            switch (i) {
-//            case 4:
-//                assertSame(IdKeyprops.class, inst.getId().getClass());
-//                assertEquals("Hypovereinsbank Mï¿½nchen", inst.getIdString());
-//                assertEquals(new Integer(70020270), (Object) inst.getIdentnumber());
-//                break;
-//            default:
-//                break;
-//            }
-//            i++;
-//        }
-
-        Collection<Location> locs = period.getLocations();
-        assertEquals(2, locs.size());
-        i = 0;
-        int j;
-        Collection<ClosingPeriod> cps;
-        for (Location loc : locs) {
-            switch (i) {
-            case 0:
-                assertEquals("Eurythmiesaal 1 Waldorfschule", loc.getIdString());
-                cps = loc.getClosedons();
-                assertEquals(2, cps.size());
-                j = 0;
-                for (ClosingPeriod cp : cps) {
-                    switch (j) {
-                    case 1:
-                        assertEquals("20060116_Schulputztag", cp.getIdString());
-                        break;
-                    case 0:
-                        assertEquals("20051222_Weihnachtsferien", cp.getIdString());
-                        break;
-                    default:
-                        fail("unexpected index");
-                    }
-                    j++;
+        final char defaultCharSeparatorBefore = TypePropertyCollection.getDefaultCharSeparator();
+        try {
+            IdGeneratorNumeric idGenerator = new IdGeneratorNumeric();
+            TypeRapidBean.forName("org.rapidbeans.clubadmin.domain.TrainerPlanning").setIdGenerator(idGenerator);
+            TypeRapidBean.forName("org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer").setIdGenerator(idGenerator);
+            Document doc = new Document("masterdata", new File("testdata/trainingslist_20060101_20060331.xml"));
+            TrainingsList period = (TrainingsList) doc.getRoot();
+            Collection<Trainer> trainers = period.getTrainers();
+            assertEquals(6, trainers.size());
+            int i = 1;
+            for (Trainer trainer : trainers) {
+                switch (i) {
+                case 1:
+                    assertSame(IdKeyprops.class, trainer.getId().getClass());
+                    assertEquals("Bl" + Umlaut.L_UUML + "mel_Martin_", trainer.getIdString());
+                    assertEquals("Bl" + Umlaut.L_UUML + "mel", trainer.getLastname());
+                    break;
+                default:
+                    break;
                 }
-                break;
-            case 1:
-                assertEquals("Turnhalle Grundschule Süd", loc.getIdString());
-                cps = loc.getClosedons();
-                assertEquals(1, cps.size());
-                assertEquals("20051222_Weihnachtsferien", cps.iterator().next().getIdString());
-                break;
-            default:
-                fail("unexpected index");
+                i++;
             }
-            i++;
-         }
 
-        cps = period.getClosingperiods();
-        assertEquals(2, cps.size());
-        i = 0;
-        for (ClosingPeriod cp : cps) {
-            switch (i) {
-            case 1:
-                assertEquals("20060116_Schulputztag", cp.getIdString());
-                locs = cp.getLocations();
-                assertEquals(1, locs.size());
-                assertEquals("Eurythmiesaal 1 Waldorfschule", locs.iterator().next().getIdString());
-                break;
-            case 0:
-                assertEquals("20051222_Weihnachtsferien", cp.getIdString());
-                locs = cp.getLocations();
-                assertEquals(2, locs.size());
-                j = 0;
-                for (Location loc : locs) {
-                    switch (j) {
-                    case 0:
-                        assertEquals("Eurythmiesaal 1 Waldorfschule", loc.getIdString());
-                        break;
-                    case 1:
-                        assertEquals("Turnhalle Grundschule Süd", loc.getIdString());
-                        break;
-                    default:
-                        fail("unexpected index");
-                    }
-                    j++;
+            Collection<RapidBean> trainingdates = doc.findBeansByType("org.rapidbeans.clubadmin.domain.TrainingDate");
+            assertEquals(6, trainingdates.size());
+
+            // Trainer defaulttrainer;
+            TrainingDate date;
+            for (RapidBean b : trainingdates) {
+                date = (TrainingDate) b;
+                if (date.getIdString().equals("Iaido/Aikido Erwachsene")) {
+                    assertSame(IdKeyprops.class, date.getId().getClass());
+                    assertEquals(DayOfWeek.monday, date.getDayofweek());
+                    assertEquals(new TimeOfDay("19:30"), date.getTimestart());
+                    assertEquals(new TimeOfDay("21:30"), date.getTimeend());
+                    assertEquals(120, date.getTimeend().getMagnitudeLong() - date.getTimestart().getMagnitudeLong());
+                    Collection<TrainerPlanning> plannedTrainers = date.getTrainerplannings();
+                    assertEquals(1, plannedTrainers.size());
                 }
-                break;
-            default:
-                fail("unexpected index");
             }
-            i++;
-         }
+
+            // Collection<CreditInstitute> creditinstitutes =
+            // period.getCreditinstitutes();
+            // assertEquals(5, creditinstitutes.size());
+            // i = 1;
+            // for (CreditInstitute inst : creditinstitutes) {
+            // switch (i) {
+            // case 4:
+            // assertSame(IdKeyprops.class, inst.getId().getClass());
+            // assertEquals("Hypovereinsbank Mï¿½nchen", inst.getIdString());
+            // assertEquals(new Integer(70020270), (Object)
+            // inst.getIdentnumber());
+            // break;
+            // default:
+            // break;
+            // }
+            // i++;
+            // }
+
+            Collection<Location> locs = period.getLocations();
+            assertEquals(2, locs.size());
+            i = 0;
+            int j;
+            Collection<ClosingPeriod> cps;
+            for (Location loc : locs) {
+                switch (i) {
+                case 0:
+                    assertEquals("Eurythmiesaal 1 Waldorfschule", loc.getIdString());
+                    cps = loc.getClosedons();
+                    assertEquals(2, cps.size());
+                    j = 0;
+                    for (ClosingPeriod cp : cps) {
+                        switch (j) {
+                        case 1:
+                            assertEquals("20060116_Schulputztag", cp.getIdString());
+                            break;
+                        case 0:
+                            assertEquals("20051222_Weihnachtsferien", cp.getIdString());
+                            break;
+                        default:
+                            fail("unexpected index");
+                        }
+                        j++;
+                    }
+                    break;
+                case 1:
+                    assertEquals("Turnhalle Grundschule S" + Umlaut.L_UUML + "d", loc.getIdString());
+                    cps = loc.getClosedons();
+                    assertEquals(1, cps.size());
+                    assertEquals("20051222_Weihnachtsferien", cps.iterator().next().getIdString());
+                    break;
+                default:
+                    fail("unexpected index");
+                }
+                i++;
+            }
+
+            cps = period.getClosingperiods();
+            assertEquals(2, cps.size());
+            i = 0;
+            for (ClosingPeriod cp : cps) {
+                switch (i) {
+                case 1:
+                    assertEquals("20060116_Schulputztag", cp.getIdString());
+                    locs = cp.getLocations();
+                    assertEquals(1, locs.size());
+                    assertEquals("Eurythmiesaal 1 Waldorfschule", locs.iterator().next().getIdString());
+                    break;
+                case 0:
+                    assertEquals("20051222_Weihnachtsferien", cp.getIdString());
+                    locs = cp.getLocations();
+                    assertEquals(2, locs.size());
+                    j = 0;
+                    for (Location loc : locs) {
+                        switch (j) {
+                        case 0:
+                            assertEquals("Eurythmiesaal 1 Waldorfschule", loc.getIdString());
+                            break;
+                        case 1:
+                            assertEquals("Turnhalle Grundschule S" + Umlaut.L_UUML + "d", loc.getIdString());
+                            break;
+                        default:
+                            fail("unexpected index");
+                        }
+                        j++;
+                    }
+                    break;
+                default:
+                    fail("unexpected index");
+                }
+                i++;
+            }
+        } finally {
+            TypePropertyCollection.setDefaultCharSeparator(defaultCharSeparatorBefore);
+        }
     }
 
     /**
      * Simple test.
-     *
-     * @throws ParseException if parsing fails
+     * 
+     * @throws ParseException
+     *             if parsing fails
      */
+    @Test
     public void testGenerateTrainingsNormal() throws ParseException {
         Document doc = setupBPDocument("20070101", "20070101");
         TrainingsList bp = (TrainingsList) doc.getRoot();
@@ -290,9 +316,11 @@ public class TrainingsListTest extends TestCase {
 
     /**
      * Generate trainings for exactly one day.
-     *
-     * @throws ParseException in case of parsing problems
+     * 
+     * @throws ParseException
+     *             in case of parsing problems
      */
+    @Test
     public void testGenerateTrainingsOne() throws ParseException {
         Document doc = setupBPDocument("20070101", "20070101");
         TrainingsList bp = (TrainingsList) doc.getRoot();
@@ -303,9 +331,11 @@ public class TrainingsListTest extends TestCase {
 
     /**
      * Give a span of days where no training date is covered.
-     *
-     * @throws ParseException in case of parsing problems
+     * 
+     * @throws ParseException
+     *             in case of parsing problems
      */
+    @Test
     public void testGenerateTrainingsNone() throws ParseException {
         Document doc = setupBPDocument("20070101", "20070101");
         TrainingsList bp = (TrainingsList) doc.getRoot();
@@ -316,9 +346,11 @@ public class TrainingsListTest extends TestCase {
 
     /**
      * Test illegal date order.
-     *
-     * @throws ParseException in case of parsing problems
+     * 
+     * @throws ParseException
+     *             in case of parsing problems
      */
+    @Test
     public void testGenerateTrainingsIllegal() throws ParseException {
         Document doc = setupBPDocument("20070101", "20070101");
         List<RapidBean> trs = (List<RapidBean>) doc.findBeansByType("org.rapidbeans.clubadmin.domain.Training");
@@ -336,9 +368,11 @@ public class TrainingsListTest extends TestCase {
 
     /**
      * Extend the TrainingsList for one week.
-     *
-     * @throws ParseException if parsing fails
+     * 
+     * @throws ParseException
+     *             if parsing fails
      */
+    @Test
     public void testChangeFromAndGenTraings() throws ParseException {
         Document doc = setupBPDocument("20070101", "20070101");
         List<RapidBean> trs = (List<RapidBean>) doc.findBeansByType("org.rapidbeans.clubadmin.domain.Training");
@@ -356,8 +390,8 @@ public class TrainingsListTest extends TestCase {
         trs = (List<RapidBean>) doc.findBeansByType("org.rapidbeans.clubadmin.domain.Training");
         assertEquals(2, trs.size());
         assertEquals("FCK/football/monday_19:30_Hall/20070101", trs.get(0).getIdString());
-        TrainingHeldByTrainer trhbt = (TrainingHeldByTrainer)
-            ((TrainingRegular) trs.get(0)).getHeldbytrainers().iterator().next();
+        TrainingHeldByTrainer trhbt = (TrainingHeldByTrainer) ((TrainingRegular) trs.get(0)).getHeldbytrainers()
+                .iterator().next();
         assertEquals("Smith", trhbt.getTrainer().getLastname());
         assertEquals("Trainer", trhbt.getRole().getName());
         assertEquals("FCK/football/thursday_20:00_Hall/20070104", trs.get(1).getIdString());
@@ -382,12 +416,11 @@ public class TrainingsListTest extends TestCase {
         // of the TrainingsList.
         // So we have to simulate that
         bp.updateTrainings(TrainingsList.UPDATE_MODE_PROPS, null);
-//        trs = (List<RapidBean>) doc.findBeansByQuery("org.rapidbeans.clubadmin.domain.Training sort by date");
+        // trs = (List<RapidBean>)
+        // doc.findBeansByQuery("org.rapidbeans.clubadmin.domain.Training sort by date");
         Query query = new Query("org.rapidbeans.clubadmin.domain.Training");
 
-        TypeProperty[] propTypeArray = {
-            new TrainingRegular().getProperty("date").getType(),
-        };
+        TypeProperty[] propTypeArray = { new TrainingRegular().getProperty("date").getType(), };
         query.setSorter(new BeanSorter(propTypeArray));
         trs = doc.findBeansByQuery(query);
         assertEquals(4, trs.size());
@@ -409,14 +442,15 @@ public class TrainingsListTest extends TestCase {
 
     /**
      * Set up a small test billing period document.
-     *
-     * 1 club "FCK"
-     * 1 department "Football"
-     * 2 training dates "monday"   19:30 - 21:30
-     *                  "thursday" 20:00 - 21:30
-     * @param dFrom from date
-     * @param dTo to date
-     *
+     * 
+     * 1 club "FCK" 1 department "Football" 2 training dates "monday" 19:30 -
+     * 21:30 "thursday" 20:00 - 21:30
+     * 
+     * @param dFrom
+     *            from date
+     * @param dTo
+     *            to date
+     * 
      * @return the document
      */
     private Document setupBPDocument(final String dFrom, final String dTo) {
