@@ -9,7 +9,6 @@
 package org.rapidbeans.presentation.swing;
 
 import java.io.File;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -38,8 +37,10 @@ import javax.swing.ListModel;
 import junit.framework.AssertionFailedError;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.rapidbeans.clubadmin.domain.ClosingPeriod;
 import org.rapidbeans.clubadmin.domain.Club;
@@ -59,6 +60,7 @@ import org.rapidbeans.clubadmin.presentation.RapidClubAdminSettings;
 import org.rapidbeans.clubadmin.presentation.Settings;
 import org.rapidbeans.clubadmin.presentation.swing.ViewTrainingHeldByTrainerList;
 import org.rapidbeans.clubadmin.presentation.swing.ViewTrainings;
+import org.rapidbeans.clubadmin.service.Umlaut;
 import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.common.ReadonlyListCollection;
@@ -89,18 +91,18 @@ import com.toedter.calendar.JCalendar;
 
 /**
  * UI integration tests.
- *
+ * 
  * @author Martin Bluemel
  */
 public class RapidClubAdminClientIntegrationTest {
 
-    private static final Logger log = Logger.getLogger(
-            RapidClubAdminClientIntegrationTest.class.getName());
+    private static final Logger log = Logger.getLogger(RapidClubAdminClientIntegrationTest.class.getName());
 
     // Switch off the test mode if you want to see the GUI
     // while debugging in single step
     private static final boolean TEST_MODE = true;
-//    private static final boolean TEST_MODE = false;
+
+    // private static final boolean TEST_MODE = false;
 
     private static final int treeViewIndexLocations = 7;
 
@@ -111,18 +113,17 @@ public class RapidClubAdminClientIntegrationTest {
      */
     private static RapidClubAdminClient client = null;
 
-    private static int testMethodCount = -1;
+    @BeforeClass
+    public static void setUpClass() {
+        TypePropertyCollection.setDefaultCharSeparator(',');
+        client = new ApplicationMock();
+        ApplicationManager.start(client);
+    }
 
-    private static int testMethodIndex = 0;
-
-    private int countTestMethods() {
-        int count = 0;
-        for (Method method : this.getClass().getMethods()) {
-            if (method.getName().startsWith("test")) {
-                count++;
-            }
-        }
-        return count;
+    @AfterClass
+    public static void tearDownClass() {
+        ApplicationManager.resetApplication();
+        client = null;
     }
 
     /**
@@ -130,14 +131,8 @@ public class RapidClubAdminClientIntegrationTest {
      */
     @Before
     public void setUp() {
-        if (client == null) {
-            TypePropertyCollection.setDefaultCharSeparator(',');
-            client = new ApplicationMock();
-            ApplicationManager.start(client);
-        }
-        if (testMethodCount == -1) {
-            testMethodCount = this.countTestMethods();
-        }
+        TypePropertyCollection.setDefaultCharSeparator(',');
+        TypePropertyCollection.setDefaultCharEscape('\\');
     }
 
     /**
@@ -161,12 +156,6 @@ public class RapidClubAdminClientIntegrationTest {
             client.removeDocument(this.docTrainingsList);
             this.docTrainingsList = null;
         }
-
-        testMethodIndex++;
-        if (testMethodIndex == testMethodCount) {
-            ApplicationManager.resetApplication();
-            client = null;
-        }
     }
 
     /**
@@ -180,8 +169,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing masterDocView = this.getTestviewMasterdata();
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         // select property node "trainers" in the tree view and
         // open a bean editor for creating trainers
@@ -223,14 +212,15 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing masterDocView = this.getTestviewMasterdata();
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         // select property node "trainers" in the tree view and
         // open a bean editor for creating trainers
         masterTree.setSelectionPath(masterTree.getPathForRow(2));
         masterTree.expandPath(masterTree.getPathForRow(2));
-        Assert.assertEquals("Blümel_Martin_", ((Trainer) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
+        Assert.assertEquals("Blümel_Martin_",
+                ((Trainer) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
         masterTreeView.createBean();
         EditorBeanSwing createTrainerEditor = (EditorBeanSwing) masterDocView.getEditor(new Trainer(), true);
 
@@ -244,8 +234,10 @@ public class RapidClubAdminClientIntegrationTest {
         // simulate pressing the "Ok" button
         createTrainerEditor.handleActionOk();
 
-        Assert.assertEquals("Adalbert_Alfons_", ((Trainer) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
-        Assert.assertEquals("Blümel_Martin_", ((Trainer) masterTree.getPathForRow(4).getLastPathComponent()).getIdString());
+        Assert.assertEquals("Adalbert_Alfons_",
+                ((Trainer) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
+        Assert.assertEquals("Blümel_Martin_",
+                ((Trainer) masterTree.getPathForRow(4).getLastPathComponent()).getIdString());
     }
 
     /**
@@ -259,8 +251,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing masterDocView = this.getTestviewMasterdata();
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2)
+                .getLastPathComponent()).getColProp().getType().getPropName());
         Assert.assertEquals("trainerattributes", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(6)
                 .getLastPathComponent()).getColProp().getType().getPropName());
 
@@ -303,8 +295,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) docView.getTreeView();
         treeView.setShowBeanLinks(false);
         JTree tree = (JTree) treeView.getTree();
-        Assert.assertEquals("clubs", ((DocumentTreeNodePropColComp) tree.getPathForRow(1).getLastPathComponent()).getColProp()
-                .getType().getPropName());
+        Assert.assertEquals("clubs", ((DocumentTreeNodePropColComp) tree.getPathForRow(1).getLastPathComponent())
+                .getColProp().getType().getPropName());
 
         // select property node "trainerplannings" of the first
         // training dat of the first department of the first club
@@ -322,8 +314,8 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule", date.getIdString());
         Assert.assertEquals(1, date.getTrainerplannings().size());
         Assert.assertEquals("Trainer", date.getTrainerplannings().iterator().next().getRole().getName());
-        Assert.assertEquals("Blümel_Ulrike_", date.getTrainerplannings().iterator().next().getDefaulttrainers().iterator()
-                .next().getIdString());
+        Assert.assertEquals("Blümel_Ulrike_", date.getTrainerplannings().iterator().next().getDefaulttrainers()
+                .iterator().next().getIdString());
 
         // select role "Cotrainer"
         EditorPropertyComboboxSwing pe0 = (EditorPropertyComboboxSwing) editor.getPropEditors().get(0);
@@ -357,8 +349,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing masterDocView = this.getTestviewMasterdata();
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("locations", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexLocations)
-                .getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("locations", ((DocumentTreeNodePropColComp) masterTree
+                .getPathForRow(treeViewIndexLocations).getLastPathComponent()).getColProp().getType().getPropName());
 
         masterTree.expandPath(masterTree.getPathForRow(treeViewIndexLocations));
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) masterTree.getPathForRow(treeViewIndex1)
@@ -382,7 +374,8 @@ public class RapidClubAdminClientIntegrationTest {
         // simulate pressing the "OK" button the 1st time
         createTrainerEditor.handleActionOk();
 
-        Assert.assertEquals("A", ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
+        Assert.assertEquals("A",
+                ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) masterTree.getPathForRow(treeViewIndex2)
                 .getLastPathComponent()).getIdString());
 
@@ -396,15 +389,18 @@ public class RapidClubAdminClientIntegrationTest {
         ((JTextField) propEditor.getWidget()).setText("B");
         propEditor.fireInputFieldChanged();
 
-        Assert.assertEquals("A", ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
+        Assert.assertEquals("A",
+                ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) masterTree.getPathForRow(treeViewIndex2)
                 .getLastPathComponent()).getIdString());
 
         // simulate pressing the "OK" button a second time
         createTrainerEditor.handleActionOk();
 
-        Assert.assertEquals("A", ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
-        Assert.assertEquals("B", ((RapidBean) masterTree.getPathForRow(treeViewIndex2).getLastPathComponent()).getIdString());
+        Assert.assertEquals("A",
+                ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
+        Assert.assertEquals("B",
+                ((RapidBean) masterTree.getPathForRow(treeViewIndex2).getLastPathComponent()).getIdString());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) masterTree.getPathForRow(treeViewIndex3)
                 .getLastPathComponent()).getIdString());
     }
@@ -422,8 +418,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing masterDocView = this.getTestviewMasterdata();
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("locations", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexLocations)
-                .getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("locations", ((DocumentTreeNodePropColComp) masterTree
+                .getPathForRow(treeViewIndexLocations).getLastPathComponent()).getColProp().getType().getPropName());
 
         masterTree.expandPath(masterTree.getPathForRow(treeViewIndexLocations));
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) masterTree.getPathForRow(treeViewIndex1)
@@ -445,7 +441,8 @@ public class RapidClubAdminClientIntegrationTest {
         // simulate pressing the "Apply" button the 1st time
         createTrainerEditor.handleActionApply();
 
-        Assert.assertEquals("A", ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
+        Assert.assertEquals("A",
+                ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) masterTree.getPathForRow(treeViewIndex2)
                 .getLastPathComponent()).getIdString());
 
@@ -453,22 +450,26 @@ public class RapidClubAdminClientIntegrationTest {
         ((JTextField) propEditor.getWidget()).setText("B");
         propEditor.fireInputFieldChanged();
 
-        Assert.assertEquals("A", ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
+        Assert.assertEquals("A",
+                ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) masterTree.getPathForRow(treeViewIndex2)
                 .getLastPathComponent()).getIdString());
 
         // simulate pressing the "Apply" button a second time
         createTrainerEditor.handleActionApply();
 
-        Assert.assertEquals("A", ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
-        Assert.assertEquals("B", ((RapidBean) masterTree.getPathForRow(treeViewIndex2).getLastPathComponent()).getIdString());
+        Assert.assertEquals("A",
+                ((RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent()).getIdString());
+        Assert.assertEquals("B",
+                ((RapidBean) masterTree.getPathForRow(treeViewIndex2).getLastPathComponent()).getIdString());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) masterTree.getPathForRow(treeViewIndex3)
                 .getLastPathComponent()).getIdString());
     }
 
     /**
      * create a salary with one single trainer attribute.
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
      */
     @Test
     public void testCreateSalarySingle() throws InterruptedException {
@@ -477,8 +478,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing view = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         // expand property node "trainerroles" in the tree view and
         masterTree.expandPath(masterTree.getPathForRow(3));
@@ -510,34 +511,25 @@ public class RapidClubAdminClientIntegrationTest {
         JComboBox cbCurrencyEuro = ((JComboBox) ((JPanel) propEdMoney.getWidget()).getComponent(1));
         cbCurrencyEuro.setSelectedItem(Currency.euro);
         Assert.assertSame(Currency.euro, cbCurrencyEuro.getSelectedItem());
-        retry(new Class[]{
-                ArrayIndexOutOfBoundsException.class,
-                BeanNotFoundException.class,
-                ConcurrentModificationException.class,
-                NullPointerException.class,
-                EmptyStackException.class
-                }, new RetryableAction() {
-            public void doSomething() {
-                propEdMoney.fireInputFieldChanged();                
-            }
-        });
+        retry(new Class[] { ArrayIndexOutOfBoundsException.class, BeanNotFoundException.class,
+                ConcurrentModificationException.class, NullPointerException.class, EmptyStackException.class },
+                new RetryableAction() {
+                    public void doSomething() {
+                        propEdMoney.fireInputFieldChanged();
+                    }
+                });
         final EditorProperty propEdTime = editor.getPropEditor("time");
         ((JTextField) ((JPanel) propEdTime.getWidget()).getComponent(0)).setText("1");
-        retry(new Class[]{ArrayIndexOutOfBoundsException.class,
-                BeanNotFoundException.class,
-                DatasourceException.class,
-                NullPointerException.class},
-                new RetryableAction() {
+        retry(new Class[] { ArrayIndexOutOfBoundsException.class, BeanNotFoundException.class,
+                DatasourceException.class, NullPointerException.class }, new RetryableAction() {
             public void doSomething() {
                 ((JComboBox) ((JPanel) propEdTime.getWidget()).getComponent(1)).setSelectedItem(UnitTime.h);
             }
         });
-        retry(new Class[] {
-            BeanNotFoundException.class,
-            NullPointerException.class}, new RetryableAction() {
+        retry(new Class[] { BeanNotFoundException.class, NullPointerException.class }, new RetryableAction() {
             public void doSomething() {
                 propEdTime.fireInputFieldChanged();
-            } 
+            }
         });
 
         Assert.assertTrue(editor.isAnyInputFieldChanged());
@@ -550,32 +542,27 @@ public class RapidClubAdminClientIntegrationTest {
         retry(new RetryableAction() {
             public void doSomething() {
                 Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
-            } 
+            }
         });
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         // simulate pressing the "OK" button
-        retry(new Class[] {
-                ArrayIndexOutOfBoundsException.class,
-                EmptyStackException.class,
-                BeanDuplicateException.class,
-                BeanNotFoundException.class,
-                NullPointerException.class,
-                ValidationInstanceAssocTwiceException.class
-                },
-                new RetryableAction() {
+        retry(new Class[] { ArrayIndexOutOfBoundsException.class, EmptyStackException.class,
+                BeanDuplicateException.class, BeanNotFoundException.class, NullPointerException.class,
+                ValidationInstanceAssocTwiceException.class }, new RetryableAction() {
             public void doSomething() {
                 editor.handleActionOk();
-            } 
+            }
         });
     }
 
     /**
      * create a salary with multiple trainer attributes.
-     * @throws InterruptedException 
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
+     * @throws InterruptedException
      */
     @Test
     public void testCreateSalaryMultipleEditMoneyAfter() throws InterruptedException {
@@ -584,20 +571,26 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing view = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         Document doc = view.getDocument();
 
-        List<RapidBean> salaries = doc.findBeansByQuery(
-                "org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
+        List<RapidBean> salaries = doc
+                .findBeansByQuery("org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
         Assert.assertEquals(3, salaries.size());
         int i = 0;
         for (RapidBean bean : salaries) {
             switch (i++) {
-            case 0: Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString()); break;
-            case 1: Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString()); break;
-            case 2: Assert.assertEquals("Trainer_null", bean.getIdString()); break;
+            case 0:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                break;
+            case 1:
+                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                break;
+            case 2:
+                Assert.assertEquals("Trainer_null", bean.getIdString());
+                break;
             }
         }
 
@@ -619,7 +612,7 @@ public class RapidClubAdminClientIntegrationTest {
 
         EditorPropertyListSwing propEdTrainerAttrs = (EditorPropertyListSwing) editor.getPropEditor("trainerattribute");
         final EditorPropertyList2Swing propEdTrainerAttrsAssoc = propEdTrainerAttrs.openListEditor();
-        propEdTrainerAttrsAssoc.getWidgetListOut().setSelectedIndices(new int[] {0, 2, 3});
+        propEdTrainerAttrsAssoc.getWidgetListOut().setSelectedIndices(new int[] { 0, 2, 3 });
         propEdTrainerAttrsAssoc.addSelectedBeans();
         retry(BeanNotFoundException.class, new RetryableAction() {
             public void doSomething() {
@@ -629,17 +622,13 @@ public class RapidClubAdminClientIntegrationTest {
 
         final EditorProperty propEdMoney = editor.getPropEditor("money");
         ((JTextField) ((JPanel) propEdMoney.getWidget()).getComponent(0)).setText("10");
-        retry(new Class[]{
-                ArrayIndexOutOfBoundsException.class,
-                BeanNotFoundException.class,
-                ConcurrentModificationException.class,
-                NullPointerException.class,
-                EmptyStackException.class
-                }, new RetryableAction() {
-            public void doSomething() {
-                propEdMoney.fireInputFieldChanged();                
-            }
-        });
+        retry(new Class[] { ArrayIndexOutOfBoundsException.class, BeanNotFoundException.class,
+                ConcurrentModificationException.class, NullPointerException.class, EmptyStackException.class },
+                new RetryableAction() {
+                    public void doSomething() {
+                        propEdMoney.fireInputFieldChanged();
+                    }
+                });
         retry(100, 300, new RetryableAction() {
             public void doSomething() {
                 Assert.assertTrue(((JButton) buttons.get("ok")).isEnabled());
@@ -662,27 +651,30 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         // simulate pressing the "O. K." button
-        retry(1, 300, new Class[]{
-                ValidationInstanceAssocTwiceException.class,
-                ArrayIndexOutOfBoundsException.class,
-                BeanNotFoundException.class,
-                NullPointerException.class,
-                BeanDuplicateException.class,
-                BeanNotFoundException.class}, new RetryableAction() {
+        retry(1, 300, new Class[] { ValidationInstanceAssocTwiceException.class, ArrayIndexOutOfBoundsException.class,
+                BeanNotFoundException.class, NullPointerException.class, BeanDuplicateException.class,
+                BeanNotFoundException.class }, new RetryableAction() {
             public void doSomething() {
                 editor.handleActionOk();
             }
         });
-        salaries = doc.findBeansByQuery(
-                "org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
+        salaries = doc.findBeansByQuery("org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
         Assert.assertEquals(4, salaries.size());
         i = 0;
         for (RapidBean bean : salaries) {
             switch (i++) {
-            case 0: Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString()); break;
-            case 1: Assert.assertEquals("Trainer_Abteilungsleiter,Trainer A,Trainer B", bean.getIdString()); break;
-            case 2: Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString()); break;
-            case 3: Assert.assertEquals("Trainer_null", bean.getIdString()); break;
+            case 0:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                break;
+            case 1:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Trainer A,Trainer B", bean.getIdString());
+                break;
+            case 2:
+                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                break;
+            case 3:
+                Assert.assertEquals("Trainer_null", bean.getIdString());
+                break;
             }
         }
     }
@@ -697,8 +689,8 @@ public class RapidClubAdminClientIntegrationTest {
         final DocumentViewSwing view = this.getTestviewMasterdata();
         final DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         final JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         final Document doc = view.getDocument();
         List<RapidBean> salaries = doc.findBeansByType(Salary.class.getName());
@@ -706,11 +698,21 @@ public class RapidClubAdminClientIntegrationTest {
         int i = 0;
         for (RapidBean bean : salaries) {
             switch (i++) {
-            case 0: Assert.assertEquals("Cotrainer_Abteilungsleiter", bean.getIdString()); break;
-            case 1: Assert.assertEquals("Cotrainer_null", bean.getIdString()); break;
-            case 2: Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString()); break;
-            case 3: Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString()); break;
-            case 4: Assert.assertEquals("Trainer_null", bean.getIdString()); break;
+            case 0:
+                Assert.assertEquals("Cotrainer_Abteilungsleiter", bean.getIdString());
+                break;
+            case 1:
+                Assert.assertEquals("Cotrainer_null", bean.getIdString());
+                break;
+            case 2:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                break;
+            case 3:
+                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                break;
+            case 4:
+                Assert.assertEquals("Trainer_null", bean.getIdString());
+                break;
             }
         }
 
@@ -748,22 +750,28 @@ public class RapidClubAdminClientIntegrationTest {
         });
 
         // assert the salaries existent so far before creation of the new one
-        salaries = doc.findBeansByQuery(
-            "org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
+        salaries = doc.findBeansByQuery("org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
         Assert.assertEquals(3, salaries.size());
         i = 0;
         for (RapidBean bean : salaries) {
             switch (i++) {
-            case 0: Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString()); break;
-            case 1: Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString()); break;
-            case 2: Assert.assertEquals("Trainer_null", bean.getIdString()); break;
+            case 0:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                break;
+            case 1:
+                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                break;
+            case 2:
+                Assert.assertEquals("Trainer_null", bean.getIdString());
+                break;
             }
         }
 
         // edit the associated trainer attributes
-        final EditorPropertyListSwing propEdTrainerAttrs = (EditorPropertyListSwing) editor.getPropEditor("trainerattribute");
+        final EditorPropertyListSwing propEdTrainerAttrs = (EditorPropertyListSwing) editor
+                .getPropEditor("trainerattribute");
         final EditorPropertyList2Swing propEdTrainerAttrsAssoc = propEdTrainerAttrs.openListEditor();
-        propEdTrainerAttrsAssoc.getWidgetListOut().setSelectedIndices(new int[] {0, 2, 3});
+        propEdTrainerAttrsAssoc.getWidgetListOut().setSelectedIndices(new int[] { 0, 2, 3 });
         propEdTrainerAttrsAssoc.addSelectedBeans();
         propEdTrainerAttrsAssoc.handleActionOk();
 
@@ -772,7 +780,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         retry(new RetryableAction() {
             public void doSomething() {
-                Assert.assertTrue(((JButton) buttons.get("ok")).isEnabled());                
+                Assert.assertTrue(((JButton) buttons.get("ok")).isEnabled());
             }
         });
         retry(new RetryableAction() {
@@ -785,26 +793,31 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertTrue(((JButton) buttons.get("close")).isEnabled());
 
         // simulate pressing the "O. K." button
-        retry(1, 200, new Class[]{
-                ArrayIndexOutOfBoundsException.class,
-                BeanNotFoundException.class,
-                NullPointerException.class,
-                ValidationInstanceAssocTwiceException.class,
-                BeanDuplicateException.class}, new RetryableAction() {
-            public void doSomething() {
-                editor.handleActionOk();
-            }
-        });
-        salaries = doc.findBeansByQuery(
-                "org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
+        retry(1, 200,
+                new Class[] { ArrayIndexOutOfBoundsException.class, BeanNotFoundException.class,
+                        NullPointerException.class, ValidationInstanceAssocTwiceException.class,
+                        BeanDuplicateException.class }, new RetryableAction() {
+                    public void doSomething() {
+                        editor.handleActionOk();
+                    }
+                });
+        salaries = doc.findBeansByQuery("org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
         Assert.assertEquals(4, salaries.size());
         i = 0;
         for (RapidBean bean : salaries) {
             switch (i++) {
-            case 0: Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString()); break;
-            case 1: Assert.assertEquals("Trainer_Abteilungsleiter,Trainer A,Trainer B", bean.getIdString()); break;
-            case 2: Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString()); break;
-            case 3: Assert.assertEquals("Trainer_null", bean.getIdString()); break;
+            case 0:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                break;
+            case 1:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Trainer A,Trainer B", bean.getIdString());
+                break;
+            case 2:
+                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                break;
+            case 3:
+                Assert.assertEquals("Trainer_null", bean.getIdString());
+                break;
             }
         }
     }
@@ -819,8 +832,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing view = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         // expand property node "trainerroles" in the tree view and
         // open a bean editor for creating trainers
@@ -886,8 +899,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing view = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         // expand property node "trainerroles" in the tree view and
         // open a bean editor for creating trainers
@@ -953,9 +966,7 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * Open an editor for creating a new salary that per default is already
-     * existing.
-     * Determine a non existing one.
-     * Create it.
+     * existing. Determine a non existing one. Create it.
      */
     @Test
     public void testCreateSalaryAfterDuplicateDefaultWithAttributes() {
@@ -964,21 +975,27 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing view = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         Document doc = view.getDocument();
 
         // assert the setup, we have already three salaries defined:
-        List<RapidBean> salaries = doc.findBeansByQuery(
-                "org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
+        List<RapidBean> salaries = doc
+                .findBeansByQuery("org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
         Assert.assertEquals(3, salaries.size());
         int i = 0;
         for (RapidBean bean : salaries) {
             switch (i++) {
-            case 0: Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString()); break;
-            case 1: Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString()); break;
-            case 2: Assert.assertEquals("Trainer_null", bean.getIdString()); break;
+            case 0:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                break;
+            case 1:
+                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                break;
+            case 2:
+                Assert.assertEquals("Trainer_null", bean.getIdString());
+                break;
             }
         }
 
@@ -1010,54 +1027,57 @@ public class RapidClubAdminClientIntegrationTest {
         EditorPropertyListSwing propEdTrainerAttrs = (EditorPropertyListSwing) editor.getPropEditor("trainerattribute");
         Assert.assertEquals(EditorPropNullBehaviour.always_null, propEdTrainerAttrs.getNullBehaviour());
         final EditorPropertyList2Swing propEdTrainerAttrsAssoc = propEdTrainerAttrs.openListEditor();
-        propEdTrainerAttrsAssoc.getWidgetListOut().setSelectedIndices(new int[] {0, 2, 3});
-        retry(new Class[]{NullPointerException.class}, new RetryableAction() {
+        propEdTrainerAttrsAssoc.getWidgetListOut().setSelectedIndices(new int[] { 0, 2, 3 });
+        retry(new Class[] { NullPointerException.class }, new RetryableAction() {
             public void doSomething() {
                 propEdTrainerAttrsAssoc.addSelectedBeans();
                 propEdTrainerAttrsAssoc.handleActionOk();
-            } 
+            }
         });
 
         Assert.assertTrue(editor.isAnyInputFieldChanged());
         retry(new RetryableAction() {
             public void doSomething() {
                 Assert.assertTrue(((JButton) buttons.get("ok")).isEnabled());
-            } 
+            }
         });
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         // simulate pressing the "OK" button
-        retry(1, 200, new Class[]{
-                ArrayIndexOutOfBoundsException.class,
-                BeanDuplicateException.class,
-                BeanNotFoundException.class,
-                NullPointerException.class,
-                ValidationInstanceAssocTwiceException.class}, new RetryableAction() {
-            public void doSomething() {
-                editor.handleActionOk();
-            }
-        });
+        retry(1, 200, new Class[] { ArrayIndexOutOfBoundsException.class, BeanDuplicateException.class,
+                BeanNotFoundException.class, NullPointerException.class, ValidationInstanceAssocTwiceException.class },
+                new RetryableAction() {
+                    public void doSomething() {
+                        editor.handleActionOk();
+                    }
+                });
 
-        salaries = doc.findBeansByQuery(
-            "org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
+        salaries = doc.findBeansByQuery("org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
         Assert.assertEquals(4, salaries.size());
         i = 0;
         for (RapidBean bean : salaries) {
             switch (i++) {
-            case 0: Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString()); break;
-            case 1: Assert.assertEquals("Trainer_Abteilungsleiter,Trainer A,Trainer B", bean.getIdString()); break;
-            case 2: Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString()); break;
-            case 3: Assert.assertEquals("Trainer_null", bean.getIdString()); break;
+            case 0:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                break;
+            case 1:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Trainer A,Trainer B", bean.getIdString());
+                break;
+            case 2:
+                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                break;
+            case 3:
+                Assert.assertEquals("Trainer_null", bean.getIdString());
+                break;
             }
         }
     }
 
-
     /**
-     * First create a duplicate salary and afterwards
-     * create the right one.
-     * @throws InterruptedException 
+     * First create a duplicate salary and afterwards create the right one.
+     * 
+     * @throws InterruptedException
      */
     @Test
     public void testCreateSalaryAfterDuplicateWithAttributes() {
@@ -1066,23 +1086,26 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing view = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         Document doc = view.getDocument();
 
         // assert the setup, we have already three salaries defined:
-        Salary saldef = (Salary) doc.findBean(
-                "org.rapidbeans.clubadmin.domain.Salary", "Trainer_null");
+        Salary saldef = (Salary) doc.findBean("org.rapidbeans.clubadmin.domain.Salary", "Trainer_null");
         saldef.delete();
-        final List<RapidBean> salaries1 = doc.findBeansByQuery(
-                "org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
+        final List<RapidBean> salaries1 = doc
+                .findBeansByQuery("org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
         Assert.assertEquals(2, salaries1.size());
         int i = 0;
         for (RapidBean bean : salaries1) {
             switch (i++) {
-            case 0: Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString()); break;
-            case 1: Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString()); break;
+            case 0:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                break;
+            case 1:
+                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                break;
             }
         }
 
@@ -1111,24 +1134,25 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
-        // 1st try: choose a combination of trainer attributes for which a salary
-        //          already exists
+        // 1st try: choose a combination of trainer attributes for which a
+        // salary
+        // already exists
         EditorPropertyListSwing propEdTrainerAttrs = (EditorPropertyListSwing) editor.getPropEditor("trainerattribute");
         Assert.assertEquals(EditorPropNullBehaviour.always_null, propEdTrainerAttrs.getNullBehaviour());
         final EditorPropertyList2Swing propEdTrainerAttrsAssoc1 = propEdTrainerAttrs.openListEditor();
-        propEdTrainerAttrsAssoc1.getWidgetListOut().setSelectedIndices(new int[] {0, 1});
+        propEdTrainerAttrsAssoc1.getWidgetListOut().setSelectedIndices(new int[] { 0, 1 });
         propEdTrainerAttrsAssoc1.addSelectedBeans();
         retry(new RetryableAction() {
             public void doSomething() {
                 propEdTrainerAttrsAssoc1.handleActionOk();
-            } 
+            }
         });
 
         Assert.assertTrue(editor.isAnyInputFieldChanged());
         retry(new RetryableAction() {
             public void doSomething() {
                 Assert.assertFalse(((JButton) buttons.get("ok")).isEnabled());
-            } 
+            }
         });
         retry(new RetryableAction() {
             public void doSomething() {
@@ -1141,59 +1165,59 @@ public class RapidClubAdminClientIntegrationTest {
         propEdTrainerAttrs = (EditorPropertyListSwing) editor.getPropEditor("trainerattribute");
         Assert.assertEquals(EditorPropNullBehaviour.always_null, propEdTrainerAttrs.getNullBehaviour());
         final EditorPropertyList2Swing propEdTrainerAttrsAssoc2 = propEdTrainerAttrs.openListEditor();
-        propEdTrainerAttrsAssoc2.getWidgetListOut().setSelectedIndices(new int[] {0, 1});
+        propEdTrainerAttrsAssoc2.getWidgetListOut().setSelectedIndices(new int[] { 0, 1 });
         propEdTrainerAttrsAssoc2.addSelectedBeans();
         retry(new RetryableAction() {
             public void doSomething() {
                 propEdTrainerAttrsAssoc2.handleActionOk();
-            } 
+            }
         });
 
         Assert.assertTrue(editor.isAnyInputFieldChanged());
         retry(new RetryableAction() {
             public void doSomething() {
                 Assert.assertTrue(((JButton) buttons.get("ok")).isEnabled());
-            } 
+            }
         });
         retry(new RetryableAction() {
             public void doSomething() {
                 Assert.assertTrue(((JButton) buttons.get("apply")).isEnabled());
-            } 
+            }
         });
         retry(new RetryableAction() {
             public void doSomething() {
                 Assert.assertTrue(((JButton) buttons.get("close")).isEnabled());
-            } 
+            }
         });
 
         // simulate pressing the "OK" button
-        retry(1, 500, new Class[]{
-                ArrayIndexOutOfBoundsException.class,
-                BeanDuplicateException.class,
-                BeanNotFoundException.class,
-                ConcurrentModificationException.class,
-                EmptyStackException.class,
-                NullPointerException.class,
-                ValidationInstanceAssocTwiceException.class
-                }, new RetryableAction() {
+        retry(1, 500, new Class[] { ArrayIndexOutOfBoundsException.class, BeanDuplicateException.class,
+                BeanNotFoundException.class, ConcurrentModificationException.class, EmptyStackException.class,
+                NullPointerException.class, ValidationInstanceAssocTwiceException.class }, new RetryableAction() {
             public void doSomething() {
                 editor.handleActionOk();
             }
         });
 
-        final List<RapidBean> salaries2 = doc.findBeansByQuery(
-            "org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
+        final List<RapidBean> salaries2 = doc
+                .findBeansByQuery("org.rapidbeans.clubadmin.domain.Salary[parentBean[id = 'Trainer']]");
         retry(new RetryableAction() {
             public void doSomething() {
                 Assert.assertEquals(3, salaries2.size());
-            } 
+            }
         });
         i = 0;
         for (RapidBean bean : salaries2) {
             switch (i++) {
-            case 0: Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString()); break;
-            case 1: Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter,Trainer A,Trainer B", bean.getIdString()); break;
-            case 2: Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString()); break;
+            case 0:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                break;
+            case 1:
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter,Trainer A,Trainer B", bean.getIdString());
+                break;
+            case 2:
+                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                break;
             }
         }
     }
@@ -1208,8 +1232,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing view = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
         Document doc = view.getDocument();
 
         // expand property node "trainerroles" in the tree view and
@@ -1222,17 +1246,16 @@ public class RapidClubAdminClientIntegrationTest {
         EditorBeanSwing editor = (EditorBeanSwing) treeView.createBean();
         HashMap<String, Object> buttons = editor.getButtonWidgets();
 
-        Assert.assertTrue(editor.isAnyInputFieldChanged());
+        Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
         Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         // edit (key) property "person"
-        final EditorPropertyComboboxSwing propEdPerson = (EditorPropertyComboboxSwing)
-            editor.getPropEditor("person");
+        final EditorPropertyComboboxSwing propEdPerson = (EditorPropertyComboboxSwing) editor.getPropEditor("person");
         final JComboBox cbPerson = (JComboBox) propEdPerson.getWidget();
         final Trainer berit = (Trainer) doc.findBean(Trainer.class.getName(), "Dahlheimer_Berit_");
         // retry does not help!!!
@@ -1260,17 +1283,13 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
-        PersonalSalary ps = (PersonalSalary) doc.findBean(
-                PersonalSalary.class.getName(),
-                "Trainer_Dahlheimer_Berit_");
+        PersonalSalary ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Dahlheimer_Berit_");
         Assert.assertNull(ps);
 
         // simulate pressing the "OK" button
         editor.handleActionOk();
 
-        ps = (PersonalSalary) doc.findBean(
-                PersonalSalary.class.getName(),
-                "Trainer_Dahlheimer_Berit_");
+        ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Dahlheimer_Berit_");
         Assert.assertNotNull(ps);
         Assert.assertEquals(berit, ps.getPerson());
         Assert.assertEquals(new Money("10 euro"), ps.getMoney());
@@ -1278,7 +1297,7 @@ public class RapidClubAdminClientIntegrationTest {
 
         masterTree.expandPath(masterTree.getPathForRow(6));
         masterTree.setSelectionPath(masterTree.getPathForRow(7));
-        PersonalSalary psEd = (PersonalSalary)  masterTree.getSelectionPath().getLastPathComponent();
+        PersonalSalary psEd = (PersonalSalary) masterTree.getSelectionPath().getLastPathComponent();
         Assert.assertSame(ps, psEd);
         editor = (EditorBeanSwing) treeView.editBeans();
         final EditorPropertyComboboxSwing propEdPerson1 = (EditorPropertyComboboxSwing) editor.getPropEditor("person");
@@ -1299,8 +1318,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing view = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
         Document doc = view.getDocument();
 
         // expand property node "trainerroles" in the tree view and
@@ -1313,17 +1332,16 @@ public class RapidClubAdminClientIntegrationTest {
         EditorBeanSwing editor = (EditorBeanSwing) treeView.createBean();
         HashMap<String, Object> buttons = editor.getButtonWidgets();
 
-        Assert.assertTrue(editor.isAnyInputFieldChanged());
+        Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
         Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         // edit (key) property "person"
-        EditorPropertyComboboxSwing propEdPerson = (EditorPropertyComboboxSwing)
-            editor.getPropEditor("person");
+        EditorPropertyComboboxSwing propEdPerson = (EditorPropertyComboboxSwing) editor.getPropEditor("person");
         JComboBox cbPerson = (JComboBox) propEdPerson.getWidget();
         Trainer berit = (Trainer) doc.findBean(Trainer.class.getName(), "Dahlheimer_Berit_");
         cbPerson.setSelectedItem(berit);
@@ -1350,17 +1368,13 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
-        PersonalSalary ps = (PersonalSalary) doc.findBean(
-                PersonalSalary.class.getName(),
-                "Trainer_Dahlheimer_Berit_");
+        PersonalSalary ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Dahlheimer_Berit_");
         Assert.assertNull(ps);
 
         // simulate pressing the "Apply" button
         editor.handleActionApply();
 
-        ps = (PersonalSalary) doc.findBean(
-                PersonalSalary.class.getName(),
-                "Trainer_Dahlheimer_Berit_");
+        ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Dahlheimer_Berit_");
         Assert.assertNotNull(ps);
         Assert.assertSame(berit, ps.getPerson());
         Assert.assertEquals(new Money("10 euro"), ps.getMoney());
@@ -1368,7 +1382,7 @@ public class RapidClubAdminClientIntegrationTest {
 
         masterTree.expandPath(masterTree.getPathForRow(6));
         masterTree.setSelectionPath(masterTree.getPathForRow(7));
-        PersonalSalary psEd = (PersonalSalary)  masterTree.getSelectionPath().getLastPathComponent();
+        PersonalSalary psEd = (PersonalSalary) masterTree.getSelectionPath().getLastPathComponent();
         Assert.assertSame(ps, psEd);
 
         editor = (EditorBeanSwing) treeView.editBeans();
@@ -1390,8 +1404,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing view = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
         Document doc = view.getDocument();
 
         // expand property node "trainerroles" in the tree view and
@@ -1404,25 +1418,23 @@ public class RapidClubAdminClientIntegrationTest {
         EditorBeanSwing editor = (EditorBeanSwing) treeView.createBean();
         HashMap<String, Object> buttons = editor.getButtonWidgets();
 
-        Assert.assertTrue(editor.isAnyInputFieldChanged());
+        Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
         Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         // edit (key) property "person"
-        EditorPropertyComboboxSwing propEdPerson = (EditorPropertyComboboxSwing)
-            editor.getPropEditor("person");
+        EditorPropertyComboboxSwing propEdPerson = (EditorPropertyComboboxSwing) editor.getPropEditor("person");
         JComboBox cbPerson = (JComboBox) propEdPerson.getWidget();
         Trainer berit = (Trainer) doc.findBean(Trainer.class.getName(), "Dahlheimer_Berit_");
         cbPerson.setSelectedItem(berit);
         propEdPerson.fireInputFieldChanged();
 
         // edit property "money"
-        EditorPropertyQuantitySwing propEdMoney =
-            (EditorPropertyQuantitySwing) editor.getPropEditor("money");
+        EditorPropertyQuantitySwing propEdMoney = (EditorPropertyQuantitySwing) editor.getPropEditor("money");
         ((JTextField) ((JPanel) propEdMoney.getWidget()).getComponent(0)).setText("10");
         JComboBox cbCurrencyEuro = ((JComboBox) ((JPanel) propEdMoney.getWidget()).getComponent(1));
         cbCurrencyEuro.setSelectedItem(Currency.euro);
@@ -1442,13 +1454,9 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
-        PersonalSalary ps = (PersonalSalary) doc.findBean(
-                PersonalSalary.class.getName(),
-                "Trainer_Dahlheimer_Berit_");
+        PersonalSalary ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Dahlheimer_Berit_");
         Assert.assertNull(ps);
-        ps = (PersonalSalary) doc.findBean(
-                PersonalSalary.class.getName(),
-                "Trainer_Blümel_Martin_");
+        ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Blümel_Martin_");
         Assert.assertNull(ps);
 
         // simulate pressing the "Apply" button
@@ -1470,17 +1478,13 @@ public class RapidClubAdminClientIntegrationTest {
         // simulate pressing the "Apply" button
         editor.handleActionApply();
 
-        ps = (PersonalSalary) doc.findBean(
-                PersonalSalary.class.getName(),
-                "Trainer_Dahlheimer_Berit_");
+        ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Dahlheimer_Berit_");
         Assert.assertNotNull(ps);
         Assert.assertSame(berit, ps.getPerson());
         Assert.assertEquals(new Money("10 euro"), ps.getMoney());
         Assert.assertEquals(new Time("0.75 h"), ps.getTime());
 
-        ps = (PersonalSalary) doc.findBean(
-                PersonalSalary.class.getName(),
-                "Trainer_Blümel_Martin_");
+        ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Blümel_Martin_");
         Assert.assertNotNull(ps);
         Assert.assertSame(martin, ps.getPerson());
         Assert.assertEquals(new Money("8 euro"), ps.getMoney());
@@ -1498,10 +1502,11 @@ public class RapidClubAdminClientIntegrationTest {
         Document master = client.getDocument("masterdata");
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2).getLastPathComponent())
-                .getColProp().getType().getPropName());
-        Assert.assertEquals("closingperiods", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(
-                treeViewIndexClosigperiods).getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2)
+                .getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("closingperiods",
+                ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexClosigperiods)
+                        .getLastPathComponent()).getColProp().getType().getPropName());
         Assert.assertNull(master.findBean("org.rapidbeans.clubadmin.domain.ClosingPeriod", "Test_20020101"));
 
         // select property node "closingperiods" in the tree view and
@@ -1540,10 +1545,11 @@ public class RapidClubAdminClientIntegrationTest {
         Document master = client.getDocument("masterdata");
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2).getLastPathComponent())
-                .getColProp().getType().getPropName());
-        Assert.assertEquals("closingperiods", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(
-                treeViewIndexClosigperiods).getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2)
+                .getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("closingperiods",
+                ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexClosigperiods)
+                        .getLastPathComponent()).getColProp().getType().getPropName());
         Assert.assertNull(master.findBean("org.rapidbeans.clubadmin.domain.ClosingPeriod", "Test_20020101"));
 
         // select property node "closingperiods" in the tree view and
@@ -1584,12 +1590,12 @@ public class RapidClubAdminClientIntegrationTest {
         Document master = client.getDocument("masterdata");
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2).getLastPathComponent())
-                .getColProp().getType().getPropName());
-        Assert.assertEquals("closingperiods", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(
-                treeViewIndexClosigperiods).getLastPathComponent()).getColProp().getType().getPropName());
-        Assert.assertNull(master.findBean(
-                "org.rapidbeans.clubadmin.domain.ClosingPeriod", "Test1_20020101"));
+        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2)
+                .getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("closingperiods",
+                ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexClosigperiods)
+                        .getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertNull(master.findBean("org.rapidbeans.clubadmin.domain.ClosingPeriod", "Test1_20020101"));
 
         // select property node "closingperiods" in the tree view and
         // open a bean editor for creating closing periods
@@ -1617,8 +1623,7 @@ public class RapidClubAdminClientIntegrationTest {
 
         // simulate pressing the "Apply" button
         createCPEditor.handleActionApply();
-        Assert.assertNotNull(master.findBean(
-                "org.rapidbeans.clubadmin.domain.ClosingPeriod", "20020101_Test1"));
+        Assert.assertNotNull(master.findBean("org.rapidbeans.clubadmin.domain.ClosingPeriod", "20020101_Test1"));
         Assert.assertNull(peName.getInputFieldValue());
         Assert.assertNull(peFrom.getInputFieldValue());
         Assert.assertFalse(peFrom.getUIEventLock());
@@ -1638,8 +1643,7 @@ public class RapidClubAdminClientIntegrationTest {
 
         // simulate pressing the "Apply" button
         createCPEditor.handleActionApply();
-        Assert.assertNotNull(master.findBean(
-                "org.rapidbeans.clubadmin.domain.ClosingPeriod", "20020201_Test2"));
+        Assert.assertNotNull(master.findBean("org.rapidbeans.clubadmin.domain.ClosingPeriod", "20020201_Test2"));
         Assert.assertNull(peName.getInputFieldValue());
         Assert.assertNull(peFrom.getInputFieldValue());
         Assert.assertNull(peTo.getInputFieldValue());
@@ -1647,7 +1651,8 @@ public class RapidClubAdminClientIntegrationTest {
     }
 
     /**
-     * Test creating a one day closing preiod by checking the "oneday" check box.
+     * Test creating a one day closing preiod by checking the "oneday" check
+     * box.
      */
     @Test
     public void testCreateClosingPeriodOnedayConvenient() {
@@ -1657,10 +1662,11 @@ public class RapidClubAdminClientIntegrationTest {
         Document master = client.getDocument("masterdata");
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2).getLastPathComponent())
-                .getColProp().getType().getPropName());
-        Assert.assertEquals("closingperiods", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(
-                treeViewIndexClosigperiods).getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2)
+                .getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("closingperiods",
+                ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexClosigperiods)
+                        .getLastPathComponent()).getColProp().getType().getPropName());
         Assert.assertNull(master.findBean("org.rapidbeans.clubadmin.domain.ClosingPeriod", "Test_20020101"));
 
         // select property node "closingperiods" in the tree view and
@@ -1693,9 +1699,8 @@ public class RapidClubAdminClientIntegrationTest {
     }
 
     /**
-     * create a closing period add the to date via editor
-     * and edit a second time.
-     * Verify the title of the tab.
+     * create a closing period add the to date via editor and edit a second
+     * time. Verify the title of the tab.
      */
     @Test
     public void testCreateClosingPeriodAndEditAfterwards() {
@@ -1710,8 +1715,9 @@ public class RapidClubAdminClientIntegrationTest {
 
         // select property node "closingperiods" in the tree view
         // and open a bean editor for creating closing periods.
-        Assert.assertEquals("closingperiods", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(
-                treeViewIndexClosigperiods).getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("closingperiods",
+                ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexClosigperiods)
+                        .getLastPathComponent()).getColProp().getType().getPropName());
         masterTree.setSelectionPath(masterTree.getPathForRow(treeViewIndexClosigperiods));
         masterTreeView.createBean();
         EditorBeanSwing createCPEditor = (EditorBeanSwing) masterDocView.getEditor(new ClosingPeriod(), true);
@@ -1761,11 +1767,11 @@ public class RapidClubAdminClientIntegrationTest {
     /**
      * create a closing period and a location while selecting all closing
      * periods including the new one.
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
      */
     @Test
-    public void testCreateClosingPeriodAndLocation()
-        throws InterruptedException {
+    public void testCreateClosingPeriodAndLocation() throws InterruptedException {
 
         int treeViewIndex0 = 9;
         int treeViewIndex1 = treeViewIndex0 + 1;
@@ -1820,7 +1826,8 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * create a closing period and determine the location in one step.
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
      */
     @Test
     public void testCreateClosingPeriodWithLocationAll() throws InterruptedException {
@@ -1829,7 +1836,8 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * create a closing period and determine the location in one step.
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
      */
     @Test
     public void testCreateClosingPeriodWithLocationKey() throws InterruptedException {
@@ -1838,7 +1846,8 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * create a closing period and determine the location in one step.
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
      */
     @Test
     public void testCreateClosingPeriodWithLocationNone() throws InterruptedException {
@@ -1850,10 +1859,10 @@ public class RapidClubAdminClientIntegrationTest {
      * 
      * @param editorCreateApplyMode
      *            editor create apply mode
-     * @throws InterruptedException 
+     * @throws InterruptedException
      */
-    private void testCreateClosingPeriodWithLocation(
-            final CreateNewBeansEditorApplyBehaviour editorCreateApplyMode) throws InterruptedException {
+    private void testCreateClosingPeriodWithLocation(final CreateNewBeansEditorApplyBehaviour editorCreateApplyMode)
+            throws InterruptedException {
 
         // get the document tree view of document "masterdata"
         DocumentViewSwing masterDocView = this.getTestviewMasterdata();
@@ -1899,11 +1908,10 @@ public class RapidClubAdminClientIntegrationTest {
         RapidBean cp1 = master.findBean("org.rapidbeans.clubadmin.domain.Location", "Turnhalle Grundschule Süd");
         Assert.assertNotNull(cp1);
         peLocList.getWidgetListOut().setSelectedValue(cp1, false);
-        retry(new Class[]{NullPointerException.class},
-                new RetryableAction() {
+        retry(new Class[] { NullPointerException.class }, new RetryableAction() {
             public void doSomething() {
                 peLocList.addSelectedBeans();
-            }            
+            }
         });
         retry(new RetryableAction() {
             public void doSomething() {
@@ -1914,26 +1922,28 @@ public class RapidClubAdminClientIntegrationTest {
         // simulate pressing the "OK" button
         retry(new RetryableAction() {
             public void doSomething() {
-        createCPEditor.handleActionOk();
-            }});
-
-        try {
-        Assert.assertEquals(6, master.findBeansByType("org.rapidbeans.clubadmin.domain.ClosingPeriod").size());
-        final ClosingPeriod cp20010101 = (ClosingPeriod) master.findBean("org.rapidbeans.clubadmin.domain.ClosingPeriod",
-                "20010101_Test");
-        Assert.assertNotNull(cp20010101);
-        Assert.assertEquals("Test", cp20010101.getName());
-        Assert.assertEquals("20010101", cp20010101.getProperty("from").toString());
-        retry(new RetryableAction() {
-            public void doSomething() {
-                Assert.assertEquals("20010102", cp20010101.getProperty("to").toString());
-                Collection<Location> locs = cp20010101.getLocations();
-                Assert.assertEquals(1, locs.size());
-                Assert.assertEquals("Turnhalle Grundschule Süd", locs.iterator().next().getIdString());
-                final Location loc1 = (Location) master.findBean("org.rapidbeans.clubadmin.domain.Location", "Turnhalle Grundschule Süd");
-                Assert.assertSame(4, loc1.getClosedons().size());
+                createCPEditor.handleActionOk();
             }
         });
+
+        try {
+            Assert.assertEquals(6, master.findBeansByType("org.rapidbeans.clubadmin.domain.ClosingPeriod").size());
+            final ClosingPeriod cp20010101 = (ClosingPeriod) master.findBean(
+                    "org.rapidbeans.clubadmin.domain.ClosingPeriod", "20010101_Test");
+            Assert.assertNotNull(cp20010101);
+            Assert.assertEquals("Test", cp20010101.getName());
+            Assert.assertEquals("20010101", cp20010101.getProperty("from").toString());
+            retry(new RetryableAction() {
+                public void doSomething() {
+                    Assert.assertEquals("20010102", cp20010101.getProperty("to").toString());
+                    Collection<Location> locs = cp20010101.getLocations();
+                    Assert.assertEquals(1, locs.size());
+                    Assert.assertEquals("Turnhalle Grundschule Süd", locs.iterator().next().getIdString());
+                    final Location loc1 = (Location) master.findBean("org.rapidbeans.clubadmin.domain.Location",
+                            "Turnhalle Grundschule Süd");
+                    Assert.assertSame(4, loc1.getClosedons().size());
+                }
+            });
         } catch (RuntimeException e) {
             Assert.fail("Sleep does not help!!!!!!!!!!!!!");
         }
@@ -1950,8 +1960,9 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing masterDocView = this.getTestviewMasterdata();
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("closingperiods", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(
-                treeViewIndexClosigperiods).getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("closingperiods",
+                ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexClosigperiods)
+                        .getLastPathComponent()).getColProp().getType().getPropName());
 
         // select property node "closingperiods" in the tree view and
         // open a bean editor for creating closing periods
@@ -1997,7 +2008,8 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * create a special training.
-     * @throws ParseException 
+     * 
+     * @throws ParseException
      */
     @Test
     public void testCreateTrainingSpecial() throws ParseException {
@@ -2013,29 +2025,34 @@ public class RapidClubAdminClientIntegrationTest {
         expertTree.expandPath(expertTree.getPathForRow(6));
         expertTree.setSelectionPath(expertTree.getPathForRow(9));
         EditorBeanSwing createTrainingSpecialEditor = (EditorBeanSwing) expertTreeView.createBean();
-        org.rapidbeans.clubadmin.presentation.swing.EditorPropertyDateSwing pedDate =
-            (org.rapidbeans.clubadmin.presentation.swing.EditorPropertyDateSwing) createTrainingSpecialEditor.getPropEditor("date");
+        org.rapidbeans.clubadmin.presentation.swing.EditorPropertyDateSwing pedDate = (org.rapidbeans.clubadmin.presentation.swing.EditorPropertyDateSwing) createTrainingSpecialEditor
+                .getPropEditor("date");
         DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
         ((JCalendar) pedDate.getWidget()).setDate(df.parse("22.01.2006"));
-        EditorPropertyTextSwing pedTimestart = (EditorPropertyTextSwing) createTrainingSpecialEditor.getPropEditor("timestart");
+        EditorPropertyTextSwing pedTimestart = (EditorPropertyTextSwing) createTrainingSpecialEditor
+                .getPropEditor("timestart");
         ((JTextField) pedTimestart.getWidget()).setText("10:15");
         EditorPropertyTextSwing pedName = (EditorPropertyTextSwing) createTrainingSpecialEditor.getPropEditor("name");
         ((JTextField) pedName.getWidget()).setText("First Special Training");
-        EditorPropertyComboboxSwing pedLocation = (EditorPropertyComboboxSwing) createTrainingSpecialEditor.getPropEditor("location");
+        EditorPropertyComboboxSwing pedLocation = (EditorPropertyComboboxSwing) createTrainingSpecialEditor
+                .getPropEditor("location");
         ((JComboBox) pedLocation.getWidget()).setSelectedIndex(0);
-        EditorPropertyTextSwing pedTimeend = (EditorPropertyTextSwing) createTrainingSpecialEditor.getPropEditor("timeend");
+        EditorPropertyTextSwing pedTimeend = (EditorPropertyTextSwing) createTrainingSpecialEditor
+                .getPropEditor("timeend");
         ((JTextField) pedTimeend.getWidget()).setText("11:45");
 
         // simulate pressing the "Ok" button
         createTrainingSpecialEditor.handleActionOk();
 
-//        Assert.assertEquals("Adalbert_Alfons_", ((Trainer) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
-//        Assert.assertEquals("Blümel_Martin_", ((Trainer) masterTree.getPathForRow(4).getLastPathComponent()).getIdString());
+        // Assert.assertEquals("Adalbert_Alfons_", ((Trainer)
+        // masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
+        // Assert.assertEquals("Blümel_Martin_", ((Trainer)
+        // masterTree.getPathForRow(4).getLastPathComponent()).getIdString());
     }
 
     /**
-     * Test deleting a training date which leads to a
-     * fairly complex delete cascade.
+     * Test deleting a training date which leads to a fairly complex delete
+     * cascade.
      */
     @Test
     public void testDeleteTrainingDate() {
@@ -2045,8 +2062,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) docView.getTreeView();
         treeView.setShowBeanLinks(false);
         JTree tree = (JTree) treeView.getTree();
-        Assert.assertEquals("clubs", ((DocumentTreeNodePropColComp) tree.getPathForRow(1).getLastPathComponent()).getColProp()
-                .getType().getPropName());
+        Assert.assertEquals("clubs", ((DocumentTreeNodePropColComp) tree.getPathForRow(1).getLastPathComponent())
+                .getColProp().getType().getPropName());
 
         tree.expandPath(tree.getPathForRow(1));
         tree.expandPath(tree.getPathForRow(2));
@@ -2063,11 +2080,11 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("trainings", colProp.getColProp().getType().getPropName());
         tree.expandPath(tree.getPathForRow(8));
         Training training = (Training) tree.getPathForRow(9).getLastPathComponent();
-        Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060102", training
-                .getIdString());
+        Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060102",
+                training.getIdString());
         training = (Training) tree.getPathForRow(21).getLastPathComponent();
-        Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060327", training
-                .getIdString());
+        Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060327",
+                training.getIdString());
         date = (TrainingDate) tree.getPathForRow(22).getLastPathComponent();
         Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd", date.getIdString());
         date = (TrainingDate) tree.getPathForRow(23).getLastPathComponent();
@@ -2104,7 +2121,8 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * Fixes a problem while deleting closing periods..
-     * @throws MalformedURLException 
+     * 
+     * @throws MalformedURLException
      */
     @Test
     public void testDeleteClosingPeriod() throws MalformedURLException {
@@ -2118,21 +2136,21 @@ public class RapidClubAdminClientIntegrationTest {
         tree.expandPath(tree.getPathForRow(11));
         tree.setSelectionPath(tree.getPathForRow(9));
 
-        ClosingPeriod xmasholidays = (ClosingPeriod) doc.findBean(
-                ClosingPeriod.class.getName(), "20051222_Weihnachtsferien");
+        ClosingPeriod xmasholidays = (ClosingPeriod) doc.findBean(ClosingPeriod.class.getName(),
+                "20051222_Weihnachtsferien");
         Assert.assertNotNull(xmasholidays);
 
         treeView.deleteBeans();
 
-        xmasholidays = (ClosingPeriod) doc.findBean(
-                ClosingPeriod.class.getName(), "20051222_Weihnachtsferien");
+        xmasholidays = (ClosingPeriod) doc.findBean(ClosingPeriod.class.getName(), "20051222_Weihnachtsferien");
         Assert.assertNull(xmasholidays);
 
         File testfile = new File("testdata/testDeleteClosingPeriod.xml");
         doc.setUrl(testfile.toURI().toURL());
         doc.save();
         doc = new Document(testfile);
-        docView = (DocumentViewSwing) ApplicationManager.getApplication().openDocumentView(doc, "trainingslist", "expert");
+        docView = (DocumentViewSwing) ApplicationManager.getApplication().openDocumentView(doc, "trainingslist",
+                "expert");
         testfile.delete();
     }
 
@@ -2153,31 +2171,32 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         masterTreeView.setShowBeanLinks(false);
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("locations", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexLocations)
-                .getLastPathComponent()).getColProp().getType().getPropName());
-        Assert.assertEquals("closingperiods", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(
-                treeViewIndexClosigperiods).getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("locations", ((DocumentTreeNodePropColComp) masterTree
+                .getPathForRow(treeViewIndexLocations).getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("closingperiods",
+                ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexClosigperiods)
+                        .getLastPathComponent()).getColProp().getType().getPropName());
 
         // expand locations and closing periods
         masterTree.expandPath(masterTree.getPathForRow(treeViewIndexClosigperiods));
         masterTree.expandPath(masterTree.getPathForRow(treeViewIndexLocations));
-        Assert.assertEquals("locations", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexLocations)
-                .getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("locations", ((DocumentTreeNodePropColComp) masterTree
+                .getPathForRow(treeViewIndexLocations).getLastPathComponent()).getColProp().getType().getPropName());
         Assert.assertEquals("closingperiods", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndex2)
                 .getLastPathComponent()).getColProp().getType().getPropName());
 
         // check Location "Turnhalle Grundschule Süd"
         masterTree.setSelectionPath(masterTree.getPathForRow(treeViewIndex1));
         masterTreeView.editBeans();
-        EditorBeanSwing edLoc = (EditorBeanSwing) masterDocView.getEditor((RapidBean) masterTree.getPathForRow(
-                treeViewIndex1).getLastPathComponent(), false);
+        EditorBeanSwing edLoc = (EditorBeanSwing) masterDocView.getEditor(
+                (RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent(), false);
         Location loc = (Location) edLoc.getBean();
         Assert.assertEquals("Turnhalle Grundschule Süd", edLoc.getPropEditors().get(0).getInputFieldValue());
         EditorPropertyListSwing propEdLocCps = (EditorPropertyListSwing) edLoc.getPropEditors().get(3);
         JList listPropEdLocCps = propEdLocCps.getWidgetList();
         Assert.assertEquals(3, listPropEdLocCps.getModel().getSize());
-        Assert.assertEquals("20051222_Weihnachtsferien", ((RapidBean) listPropEdLocCps.getModel().getElementAt(0))
-                .getIdString());
+        Assert.assertEquals("20051222_Weihnachtsferien",
+                ((RapidBean) listPropEdLocCps.getModel().getElementAt(0)).getIdString());
 
         // check Closing Period "Schulputztag"
         masterTree.setSelectionPath(masterTree.getPathForRow(treeViewIndex4));
@@ -2187,31 +2206,38 @@ public class RapidClubAdminClientIntegrationTest {
         EditorPropertyListSwing propedCpLocs = (EditorPropertyListSwing) edCp.getPropEditor("locations");
         ListModel modelListCpLocs = propedCpLocs.getWidgetList().getModel();
         Assert.assertEquals(1, modelListCpLocs.getSize());
-        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) modelListCpLocs.getElementAt(0)).getIdString());
+        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule",
+                ((RapidBean) modelListCpLocs.getElementAt(0)).getIdString());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) propedCpLocs.getWidgetList().getModel()
                 .getElementAt(0)).getIdString());
         EditorPropertyList2Swing propedCpLocs2 = (EditorPropertyList2Swing) propedCpLocs.openListEditor();
         ListModel modelListCpLocsLeft = propedCpLocs2.getWidgetListIn().getModel();
         Assert.assertEquals(1, modelListCpLocsLeft.getSize());
-        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) modelListCpLocsLeft.getElementAt(0)).getIdString());
+        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule",
+                ((RapidBean) modelListCpLocsLeft.getElementAt(0)).getIdString());
         ListModel modelListCpLocsRight = propedCpLocs2.getWidgetListOut().getModel();
         Assert.assertEquals(1, modelListCpLocsRight.getSize());
-        Assert.assertEquals("Turnhalle Grundschule Süd", ((RapidBean) modelListCpLocsRight.getElementAt(0)).getIdString());
+        Assert.assertEquals("Turnhalle Grundschule Süd",
+                ((RapidBean) modelListCpLocsRight.getElementAt(0)).getIdString());
 
         // add location "Turnhalle Grundschule Süd to the closing period
         cp.addLocation(loc);
 
         // check all 4 editors
         Assert.assertEquals(4, listPropEdLocCps.getModel().getSize());
-        Assert.assertEquals("20051222_Weihnachtsferien", ((RapidBean) listPropEdLocCps.getModel().getElementAt(0))
-                .getIdString());
-        Assert.assertEquals("20060116_Schulputztag", ((RapidBean) listPropEdLocCps.getModel().getElementAt(1)).getIdString());
+        Assert.assertEquals("20051222_Weihnachtsferien",
+                ((RapidBean) listPropEdLocCps.getModel().getElementAt(0)).getIdString());
+        Assert.assertEquals("20060116_Schulputztag",
+                ((RapidBean) listPropEdLocCps.getModel().getElementAt(1)).getIdString());
         Assert.assertEquals(2, modelListCpLocs.getSize());
-        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) modelListCpLocs.getElementAt(0)).getIdString());
+        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule",
+                ((RapidBean) modelListCpLocs.getElementAt(0)).getIdString());
         Assert.assertEquals("Turnhalle Grundschule Süd", ((RapidBean) modelListCpLocs.getElementAt(1)).getIdString());
         Assert.assertEquals(2, modelListCpLocsLeft.getSize());
-        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) modelListCpLocsLeft.getElementAt(0)).getIdString());
-        Assert.assertEquals("Turnhalle Grundschule Süd", ((RapidBean) modelListCpLocsLeft.getElementAt(1)).getIdString());
+        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule",
+                ((RapidBean) modelListCpLocsLeft.getElementAt(0)).getIdString());
+        Assert.assertEquals("Turnhalle Grundschule Süd",
+                ((RapidBean) modelListCpLocsLeft.getElementAt(1)).getIdString());
         Assert.assertEquals(0, modelListCpLocsRight.getSize());
     }
 
@@ -2229,8 +2255,8 @@ public class RapidClubAdminClientIntegrationTest {
                 .getColProp().getType().getPropName());
 
         masterTree.expandPath(masterTree.getPathForRow(1));
-        Assert.assertEquals("Budo-Club Ismaning", ((RapidBean) masterTree.getPathForRow(2).getLastPathComponent())
-                .getIdString());
+        Assert.assertEquals("Budo-Club Ismaning",
+                ((RapidBean) masterTree.getPathForRow(2).getLastPathComponent()).getIdString());
 
         // select property node "clubs" in the tree view and
         // open a bean editor for creating new clubs
@@ -2241,26 +2267,26 @@ public class RapidClubAdminClientIntegrationTest {
         EditorPropertyTextSwing propEditor = (EditorPropertyTextSwing) ed.getPropEditors().get(0);
         ((JTextField) propEditor.getWidget()).setText("A");
         propEditor.fireInputFieldChanged();
-        Assert.assertEquals("Budo-Club Ismaning", ((RapidBean) masterTree.getPathForRow(2).getLastPathComponent())
-                .getIdString());
+        Assert.assertEquals("Budo-Club Ismaning",
+                ((RapidBean) masterTree.getPathForRow(2).getLastPathComponent()).getIdString());
         // type b into the club name field
         ((JTextField) propEditor.getWidget()).setText("Ab");
         propEditor.fireInputFieldChanged();
-        Assert.assertEquals("Budo-Club Ismaning", ((RapidBean) masterTree.getPathForRow(2).getLastPathComponent())
-                .getIdString());
+        Assert.assertEquals("Budo-Club Ismaning",
+                ((RapidBean) masterTree.getPathForRow(2).getLastPathComponent()).getIdString());
         // type c into the club name field
         ((JTextField) propEditor.getWidget()).setText("Abc");
         propEditor.fireInputFieldChanged();
-        Assert.assertEquals("Budo-Club Ismaning", ((RapidBean) masterTree.getPathForRow(2).getLastPathComponent())
-                .getIdString());
+        Assert.assertEquals("Budo-Club Ismaning",
+                ((RapidBean) masterTree.getPathForRow(2).getLastPathComponent()).getIdString());
 
         ed.handleActionOk();
 
         Club newBean = (Club) masterTree.getPathForRow(2).getLastPathComponent();
         Assert.assertEquals("Abc", newBean.getIdString());
         Assert.assertEquals("Abc", newBean.getName());
-        Assert.assertEquals("Budo-Club Ismaning", ((RapidBean) masterTree.getPathForRow(3).getLastPathComponent())
-                .getIdString());
+        Assert.assertEquals("Budo-Club Ismaning",
+                ((RapidBean) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
     }
 
     /**
@@ -2273,11 +2299,12 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing docView = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) docView.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         masterTree.expandPath(masterTree.getPathForRow(2));
-        Assert.assertEquals("Blümel_Martin_", ((RapidBean) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
+        Assert.assertEquals("Blümel_Martin_",
+                ((RapidBean) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
 
         // select property node "trainers" in the tree view and
         // open a bean editor for creating new Trainers
@@ -2305,7 +2332,8 @@ public class RapidClubAdminClientIntegrationTest {
         Trainer newBean = (Trainer) masterTree.getPathForRow(3).getLastPathComponent();
         Assert.assertEquals("Abc_Xyz_", newBean.getIdString());
         Assert.assertEquals("Abc", newBean.getLastname());
-        Assert.assertEquals("Blümel_Martin_", ((RapidBean) masterTree.getPathForRow(4).getLastPathComponent()).getIdString());
+        Assert.assertEquals("Blümel_Martin_",
+                ((RapidBean) masterTree.getPathForRow(4).getLastPathComponent()).getIdString());
     }
 
     /**
@@ -2321,8 +2349,8 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("martin.bluemel@web.de", martin.getEmail());
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
-        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainers", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(2)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         // expand trainers
         masterTree.expandPath(masterTree.getPathForRow(2));
@@ -2340,8 +2368,8 @@ public class RapidClubAdminClientIntegrationTest {
         ((JTextField) propedEmail.getWidget()).setText("martin.bluemel@gmx.de");
 
         ed.handleActionOk();
-        Assert.assertEquals("martin.bluemel@gmx.de", ((Trainer) master.findBean("org.rapidbeans.clubadmin.domain.Trainer",
-                "Blümel_Martin_")).getEmail());
+        Assert.assertEquals("martin.bluemel@gmx.de",
+                ((Trainer) master.findBean("org.rapidbeans.clubadmin.domain.Trainer", "Blümel_Martin_")).getEmail());
     }
 
     /**
@@ -2356,8 +2384,9 @@ public class RapidClubAdminClientIntegrationTest {
         treeView.setShowBeanLinks(false);
         JTree tree = (JTree) treeView.getTree();
         int clubsrow = 1;
-        Assert.assertEquals("clubs", ((DocumentTreeNodePropColComp) tree.getPathForRow(clubsrow).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("clubs",
+                ((DocumentTreeNodePropColComp) tree.getPathForRow(clubsrow).getLastPathComponent()).getColProp()
+                        .getType().getPropName());
 
         // select property node "trainingdates" in the tree view and
         // open a bean editor for creating closing periods
@@ -2458,10 +2487,9 @@ public class RapidClubAdminClientIntegrationTest {
     }
 
     /**
-     * Tests deleting one single location ClosingPeriod.
-     * - open ClosingPeriod "Weihnachtsferien 20051222"
-     * - remove location "Eurythmiesaal Waldorfschule"
-     * - press Apply.
+     * Tests deleting one single location ClosingPeriod. - open ClosingPeriod
+     * "Weihnachtsferien 20051222" - remove location
+     * "Eurythmiesaal Waldorfschule" - press Apply.
      */
     @Test
     public void testEditClosingPeriodLocationDeleteApply() {
@@ -2488,8 +2516,10 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertSame(cp, ed.getBean());
         EditorPropertyListSwing ped = (EditorPropertyListSwing) ed.getPropEditor("locations");
         Assert.assertEquals(2, ped.getWidgetList().getModel().getSize());
-        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) ped.getWidgetList().getModel().getElementAt(0)).getIdString());
-        Assert.assertEquals("Turnhalle Grundschule Süd", ((RapidBean) ped.getWidgetList().getModel().getElementAt(1)).getIdString());
+        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) ped.getWidgetList().getModel()
+                .getElementAt(0)).getIdString());
+        Assert.assertEquals("Turnhalle Grundschule Süd",
+                ((RapidBean) ped.getWidgetList().getModel().getElementAt(1)).getIdString());
         HashMap<String, Object> buttons = ed.getButtonWidgets();
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
@@ -2526,7 +2556,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         ed.handleActionOk();
-        
+
         Assert.assertEquals(1, cp.getLocations().size());
         Assert.assertEquals(4, locEsaal.getClosedons().size());
     }
@@ -2559,12 +2589,11 @@ public class RapidClubAdminClientIntegrationTest {
         masterTree.setSelectionPath(masterTree.getPathForRow(cprow + 1));
         masterTreeView.editBeans();
         final EditorBeanSwing edCp = (EditorBeanSwing) masterDocView.getEditor(
-                (RapidBean) masterTree.getPathForRow(cprow + 1).getLastPathComponent(),
-                false);
+                (RapidBean) masterTree.getPathForRow(cprow + 1).getLastPathComponent(), false);
         Assert.assertSame(cp, edCp.getBean());
         EditorPropertyListSwing ped = (EditorPropertyListSwing) edCp.getPropEditor("locations");
         Assert.assertEquals(2, ped.getWidgetList().getModel().getSize());
-        retry(new RetryableAction(){
+        retry(new RetryableAction() {
             public void doSomething() {
                 final HashMap<String, Object> buttons = edCp.getButtonWidgets();
                 Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
@@ -2573,7 +2602,7 @@ public class RapidClubAdminClientIntegrationTest {
                 Assert.assertEquals(false, ((JButton) buttons.get("apply")).isEnabled());
                 Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
                 Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
-            } 
+            }
         });
 
         EditorPropertyList2Swing led = ped.openListEditor();
@@ -2588,11 +2617,12 @@ public class RapidClubAdminClientIntegrationTest {
 
         edCp.handleActionClose();
 
-        retry(new RetryableAction(){
+        retry(new RetryableAction() {
             public void doSomething() {
-        Assert.assertEquals(2, cp.getLocations().size());
-        Assert.assertEquals(5, loc.getClosedons().size());
-            }});
+                Assert.assertEquals(2, cp.getLocations().size());
+                Assert.assertEquals(5, loc.getClosedons().size());
+            }
+        });
     }
 
     /**
@@ -2600,7 +2630,7 @@ public class RapidClubAdminClientIntegrationTest {
      */
     @Test
     public void testEditClosingPeriodLocationMultipleLinks() {
-    
+
         // get the document tree view of document "masterdata"
         DocumentViewSwing masterDocView = this.getTestviewMasterdata();
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
@@ -2618,21 +2648,21 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(5, loc1.getClosedons().size());
         Assert.assertEquals(3, loc2.getClosedons().size());
         Assert.assertEquals(2, cp.getLocations().size());
-    
+
         // open closing period "20051222_Weihnachtsferien" for editing
         masterTree.expandPath(masterTree.getPathForRow(cprow));
         masterTree.setSelectionPath(masterTree.getPathForRow(cprow + 1));
         masterTreeView.editBeans();
-        final EditorBeanSwing ed = (EditorBeanSwing) masterDocView.getEditor((RapidBean) masterTree.getPathForRow(cprow + 1)
-                .getLastPathComponent(), false);
+        final EditorBeanSwing ed = (EditorBeanSwing) masterDocView.getEditor(
+                (RapidBean) masterTree.getPathForRow(cprow + 1).getLastPathComponent(), false);
         Assert.assertSame(cp, ed.getBean());
         final EditorPropertyListSwing ped = (EditorPropertyListSwing) ed.getPropEditor("locations");
         Assert.assertEquals(2, ped.getWidgetList().getModel().getSize());
-    
+
         final EditorPropertyList2Swing led = ped.openListEditor();
         Assert.assertEquals(2, led.getWidgetListIn().getModel().getSize());
         Assert.assertEquals(0, led.getWidgetListOut().getModel().getSize());
-    
+
         led.getWidgetListIn().setSelectedValue(loc1, false);
         led.removeSelectedBeans();
         retry(new RetryableAction() {
@@ -2658,14 +2688,13 @@ public class RapidClubAdminClientIntegrationTest {
                 Assert.assertEquals(2, loc2.getClosedons().size());
             }
         });
-    
+
         ed.handleActionOk();
     }
 
     /**
-     * Add and remove some links between a location and
-     * a closing period and check if the tree view is updated
-     * correctly.
+     * Add and remove some links between a location and a closing period and
+     * check if the tree view is updated correctly.
      */
     @Test
     public void testEditLocationClosingPeriodsAddRemoveWithTreeView() {
@@ -2677,35 +2706,42 @@ public class RapidClubAdminClientIntegrationTest {
         final JTree masterTree = (JTree) masterTreeView.getTree();
 
         // check the document
-        final Location locEsaal1 = (Location) masterdoc.findBean(
-                Location.class.getName(), "Eurythmiesaal 1 Waldorfschule");
-        final Location locTurnhalle = (Location) masterdoc.findBean(
-                Location.class.getName(), "Turnhalle Grundschule Süd");
-        final ClosingPeriod cpXmas05 = (ClosingPeriod) masterdoc.findBean(
-                ClosingPeriod.class.getName(), "20051222_Weihnachtsferien");
+        final Location locEsaal1 = (Location) masterdoc.findBean(Location.class.getName(),
+                "Eurythmiesaal 1 Waldorfschule");
+        final Location locTurnhalle = (Location) masterdoc.findBean(Location.class.getName(),
+                "Turnhalle Grundschule Süd");
+        final ClosingPeriod cpXmas05 = (ClosingPeriod) masterdoc.findBean(ClosingPeriod.class.getName(),
+                "20051222_Weihnachtsferien");
         cpXmas05.removeLocation(locTurnhalle);
 
         Assert.assertEquals(5, locEsaal1.getClosedons().size());
-        Assert.assertEquals("20051222_Weihnachtsferien", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(0).getIdString());
-        Assert.assertEquals("20060116_Schulputztag", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(1).getIdString());
-        Assert.assertEquals("20061223_Weihnachtsferien", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(2).getIdString());
-        Assert.assertEquals("20070301_20-Jahre-Feier", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(3).getIdString());
-        Assert.assertEquals("20070330_Osterferien", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(4).getIdString());
+        Assert.assertEquals("20051222_Weihnachtsferien",
+                ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(0).getIdString());
+        Assert.assertEquals("20060116_Schulputztag", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons())
+                .get(1).getIdString());
+        Assert.assertEquals("20061223_Weihnachtsferien",
+                ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(2).getIdString());
+        Assert.assertEquals("20070301_20-Jahre-Feier",
+                ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(3).getIdString());
+        Assert.assertEquals("20070330_Osterferien", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons())
+                .get(4).getIdString());
 
         Assert.assertEquals(2, locTurnhalle.getClosedons().size());
-        Assert.assertEquals("20061223_Weihnachtsferien", ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(0).getIdString());
-        Assert.assertEquals("20070330_Osterferien", ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(1).getIdString());
+        Assert.assertEquals("20061223_Weihnachtsferien",
+                ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(0).getIdString());
+        Assert.assertEquals("20070330_Osterferien",
+                ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(1).getIdString());
 
         Assert.assertEquals(1, cpXmas05.getLocations().size());
-        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((ReadonlyListCollection<Location>) cpXmas05.getLocations()).get(0).getIdString());
+        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule",
+                ((ReadonlyListCollection<Location>) cpXmas05.getLocations()).get(0).getIdString());
 
         // expand all three entities in the tree view and check the rows
-        Assert.assertEquals("locations", ((DocumentTreeNodePropColComp)
-                masterTree.getPathForRow(treeViewIndexLocations)
-                .getLastPathComponent()).getColProp().getType().getPropName());
-        Assert.assertEquals("closingperiods", ((DocumentTreeNodePropColComp)
-                masterTree.getPathForRow(treeViewIndexClosigperiods)
-                .getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("locations", ((DocumentTreeNodePropColComp) masterTree
+                .getPathForRow(treeViewIndexLocations).getLastPathComponent()).getColProp().getType().getPropName());
+        Assert.assertEquals("closingperiods",
+                ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndexClosigperiods)
+                        .getLastPathComponent()).getColProp().getType().getPropName());
         masterTree.expandPath(masterTree.getPathForRow(treeViewIndexClosigperiods));
         masterTree.expandPath(masterTree.getPathForRow(treeViewIndexClosigperiods + 1));
         masterTree.expandPath(masterTree.getPathForRow(treeViewIndexClosigperiods + 2));
@@ -2714,39 +2750,51 @@ public class RapidClubAdminClientIntegrationTest {
         masterTree.expandPath(masterTree.getPathForRow(treeViewIndexLocations + 3));
         masterTree.expandPath(masterTree.getPathForRow(treeViewIndexLocations + 1));
         masterTree.expandPath(masterTree.getPathForRow(treeViewIndexLocations + 2));
-        
+
         // compute new rows for all three entities after expanding
         // and check the tree view
         final int treeViewIndexLocationEsaal1 = treeViewIndexLocations + 1;
         Assert.assertSame(locEsaal1, masterTree.getPathForRow(treeViewIndexLocationEsaal1).getLastPathComponent());
-        Assert.assertSame(locEsaal1.getProperty("closedons"), ((DocumentTreeNodePropCol)
-                masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 1).getLastPathComponent()).getColProp());
-        Assert.assertEquals("20051222_Weihnachtsferien", ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 2).getLastPathComponent()).getLinkedBean().getIdString());
-        Assert.assertEquals("20060116_Schulputztag", ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 3).getLastPathComponent()).getLinkedBean().getIdString());
-        Assert.assertEquals("20061223_Weihnachtsferien", ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 4).getLastPathComponent()).getLinkedBean().getIdString());
-        Assert.assertEquals("20070301_20-Jahre-Feier", ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 5).getLastPathComponent()).getLinkedBean().getIdString());
-        Assert.assertEquals("20070330_Osterferien", ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 6).getLastPathComponent()).getLinkedBean().getIdString());
+        Assert.assertSame(locEsaal1.getProperty("closedons"),
+                ((DocumentTreeNodePropCol) masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 1)
+                        .getLastPathComponent()).getColProp());
+        Assert.assertEquals("20051222_Weihnachtsferien",
+                ((DocumentTreeNodeBeanLink) masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 2)
+                        .getLastPathComponent()).getLinkedBean().getIdString());
+        Assert.assertEquals("20060116_Schulputztag",
+                ((DocumentTreeNodeBeanLink) masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 3)
+                        .getLastPathComponent()).getLinkedBean().getIdString());
+        Assert.assertEquals("20061223_Weihnachtsferien",
+                ((DocumentTreeNodeBeanLink) masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 4)
+                        .getLastPathComponent()).getLinkedBean().getIdString());
+        Assert.assertEquals("20070301_20-Jahre-Feier",
+                ((DocumentTreeNodeBeanLink) masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 5)
+                        .getLastPathComponent()).getLinkedBean().getIdString());
+        Assert.assertEquals("20070330_Osterferien",
+                ((DocumentTreeNodeBeanLink) masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 6)
+                        .getLastPathComponent()).getLinkedBean().getIdString());
 
         int treeViewIndexLocationTurnhalle1 = treeViewIndexLocationEsaal1 + 7;
-        Assert.assertSame(locTurnhalle, masterTree.getPathForRow(treeViewIndexLocationTurnhalle1).getLastPathComponent());
-        Assert.assertSame(locTurnhalle.getProperty("closedons"), ((DocumentTreeNodePropCol)
-                masterTree.getPathForRow(treeViewIndexLocationTurnhalle1 + 1).getLastPathComponent()).getColProp());
-        Assert.assertEquals("20061223_Weihnachtsferien", ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexLocationTurnhalle1 + 2).getLastPathComponent()).getLinkedBean().getIdString());
-        Assert.assertEquals("20070330_Osterferien", ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexLocationTurnhalle1 + 3).getLastPathComponent()).getLinkedBean().getIdString());
+        Assert.assertSame(locTurnhalle, masterTree.getPathForRow(treeViewIndexLocationTurnhalle1)
+                .getLastPathComponent());
+        Assert.assertSame(locTurnhalle.getProperty("closedons"),
+                ((DocumentTreeNodePropCol) masterTree.getPathForRow(treeViewIndexLocationTurnhalle1 + 1)
+                        .getLastPathComponent()).getColProp());
+        Assert.assertEquals("20061223_Weihnachtsferien",
+                ((DocumentTreeNodeBeanLink) masterTree.getPathForRow(treeViewIndexLocationTurnhalle1 + 2)
+                        .getLastPathComponent()).getLinkedBean().getIdString());
+        Assert.assertEquals("20070330_Osterferien",
+                ((DocumentTreeNodeBeanLink) masterTree.getPathForRow(treeViewIndexLocationTurnhalle1 + 3)
+                        .getLastPathComponent()).getLinkedBean().getIdString());
 
         final int treeViewIndexClosingperiodXmas05 = treeViewIndexLocations + 13;
         Assert.assertSame(cpXmas05, masterTree.getPathForRow(treeViewIndexClosingperiodXmas05).getLastPathComponent());
-        Assert.assertSame(cpXmas05.getProperty("locations"), ((DocumentTreeNodePropCol)
-                masterTree.getPathForRow(treeViewIndexClosingperiodXmas05 + 1).getLastPathComponent()).getColProp());
-        Assert.assertSame(locEsaal1, ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexClosingperiodXmas05 + 2).getLastPathComponent()).getLinkedBean());
+        Assert.assertSame(cpXmas05.getProperty("locations"),
+                ((DocumentTreeNodePropCol) masterTree.getPathForRow(treeViewIndexClosingperiodXmas05 + 1)
+                        .getLastPathComponent()).getColProp());
+        Assert.assertSame(locEsaal1,
+                ((DocumentTreeNodeBeanLink) masterTree.getPathForRow(treeViewIndexClosingperiodXmas05 + 2)
+                        .getLastPathComponent()).getLinkedBean());
 
         // open closing period "20051222_Weihnachtsferien" for editing
         masterTree.setSelectionPath(masterTree.getPathForRow(treeViewIndexClosingperiodXmas05));
@@ -2793,7 +2841,7 @@ public class RapidClubAdminClientIntegrationTest {
                 Assert.assertEquals(4, locEsaal1.getClosedons().size());
                 // locTurnhalle should immediately win one link!!!
                 Assert.assertEquals(3, locTurnhalle.getClosedons().size());
-            }            
+            }
         });
 
         ed.handleActionOk();
@@ -2801,73 +2849,90 @@ public class RapidClubAdminClientIntegrationTest {
         retry(new RetryableAction() {
             public void doSomething() {
                 Assert.assertEquals(4, locEsaal1.getClosedons().size());
-                Assert.assertEquals("20060116_Schulputztag", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(0).getIdString());
-                Assert.assertEquals("20061223_Weihnachtsferien", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(1).getIdString());
-                Assert.assertEquals("20070301_20-Jahre-Feier", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(2).getIdString());
-                Assert.assertEquals("20070330_Osterferien", ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(3).getIdString());
+                Assert.assertEquals("20060116_Schulputztag",
+                        ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(0).getIdString());
+                Assert.assertEquals("20061223_Weihnachtsferien",
+                        ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(1).getIdString());
+                Assert.assertEquals("20070301_20-Jahre-Feier",
+                        ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(2).getIdString());
+                Assert.assertEquals("20070330_Osterferien",
+                        ((ReadonlyListCollection<ClosingPeriod>) locEsaal1.getClosedons()).get(3).getIdString());
 
                 Assert.assertEquals(3, locTurnhalle.getClosedons().size());
-                Assert.assertEquals("20051222_Weihnachtsferien", ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(0).getIdString());
-                Assert.assertEquals("20061223_Weihnachtsferien", ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(1).getIdString());
-                Assert.assertEquals("20070330_Osterferien", ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(2).getIdString());
+                Assert.assertEquals("20051222_Weihnachtsferien",
+                        ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(0).getIdString());
+                Assert.assertEquals("20061223_Weihnachtsferien",
+                        ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(1).getIdString());
+                Assert.assertEquals("20070330_Osterferien",
+                        ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(2).getIdString());
 
                 Assert.assertEquals(1, cpXmas05.getLocations().size());
-                Assert.assertEquals("Turnhalle Grundschule Süd", ((ReadonlyListCollection<Location>) cpXmas05.getLocations()).get(0).getIdString());
-            }});
+                Assert.assertEquals("Turnhalle Grundschule Süd",
+                        ((ReadonlyListCollection<Location>) cpXmas05.getLocations()).get(0).getIdString());
+            }
+        });
 
         // compute new rows for all three entities after expanding
         // and check the tree view
 
-        retry(new Class[] {
-            AssertionFailedError.class,
-            ClassCastException.class,
-            NullPointerException.class
-            }, new RetryableAction() {
-            public void doSomething() {   
-                Assert.assertSame(locEsaal1.getProperty("closedons"), ((DocumentTreeNodePropCol)
-                        masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 1).getLastPathComponent()).getColProp());
-                Assert.assertEquals("20060116_Schulputztag", ((DocumentTreeNodeBeanLink)
-                        masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 2).getLastPathComponent()).getLinkedBean().getIdString());
-                Assert.assertEquals("20061223_Weihnachtsferien", ((DocumentTreeNodeBeanLink)
-                        masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 3).getLastPathComponent()).getLinkedBean().getIdString());
-                Assert.assertEquals("20070301_20-Jahre-Feier", ((DocumentTreeNodeBeanLink)
-                        masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 4).getLastPathComponent()).getLinkedBean().getIdString());
-                Assert.assertEquals("20070330_Osterferien", ((DocumentTreeNodeBeanLink)
-                        masterTree.getPathForRow(treeViewIndexLocationEsaal1 + 5).getLastPathComponent()).getLinkedBean().getIdString());
-            }            
-        });
+        retry(new Class[] { AssertionFailedError.class, ClassCastException.class, NullPointerException.class },
+                new RetryableAction() {
+                    public void doSomething() {
+                        Assert.assertSame(locEsaal1.getProperty("closedons"), ((DocumentTreeNodePropCol) masterTree
+                                .getPathForRow(treeViewIndexLocationEsaal1 + 1).getLastPathComponent()).getColProp());
+                        Assert.assertEquals("20060116_Schulputztag", ((DocumentTreeNodeBeanLink) masterTree
+                                .getPathForRow(treeViewIndexLocationEsaal1 + 2).getLastPathComponent()).getLinkedBean()
+                                .getIdString());
+                        Assert.assertEquals("20061223_Weihnachtsferien", ((DocumentTreeNodeBeanLink) masterTree
+                                .getPathForRow(treeViewIndexLocationEsaal1 + 3).getLastPathComponent()).getLinkedBean()
+                                .getIdString());
+                        Assert.assertEquals("20070301_20-Jahre-Feier", ((DocumentTreeNodeBeanLink) masterTree
+                                .getPathForRow(treeViewIndexLocationEsaal1 + 4).getLastPathComponent()).getLinkedBean()
+                                .getIdString());
+                        Assert.assertEquals("20070330_Osterferien", ((DocumentTreeNodeBeanLink) masterTree
+                                .getPathForRow(treeViewIndexLocationEsaal1 + 5).getLastPathComponent()).getLinkedBean()
+                                .getIdString());
+                    }
+                });
 
         final int treeViewIndexLocationTurnhalle2 = treeViewIndexLocationTurnhalle1;
-        retry(new Class[]{
-                AssertionFailedError.class,
-                ClassCastException.class,
-                NullPointerException.class
-        }, new RetryableAction() {
-            public void doSomething() {
-        int treeViewIndexLocationTurnhalle3 = treeViewIndexLocationTurnhalle2 - 1;
-        Assert.assertSame(locTurnhalle, masterTree.getPathForRow(treeViewIndexLocationTurnhalle3).getLastPathComponent());
-        Assert.assertSame(locTurnhalle.getProperty("closedons"), ((DocumentTreeNodePropCol)
-                masterTree.getPathForRow(treeViewIndexLocationTurnhalle3 + 1).getLastPathComponent()).getColProp());
-        Assert.assertEquals("20051222_Weihnachtsferien", ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexLocationTurnhalle3 + 2).getLastPathComponent()).getLinkedBean().getIdString());
-        Assert.assertEquals("20061223_Weihnachtsferien", ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexLocationTurnhalle3 + 3).getLastPathComponent()).getLinkedBean().getIdString());
-        Assert.assertEquals("20070330_Osterferien", ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexLocationTurnhalle3 + 4).getLastPathComponent()).getLinkedBean().getIdString());
+        retry(new Class[] { AssertionFailedError.class, ClassCastException.class, NullPointerException.class },
+                new RetryableAction() {
+                    public void doSomething() {
+                        int treeViewIndexLocationTurnhalle3 = treeViewIndexLocationTurnhalle2 - 1;
+                        Assert.assertSame(locTurnhalle, masterTree.getPathForRow(treeViewIndexLocationTurnhalle3)
+                                .getLastPathComponent());
+                        Assert.assertSame(locTurnhalle.getProperty("closedons"), ((DocumentTreeNodePropCol) masterTree
+                                .getPathForRow(treeViewIndexLocationTurnhalle3 + 1).getLastPathComponent())
+                                .getColProp());
+                        Assert.assertEquals("20051222_Weihnachtsferien", ((DocumentTreeNodeBeanLink) masterTree
+                                .getPathForRow(treeViewIndexLocationTurnhalle3 + 2).getLastPathComponent())
+                                .getLinkedBean().getIdString());
+                        Assert.assertEquals("20061223_Weihnachtsferien", ((DocumentTreeNodeBeanLink) masterTree
+                                .getPathForRow(treeViewIndexLocationTurnhalle3 + 3).getLastPathComponent())
+                                .getLinkedBean().getIdString());
+                        Assert.assertEquals("20070330_Osterferien", ((DocumentTreeNodeBeanLink) masterTree
+                                .getPathForRow(treeViewIndexLocationTurnhalle3 + 4).getLastPathComponent())
+                                .getLinkedBean().getIdString());
 
-        Assert.assertSame(cpXmas05, masterTree.getPathForRow(treeViewIndexClosingperiodXmas05).getLastPathComponent());
-        Assert.assertSame(cpXmas05.getProperty("locations"), ((DocumentTreeNodePropCol)
-                masterTree.getPathForRow(treeViewIndexClosingperiodXmas05 + 1).getLastPathComponent()).getColProp());
-        Assert.assertSame(locTurnhalle, ((DocumentTreeNodeBeanLink)
-                masterTree.getPathForRow(treeViewIndexClosingperiodXmas05 + 2).getLastPathComponent()).getLinkedBean());
-            }
-        });
+                        Assert.assertSame(cpXmas05, masterTree.getPathForRow(treeViewIndexClosingperiodXmas05)
+                                .getLastPathComponent());
+                        Assert.assertSame(
+                                cpXmas05.getProperty("locations"),
+                                ((DocumentTreeNodePropCol) masterTree.getPathForRow(
+                                        treeViewIndexClosingperiodXmas05 + 1).getLastPathComponent()).getColProp());
+                        Assert.assertSame(
+                                locTurnhalle,
+                                ((DocumentTreeNodeBeanLink) masterTree.getPathForRow(
+                                        treeViewIndexClosingperiodXmas05 + 2).getLastPathComponent()).getLinkedBean());
+                    }
+                });
     }
 
     /**
      * Tests changing a oneday closing period to two days.
-     *
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
      */
     @Test
     public void testEditClosingPeriodOnedayToMoreDays() throws InterruptedException {
@@ -2908,8 +2973,8 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * Tests changing a oneday closing period to two days.
-     *
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
      */
     @Test
     public void testEditClosingPeriodInvalidDateToEmptyCancel() throws InterruptedException {
@@ -2957,8 +3022,8 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * Tests changing a oneday closing period to two days.
-     *
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
      */
     @Test
     public void testEditClosingPeriodToInvalidDateToLetter() throws InterruptedException {
@@ -3004,8 +3069,8 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * Tests changing a oneday closing period to two days.
-     *
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
      */
     @Test
     public void testEditClosingPeriodToInvalidDateToSmallerFrom() throws InterruptedException {
@@ -3046,7 +3111,8 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * Tests changing more than one location in a ClosingPeriod.
-     * @throws InterruptedException 
+     * 
+     * @throws InterruptedException
      */
     @Test
     public void testEditClosingPeriodOutsideChangeNotModifiedClosed() throws InterruptedException {
@@ -3085,8 +3151,7 @@ public class RapidClubAdminClientIntegrationTest {
 
         final ArrayList<ClosingPeriod> newValue = new ArrayList<ClosingPeriod>();
         newValue.add(cpCleanday);
-        retry(ArrayIndexOutOfBoundsException.class,
-                new RetryableAction(){
+        retry(ArrayIndexOutOfBoundsException.class, new RetryableAction() {
             public void doSomething() {
                 locEurythm.setClosedons(newValue);
             }
@@ -3136,8 +3201,8 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(2, ped.getWidgetList().getModel().getSize());
 
         // delete location "Turnhalle Grundschule Süd"
-        Location loc = (Location) ped.getProperty().getBean().getContainer().findBean(
-                "org.rapidbeans.clubadmin.domain.Location", "Turnhalle Grundschule Süd");
+        Location loc = (Location) ped.getProperty().getBean().getContainer()
+                .findBean("org.rapidbeans.clubadmin.domain.Location", "Turnhalle Grundschule Süd");
         Assert.assertSame(loc, ped.getWidgetList().getModel().getElementAt(1));
         loc.delete();
 
@@ -3153,8 +3218,8 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("Weihnachtsferien", ed.getPropEditors().get(0).getInputFieldValue());
         ped = (EditorPropertyListSwing) ed.getPropEditor("locations");
         Assert.assertEquals(1, ped.getWidgetList().getModel().getSize());
-        loc = (Location) ped.getProperty().getBean().getContainer().findBean(
-                "org.rapidbeans.clubadmin.domain.Location", "Eurythmiesaal 1 Waldorfschule");
+        loc = (Location) ped.getProperty().getBean().getContainer()
+                .findBean("org.rapidbeans.clubadmin.domain.Location", "Eurythmiesaal 1 Waldorfschule");
         Assert.assertSame(loc, ped.getWidgetList().getModel().getElementAt(0));
         loc.delete();
         ed.handleActionClose();
@@ -3195,30 +3260,31 @@ public class RapidClubAdminClientIntegrationTest {
         // open Location "Eurythmiesaal 1 Waldorfschule" for editing
         masterTree.setSelectionPath(masterTree.getPathForRow(locationrow + 1));
         masterTreeView.editBeans();
-        EditorBeanSwing ed1 = (EditorBeanSwing) masterDocView.getEditor((RapidBean) masterTree.getPathForRow(
-                locationrow + 1).getLastPathComponent(), false);
+        EditorBeanSwing ed1 = (EditorBeanSwing) masterDocView.getEditor(
+                (RapidBean) masterTree.getPathForRow(locationrow + 1).getLastPathComponent(), false);
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ed1.getPropEditors().get(0).getInputFieldValue());
         EditorPropertyListSwing proped1 = (EditorPropertyListSwing) ed1.getPropEditors().get(3);
         JList listPropEdLocCps = proped1.getWidgetList();
         Assert.assertEquals(5, listPropEdLocCps.getModel().getSize());
-        Assert.assertEquals("20051222_Weihnachtsferien", ((RapidBean) listPropEdLocCps.getModel().getElementAt(0))
-                .getIdString());
-        Assert.assertEquals("20060116_Schulputztag", ((RapidBean) listPropEdLocCps.getModel().getElementAt(1)).getIdString());
+        Assert.assertEquals("20051222_Weihnachtsferien",
+                ((RapidBean) listPropEdLocCps.getModel().getElementAt(0)).getIdString());
+        Assert.assertEquals("20060116_Schulputztag",
+                ((RapidBean) listPropEdLocCps.getModel().getElementAt(1)).getIdString());
 
         // open Closing Period "Weihnachtsferien" for editing
         masterTree.setSelectionPath(masterTree.getPathForRow(locationrow + 4));
         masterTreeView.editBeans();
-        EditorBeanSwing ed2 = (EditorBeanSwing) masterDocView.getEditor((RapidBean) masterTree.getPathForRow(
-                locationrow + 4).getLastPathComponent(), false);
+        EditorBeanSwing ed2 = (EditorBeanSwing) masterDocView.getEditor(
+                (RapidBean) masterTree.getPathForRow(locationrow + 4).getLastPathComponent(), false);
         Assert.assertEquals("Weihnachtsferien", ed2.getPropEditors().get(0).getInputFieldValue());
         EditorPropertyListSwing proped2 = (EditorPropertyListSwing) ed2.getPropEditor("locations");
         Assert.assertEquals(2, proped2.getWidgetList().getModel().getSize());
-        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) proped2.getWidgetList().getModel().getElementAt(0))
-                .getIdString());
-        Assert.assertEquals("Turnhalle Grundschule Süd", ((RapidBean) proped2.getWidgetList().getModel().getElementAt(1))
-                .getIdString());
-        Location loc = (Location) proped2.getProperty().getBean().getContainer().findBean(
-                "org.rapidbeans.clubadmin.domain.Location", "Eurythmiesaal 1 Waldorfschule");
+        Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) proped2.getWidgetList().getModel()
+                .getElementAt(0)).getIdString());
+        Assert.assertEquals("Turnhalle Grundschule Süd", ((RapidBean) proped2.getWidgetList().getModel()
+                .getElementAt(1)).getIdString());
+        Location loc = (Location) proped2.getProperty().getBean().getContainer()
+                .findBean("org.rapidbeans.clubadmin.domain.Location", "Eurythmiesaal 1 Waldorfschule");
         Assert.assertNotNull(loc);
         ((PropertyCollection) proped2.getProperty()).removeLink(loc);
         ((PropertyCollection) proped2.getProperty()).addLink(loc);
@@ -3234,8 +3300,8 @@ public class RapidClubAdminClientIntegrationTest {
         DocumentViewSwing view = this.getTestviewMasterdata();
         DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) view.getTreeView();
         JTree masterTree = (JTree) treeView.getTree();
-        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3).getLastPathComponent())
-                .getColProp().getType().getPropName());
+        Assert.assertEquals("trainerroles", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getColProp().getType().getPropName());
 
         // expand property node "trainerroles/salarys" in the tree view and
         // open a bean editor for editing a salary
@@ -3281,8 +3347,8 @@ public class RapidClubAdminClientIntegrationTest {
     }
 
     /**
-     * First test with the normal "trainingslist" view.
-     * A training held by trainer with null role must not be accepted.
+     * First test with the normal "trainingslist" view. A training held by
+     * trainer with null role must not be accepted.
      */
     @Test
     public void testEditTrainingNullRole() {
@@ -3293,9 +3359,7 @@ public class RapidClubAdminClientIntegrationTest {
         // add a new training held by trainer
         TrainingHeldByTrainer newTrhbt = trainersView.addNewHeldByTrainer();
         // set Martin as trainer but leave the trainer role undefined
-        Trainer martin = (Trainer) doc.findBean(
-                "org.rapidbeans.clubadmin.domain.Trainer",
-                "Blümel_Martin_");
+        Trainer martin = (Trainer) doc.findBean("org.rapidbeans.clubadmin.domain.Trainer", "Blümel_Martin_");
         newTrhbt.setTrainer(martin);
         try {
             // try to check the training held by trainer with undefined role
@@ -3428,8 +3492,8 @@ public class RapidClubAdminClientIntegrationTest {
         EditorPropertyComboboxSwing proped0 = (EditorPropertyComboboxSwing) editor.getPropEditors().get(0);
         Assert.assertEquals("role", proped0.getProperty().getType().getPropName());
         JComboBox cb0 = (JComboBox) proped0.getWidget();
-        TrainerRole roleTrainer = (TrainerRole) editor.getDocumentView().getDocument().findBean(
-                "org.rapidbeans.clubadmin.domain.TrainerRole", "Trainer");
+        TrainerRole roleTrainer = (TrainerRole) editor.getDocumentView().getDocument()
+                .findBean("org.rapidbeans.clubadmin.domain.TrainerRole", "Trainer");
         Assert.assertNotNull(roleTrainer);
         Assert.assertNull(cb0.getSelectedItem());
         cb0.setSelectedItem(roleTrainer);
@@ -3438,8 +3502,8 @@ public class RapidClubAdminClientIntegrationTest {
         EditorPropertyComboboxSwing proped1 = (EditorPropertyComboboxSwing) editor.getPropEditors().get(1);
         Assert.assertEquals("trainer", proped1.getProperty().getType().getPropName());
         JComboBox cb1 = (JComboBox) proped1.getWidget();
-        Trainer berit = (Trainer) editor.getDocumentView().getDocument().findBean(
-                "org.rapidbeans.clubadmin.domain.Trainer", "Dahlheimer_Berit_");
+        Trainer berit = (Trainer) editor.getDocumentView().getDocument()
+                .findBean("org.rapidbeans.clubadmin.domain.Trainer", "Dahlheimer_Berit_");
         Assert.assertNotNull(berit);
         Assert.assertNull(cb1.getSelectedItem());
         cb1.setSelectedItem(berit);
@@ -3450,7 +3514,8 @@ public class RapidClubAdminClientIntegrationTest {
             editor.handleActionApply();
             Assert.fail("expected ValidationException");
         } catch (ValidationException e) {
-            Assert.assertTrue(e.getMessage().startsWith("invalid value \"Dahlheimer_Berit_\" for property \"trainer\"."));
+            Assert.assertTrue(e.getMessage()
+                    .startsWith("invalid value \"Dahlheimer_Berit_\" for property \"trainer\"."));
         }
     }
 
@@ -3530,19 +3595,16 @@ public class RapidClubAdminClientIntegrationTest {
      * @return a test view
      */
     private DocumentViewSwing getTestviewMasterdata() {
-        retry(new Class[]{
-           RapidBeansRuntimeException.class,
-           ValidationException.class,
-        }, new RetryableAction() {
+        retry(new Class[] { RapidBeansRuntimeException.class, ValidationException.class, }, new RetryableAction() {
             @Override
             public void doSomething() {
                 if (docMaster == null) {
-                    client.openDocumentView(new Document("masterdata", new File("testdata/masterdata.xml")), "masterdata",
-                            "standard");
+                    client.openDocumentView(new Document("masterdata", new File("testdata/masterdata.xml")),
+                            "masterdata", "standard");
                     docMaster = client.getDocument("masterdata");
                     viewMaster = (DocumentViewSwing) client.getView("masterdata.standard");
                 }
-            }   
+            }
         });
         return this.viewMaster;
     }
@@ -3564,7 +3626,7 @@ public class RapidClubAdminClientIntegrationTest {
 
     /**
      * test helper.
-     *
+     * 
      * @return a test view
      */
     private ViewTrainings getTestviewTrainingsListTrainings() {
@@ -3577,7 +3639,7 @@ public class RapidClubAdminClientIntegrationTest {
         return (ViewTrainings) this.viewTrainingsList;
     }
 
-    private class ApplicationMock extends RapidClubAdminClient {
+    private static class ApplicationMock extends RapidClubAdminClient {
 
         @Override
         public boolean getTestMode() {
@@ -3586,6 +3648,7 @@ public class RapidClubAdminClientIntegrationTest {
 
         @Override
         public void start() {
+            setAuthnRoleType("org.rapidbeans.clubadmin.domain.Role");
             this.setConfiguration((ConfigApplication) new Document(TypeRapidBean.forName(ConfigApplication.class
                     .getName()), new File("config/org/rapidbeans/clubadmin/Application.xml")).getRoot());
             this.getMasterDoc();
@@ -3652,8 +3715,7 @@ public class RapidClubAdminClientIntegrationTest {
         retry(1, 100, action);
     }
 
-    private static void retry(final int sleepMillis, final int retryCount,
-            final RetryableAction action) {
+    private static void retry(final int sleepMillis, final int retryCount, final RetryableAction action) {
         try {
             action.doSomething();
         } catch (AssertionError e) {
@@ -3676,15 +3738,15 @@ public class RapidClubAdminClientIntegrationTest {
     }
 
     private static void retry(final Class<?> exClass, final RetryableAction action) {
-        retry(new Class[]{exClass}, action);
+        retry(new Class[] { exClass }, action);
     }
 
     private static void retry(final Class<?>[] exClasses, final RetryableAction action) {
         retry(1, 100, exClasses, action);
     }
 
-    private static void retry(final int sleepMillis, final int retryCount,
-            final Class<?>[] exClasses, final RetryableAction action) {
+    private static void retry(final int sleepMillis, final int retryCount, final Class<?>[] exClasses,
+            final RetryableAction action) {
         try {
             action.doSomething();
         } catch (RuntimeException e) {
@@ -3719,8 +3781,7 @@ public class RapidClubAdminClientIntegrationTest {
         }
     }
 
-    private static boolean isOneOf(final Class<?> clazz,
-            final Class<?>[] classes) {
+    private static boolean isOneOf(final Class<?> clazz, final Class<?>[] classes) {
         boolean oneOf = false;
         for (final Class<?> curClass : classes) {
             if (curClass == clazz) {
