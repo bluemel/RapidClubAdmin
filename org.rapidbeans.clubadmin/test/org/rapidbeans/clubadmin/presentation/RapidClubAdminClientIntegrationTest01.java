@@ -20,6 +20,7 @@ import junit.framework.TestCase;
 import org.rapidbeans.clubadmin.domain.TrainingsList;
 import org.rapidbeans.clubadmin.presentation.swing.ViewOverview;
 import org.rapidbeans.clubadmin.service.OpenCurrentTrainingsList;
+import org.rapidbeans.clubadmin.service.Umlaut;
 import org.rapidbeans.clubadmin.service.ViewOverviewAction;
 import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.type.TypePropertyCollection;
@@ -34,14 +35,16 @@ import org.rapidbeans.service.ActionArgument;
 
 /**
  * UI integration tests.
- *
+ * 
  * @author Martin Bluemel
  */
 public class RapidClubAdminClientIntegrationTest01 extends TestCase {
 
     private static final boolean TEST_MODE = true;
+
     private static final DateFormat DF = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.GERMAN);
-    private static final Properties OPTIONS = new Properties();    
+
+    private static final Properties OPTIONS = new Properties();
     static {
         OPTIONS.put("root", "testdata/config/test01");
     }
@@ -49,6 +52,7 @@ public class RapidClubAdminClientIntegrationTest01 extends TestCase {
     private static RapidClubAdminClient clientTrainer = null;
 
     private static int testMethodCount = -1;
+
     private static int testMethodIndex = 0;
 
     private int countTestMethods() {
@@ -91,34 +95,33 @@ public class RapidClubAdminClientIntegrationTest01 extends TestCase {
     /**
      * Date formatter.
      */
-    static final DateFormat DFDATE = DateFormat.getDateInstance(
-            DateFormat.MEDIUM, Locale.GERMAN);
+    static final DateFormat DFDATE = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.GERMAN);
 
     /**
-     * - open the training's list's view "Overview"
-     * - select "Jogi"
-     * - and check if Jogi has earned 160 bugs so far.
-     *
-     * @throws ParseException if parsing of a date fails
+     * - open the training's list's view "Overview" - select "Jogi" - and check
+     * if Jogi has earned 160 bugs so far.
+     * 
+     * @throws ParseException
+     *             if parsing of a date fails
      */
     public void testOpenTrainingsList() throws ParseException {
         OpenCurrentTrainingsList openAction = new OpenCurrentTrainingsList();
         ActionArgument arg = new ActionArgument();
         arg.setName("department");
-        arg.setValue("FC Hintertupfingen/Fuﬂball");
+        arg.setValue("FC Hintertupfingen/Fu" + Umlaut.SUML + "ball");
         openAction.addArgument(arg);
         openAction.execute();
-        Document doc = clientTrainer.getActiveDocument();    
+        Document doc = clientTrainer.getActiveDocument();
         TrainingsList list = (TrainingsList) doc.getRoot();
         assertEquals(DF.parse("01.01.2010"), list.getFrom());
         assertEquals(DF.parse("31.03.2010"), list.getTo());
         assertEquals("FC Hintertupfingen", list.getClubs().iterator().next().getIdString());
         new ViewOverviewAction().execute();
-        ViewOverview view = (ViewOverview) clientTrainer.getView("currentTrainings_FC Hintertupfingen/Fuﬂball.overview");
+        ViewOverview view = (ViewOverview) clientTrainer.getView("currentTrainings_FC Hintertupfingen/Fu" + Umlaut.SUML
+                + "ball.overview");
         view.getTrainersList().setSelectedIndex(1);
         assertTrue(view.getText().contains("160,00 EUR"));
     }
-
 
     /**
      * Verify that opening master data is not possible for Trainer "jogi".
@@ -211,6 +214,7 @@ public class RapidClubAdminClientIntegrationTest01 extends TestCase {
         }
 
         private Document masterDoc = null;
+
         private boolean initializingMasterData = false;
 
         public boolean isInitializingMasterData() {
@@ -232,8 +236,9 @@ public class RapidClubAdminClientIntegrationTest01 extends TestCase {
 
         /**
          * setter for unit testing reasons.
-         *
-         * @param doc the masterdata document
+         * 
+         * @param doc
+         *            the masterdata document
          */
         @Override
         public void setMasterDoc(final Document doc) {
