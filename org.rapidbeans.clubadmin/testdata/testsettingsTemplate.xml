@@ -3,7 +3,7 @@
 	rb:type="org.rapidbeans.clubadmin.presentation.Settings"
 	>
 	<basic
-		folderdoc="D:\Projects\RapidClubAdmin\org.rapidbeans.clubadmin\testdata"
+		folderdoc="testdata"
 		defaultencoding="ISO-8859-1"
 		defaultencodingusage="newdocs"
 		>
