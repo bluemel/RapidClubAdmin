@@ -71,6 +71,7 @@ import org.rapidbeans.core.exception.ValidationException;
 import org.rapidbeans.core.exception.ValidationInstanceAssocTwiceException;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.core.type.TypeRapidBean;
+import org.rapidbeans.core.util.FileHelper;
 import org.rapidbeans.datasource.DatasourceException;
 import org.rapidbeans.datasource.Document;
 import org.rapidbeans.domain.finance.Currency;
@@ -115,6 +116,9 @@ public class RapidClubAdminClientIntegrationTest {
 
     @BeforeClass
     public static void setUpClass() {
+        if (!new File("testdata/testsettings.xml").exists()) {
+            FileHelper.copyFile(new File("testdata/testsettingsTemplate.xml"), new File("testdata/testsettings.xml"));
+        }
         TypePropertyCollection.setDefaultCharSeparator(',');
         TypePropertyCollection.setDefaultCharEscape('\\');
         client = new ApplicationMock();
@@ -125,6 +129,9 @@ public class RapidClubAdminClientIntegrationTest {
     public static void tearDownClass() {
         ApplicationManager.resetApplication();
         client = null;
+        if (new File("testdata/testsettings.xml").exists()) {
+            new File("testdata/testsettings.xml").delete();
+        }
     }
 
     /**

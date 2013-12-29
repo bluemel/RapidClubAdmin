@@ -21,6 +21,7 @@ import java.util.Locale;
 import java.util.Properties;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -31,6 +32,7 @@ import org.rapidbeans.clubadmin.service.Umlaut;
 import org.rapidbeans.clubadmin.service.ViewOverviewAction;
 import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.type.TypePropertyCollection;
+import org.rapidbeans.core.util.FileHelper;
 import org.rapidbeans.datasource.Document;
 import org.rapidbeans.presentation.ApplicationManager;
 import org.rapidbeans.presentation.Toolbar;
@@ -74,8 +76,18 @@ public class RapidClubAdminClientIntegrationTest01 {
 
     @BeforeClass
     public static void setUpClass() {
+        if (!new File("testdata/testsettings.xml").exists()) {
+            FileHelper.copyFile(new File("testdata/testsettingsTemplate.xml"), new File("testdata/testsettings.xml"));
+        }
         TypePropertyCollection.setDefaultCharSeparator(',');
         TypePropertyCollection.setDefaultCharEscape('\\');
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        if (new File("testdata/testsettings.xml").exists()) {
+            new File("testdata/testsettings.xml").delete();
+        }
     }
 
     /**

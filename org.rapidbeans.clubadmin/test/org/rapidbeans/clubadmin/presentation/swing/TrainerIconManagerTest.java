@@ -7,12 +7,21 @@
  */
 package org.rapidbeans.clubadmin.presentation.swing;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
-
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.rapidbeans.clubadmin.domain.Trainer;
 import org.rapidbeans.clubadmin.presentation.IconInfoList;
 import org.rapidbeans.clubadmin.presentation.RapidClubAdminClient;
@@ -24,12 +33,27 @@ import org.rapidbeans.presentation.config.ConfigApplication;
 /**
  * @author Martin Bluemel
  */
-public class TrainerIconManagerTest extends TestCase {
+public class TrainerIconManagerTest {
 
     private TrainerIconManager iconManager = null;
 
     private RapidClubAdminClient applicationMock = null;
 
+    @BeforeClass
+    public static void setUpClass() {
+        if (!new File("testdata/testsettings.xml").exists()) {
+            FileHelper.copyFile(new File("testdata/testsettingsTemplate.xml"), new File("testdata/testsettings.xml"));
+        }
+    }
+
+    @AfterClass
+    public static void tearDownClass() {
+        if (new File("testdata/testsettings.xml").exists()) {
+            new File("testdata/testsettings.xml").delete();
+        }
+    }
+
+    @Before
     public void setUp() {
         if (this.applicationMock == null) {
             Settings settings = new Settings();
@@ -43,35 +67,30 @@ public class TrainerIconManagerTest extends TestCase {
             this.applicationMock.setConfiguration(cfg);
             this.applicationMock.setSettingsDoc(settingsDoc);
         }
-        FileHelper.copyDeep(new File("testdata/iconmanager/iconrepotestdata"),
-                new File("testdata/iconmanager/iconrepository"), false, true);
+        FileHelper.copyDeep(new File("testdata/iconmanager/iconrepotestdata"), new File(
+                "testdata/iconmanager/iconrepository"), false, true);
         if (new File("testdata/iconmanager/iconcache").exists()) {
             FileHelper.deleteDeep(new File("testdata/iconmanager/iconcache"));
         }
         FileHelper.mkdirs(new File("testdata/iconmanager/iconcache"));
-        this.iconManager = new TrainerIconManager(
-                this.applicationMock, TrainerIconManager.ICON_REPOSITORY_TYPE_LOCAL,
-                "testdata/iconmanager/iconrepository",
-                "testdata/iconmanager/iconrepository/iconlist.xml",
+        this.iconManager = new TrainerIconManager(this.applicationMock, TrainerIconManager.ICON_REPOSITORY_TYPE_LOCAL,
+                "testdata/iconmanager/iconrepository", "testdata/iconmanager/iconrepository/iconlist.xml",
                 "testdata/iconmanager/iconcache");
     }
 
+    @After
     public void tearDown() {
         iconManager = null;
         FileHelper.deleteDeep(new File("testdata/iconmanager/iconrepository"));
         FileHelper.deleteDeep(new File("testdata/iconmanager/iconcache"));
     }
 
-
     /**
      * Test method for TrainerIconManager#updateIcons().
      */
+    @Test
     public void testUpdateIcons() {
-        final String[][] trainerNames = {
-                { "Doe", "John" },  
-                { "Miller", "Art" },  
-                { "Smith", "James" }
-        };
+        final String[][] trainerNames = { { "Doe", "John" }, { "Miller", "Art" }, { "Smith", "James" } };
         File i1 = new File("testdata/iconmanager/iconcache/Doe_John_.jpg");
         File i3 = new File("testdata/iconmanager/iconcache/Smith_James_.jpg");
         assertFalse(i1.exists());
@@ -94,31 +113,26 @@ public class TrainerIconManagerTest extends TestCase {
     }
 
     /**
-     * Test method for {@link org.rapidbeans.clubadmin.presentation.swing.TrainerIconManager#importIcon(org.rapidbeans.clubadmin.domain.Trainer, java.io.File)}.
+     * Test method for
+     * {@link org.rapidbeans.clubadmin.presentation.swing.TrainerIconManager#importIcon(org.rapidbeans.clubadmin.domain.Trainer, java.io.File)}
+     * .
      */
+    @Test
     public void testImportIcon() {
-        final String[][] trainerNames = {
-                { "Doe", "John" },  
-                { "Miller", "Art" },  
-                { "Smith", "James" }
-        };
+        final String[][] trainerNames = { { "Doe", "John" }, { "Miller", "Art" }, { "Smith", "James" } };
         iconManager.updateIcons(createTrainersList(trainerNames), false);
 
-        File importTargetCache = new File(
-            "testdata/iconmanager/iconcache/Nemo_Captain_.jpg");
-        File importTargetRepository = new File(
-            "testdata/iconmanager/iconrepository/Nemo_Captain_.jpg");
+        File importTargetCache = new File("testdata/iconmanager/iconcache/Nemo_Captain_.jpg");
+        File importTargetRepository = new File("testdata/iconmanager/iconrepository/Nemo_Captain_.jpg");
         assertFalse(importTargetCache.exists());
         assertFalse(importTargetRepository.exists());
         IconInfoList list = (IconInfoList) iconManager.getIconDoc().getRoot();
         assertEquals(3, list.getIcons().size());
-        Trainer trainer = new Trainer(new String[]{"Nemo", "Captain"});
+        Trainer trainer = new Trainer(new String[] { "Nemo", "Captain" });
         assertNull(list.getIconInfo(trainer));
 
-        File importSource = new File(
-                "testdata/iconmanager/iconrepotestdata/Captain.jpg");
-        iconManager.importIcon(trainer,
-                importSource);
+        File importSource = new File("testdata/iconmanager/iconrepotestdata/Captain.jpg");
+        iconManager.importIcon(trainer, importSource);
 
         assertTrue(importTargetCache.exists());
         assertTrue(importTargetRepository.exists());
@@ -128,25 +142,22 @@ public class TrainerIconManagerTest extends TestCase {
     }
 
     /**
-     * Test method for {@link org.rapidbeans.clubadmin.presentation.swing.TrainerIconManager#deleteIcon(org.rapidbeans.clubadmin.domain.Trainer)}.
+     * Test method for
+     * {@link org.rapidbeans.clubadmin.presentation.swing.TrainerIconManager#deleteIcon(org.rapidbeans.clubadmin.domain.Trainer)}
+     * .
      */
+    @Test
     public void testDeleteIcon() {
-        final String[][] trainerNames = {
-                { "Doe", "John" },  
-                { "Miller", "Art" },  
-                { "Smith", "James" }
-        };
+        final String[][] trainerNames = { { "Doe", "John" }, { "Miller", "Art" }, { "Smith", "James" } };
         iconManager.updateIcons(createTrainersList(trainerNames), false);
 
-        File importTargetCache = new File(
-            "testdata/iconmanager/iconcache/Doe_John_.jpg");
-        File importTargetRepository = new File(
-            "testdata/iconmanager/iconrepository/Doe_John_.jpg");
+        File importTargetCache = new File("testdata/iconmanager/iconcache/Doe_John_.jpg");
+        File importTargetRepository = new File("testdata/iconmanager/iconrepository/Doe_John_.jpg");
         assertTrue(importTargetCache.exists());
         assertTrue(importTargetRepository.exists());
         IconInfoList list = (IconInfoList) iconManager.getIconDoc().getRoot();
         assertEquals(3, list.getIcons().size());
-        Trainer trainer = new Trainer(new String[]{"Doe", "John"});
+        Trainer trainer = new Trainer(new String[] { "Doe", "John" });
         assertNotNull(list.getIconInfo(trainer));
 
         iconManager.deleteIcon(trainer);
