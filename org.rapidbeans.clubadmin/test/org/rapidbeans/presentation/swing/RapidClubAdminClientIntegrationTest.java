@@ -116,6 +116,7 @@ public class RapidClubAdminClientIntegrationTest {
     @BeforeClass
     public static void setUpClass() {
         TypePropertyCollection.setDefaultCharSeparator(',');
+        TypePropertyCollection.setDefaultCharEscape('\\');
         client = new ApplicationMock();
         ApplicationManager.start(client);
     }
@@ -131,8 +132,6 @@ public class RapidClubAdminClientIntegrationTest {
      */
     @Before
     public void setUp() {
-        TypePropertyCollection.setDefaultCharSeparator(',');
-        TypePropertyCollection.setDefaultCharEscape('\\');
     }
 
     /**
