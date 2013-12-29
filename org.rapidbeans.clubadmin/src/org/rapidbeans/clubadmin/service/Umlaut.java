@@ -52,4 +52,9 @@ public final class Umlaut {
                 .replace(L_AUML, RTF_L_AUML).replace(L_OUML, RTF_L_OUML).replace(L_UUML, RTF_L_UUML)
                 .replace(SUML, RTF_SUML);
     }
+
+    public static String convertFromHtmlToAscii(final String html) {
+        return html.replace("&szlig;", "ss").replace("&Auml;", "Ae").replace("&Ouml;", "Oe").replace("&Uuml;", "Ue")
+                .replace("&auml;", "ae").replace("&ouml;", "oe").replace("&uuml;", "ue");
+    }
 }
