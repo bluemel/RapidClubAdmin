@@ -8,6 +8,11 @@
 
 package org.rapidbeans.clubadmin.presentation;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.io.File;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
@@ -15,8 +20,10 @@ import java.text.ParseException;
 import java.util.Locale;
 import java.util.Properties;
 
-import junit.framework.TestCase;
-
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.rapidbeans.clubadmin.domain.TrainingsList;
 import org.rapidbeans.clubadmin.presentation.swing.ViewOverview;
 import org.rapidbeans.clubadmin.service.OpenCurrentTrainingsList;
@@ -38,7 +45,7 @@ import org.rapidbeans.service.ActionArgument;
  * 
  * @author Martin Bluemel
  */
-public class RapidClubAdminClientIntegrationTest01 extends TestCase {
+public class RapidClubAdminClientIntegrationTest01 {
 
     private static final boolean TEST_MODE = true;
 
@@ -65,9 +72,16 @@ public class RapidClubAdminClientIntegrationTest01 extends TestCase {
         return count;
     }
 
+    @BeforeClass
+    public static void setUpClass() {
+        TypePropertyCollection.setDefaultCharSeparator(',');
+        TypePropertyCollection.setDefaultCharEscape('\\');
+    }
+
     /**
      * start the client.
      */
+    @Before
     public void setUp() {
         if (clientTrainer == null) {
             TypePropertyCollection.setDefaultCharSeparator(',');
@@ -84,6 +98,7 @@ public class RapidClubAdminClientIntegrationTest01 extends TestCase {
     /**
      * end the client.
      */
+    @After
     public void tearDown() {
         testMethodIndex++;
         if (testMethodIndex == testMethodCount) {
@@ -104,6 +119,7 @@ public class RapidClubAdminClientIntegrationTest01 extends TestCase {
      * @throws ParseException
      *             if parsing of a date fails
      */
+    @Test
     public void testOpenTrainingsList() throws ParseException {
         OpenCurrentTrainingsList openAction = new OpenCurrentTrainingsList();
         ActionArgument arg = new ActionArgument();
@@ -126,6 +142,7 @@ public class RapidClubAdminClientIntegrationTest01 extends TestCase {
     /**
      * Verify that opening master data is not possible for Trainer "jogi".
      */
+    @Test
     public void testMastardataDisabledForJogi() throws ParseException {
         ToolbarSwing settingsToolbar = null;
         for (final Toolbar toolbar : clientTrainer.getMainwindow().getToolbars()) {
@@ -159,7 +176,9 @@ public class RapidClubAdminClientIntegrationTest01 extends TestCase {
 
         @Override
         public void start() {
+            setAuthnRoleType("org.rapidbeans.clubadmin.domain.Role");
             super.start();
+            setAuthnRoleType("org.rapidbeans.clubadmin.domain.Role");
             RapidBeansLocale locale = new LocaleMock();
             locale.setName("de");
             locale.setLocale(new Locale("de"));
