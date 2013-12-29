@@ -86,6 +86,7 @@ public class RapidClubAdminClientIntegrationTest01 {
         if (clientTrainer == null) {
             TypePropertyCollection.setDefaultCharSeparator(',');
             clientTrainer = new ApplicationMock();
+            ApplicationMock.setAuthnRoleType("org.rapidbeans.clubadmin.domain.Role");
             clientTrainer.logon("jogi", "");
             ApplicationManager.start(clientTrainer);
             assertNotNull(clientTrainer.getAuthenticatedUser());
@@ -176,9 +177,7 @@ public class RapidClubAdminClientIntegrationTest01 {
 
         @Override
         public void start() {
-            setAuthnRoleType("org.rapidbeans.clubadmin.domain.Role");
             super.start();
-            setAuthnRoleType("org.rapidbeans.clubadmin.domain.Role");
             RapidBeansLocale locale = new LocaleMock();
             locale.setName("de");
             locale.setLocale(new Locale("de"));
