@@ -181,7 +181,7 @@ public class RapidClubAdminClientIntegrationTest {
         // set lastname and firstname so that a Trainer would be created
         // that already exists
         EditorPropertyTextSwing propEditor = (EditorPropertyTextSwing) createTrainerEditor.getPropEditors().get(0);
-        ((JTextField) propEditor.getWidget()).setText("Blümel");
+        ((JTextField) propEditor.getWidget()).setText("Bl" + Umlaut.L_UUML + "mel");
         propEditor = (EditorPropertyTextSwing) createTrainerEditor.getPropEditors().get(1);
         ((JTextField) propEditor.getWidget()).setText("Martin");
 
@@ -219,8 +219,8 @@ public class RapidClubAdminClientIntegrationTest {
         // open a bean editor for creating trainers
         masterTree.setSelectionPath(masterTree.getPathForRow(2));
         masterTree.expandPath(masterTree.getPathForRow(2));
-        Assert.assertEquals("Blümel_Martin_",
-                ((Trainer) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
+        Assert.assertEquals("Bl" + Umlaut.L_UUML + "mel_Martin_", ((Trainer) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getIdString());
         masterTreeView.createBean();
         EditorBeanSwing createTrainerEditor = (EditorBeanSwing) masterDocView.getEditor(new Trainer(), true);
 
@@ -236,8 +236,8 @@ public class RapidClubAdminClientIntegrationTest {
 
         Assert.assertEquals("Adalbert_Alfons_",
                 ((Trainer) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
-        Assert.assertEquals("Blümel_Martin_",
-                ((Trainer) masterTree.getPathForRow(4).getLastPathComponent()).getIdString());
+        Assert.assertEquals("Bl" + Umlaut.L_UUML + "mel_Martin_", ((Trainer) masterTree.getPathForRow(4)
+                .getLastPathComponent()).getIdString());
     }
 
     /**
@@ -265,7 +265,7 @@ public class RapidClubAdminClientIntegrationTest {
         // set lastname and firstname so that a Trainer would be created
         // that already exists
         EditorPropertyTextSwing propEditor = (EditorPropertyTextSwing) createTrainerEditor.getPropEditors().get(0);
-        ((JTextField) propEditor.getWidget()).setText("Blümel");
+        ((JTextField) propEditor.getWidget()).setText("Bl" + Umlaut.L_UUML + "mel");
         propEditor = (EditorPropertyTextSwing) createTrainerEditor.getPropEditors().get(1);
         ((JTextField) propEditor.getWidget()).setText("Martin");
 
@@ -314,20 +314,22 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule", date.getIdString());
         Assert.assertEquals(1, date.getTrainerplannings().size());
         Assert.assertEquals("Trainer", date.getTrainerplannings().iterator().next().getRole().getName());
-        Assert.assertEquals("Blümel_Ulrike_", date.getTrainerplannings().iterator().next().getDefaulttrainers()
-                .iterator().next().getIdString());
+        Assert.assertEquals("Bl" + Umlaut.L_UUML + "mel_Ulrike_", date.getTrainerplannings().iterator().next()
+                .getDefaulttrainers().iterator().next().getIdString());
 
         // select role "Cotrainer"
         EditorPropertyComboboxSwing pe0 = (EditorPropertyComboboxSwing) editor.getPropEditors().get(0);
         ((JComboBox) pe0.getWidget()).setSelectedIndex(1);
         Assert.assertEquals(1, date.getTrainerplannings().size());
 
-        // select trainer "Blümel_Martin"
+        // select trainer "Bl" + Umlaut.L_UUML + "mel_Martin"
         EditorPropertyListSwing pe1 = (EditorPropertyListSwing) editor.getPropEditors().get(1);
         EditorPropertyList2Swing pe2 = pe1.openListEditor();
-        Trainer martin = (Trainer) doc.findBean("org.rapidbeans.clubadmin.domain.Trainer", "Blümel_Martin");
+        Trainer martin = (Trainer) doc.findBean("org.rapidbeans.clubadmin.domain.Trainer", "Bl" + Umlaut.L_UUML
+                + "mel_Martin");
         pe2.getWidgetListOut().setSelectedValue(martin, false);
-        // pe1.getCheckboxes().get("Blümel_Martin").setSelected(true);
+        // pe1.getCheckboxes().get("Bl" + Umlaut.L_UUML +
+        // "mel_Martin").setSelected(true);
 
         Assert.assertEquals(1, date.getTrainerplannings().size());
         Assert.assertEquals(7, doc.findBeansByType("org.rapidbeans.clubadmin.domain.TrainerPlanning").size());
@@ -494,9 +496,9 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         // open the link editor for (key) property "trainerattribute"
@@ -541,7 +543,7 @@ public class RapidClubAdminClientIntegrationTest {
         });
         retry(new RetryableAction() {
             public void doSomething() {
-                Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+                Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
             }
         });
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
@@ -583,10 +585,10 @@ public class RapidClubAdminClientIntegrationTest {
         for (RapidBean bean : salaries) {
             switch (i++) {
             case 0:
-                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 1:
-                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 2:
                 Assert.assertEquals("Trainer_null", bean.getIdString());
@@ -605,9 +607,9 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         EditorPropertyListSwing propEdTrainerAttrs = (EditorPropertyListSwing) editor.getPropEditor("trainerattribute");
@@ -643,7 +645,7 @@ public class RapidClubAdminClientIntegrationTest {
         });
         retry(new RetryableAction() {
             public void doSomething() {
-                Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+                Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
             }
         });
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
@@ -664,13 +666,13 @@ public class RapidClubAdminClientIntegrationTest {
         for (RapidBean bean : salaries) {
             switch (i++) {
             case 0:
-                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 1:
                 Assert.assertEquals("Trainer_Abteilungsleiter,Trainer A,Trainer B", bean.getIdString());
                 break;
             case 2:
-                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 3:
                 Assert.assertEquals("Trainer_null", bean.getIdString());
@@ -705,10 +707,10 @@ public class RapidClubAdminClientIntegrationTest {
                 Assert.assertEquals("Cotrainer_null", bean.getIdString());
                 break;
             case 2:
-                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 3:
-                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 4:
                 Assert.assertEquals("Trainer_null", bean.getIdString());
@@ -727,9 +729,9 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         // edit the money before having edited all key properties
@@ -756,10 +758,10 @@ public class RapidClubAdminClientIntegrationTest {
         for (RapidBean bean : salaries) {
             switch (i++) {
             case 0:
-                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 1:
-                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 2:
                 Assert.assertEquals("Trainer_null", bean.getIdString());
@@ -785,7 +787,7 @@ public class RapidClubAdminClientIntegrationTest {
         });
         retry(new RetryableAction() {
             public void doSomething() {
-                Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+                Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
             }
         });
         Assert.assertTrue(((JButton) buttons.get("apply")).isEnabled());
@@ -807,13 +809,13 @@ public class RapidClubAdminClientIntegrationTest {
         for (RapidBean bean : salaries) {
             switch (i++) {
             case 0:
-                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 1:
                 Assert.assertEquals("Trainer_Abteilungsleiter,Trainer A,Trainer B", bean.getIdString());
                 break;
             case 2:
-                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 3:
                 Assert.assertEquals("Trainer_null", bean.getIdString());
@@ -846,9 +848,9 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         EditorProperty propEdMoney = editor.getPropEditor("money");
@@ -865,7 +867,7 @@ public class RapidClubAdminClientIntegrationTest {
 
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -913,9 +915,9 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         EditorPropertyListSwing propEdTrainerAttrs = (EditorPropertyListSwing) editor.getPropEditor("trainerattribute");
@@ -940,7 +942,7 @@ public class RapidClubAdminClientIntegrationTest {
         // editor.validateAndUpdateButtons(propEdTrainerAttrs);
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -988,10 +990,10 @@ public class RapidClubAdminClientIntegrationTest {
         for (RapidBean bean : salaries) {
             switch (i++) {
             case 0:
-                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 1:
-                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 2:
                 Assert.assertEquals("Trainer_null", bean.getIdString());
@@ -1020,7 +1022,7 @@ public class RapidClubAdminClientIntegrationTest {
         propEdTime.fireInputFieldChanged();
 
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
@@ -1059,13 +1061,13 @@ public class RapidClubAdminClientIntegrationTest {
         for (RapidBean bean : salaries) {
             switch (i++) {
             case 0:
-                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 1:
                 Assert.assertEquals("Trainer_Abteilungsleiter,Trainer A,Trainer B", bean.getIdString());
                 break;
             case 2:
-                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 3:
                 Assert.assertEquals("Trainer_null", bean.getIdString());
@@ -1101,10 +1103,10 @@ public class RapidClubAdminClientIntegrationTest {
         for (RapidBean bean : salaries1) {
             switch (i++) {
             case 0:
-                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 1:
-                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             }
         }
@@ -1130,7 +1132,7 @@ public class RapidClubAdminClientIntegrationTest {
         propEdTime.fireInputFieldChanged();
 
         Assert.assertEquals(true, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
@@ -1210,13 +1212,15 @@ public class RapidClubAdminClientIntegrationTest {
         for (RapidBean bean : salaries2) {
             switch (i++) {
             case 0:
-                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Abteilungsleiter,Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             case 1:
-                Assert.assertEquals("Trainer_Abteilungsleiter,Fachübungsleiter,Trainer A,Trainer B", bean.getIdString());
+                Assert.assertEquals(
+                        "Trainer_Abteilungsleiter,Fach" + Umlaut.L_UUML + "bungsleiter,Trainer A,Trainer B",
+                        bean.getIdString());
                 break;
             case 2:
-                Assert.assertEquals("Trainer_Fachübungsleiter", bean.getIdString());
+                Assert.assertEquals("Trainer_Fach" + Umlaut.L_UUML + "bungsleiter", bean.getIdString());
                 break;
             }
         }
@@ -1249,7 +1253,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -1278,7 +1282,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertTrue(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -1335,7 +1339,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -1363,7 +1367,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertTrue(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -1421,7 +1425,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -1449,14 +1453,15 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertTrue(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         PersonalSalary ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Dahlheimer_Berit_");
         Assert.assertNull(ps);
-        ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Blümel_Martin_");
+        ps = (PersonalSalary) doc
+                .findBean(PersonalSalary.class.getName(), "Trainer_Bl" + Umlaut.L_UUML + "mel_Martin_");
         Assert.assertNull(ps);
 
         // simulate pressing the "Apply" button
@@ -1468,7 +1473,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(new Time("45.00 min"), propEdTime.getInputFieldValue());
 
         // edit (key) property "person"
-        Trainer martin = (Trainer) doc.findBean(Trainer.class.getName(), "Blümel_Martin_");
+        Trainer martin = (Trainer) doc.findBean(Trainer.class.getName(), "Bl" + Umlaut.L_UUML + "mel_Martin_");
         cbPerson.setSelectedItem(martin);
         propEdPerson.fireInputFieldChanged();
         // edit property "money"
@@ -1484,7 +1489,8 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(new Money("10 euro"), ps.getMoney());
         Assert.assertEquals(new Time("0.75 h"), ps.getTime());
 
-        ps = (PersonalSalary) doc.findBean(PersonalSalary.class.getName(), "Trainer_Blümel_Martin_");
+        ps = (PersonalSalary) doc
+                .findBean(PersonalSalary.class.getName(), "Trainer_Bl" + Umlaut.L_UUML + "mel_Martin_");
         Assert.assertNotNull(ps);
         Assert.assertSame(martin, ps.getPerson());
         Assert.assertEquals(new Money("8 euro"), ps.getMoney());
@@ -1746,7 +1752,7 @@ public class RapidClubAdminClientIntegrationTest {
         EditorBeanSwing editCpEditor = (EditorBeanSwing) masterTreeView.editBeans();
         JTabbedPane editorPane = masterDocView.getEditorPane();
         Assert.assertEquals(1, editorPane.getTabCount());
-        Assert.assertEquals("Schließzeitraum: Test 01", editorPane.getTitleAt(0));
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "zeitraum: Test 01", editorPane.getTitleAt(0));
         pe3 = (EditorPropertyDateSwing) editCpEditor.getPropEditor("to");
         ((JTextField) pe3.getWidget()).setText("03.01.2001");
         pe3.fireInputFieldChanged();
@@ -1761,7 +1767,7 @@ public class RapidClubAdminClientIntegrationTest {
         editCpEditor = (EditorBeanSwing) masterTreeView.editBeans();
         editorPane = masterDocView.getEditorPane();
         Assert.assertEquals(1, editorPane.getTabCount());
-        Assert.assertEquals("Schließzeitraum: Test 01", editorPane.getTitleAt(0));
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "zeitraum: Test 01", editorPane.getTitleAt(0));
     }
 
     /**
@@ -1873,8 +1879,8 @@ public class RapidClubAdminClientIntegrationTest {
         // before setting any key property we have
         // a certain number of closing periods
         Assert.assertEquals(5, master.findBeansByType("org.rapidbeans.clubadmin.domain.ClosingPeriod").size());
-        Location loc = (Location) master.findBean("org.rapidbeans.clubadmin.domain.Location",
-                "Turnhalle Grundschule Süd");
+        Location loc = (Location) master.findBean("org.rapidbeans.clubadmin.domain.Location", "Turnhalle Grundschule S"
+                + Umlaut.L_UUML + "d");
         Assert.assertSame(3, loc.getClosedons().size());
 
         // select property node "closingperiods" in the tree view and
@@ -1900,12 +1906,13 @@ public class RapidClubAdminClientIntegrationTest {
         ((JTextField) peTo.getWidget()).setText("02.01.2001");
         peTo.fireInputFieldChanged();
 
-        // set location "Turnhalle Grundschule Süd"
+        // set location "Turnhalle Grundschule S" + Umlaut.L_UUML + "d"
         EditorPropertyListSwing peLoc = (EditorPropertyListSwing) createCPEditor.getPropEditor("locations");
         final JList list = peLoc.getWidgetList();
         Assert.assertEquals(0, list.getModel().getSize());
         final EditorPropertyList2Swing peLocList = peLoc.openListEditor();
-        RapidBean cp1 = master.findBean("org.rapidbeans.clubadmin.domain.Location", "Turnhalle Grundschule Süd");
+        RapidBean cp1 = master.findBean("org.rapidbeans.clubadmin.domain.Location", "Turnhalle Grundschule S"
+                + Umlaut.L_UUML + "d");
         Assert.assertNotNull(cp1);
         peLocList.getWidgetListOut().setSelectedValue(cp1, false);
         retry(new Class[] { NullPointerException.class }, new RetryableAction() {
@@ -1938,9 +1945,10 @@ public class RapidClubAdminClientIntegrationTest {
                     Assert.assertEquals("20010102", cp20010101.getProperty("to").toString());
                     Collection<Location> locs = cp20010101.getLocations();
                     Assert.assertEquals(1, locs.size());
-                    Assert.assertEquals("Turnhalle Grundschule Süd", locs.iterator().next().getIdString());
+                    Assert.assertEquals("Turnhalle Grundschule S" + Umlaut.L_UUML + "d", locs.iterator().next()
+                            .getIdString());
                     final Location loc1 = (Location) master.findBean("org.rapidbeans.clubadmin.domain.Location",
-                            "Turnhalle Grundschule Süd");
+                            "Turnhalle Grundschule S" + Umlaut.L_UUML + "d");
                     Assert.assertSame(4, loc1.getClosedons().size());
                 }
             });
@@ -2046,7 +2054,7 @@ public class RapidClubAdminClientIntegrationTest {
 
         // Assert.assertEquals("Adalbert_Alfons_", ((Trainer)
         // masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
-        // Assert.assertEquals("Blümel_Martin_", ((Trainer)
+        // Assert.assertEquals("Bl" + Umlaut.L_UUML + "mel_Martin_", ((Trainer)
         // masterTree.getPathForRow(4).getLastPathComponent()).getIdString());
     }
 
@@ -2086,7 +2094,8 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060327",
                 training.getIdString());
         date = (TrainingDate) tree.getPathForRow(22).getLastPathComponent();
-        Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd", date.getIdString());
+        Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule S" + Umlaut.L_UUML + "d",
+                date.getIdString());
         date = (TrainingDate) tree.getPathForRow(23).getLastPathComponent();
         Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule", date.getIdString());
 
@@ -2114,7 +2123,8 @@ public class RapidClubAdminClientIntegrationTest {
                 "Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule/20060327"));
 
         date = (TrainingDate) tree.getPathForRow(6).getLastPathComponent();
-        Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd", date.getIdString());
+        Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule S" + Umlaut.L_UUML + "d",
+                date.getIdString());
         date = (TrainingDate) tree.getPathForRow(7).getLastPathComponent();
         Assert.assertEquals("Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule", date.getIdString());
     }
@@ -2185,13 +2195,14 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("closingperiods", ((DocumentTreeNodePropColComp) masterTree.getPathForRow(treeViewIndex2)
                 .getLastPathComponent()).getColProp().getType().getPropName());
 
-        // check Location "Turnhalle Grundschule Süd"
+        // check Location "Turnhalle Grundschule S" + Umlaut.L_UUML + "d"
         masterTree.setSelectionPath(masterTree.getPathForRow(treeViewIndex1));
         masterTreeView.editBeans();
         EditorBeanSwing edLoc = (EditorBeanSwing) masterDocView.getEditor(
                 (RapidBean) masterTree.getPathForRow(treeViewIndex1).getLastPathComponent(), false);
         Location loc = (Location) edLoc.getBean();
-        Assert.assertEquals("Turnhalle Grundschule Süd", edLoc.getPropEditors().get(0).getInputFieldValue());
+        Assert.assertEquals("Turnhalle Grundschule S" + Umlaut.L_UUML + "d", edLoc.getPropEditors().get(0)
+                .getInputFieldValue());
         EditorPropertyListSwing propEdLocCps = (EditorPropertyListSwing) edLoc.getPropEditors().get(3);
         JList listPropEdLocCps = propEdLocCps.getWidgetList();
         Assert.assertEquals(3, listPropEdLocCps.getModel().getSize());
@@ -2217,10 +2228,11 @@ public class RapidClubAdminClientIntegrationTest {
                 ((RapidBean) modelListCpLocsLeft.getElementAt(0)).getIdString());
         ListModel modelListCpLocsRight = propedCpLocs2.getWidgetListOut().getModel();
         Assert.assertEquals(1, modelListCpLocsRight.getSize());
-        Assert.assertEquals("Turnhalle Grundschule Süd",
+        Assert.assertEquals("Turnhalle Grundschule S" + Umlaut.L_UUML + "d",
                 ((RapidBean) modelListCpLocsRight.getElementAt(0)).getIdString());
 
-        // add location "Turnhalle Grundschule Süd to the closing period
+        // add location "Turnhalle Grundschule S" + Umlaut.L_UUML + "d to the
+        // closing period
         cp.addLocation(loc);
 
         // check all 4 editors
@@ -2232,11 +2244,12 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(2, modelListCpLocs.getSize());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule",
                 ((RapidBean) modelListCpLocs.getElementAt(0)).getIdString());
-        Assert.assertEquals("Turnhalle Grundschule Süd", ((RapidBean) modelListCpLocs.getElementAt(1)).getIdString());
+        Assert.assertEquals("Turnhalle Grundschule S" + Umlaut.L_UUML + "d",
+                ((RapidBean) modelListCpLocs.getElementAt(1)).getIdString());
         Assert.assertEquals(2, modelListCpLocsLeft.getSize());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule",
                 ((RapidBean) modelListCpLocsLeft.getElementAt(0)).getIdString());
-        Assert.assertEquals("Turnhalle Grundschule Süd",
+        Assert.assertEquals("Turnhalle Grundschule S" + Umlaut.L_UUML + "d",
                 ((RapidBean) modelListCpLocsLeft.getElementAt(1)).getIdString());
         Assert.assertEquals(0, modelListCpLocsRight.getSize());
     }
@@ -2303,8 +2316,8 @@ public class RapidClubAdminClientIntegrationTest {
                 .getLastPathComponent()).getColProp().getType().getPropName());
 
         masterTree.expandPath(masterTree.getPathForRow(2));
-        Assert.assertEquals("Blümel_Martin_",
-                ((RapidBean) masterTree.getPathForRow(3).getLastPathComponent()).getIdString());
+        Assert.assertEquals("Bl" + Umlaut.L_UUML + "mel_Martin_", ((RapidBean) masterTree.getPathForRow(3)
+                .getLastPathComponent()).getIdString());
 
         // select property node "trainers" in the tree view and
         // open a bean editor for creating new Trainers
@@ -2332,8 +2345,8 @@ public class RapidClubAdminClientIntegrationTest {
         Trainer newBean = (Trainer) masterTree.getPathForRow(3).getLastPathComponent();
         Assert.assertEquals("Abc_Xyz_", newBean.getIdString());
         Assert.assertEquals("Abc", newBean.getLastname());
-        Assert.assertEquals("Blümel_Martin_",
-                ((RapidBean) masterTree.getPathForRow(4).getLastPathComponent()).getIdString());
+        Assert.assertEquals("Bl" + Umlaut.L_UUML + "mel_Martin_", ((RapidBean) masterTree.getPathForRow(4)
+                .getLastPathComponent()).getIdString());
     }
 
     /**
@@ -2345,7 +2358,8 @@ public class RapidClubAdminClientIntegrationTest {
         // get the document tree view of document "masterdata"
         DocumentViewSwing masterDocView = this.getTestviewMasterdata();
         Document master = client.getDocument("masterdata");
-        Trainer martin = (Trainer) master.findBean("org.rapidbeans.clubadmin.domain.Trainer", "Blümel_Martin_");
+        Trainer martin = (Trainer) master.findBean("org.rapidbeans.clubadmin.domain.Trainer", "Bl" + Umlaut.L_UUML
+                + "mel_Martin_");
         Assert.assertEquals("martin.bluemel@web.de", martin.getEmail());
         DocumentTreeViewSwing masterTreeView = (DocumentTreeViewSwing) masterDocView.getTreeView();
         JTree masterTree = (JTree) masterTreeView.getTree();
@@ -2355,7 +2369,7 @@ public class RapidClubAdminClientIntegrationTest {
         // expand trainers
         masterTree.expandPath(masterTree.getPathForRow(2));
 
-        // open Trainer "Blümel_Martin" for editing
+        // open Trainer "Bl" + Umlaut.L_UUML + "mel_Martin" for editing
         masterTree.setSelectionPath(masterTree.getPathForRow(3));
         EditorBeanSwing ed = (EditorBeanSwing) masterTreeView.editBeans();
         EditorPropertyTextSwing propedEmail = (EditorPropertyTextSwing) ed.getPropEditors().get(3);
@@ -2368,8 +2382,10 @@ public class RapidClubAdminClientIntegrationTest {
         ((JTextField) propedEmail.getWidget()).setText("martin.bluemel@gmx.de");
 
         ed.handleActionOk();
-        Assert.assertEquals("martin.bluemel@gmx.de",
-                ((Trainer) master.findBean("org.rapidbeans.clubadmin.domain.Trainer", "Blümel_Martin_")).getEmail());
+        Assert.assertEquals(
+                "martin.bluemel@gmx.de",
+                ((Trainer) master.findBean("org.rapidbeans.clubadmin.domain.Trainer", "Bl" + Umlaut.L_UUML
+                        + "mel_Martin_")).getEmail());
     }
 
     /**
@@ -2459,9 +2475,9 @@ public class RapidClubAdminClientIntegrationTest {
         HashMap<String, Object> buttons = ed.getButtonWidgets();
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         EditorPropertyList2Swing led = ped.openListEditor();
@@ -2475,7 +2491,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(4, loc.getClosedons().size());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -2518,14 +2534,14 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(2, ped.getWidgetList().getModel().getSize());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) ped.getWidgetList().getModel()
                 .getElementAt(0)).getIdString());
-        Assert.assertEquals("Turnhalle Grundschule Süd",
-                ((RapidBean) ped.getWidgetList().getModel().getElementAt(1)).getIdString());
+        Assert.assertEquals("Turnhalle Grundschule S" + Umlaut.L_UUML + "d", ((RapidBean) ped.getWidgetList()
+                .getModel().getElementAt(1)).getIdString());
         HashMap<String, Object> buttons = ed.getButtonWidgets();
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         EditorPropertyList2Swing led = ped.openListEditor();
@@ -2539,7 +2555,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(4, locEsaal.getClosedons().size());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -2550,9 +2566,9 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(4, locEsaal.getClosedons().size());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         ed.handleActionOk();
@@ -2598,9 +2614,9 @@ public class RapidClubAdminClientIntegrationTest {
                 final HashMap<String, Object> buttons = edCp.getButtonWidgets();
                 Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
                 Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-                Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+                Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
                 Assert.assertEquals(false, ((JButton) buttons.get("apply")).isEnabled());
-                Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
+                Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
                 Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
             }
         });
@@ -2642,7 +2658,7 @@ public class RapidClubAdminClientIntegrationTest {
         final Location loc1 = (Location) masterdoc.findBean("org.rapidbeans.clubadmin.domain.Location",
                 "Eurythmiesaal 1 Waldorfschule");
         final Location loc2 = (Location) masterdoc.findBean("org.rapidbeans.clubadmin.domain.Location",
-                "Turnhalle Grundschule Süd");
+                "Turnhalle Grundschule S" + Umlaut.L_UUML + "d");
         final ClosingPeriod cp = (ClosingPeriod) masterdoc.findBean("org.rapidbeans.clubadmin.domain.ClosingPeriod",
                 "20051222_Weihnachtsferien");
         Assert.assertEquals(5, loc1.getClosedons().size());
@@ -2708,8 +2724,8 @@ public class RapidClubAdminClientIntegrationTest {
         // check the document
         final Location locEsaal1 = (Location) masterdoc.findBean(Location.class.getName(),
                 "Eurythmiesaal 1 Waldorfschule");
-        final Location locTurnhalle = (Location) masterdoc.findBean(Location.class.getName(),
-                "Turnhalle Grundschule Süd");
+        final Location locTurnhalle = (Location) masterdoc.findBean(Location.class.getName(), "Turnhalle Grundschule S"
+                + Umlaut.L_UUML + "d");
         final ClosingPeriod cpXmas05 = (ClosingPeriod) masterdoc.findBean(ClosingPeriod.class.getName(),
                 "20051222_Weihnachtsferien");
         cpXmas05.removeLocation(locTurnhalle);
@@ -2867,7 +2883,7 @@ public class RapidClubAdminClientIntegrationTest {
                         ((ReadonlyListCollection<ClosingPeriod>) locTurnhalle.getClosedons()).get(2).getIdString());
 
                 Assert.assertEquals(1, cpXmas05.getLocations().size());
-                Assert.assertEquals("Turnhalle Grundschule Süd",
+                Assert.assertEquals("Turnhalle Grundschule S" + Umlaut.L_UUML + "d",
                         ((ReadonlyListCollection<Location>) cpXmas05.getLocations()).get(0).getIdString());
             }
         });
@@ -3010,7 +3026,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals("", ((JTextField) pedTo.getWidget()).getText());
 
         HashMap<String, Object> buttons = ed.getButtonWidgets();
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -3058,7 +3074,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(EditorPropertySwing.COLOR_INVALID, ((JTextField) pedTo.getWidget()).getBackground());
 
         HashMap<String, Object> buttons = ed.getButtonWidgets();
-        Assert.assertEquals("Überprüfen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "berpr" + Umlaut.L_UUML + "fen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -3128,7 +3144,7 @@ public class RapidClubAdminClientIntegrationTest {
         final Location locEurythm = (Location) masterdoc.findBean("org.rapidbeans.clubadmin.domain.Location",
                 "Eurythmiesaal 1 Waldorfschule");
         Location locSportshall = (Location) masterdoc.findBean("org.rapidbeans.clubadmin.domain.Location",
-                "Turnhalle Grundschule Süd");
+                "Turnhalle Grundschule S" + Umlaut.L_UUML + "d");
         ClosingPeriod cpXmas = (ClosingPeriod) masterdoc.findBean("org.rapidbeans.clubadmin.domain.ClosingPeriod",
                 "20051222_Weihnachtsferien");
         ClosingPeriod cpCleanday = (ClosingPeriod) masterdoc.findBean("org.rapidbeans.clubadmin.domain.ClosingPeriod",
@@ -3200,9 +3216,9 @@ public class RapidClubAdminClientIntegrationTest {
         EditorPropertyListSwing ped = (EditorPropertyListSwing) ed.getPropEditor("locations");
         Assert.assertEquals(2, ped.getWidgetList().getModel().getSize());
 
-        // delete location "Turnhalle Grundschule Süd"
+        // delete location "Turnhalle Grundschule S" + Umlaut.L_UUML + "d"
         Location loc = (Location) ped.getProperty().getBean().getContainer()
-                .findBean("org.rapidbeans.clubadmin.domain.Location", "Turnhalle Grundschule Süd");
+                .findBean("org.rapidbeans.clubadmin.domain.Location", "Turnhalle Grundschule S" + Umlaut.L_UUML + "d");
         Assert.assertSame(loc, ped.getWidgetList().getModel().getElementAt(1));
         loc.delete();
 
@@ -3281,8 +3297,8 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertEquals(2, proped2.getWidgetList().getModel().getSize());
         Assert.assertEquals("Eurythmiesaal 1 Waldorfschule", ((RapidBean) proped2.getWidgetList().getModel()
                 .getElementAt(0)).getIdString());
-        Assert.assertEquals("Turnhalle Grundschule Süd", ((RapidBean) proped2.getWidgetList().getModel()
-                .getElementAt(1)).getIdString());
+        Assert.assertEquals("Turnhalle Grundschule S" + Umlaut.L_UUML + "d", ((RapidBean) proped2.getWidgetList()
+                .getModel().getElementAt(1)).getIdString());
         Location loc = (Location) proped2.getProperty().getBean().getContainer()
                 .findBean("org.rapidbeans.clubadmin.domain.Location", "Eurythmiesaal 1 Waldorfschule");
         Assert.assertNotNull(loc);
@@ -3316,9 +3332,9 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertFalse(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(false, ((JButton) buttons.get("apply")).isEnabled());
-        Assert.assertEquals("Schließen", ((JButton) buttons.get("close")).getText());
+        Assert.assertEquals("Schlie" + Umlaut.SUML + "en", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
 
         EditorPropertyListSwing ped = (EditorPropertyListSwing) editor.getPropEditor("trainerattribute");
@@ -3337,7 +3353,7 @@ public class RapidClubAdminClientIntegrationTest {
         Assert.assertTrue(editor.isAnyInputFieldChanged());
         Assert.assertEquals("OK", ((JButton) buttons.get("ok")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("ok")).isEnabled());
-        Assert.assertEquals("Übernehmen", ((JButton) buttons.get("apply")).getText());
+        Assert.assertEquals(Umlaut.U_UUML + "bernehmen", ((JButton) buttons.get("apply")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("apply")).isEnabled());
         Assert.assertEquals("Abbrechen", ((JButton) buttons.get("close")).getText());
         Assert.assertEquals(true, ((JButton) buttons.get("close")).isEnabled());
@@ -3359,7 +3375,8 @@ public class RapidClubAdminClientIntegrationTest {
         // add a new training held by trainer
         TrainingHeldByTrainer newTrhbt = trainersView.addNewHeldByTrainer();
         // set Martin as trainer but leave the trainer role undefined
-        Trainer martin = (Trainer) doc.findBean("org.rapidbeans.clubadmin.domain.Trainer", "Blümel_Martin_");
+        Trainer martin = (Trainer) doc.findBean("org.rapidbeans.clubadmin.domain.Trainer", "Bl" + Umlaut.L_UUML
+                + "mel_Martin_");
         newTrhbt.setTrainer(martin);
         try {
             // try to check the training held by trainer with undefined role
@@ -3397,7 +3414,7 @@ public class RapidClubAdminClientIntegrationTest {
     // .getColProp().getType().getPropName());
     // Assert.assertEquals("ABC Bank", ((CreditInstitute)
     // masterTree.getPathForRow(8).getLastPathComponent()).getName());
-    // Assert.assertEquals("Stadtsparkasse München", ((CreditInstitute)
+    // Assert.assertEquals("Stadtsparkasse Mï¿½nchen", ((CreditInstitute)
     // masterTree.getPathForRow(12).getLastPathComponent()).getName());
     // Assert.assertNull(masterTree.getPathForRow(13));
     // TreePath[] paths = {
@@ -3431,9 +3448,9 @@ public class RapidClubAdminClientIntegrationTest {
     // //masterTree.getPathForRow(8).getLastPathComponent()).getName());
     // //assertEquals("Halsabschneider Bank", ((CreditInstitute)
     // //masterTree.getPathForRow(9).getLastPathComponent()).getName());
-    // //assertEquals("Hypovereinsbank München", ((CreditInstitute)
+    // //assertEquals("Hypovereinsbank Mï¿½nchen", ((CreditInstitute)
     // //masterTree.getPathForRow(10).getLastPathComponent()).getName());
-    // //assertEquals("Stadtsparkasse München", ((CreditInstitute)
+    // //assertEquals("Stadtsparkasse Mï¿½nchen", ((CreditInstitute)
     // //masterTree.getPathForRow(11).getLastPathComponent()).getName());
     // //assertNull(masterTree.getPathForRow(12));
     // }

@@ -40,7 +40,7 @@ public final class Umlaut {
 
     public static final char ISO_L_OUML = (char) 0xF6;
 
-    public static final char ISO_L_UUML = (char) 0xFC;
+    public static final char ISO_L_UUML = (char) 253;
 
     public static final char ISO_SUML = (char) 0xDF;
 
