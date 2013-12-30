@@ -44,7 +44,7 @@ public class SchulferienReaderTest {
 
     @Test
     @Ignore
-    public void testReadFroScuferienOrg() {
+    public void testReadFromSchulferienOrg() {
         final List<ClosingPeriod> result = new SchulferienReader().readSchulferienAndFeiertage("www.schulferien.org",
                 "bayern", "2014");
         Assert.assertEquals(20, result.size());

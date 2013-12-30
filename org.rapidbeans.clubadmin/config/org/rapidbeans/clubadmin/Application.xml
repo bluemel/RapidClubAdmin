@@ -373,6 +373,9 @@
 					<action classname="org.rapidbeans.clubadmin.service.UsersForTrainers"/>
 					<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerUsersForTrainers"/>
 				</menuitem>
+				<menuitem name="readclosingdays">
+					<action classname="org.rapidbeans.clubadmin.service.ReadClosingDays"/>
+				</menuitem>
 				<menuitem name="test">
 					<action classname="org.rapidbeans.clubadmin.service.Test"/>
 				</menuitem>

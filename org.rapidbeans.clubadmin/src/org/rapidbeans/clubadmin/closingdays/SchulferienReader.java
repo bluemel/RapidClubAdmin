@@ -26,16 +26,12 @@ public class SchulferienReader {
             throw new IllegalArgumentException("Unsupported country: " + country);
         }
         try {
-            // final URL urlSchulferien = new URL("http://" + websiteUrl + "/" +
-            // StringHelper.upperFirstCharacter(country)
-            // + "/" + country + ".html");
-            // System.out.println("Opening connection to \"" +
-            // urlSchulferien.toString() + "\"...");
-            // final URLConnection conSchulferien =
-            // urlSchulferien.openConnection();
-            // System.out.println("Reading data from \"" +
-            // urlSchulferien.toString() + "\"...");
-            // result.addAll(readSchulferien(conSchulferien.getInputStream()));
+            final URL urlSchulferien = new URL("http://" + websiteUrl + "/" + StringHelper.upperFirstCharacter(country)
+                    + "/" + country + ".html");
+            System.out.println("Opening connection to \"" + urlSchulferien.toString() + "\"...");
+            final URLConnection conSchulferien = urlSchulferien.openConnection();
+            System.out.println("Reading data from \"" + urlSchulferien.toString() + "\"...");
+            result.addAll(readSchulferien(conSchulferien.getInputStream(), year));
             final URL urlFeiertage = new URL("http://" + websiteUrl + "/Feiertage/" + year + "/feiertage_" + year
                     + ".html");
             System.out.println("Opening connection to \"" + urlFeiertage.toString() + "\"...");
