@@ -57,4 +57,10 @@ public final class Umlaut {
         return html.replace("&szlig;", "ss").replace("&Auml;", "Ae").replace("&Ouml;", "Oe").replace("&Uuml;", "Ue")
                 .replace("&auml;", "ae").replace("&ouml;", "oe").replace("&uuml;", "ue");
     }
+
+    public static String convertFromHtmlToUnicode(final String html) {
+        return html.replace("&szlig;", SUML).replace("&Auml;", U_AUML).replace("&Ouml;", U_OUML)
+                .replace("&Uuml;", U_UUML).replace("&auml;", L_AUML).replace("&ouml;", L_OUML)
+                .replace("&uuml;", L_UUML);
+    }
 }
