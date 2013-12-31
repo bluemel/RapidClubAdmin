@@ -9,6 +9,8 @@
 package org.rapidbeans.clubadmin.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.rapidbeans.clubadmin.closingdays.SchulferienReader;
@@ -28,19 +30,28 @@ import org.rapidbeans.service.Action;
  */
 public class ReadClosingDays extends Action {
 
-    /**
-     * Import new closing periods of the year 2014. TODO - Jahr einstellen
-     * lassen - Containments von Feiertagen ausschließen - GUI-Texte
-     */
     public void execute() {
         final RapidClubAdminClient app = (RapidClubAdminClient) ApplicationManager.getApplication();
         final MasterData masterdata = app.getMasterData();
-        final List<ClosingPeriod> foundClosingPeriods = new SchulferienReader().readSchulferienAndFeiertage(
-                "www.schulferien.org", "bayern", "2014");
+
+        final int currentMonth = Calendar.getInstance().get(Calendar.MONTH);
+        final String currentYear = PropertyDate.format(new Date(), PrecisionDate.year);
+        final String nextYear = Integer.toString(Integer.parseInt(currentYear) + 1);
+        final List<ClosingPeriod> foundClosingPeriods = new ArrayList<ClosingPeriod>();
+        if (currentMonth < 11) {
+            foundClosingPeriods.addAll(new SchulferienReader().readSchulferienAndFeiertage("www.schulferien.org",
+                    "bayern", currentYear));
+        }
+        if (currentMonth > 6) {
+            foundClosingPeriods.addAll(new SchulferienReader().readSchulferienAndFeiertage("www.schulferien.org",
+                    "bayern", nextYear));
+        }
+
         final StringBuilder cpList = new StringBuilder();
         final List<ClosingPeriod> newClosingPeriods = new ArrayList<ClosingPeriod>();
         for (final ClosingPeriod cp : foundClosingPeriods) {
-            if (!masterdata.getClosingperiods().contains(cp)) {
+            if (!masterdata.getClosingperiods().contains(cp)
+                    && (!isContainedIn(masterdata.getClosingperiods(), cp) && (!isContainedIn(newClosingPeriods, cp)))) {
                 newClosingPeriods.add(cp);
             }
         }
@@ -57,5 +68,15 @@ public class ReadClosingDays extends Action {
             }
         }
         app.messageInfo(cpList.toString());
+    }
+
+    private boolean isContainedIn(final List<ClosingPeriod> closingperiods, final ClosingPeriod cp) {
+        for (final ClosingPeriod period : closingperiods) {
+            if (period.getFrom().getTime() <= cp.getFrom().getTime()
+                    && period.getTo().getTime() >= cp.getTo().getTime()) {
+                return true;
+            }
+        }
+        return false;
     }
 }
