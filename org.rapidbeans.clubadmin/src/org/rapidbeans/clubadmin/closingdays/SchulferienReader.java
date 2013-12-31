@@ -10,9 +10,9 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.rapidbeans.ant.StringHelper;
 import org.rapidbeans.clubadmin.domain.ClosingPeriod;
 import org.rapidbeans.core.basic.PropertyDate;
+import org.rapidbeans.core.util.StringHelper;
 
 public class SchulferienReader {
 
