@@ -209,11 +209,13 @@
 		from="20100215"
 		name="Winterferien"
 		to="20100219"
+		oneday="false"
 		locations="Platz A,Platz B"
 		/>
 	<user
 		id="administrator"
 		accountname="administrator"
+		changePwdAfterNextLogon="true"
 		lastname="Schmidt"
 		firstname="Michael"
 		email="michael.schmidt@aol.com"
@@ -222,6 +224,7 @@
 	<user
 		id="jogi"
 		accountname="jogi"
+		changePwdAfterNextLogon="false"
 		email="jogi.loew@dfb.de"
 		roles="Trainer"
 		isalsotrainer="Löw_Joachim_Jogi"
@@ -230,6 +233,7 @@
 	<user
 		id="klinsi"
 		accountname="klinsi"
+		changePwdAfterNextLogon="false"
 		email="klinsi@hotmail.com"
 		roles="Trainer"
 		isalsotrainer="Klinsmann_Jürgen_"

@@ -28,6 +28,7 @@ import org.rapidbeans.clubadmin.domain.ClubadminUser;
 import org.rapidbeans.clubadmin.domain.DataFileType;
 import org.rapidbeans.clubadmin.domain.Department;
 import org.rapidbeans.clubadmin.domain.MasterData;
+import org.rapidbeans.clubadmin.domain.Role;
 import org.rapidbeans.clubadmin.domain.Trainer;
 import org.rapidbeans.clubadmin.domain.TrainingsList;
 import org.rapidbeans.clubadmin.presentation.swing.TrainerIconManager;
@@ -54,32 +55,28 @@ import org.rapidbeans.presentation.swing.DocumentTreeViewSwing;
 import org.rapidbeans.presentation.swing.EditorBeanSwing;
 import org.rapidbeans.presentation.swing.EditorPropertyFileSwing;
 import org.rapidbeans.presentation.swing.EditorPropertySwing;
-import org.rapidbeans.clubadmin.domain.Role;
+import org.rapidbeans.security.ChangePwdAfterNextlogonType;
 import org.rapidbeans.service.Action;
 import org.rapidbeans.service.ActionArgument;
 
 /**
- * RapidClubAdminClient is the application root object
- * and the one and only singleton.
- * This class implements also reusable parts of the service layer.
+ * RapidClubAdminClient is the application root object and the one and only
+ * singleton. This class implements also reusable parts of the service layer.
  */
 public class RapidClubAdminClient extends Application {
 
-    private static final Logger log = Logger.getLogger(
-            RapidClubAdminClient.class.getName()); 
+    private static final Logger log = Logger.getLogger(RapidClubAdminClient.class.getName());
 
     /**
-     * The server root specifies the server + any subfolder that
-     * is above the (relative) application root.
-     * E. g. server = www.muenchen-surf.de/bluemel
-     *         root = software/rapidbeans/rapidclubadmin/test
-     *
-     * The server root is given as start argument "-server"
-     * if the application is supposed to run against a server
-     * ("web" case - the usual productive use case).
-     * If the application is meant to run locally do not specify
-     * this argument at all. The server root stays null then.
-     * ("local" case - the usual test use case)
+     * The server root specifies the server + any subfolder that is above the
+     * (relative) application root. E. g. server = www.muenchen-surf.de/bluemel
+     * root = software/rapidbeans/rapidclubadmin/test
+     * 
+     * The server root is given as start argument "-server" if the application
+     * is supposed to run against a server ("web" case - the usual productive
+     * use case). If the application is meant to run locally do not specify this
+     * argument at all. The server root stays null then. ("local" case - the
+     * usual test use case)
      */
     private String server = null;
 
@@ -88,13 +85,11 @@ public class RapidClubAdminClient extends Application {
     }
 
     /**
-     * The application root is relative to the server root in the
-     * "web" case
-     * e. g. server = "www.muenchen-surf.de/bluemel"
-     *         root = "software/rapidbeans/rapidclubadmin/test"
-     * In the local case it is simply an absolute file system path.
-     * e. g. server = null
-     *         root = -root "D:/Projects/RapidClubAdmin"
+     * The application root is relative to the server root in the "web" case e.
+     * g. server = "www.muenchen-surf.de/bluemel" root =
+     * "software/rapidbeans/rapidclubadmin/test" In the local case it is simply
+     * an absolute file system path. e. g. server = null root = -root
+     * "D:/Projects/RapidClubAdmin"
      */
     private String root = null;
 
@@ -107,8 +102,9 @@ public class RapidClubAdminClient extends Application {
 
     /**
      * Setter intended for test purposes only.
-     *
-     * @param root the root to set
+     * 
+     * @param root
+     *            the root to set
      */
     protected void setRoot(String root) {
         this.root = root;
@@ -124,7 +120,8 @@ public class RapidClubAdminClient extends Application {
     /**
      * starts the client.
      * 
-     * @param options the start options
+     * @param options
+     *            the start options
      */
     public void start() {
         final String className = StringHelper.splitLast(this.getClass().getName(), ".");
@@ -134,8 +131,7 @@ public class RapidClubAdminClient extends Application {
         log.fine("pathToThisClass = \"" + pathToThisClass + "\"");
         this.server = this.getOptions().getProperty("server");
         this.root = this.getOptions().getProperty("root");
-        if (this.server == null && this.root == null
-                && pathToThisClass.startsWith("jar:http://")) {
+        if (this.server == null && this.root == null && pathToThisClass.startsWith("jar:http://")) {
             final StringTokenizer st = new StringTokenizer(pathToThisClass, "/");
             st.nextToken();
             this.server = st.nextToken();
@@ -157,33 +153,35 @@ public class RapidClubAdminClient extends Application {
         if (getRunMode() == DataFileType.web) {
             this.webFileManager = new WebFileManager(this.server, this.root);
             this.webFileManager.init();
-            this.trainerIcons = new TrainerIconManager(this,
-                    TrainerIconManager.ICON_REPOSITORY_TYPE_REMOTE, null, null, null);
+            this.trainerIcons = new TrainerIconManager(this, TrainerIconManager.ICON_REPOSITORY_TYPE_REMOTE, null,
+                    null, null);
         } else {
-            this.trainerIcons = new TrainerIconManager(this,
-                    TrainerIconManager.ICON_REPOSITORY_TYPE_LOCAL, null, null, null);
+            this.trainerIcons = new TrainerIconManager(this, TrainerIconManager.ICON_REPOSITORY_TYPE_LOCAL, null, null,
+                    null);
         }
         init();
         if (this.isUsingAuthorization() && this.getAuthenticatedUser() == null) {
             return;
         }
+        if (getAuthenticatedUser() != null && getPwdChanged()) {
+            ((ClubadminUser) getAuthenticatedUser()).setChangePwdAfterNextLogon(ChangePwdAfterNextlogonType.no);
+            save(getMasterDoc());
+        }
         MenuHelper.updateSpecificMenus();
         final Department defaultDep = this.getAuthorizedWorkingDepartment();
         if (defaultDep == null) {
-            if (this.getAuthenticatedUser() != null && ((ClubadminUser) this.getAuthenticatedUser()).getRole()
-                    != Role.SuperAdministrator) {
+            if (this.getAuthenticatedUser() != null
+                    && ((ClubadminUser) this.getAuthenticatedUser()).getRole() != Role.SuperAdministrator) {
                 if (!this.getTestMode()) {
-                    this.messageError(this.getCurrentLocale().getStringMessage(
-                            "error.authorization.nodepartment",
-                            (String) this.getAuthenticatedUser().getPropValue("accountname")),
-                            this.getCurrentLocale().getStringMessage(
-                            "error.authorization.title"));
+                    this.messageError(
+                            this.getCurrentLocale().getStringMessage("error.authorization.nodepartment",
+                                    (String) this.getAuthenticatedUser().getPropValue("accountname")), this
+                                    .getCurrentLocale().getStringMessage("error.authorization.title"));
                 }
                 System.exit(1);
             }
         }
-        if (this.getSettingsRapidClubAdmin().getDefaultdatafileloadinitially()
-                && defaultDep != null) {
+        if (this.getSettingsRapidClubAdmin().getDefaultdatafileloadinitially() && defaultDep != null) {
             final String depIdString = defaultDep.getIdString();
             final ActionArgument actionArgument = new ActionArgument();
             actionArgument.setName("department");
@@ -195,7 +193,8 @@ public class RapidClubAdminClient extends Application {
             this.getActionManager().execute(openAction);
         }
         getMainwindow().show();
-        getMainwindow().getFooter().showMessage(getCurrentLocale().getStringMessage("info.clubadmin.started.successfully"));
+        getMainwindow().getFooter().showMessage(
+                getCurrentLocale().getStringMessage("info.clubadmin.started.successfully"));
         if (!this.getSettingsRapidClubAdmin().getPleasedontnag()) {
             askForUserEmail();
         }
@@ -210,7 +209,7 @@ public class RapidClubAdminClient extends Application {
 
     /**
      * ends the client.
-     *
+     * 
      * @return if canceled
      */
     public boolean end() {
@@ -225,7 +224,7 @@ public class RapidClubAdminClient extends Application {
         if (this.getTestMode()) {
             settings = (Settings) new Document(new File("testdata/testsettings.xml")).getRoot();
         } else {
-            settings = (Settings) this.getSettings();            
+            settings = (Settings) this.getSettings();
         }
         return settings.getSettings();
     }
@@ -237,8 +236,9 @@ public class RapidClubAdminClient extends Application {
 
     /**
      * setter for unit testing reasons.
-     *
-     * @param doc the masterdata document
+     * 
+     * @param doc
+     *            the masterdata document
      */
     public void setMasterDoc(final Document doc) {
         this.masterDoc = doc;
@@ -259,8 +259,8 @@ public class RapidClubAdminClient extends Application {
     private File getLocalmasterdatafile() {
         final File localMaserdataFile = new File(this.root, "data/masterdata.xml");
         if (!localMaserdataFile.exists()) {
-            throw new RapidBeansRuntimeException("Local masterdata file \""
-                    + localMaserdataFile.getAbsolutePath() + "\" not found.");
+            throw new RapidBeansRuntimeException("Local masterdata file \"" + localMaserdataFile.getAbsolutePath()
+                    + "\" not found.");
         }
         return localMaserdataFile;
     }
@@ -277,12 +277,10 @@ public class RapidClubAdminClient extends Application {
                     try {
                         final File masterdatafile = getLocalmasterdatafile();
                         if (masterdatafile == null) {
-                            this.messageError(this.getCurrentLocale().getStringMessage(""),
-                                    this.getCurrentLocale().getStringMessage("error.init.title"));
+                            this.messageError(this.getCurrentLocale().getStringMessage(""), this.getCurrentLocale()
+                                    .getStringMessage("error.init.title"));
                             this.end();
-                            throw new LocalizedException(
-                                    "error.init.local.not.masterdatafile",
-                                    "error.init.title",
+                            throw new LocalizedException("error.init.local.not.masterdatafile", "error.init.title",
                                     "No local masterdata file specified");
                         }
                         if (!masterdatafile.exists()) {
@@ -292,13 +290,10 @@ public class RapidClubAdminClient extends Application {
                                 // direct save is OK for the "local" case
                                 masterdoc.save();
                             } else {
-                                throw new LocalizedException(
-                                        "error.load.file.local.masterdata.filenotfound",
-                                        "error.load.file.local.title",
-                                        "parent folder of masterdata file \"" + masterdatafile.getAbsolutePath()
-                                        + "\" does not exist",
-                                        new Object[]{masterdatafile.getAbsolutePath()}
-                                );
+                                throw new LocalizedException("error.load.file.local.masterdata.filenotfound",
+                                        "error.load.file.local.title", "parent folder of masterdata file \""
+                                                + masterdatafile.getAbsolutePath() + "\" does not exist",
+                                        new Object[] { masterdatafile.getAbsolutePath() });
                             }
                         }
                         if (this.masterDoc == null) {
@@ -309,8 +304,8 @@ public class RapidClubAdminClient extends Application {
                     }
                     break;
                 case web:
-                    this.masterDoc = this.webFileManager.downloadDocument("masterdata",
-                            FILE_NAME_MASTERDATA, true, true, true, null, null);
+                    this.masterDoc = this.webFileManager.downloadDocument("masterdata", FILE_NAME_MASTERDATA, true,
+                            true, true, null, null);
                     final List<Trainer> trainers = this.getAllTrainersFromDocument(this.masterDoc);
                     this.trainerIcons.updateIcons(trainers, true);
                     break;
@@ -342,23 +337,23 @@ public class RapidClubAdminClient extends Application {
 
     private void initCustomerSettings() {
         if (this.getWebFileManager() != null) {
-            final Document doc = this.getWebFileManager().downloadDocumentHttpreadonly(
-                    "customersettings.xml", "customersettings", null, null);
+            final Document doc = this.getWebFileManager().downloadDocumentHttpreadonly("customersettings.xml",
+                    "customersettings", null, null);
             this.customerSettings = (CustomerSettings) doc.getRoot();
         }
     }
 
     /**
      * Get a list of trainers from the master doc.
-     *
-     * @param doc the document to search for trainers
-     *
+     * 
+     * @param doc
+     *            the document to search for trainers
+     * 
      * @return the list of all trainers.
      */
     private List<Trainer> getAllTrainersFromDocument(final Document doc) {
         final List<Trainer> trainers = new ArrayList<Trainer>();
-        final List<RapidBean> beans = doc.findBeansByType(
-                "org.rapidbeans.clubadmin.domain.Trainer");
+        final List<RapidBean> beans = doc.findBeansByType("org.rapidbeans.clubadmin.domain.Trainer");
         for (final RapidBean bean : beans) {
             trainers.add((Trainer) bean);
         }
@@ -380,8 +375,8 @@ public class RapidClubAdminClient extends Application {
      */
     @Override
     protected void setAuthnDoc(final Document doc) {
-       super.setAuthnDoc(doc);
-       this.setMasterDoc(doc);
+        super.setAuthnDoc(doc);
+        this.setMasterDoc(doc);
     }
 
     /**
@@ -393,13 +388,13 @@ public class RapidClubAdminClient extends Application {
 
     /**
      * open the current TrainingsList document view.
-     *
-     * @param workinkDepartmentId the Id of the working department
-     *
+     * 
+     * @param workinkDepartmentId
+     *            the Id of the working department
+     * 
      * @return the view if opened successfully
      */
-    public final DocumentView openCurrentTrainingsList(
-            final String workingDepartmentId) {
+    public final DocumentView openCurrentTrainingsList(final String workingDepartmentId) {
         final Department department = getWorkingDepartment(workingDepartmentId);
         Document doc = null;
         DocumentView currentView = (DocumentView) getView(getTrainingslistViewname(null, department));
@@ -419,13 +414,13 @@ public class RapidClubAdminClient extends Application {
 
     /**
      * open a history TrainingsList document view.
-     *
-     * @param workinkDepartmentId the Id of the working department
-     *
+     * 
+     * @param workinkDepartmentId
+     *            the Id of the working department
+     * 
      * @return the view if opened successfully
      */
-    public final DocumentView openHistoryTrainingsList(
-            final String bpId, final String workingDepartmentId) {
+    public final DocumentView openHistoryTrainingsList(final String bpId, final String workingDepartmentId) {
         if (this.getTestMode()) {
             return null;
         }
@@ -452,15 +447,14 @@ public class RapidClubAdminClient extends Application {
         if (workingDepartmentId == null) {
             workingDepartment = getAuthorizedWorkingDepartment();
         } else {
-            workingDepartment = (Department) this.getMasterDoc().findBean(
-                    "org.rapidbeans.clubadmin.domain.Department", workingDepartmentId);
+            workingDepartment = (Department) this.getMasterDoc().findBean("org.rapidbeans.clubadmin.domain.Department",
+                    workingDepartmentId);
         }
         if (workingDepartment == null) {
-            this.messageError(this.getCurrentLocale().getStringMessage(
-                    "error.authorization.nodepartment",
-                    (String) this.getAuthenticatedUser().getPropValue("accountname")),
-                this.getCurrentLocale().getStringMessage(
-                    "error.authorization.title"));
+            this.messageError(
+                    this.getCurrentLocale().getStringMessage("error.authorization.nodepartment",
+                            (String) this.getAuthenticatedUser().getPropValue("accountname")), this.getCurrentLocale()
+                            .getStringMessage("error.authorization.title"));
             return null;
         } else {
             if (!userIsAuthorized(workingDepartment.getIdString())) {
@@ -473,51 +467,45 @@ public class RapidClubAdminClient extends Application {
 
     /**
      * Load a TrainingsList document locally or from the web.
-     *
-     * @param bp specifies the BillingPeriod for history TrainingsLists<br/>
-     *        Must be <code>null</code> if a current TrainingsList is to be loaded.
-     * @param department specifies the department for which the TrainingsList document
-     *        shall be loaded. 
-     *
+     * 
+     * @param bp
+     *            specifies the BillingPeriod for history TrainingsLists<br/>
+     *            Must be <code>null</code> if a current TrainingsList is to be
+     *            loaded.
+     * @param department
+     *            specifies the department for which the TrainingsList document
+     *            shall be loaded.
+     * 
      * @return a document with the loaded TrainingsList as root element.
      */
-    public Document loadTrainingslistDocument(
-            final BillingPeriod bp, final Department department) {
+    public Document loadTrainingslistDocument(final BillingPeriod bp, final Department department) {
         Document doc = null;
         final String docname = getTrainingslistDocname(bp, department);
-        log.info("RapidClubAdminClient.loadTrainingslistDocument: \""
-                + docname + "\"");
+        log.info("RapidClubAdminClient.loadTrainingslistDocument: \"" + docname + "\"");
         switch (getRunMode()) {
         case local:
-            final File localCurrentTrainingsDataFile =
-                this.getCurrentTrainingsDataFileLocal(bp, department);
+            final File localCurrentTrainingsDataFile = this.getCurrentTrainingsDataFileLocal(bp, department);
             if (localCurrentTrainingsDataFile == null) {
-                throw new LocalizedException(
-                        "error.load.file.local.trainingslist.nourl",
-                        "error.load.file.local.title",
-                "No local default data file defined");                
+                throw new LocalizedException("error.load.file.local.trainingslist.nourl",
+                        "error.load.file.local.title", "No local default data file defined");
             }
             if (!localCurrentTrainingsDataFile.exists()) {
-                throw new LocalizedException(
-                        "error.load.file.local.trainingslist.filenotfound",
-                        "error.load.file.local.title",
-                        "local file \"" + localCurrentTrainingsDataFile.getAbsolutePath()
-                        + "\" not found.",
-                        new String[]{localCurrentTrainingsDataFile.getAbsolutePath()});
+                throw new LocalizedException("error.load.file.local.trainingslist.filenotfound",
+                        "error.load.file.local.title", "local file \""
+                                + localCurrentTrainingsDataFile.getAbsolutePath() + "\" not found.",
+                        new String[] { localCurrentTrainingsDataFile.getAbsolutePath() });
             }
             if (!localCurrentTrainingsDataFile.canRead()) {
-                throw new LocalizedException(
-                        "error.load.file.local.trainingslist.filenotreadable",
-                        "error.load.file.local.title",
-                        "local file \"" + localCurrentTrainingsDataFile.getAbsolutePath()
-                        + "\" is not readable.",
-                        new String[]{localCurrentTrainingsDataFile.getAbsolutePath()});
+                throw new LocalizedException("error.load.file.local.trainingslist.filenotreadable",
+                        "error.load.file.local.title", "local file \""
+                                + localCurrentTrainingsDataFile.getAbsolutePath() + "\" is not readable.",
+                        new String[] { localCurrentTrainingsDataFile.getAbsolutePath() });
             }
             doc = new Document(docname, localCurrentTrainingsDataFile);
             break;
         case web:
-            doc = this.webFileManager.downloadDocument(docname,
-                    RapidClubAdminClient.FILE_NAME_TRAININGS_LIST, true, true, true, bp, department);
+            doc = this.webFileManager.downloadDocument(docname, RapidClubAdminClient.FILE_NAME_TRAININGS_LIST, true,
+                    true, true, bp, department);
             if (doc != null) {
                 this.trainerIcons.updateIcons(getAllTrainersFromDocument(doc), true);
             }
@@ -531,15 +519,12 @@ public class RapidClubAdminClient extends Application {
         return doc;
     }
 
-    public DocumentView getTrainingslistView(final BillingPeriod bp,
-            final Department department) {
+    public DocumentView getTrainingslistView(final BillingPeriod bp, final Department department) {
         final String viewname = getTrainingslistViewname(bp, department);
         return (DocumentView) getView(viewname);
     }
 
-    public String getTrainingslistDocname(
-            final BillingPeriod bp,
-            final Department department) {
+    public String getTrainingslistDocname(final BillingPeriod bp, final Department department) {
         String docname = "currentTrainings";
         if (bp != null) {
             docname += '_' + bp.getIdString();
@@ -550,16 +535,16 @@ public class RapidClubAdminClient extends Application {
         return docname;
     }
 
-    public String getTrainingslistViewname(final BillingPeriod bp,
-            final Department department) {
+    public String getTrainingslistViewname(final BillingPeriod bp, final Department department) {
         return getTrainingslistDocname(bp, department) + ".trainings";
     }
 
     /**
      * Sets the current working department if annotated in the given
      * TrainingsList document.
-     *
-     * @param doc a BilligPeriod document
+     * 
+     * @param doc
+     *            a BilligPeriod document
      */
     public void setCurrentWorkingDepartment(final Document doc) {
         final Department wd = ((TrainingsList) doc.getRoot()).getForSingleDepartment();
@@ -570,8 +555,9 @@ public class RapidClubAdminClient extends Application {
 
     /**
      * Sets the current working department according to the given department
-     *
-     * @param dep the working Department to set.
+     * 
+     * @param dep
+     *            the working Department to set.
      */
     public void setCurrentWorkingDepartment(final Department wd) {
         this.setCurrentWorkingDepartment(wd.getIdString());
@@ -579,8 +565,9 @@ public class RapidClubAdminClient extends Application {
 
     /**
      * Sets the current working department according to the given department
-     *
-     * @param dep the working Department to set.
+     * 
+     * @param dep
+     *            the working Department to set.
      */
     public void setCurrentWorkingDepartment(final String depId) {
         ((Settings) this.getSettings()).getSettings().setWorkingdepartment(depId);
@@ -597,8 +584,7 @@ public class RapidClubAdminClient extends Application {
 
     private boolean userIsAuthorized(final String wdIdString) {
         boolean userIsAuthorized = false;
-        if (wdIdString != null && wdIdString.length() > 0
-                && this.getAuthenticatedUser() != null
+        if (wdIdString != null && wdIdString.length() > 0 && this.getAuthenticatedUser() != null
                 && this.getAuthenticatedClubadminUser().getAuthorizedDepartments() != null) {
             for (Department dep : this.getAuthenticatedClubadminUser().getAuthorizedDepartments()) {
                 if (dep.getIdString().equals(wdIdString)) {
@@ -611,7 +597,7 @@ public class RapidClubAdminClient extends Application {
 
     /**
      * get the user's current working department from settings.
-     *
+     * 
      * @return the user's current working department.
      */
     private Department getAuthorizedWorkingDepartment() {
@@ -638,8 +624,7 @@ public class RapidClubAdminClient extends Application {
 
         // retrieve the department out of the id
         if (wdIdString != null && wdIdString.length() > 0) {
-            wd = (Department) getMasterDoc().findBean(
-                    "org.rapidbeans.clubadmin.domain.Department", wdIdString);
+            wd = (Department) getMasterDoc().findBean("org.rapidbeans.clubadmin.domain.Department", wdIdString);
         }
         return wd;
     }
@@ -648,21 +633,19 @@ public class RapidClubAdminClient extends Application {
      * pop up the program settings and try to focus a certain property
      */
     public void popupProgramSettings(final String property) {
-        final DocumentView settingsView = openDocumentView(getSettingsDoc(),
-                    "settings", "standard");
-        final DocumentTreeViewSwing treeView = (DocumentTreeViewSwing)
-            settingsView.getTreeView();
+        final DocumentView settingsView = openDocumentView(getSettingsDoc(), "settings", "standard");
+        final DocumentTreeViewSwing treeView = (DocumentTreeViewSwing) settingsView.getTreeView();
         treeView.setShowProperties(false);
         final JTree tree = (JTree) treeView.getTree();
         final TreePath path = tree.getPathForRow(3);
         tree.setSelectionPath(path);
-        final Object[] keys = {path};
-        final Object[] selObjs = {path.getLastPathComponent()};
-        EditorBeanSwing ed = (EditorBeanSwing) treeView.editBeans(keys, selObjs); 
+        final Object[] keys = { path };
+        final Object[] selObjs = { path.getLastPathComponent() };
+        EditorBeanSwing ed = (EditorBeanSwing) treeView.editBeans(keys, selObjs);
         EditorPropertyFileSwing proped = (EditorPropertyFileSwing) ed.getPropEditor(property);
         if (proped == null) {
-            ApplicationManager.getApplication().messageError("property editor for property \""
-                + property + "\" not found");
+            ApplicationManager.getApplication().messageError(
+                    "property editor for property \"" + property + "\" not found");
         } else {
             ((JTextField) proped.getTextWidget()).requestFocus();
             ((JTextField) proped.getTextWidget()).setBackground(EditorPropertySwing.COLOR_INVALID);
@@ -670,12 +653,13 @@ public class RapidClubAdminClient extends Application {
     }
 
     /**
-     * Drives the action to save the active document as the
-     * current trainings list.
-     *
+     * Drives the action to save the active document as the current trainings
+     * list.
+     * 
      * This action potentially overwrites data.
-     *
-     * @param doctype { "trainingslist" | "masterdata"}
+     * 
+     * @param doctype
+     *            { "trainingslist" | "masterdata"}
      */
     public void saveAsCurrent(final String doctype) {
         final Document activeDocument = getActiveDocument();
@@ -686,16 +670,18 @@ public class RapidClubAdminClient extends Application {
     }
 
     /**
-     * Drives the action to save the active document as the
-     * current trainings list.
-     *
+     * Drives the action to save the active document as the current trainings
+     * list.
+     * 
      * This action potentially overwrites data.
-     *
-     * @param doctype { "trainingslist" | "masterdata"}
-     * @param doc the document to save
+     * 
+     * @param doctype
+     *            { "trainingslist" | "masterdata"}
+     * @param doc
+     *            the document to save
      */
     public void saveAsCurrent(final String doctype, final Document doc) {
-            final RapidBeansLocale locale = getCurrentLocale();
+        final RapidBeansLocale locale = getCurrentLocale();
         if (doctype.equals("masterdata")) {
             if (!doc.getName().equals("masterdata")) {
                 throw new RapidBeansRuntimeException("active document is not a masterdata");
@@ -729,9 +715,9 @@ public class RapidClubAdminClient extends Application {
             }
             break;
 
-        default:            
+        default:
             if (doctype.equals("masterdata")) {
-                url = this.webFileManager.getUploadUrl(FILE_NAME_MASTERDATA, null ,null);
+                url = this.webFileManager.getUploadUrl(FILE_NAME_MASTERDATA, null, null);
             } else {
                 final Department dep = ((TrainingsList) doc.getRoot()).getForSingleDepartment();
                 url = this.webFileManager.getUploadUrl(FILE_NAME_TRAININGS_LIST, null, dep);
@@ -745,8 +731,7 @@ public class RapidClubAdminClient extends Application {
         if (url == null) {
             final String message = "error.save.file." + getRunMode().toString() + "." + doctype + ".nourl";
             final String title = "error.save.file." + getRunMode().toString() + "." + doctype + ".title";
-            messageError(locale.getStringMessage(message),
-                locale.getStringMessage(title));
+            messageError(locale.getStringMessage(message), locale.getStringMessage(title));
         } else {
             if (messageYesNo(locale.getStringMessage("question.saveas.file." + doctype + ".knowwhatyoudo"),
                     locale.getStringMessage("question.saveas.file.title"))) {
@@ -762,66 +747,59 @@ public class RapidClubAdminClient extends Application {
     public static final String FILE_NAME_TRAININGS_LIST = "trainingslist.xml";
 
     /**
-     * @param dep the department of the trainings document
-     *
+     * @param dep
+     *            the department of the trainings document
+     * 
      * @return an URL to locate the local current trainings document
      */
-    public File getCurrentTrainingsDataFileLocal(
-            final BillingPeriod bp, final Department dep) {
+    public File getCurrentTrainingsDataFileLocal(final BillingPeriod bp, final Department dep) {
         final File trainingsDocRoot = new File(this.getRoot(), "data");
         return getCurrentTrainingsDataFileLocal(trainingsDocRoot, bp, dep);
     }
 
     /**
-     * @param trainingsDocRoot the root of all evil
-     * @param dep the department of the trainings document
-     *
+     * @param trainingsDocRoot
+     *            the root of all evil
+     * @param dep
+     *            the department of the trainings document
+     * 
      * @return an URL to locate the local current trainings document
      */
-    public File getCurrentTrainingsDataFileLocal(
-            final File trainingsDocRoot, final BillingPeriod bp, final Department dep) {
+    public File getCurrentTrainingsDataFileLocal(final File trainingsDocRoot, final BillingPeriod bp,
+            final Department dep) {
         if (!trainingsDocRoot.exists()) {
-            throw new RapidBeansRuntimeException("Root folder \""
-                    + trainingsDocRoot.getAbsolutePath() + "\""
+            throw new RapidBeansRuntimeException("Root folder \"" + trainingsDocRoot.getAbsolutePath() + "\""
                     + " does not exist.");
         }
         if (!trainingsDocRoot.isDirectory()) {
-            throw new RapidBeansRuntimeException("File \""
-                    + trainingsDocRoot.getAbsolutePath() + "\""
+            throw new RapidBeansRuntimeException("File \"" + trainingsDocRoot.getAbsolutePath() + "\""
                     + " is not a folder.");
         }
         File localTrainingsDocFile = null;
         if (dep == null) {
             if (bp == null) {
-                localTrainingsDocFile = new File(trainingsDocRoot,
-                        "/current/" + FILE_NAME_TRAININGS_LIST);
+                localTrainingsDocFile = new File(trainingsDocRoot, "/current/" + FILE_NAME_TRAININGS_LIST);
             } else {
-                localTrainingsDocFile = new File(trainingsDocRoot,
-                        "/history/" + bp.getIdString() + "/" + FILE_NAME_TRAININGS_LIST);
+                localTrainingsDocFile = new File(trainingsDocRoot, "/history/" + bp.getIdString() + "/"
+                        + FILE_NAME_TRAININGS_LIST);
             }
         } else {
             if (this.getMasterData().getClubs().size() == 1) {
                 if (bp == null) {
-                    localTrainingsDocFile = new File(trainingsDocRoot.getAbsolutePath()
-                            + "/current/" + dep.getName()
+                    localTrainingsDocFile = new File(trainingsDocRoot.getAbsolutePath() + "/current/" + dep.getName()
                             + "/" + FILE_NAME_TRAININGS_LIST);
                 } else {
-                    localTrainingsDocFile = new File(trainingsDocRoot.getAbsolutePath()
-                            + "/history/" + bp.getIdString()
-                            + "/" + dep.getName()
-                            + "/" + FILE_NAME_TRAININGS_LIST);
+                    localTrainingsDocFile = new File(trainingsDocRoot.getAbsolutePath() + "/history/"
+                            + bp.getIdString() + "/" + dep.getName() + "/" + FILE_NAME_TRAININGS_LIST);
                 }
             } else {
                 if (bp == null) {
-                    localTrainingsDocFile = new File(trainingsDocRoot.getAbsolutePath()
-                            + "/current/" + ((Club) dep.getParentBean()).getName()
-                            + "/" + dep.getName()
-                            + "/" + FILE_NAME_TRAININGS_LIST);
+                    localTrainingsDocFile = new File(trainingsDocRoot.getAbsolutePath() + "/current/"
+                            + ((Club) dep.getParentBean()).getName() + "/" + dep.getName() + "/"
+                            + FILE_NAME_TRAININGS_LIST);
                 } else {
-                    localTrainingsDocFile = new File(trainingsDocRoot.getAbsolutePath()
-                            + "/history/" + bp.getIdString()
-                            + "/" + ((Club) dep.getParentBean()).getName()
-                            + "/" + dep.getName()
+                    localTrainingsDocFile = new File(trainingsDocRoot.getAbsolutePath() + "/history/"
+                            + bp.getIdString() + "/" + ((Club) dep.getParentBean()).getName() + "/" + dep.getName()
                             + "/" + FILE_NAME_TRAININGS_LIST);
                 }
             }
@@ -858,11 +836,10 @@ public class RapidClubAdminClient extends Application {
     private void askForUserEmail() {
         final ClubadminUser user = (ClubadminUser) this.getAuthenticatedUser();
         final RapidBeansLocale locale = this.getCurrentLocale();
-        if (user != null && (
-                user.getEmail() == null || user.getEmail().length() == 0)) {
+        if (user != null && (user.getEmail() == null || user.getEmail().length() == 0)) {
             this.messageInfo(locale.getStringMessage("info.user.pleasenteremail"));
             new OpenMyUserAccount().execute();
-        }        
+        }
     }
 
     /**
@@ -912,14 +889,14 @@ public class RapidClubAdminClient extends Application {
 
     /**
      * Save a certain document using the WebFileManager.
-     *
-     * @param doc the document to save
+     * 
+     * @param doc
+     *            the document to save
      */
     public void save(final Document doc) {
         final String defaultEncoding = getSettings().getBasic().getDefaultencoding().name();
         boolean forceEncoding = (getSettings().getBasic().getDefaultencodingusage() == DefaultEncodingUsage.write);
-        if (getRunMode() == DataFileType.web
-                && this.getSettingsRapidClubAdmin().getShareiconsoverweb()
+        if (getRunMode() == DataFileType.web && this.getSettingsRapidClubAdmin().getShareiconsoverweb()
                 && (!this.getTestMode())) {
             WebFileManager webFile = getWebFileManager();
             webFile.upload(doc, defaultEncoding, forceEncoding);

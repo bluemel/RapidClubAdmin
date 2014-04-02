@@ -7,7 +7,9 @@
  */
 package org.rapidbeans.clubadmin.presentation.swing;
 
+import java.awt.Component;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,40 +23,64 @@ import org.rapidbeans.core.basic.PropertyCollection;
 import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.DocumentView;
+import org.rapidbeans.presentation.EditorProperty;
+import org.rapidbeans.presentation.EditorPropertyListener;
 import org.rapidbeans.presentation.swing.EditorBeanSwing;
-
 
 /**
  * Extends the standard bean editor.
- *
+ * 
  * @author Martin Bluemel
  */
 public class EditorUser extends EditorBeanSwing {
 
+    private JButton trainerButton = new JButton("Trainereigenschaften ...");
+
     /**
-     * @param client the client
-     * @param docView the document view
-     * @param bean the bean
-     * @param newBeanParentColProp the parent collection property
+     * @param client
+     *            the client
+     * @param docView
+     *            the document view
+     * @param bean
+     *            the bean
+     * @param newBeanParentColProp
+     *            the parent collection property
      */
-    public EditorUser(final Application client,
-            final DocumentView docView,
-            final RapidBean bean,
+    public EditorUser(final Application client, final DocumentView docView, final RapidBean bean,
             final PropertyCollection newBeanParentColProp) {
         super(client, docView, bean, newBeanParentColProp);
-        final ClubadminUser user = (ClubadminUser) bean;
-        if (user.getIsalsotrainer() != null) {
-            final JPanel panel = this.getPanelProps();
-            final JButton trainerButton =
-                new JButton("Trainereigenschaften ...");
-            trainerButton.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    editTrainer();
+        trainerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                editTrainer();
+            }
+        });
+        if (getPropEditor("isalsotrainer") != null) {
+            final JPanel extendedPropEditorIsalsotrainerPanel = new JPanel();
+            extendedPropEditorIsalsotrainerPanel.setLayout(new GridBagLayout());
+            extendedPropEditorIsalsotrainerPanel.add((Component) getPropEditor("isalsotrainer").getWidget(),
+                    new GridBagConstraints(0, 0, 1, 1, 1.0, 0.0, GridBagConstraints.WEST,
+                            GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0));
+            extendedPropEditorIsalsotrainerPanel.add(trainerButton, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.EAST, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+            final JPanel propsPanel = this.getPanelProps();
+            propsPanel.remove((Component) getPropEditor("isalsotrainer").getWidget());
+            propsPanel.add(extendedPropEditorIsalsotrainerPanel, new GridBagConstraints(1, 8, 1, 1, 0.0, 0.0,
+                    GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+            getPropEditor("isalsotrainer").addPropertyEditorListener(new EditorPropertyListener() {
+                @Override
+                public void inputFieldChanged(EditorProperty propEditor) {
+                    updatePropEditorIsalsotrainer();
                 }
             });
-            panel.add(trainerButton, new GridBagConstraints(1, 6, 1, 1, 0.0, 0.0,
-                    GridBagConstraints.CENTER, GridBagConstraints.NONE,
-                    new Insets(5, 5, 5, 5), 0, 0));
+            updatePropEditorIsalsotrainer();
+        }
+    }
+
+    private void updatePropEditorIsalsotrainer() {
+        if (((ClubadminUser) this.getBean()).getIsalsotrainer() != null) {
+            this.trainerButton.setVisible(true);
+        } else {
+            this.trainerButton.setVisible(false);
         }
     }
 

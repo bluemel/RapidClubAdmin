@@ -94,6 +94,7 @@
 		editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorUser">
 		<propertycfg name="accountname"/>
 		<propertycfg name="pwd"/>
+		<propertycfg name="changePwdAfterNextLogon"/>
 		<propertycfg name="lastname"/>
 		<propertycfg name="firstname"/>
 		<propertycfg name="email"/>

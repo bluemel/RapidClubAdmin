@@ -9,4 +9,5 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.rapidbeans.clubadmin.RapidClubAdmin"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-server trainer.budo-club-ismaning.de -root rapidclubadmin"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.rapidbeans.clubadmin"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dhttp.proxyHost=localhost -Dhttp.proxyPort=9200"/>
 </launchConfiguration>
