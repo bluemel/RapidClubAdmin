@@ -15,7 +15,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.js"></script>
   <script src="rapidClubAdminWebClient.js"></script>
 
-  <p ng-controller="TrainingsListCtrl">{{trainingSelector.getSelectedTraining().training.id}}</p>
+
+  <table><tr>
+
+  <td>
 
   <!-- style="width:350px;" would work but does not make too much sense here -->
   <table
@@ -64,6 +67,40 @@
        </tr>
     </tbody>
   </table>
+
+  </td>
+
+  <td style="text-indent:20px;vertical-align:top;" ng-controller="TrainingsListCtrl">
+    <p></p>
+    <table>
+      <tr>
+        <td style="text-indent:20px;"><b>Training</b></td>
+        <td style="text-indent:20px;"><textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.id}}</textarea></td>
+      </tr>
+      <tr>
+        <td style="text-indent:20px;"><b>Anzahl Teilnehmer</b></td>
+        <td style="text-indent:20px;"><textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.partipiciantscount}}</textarea></td>
+      </tr>
+      <tr>
+        <td style="text-indent:20px;"><b>Status</b></td>
+        <td style="text-indent:20px;"><textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.state}}</textarea></td>
+      </tr>
+      <tr>
+        <td style="text-indent:20px;"><b>Best&auml;tigt durch</b></td>
+        <td style="text-indent:20px;"><textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.partipiciantscount}}</textarea></td>
+      </tr>
+      <tr>
+        <td style="text-indent:20px;"><b>Best&auml;tigt am</b></td>
+        <td style="text-indent:20px;"><textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.checkedByUser}}</textarea></td>
+      </tr>
+      <tr>
+        <td style="text-indent:20px;"><b>Notizen</b></td>
+        <td style="text-indent:20px;"><textarea cols="90" rows="5" disabled>{{trainingSelector.getSelectedTraining().training.notes}}</textarea></td>
+      </tr>
+    </table>
+  </td>
+
+  </tr></table>
 
 </body>
 
