@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="RapidClubAdminWebClient">
+
+<head>
+  <meta charset="utf8" />
+  <title>RapidClubAdmin Web Client</title>
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.js"></script>
+  <script src="rapidClubAdminWebClient.js"></script>
+
+  <p ng-controller="TrainingsListCtrl">{{trainingSelector.getSelectedTraining().training.id}}</p>
+
+  <!-- style="width:350px;" would work but does not make too much sense here -->
+  <table
+    border="2" rules="all"
+    ng-controller="TrainingsListCtrl"
+    >
+    <thead>
+      <tr>
+        <th>Tag</th>
+        <th>Datum</th>
+        <th>Beginn</th>
+        <th>Training</th>
+        <th>Zustand</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        ng-style="trainingSelector.getSelectedTraining().training.id === trainingForTable.training.id
+          && {'background-color': '#D0E0FF'} || {'background-color': 'white'}"
+        ng-init="trainingSelector.init(trainingsForTable)"
+        ng-click="trainingSelector.setSelectedTraining(trainingForTable)"
+        ng-repeat="trainingForTable in trainingsForTable">
+        <td>
+          <div ng-switch on="trainingForTable.trainingdate.dayofweek">
+            <div ng-switch-when="monday">MO</div>
+            <div ng-switch-when="tuesday">DI</div>
+            <div ng-switch-when="wednesday">MI</div>
+            <div ng-switch-when="thursday">DO</div>
+            <div ng-switch-when="friday">FR</div>
+            <div ng-switch-default>??{{trainingForTable.trainingdate.dayofweek}}??<div>
+          </div>
+        </td>
+        <td>{{trainingForTable.datestr}}</td>
+        <td>{{trainingForTable.trainingdate.timestart}}</td>
+        <td>{{trainingForTable.trainingdate.name}}</td>
+        <td style="text-indent:10px;">
+          <div ng-switch on="trainingForTable.training.state">
+            <div ng-switch-when="asplanned"><img src="img/training0Default.png"></div>
+            <div ng-switch-when="modified"><img src="img/training1InWork.png"></div>
+            <div ng-switch-when="checked"><img src="img/training2Checked.png"></div>
+            <div ng-switch-when="cancelled"><img src="img/training3Cancelled.png"></img></div>
+            <div ng-switch-when="closed"><img src="img/training4Closed.png"></img></div>
+            <div ng-switch-default>??{{trainingForTable.training.state}}??<div>
+          </div>
+        </td>
+       </tr>
+    </tbody>
+  </table>
+
+</body>
+
+</html>

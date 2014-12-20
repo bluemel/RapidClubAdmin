@@ -1,0 +1,1751 @@
+{
+  "bean": {
+  "xmlns:rb": "http://rapidbeans.org/core/basic",
+  "rb:type": "org.rapidbeans.clubadmin.domain.TrainingsList",
+  "from": 20140901,
+  "to": 20141231,
+  "forSingleClub": "Budo-Club Ismaning",
+  "forSingleDepartment": "Budo-Club Ismaning/Aikido",
+  "trainerhour": "45 min",
+
+  "salaryComponentType": [
+    {
+      "id": "Vergütung",
+      "name": "Vergütung"
+    },
+    {
+      "id": "Zulage",
+      "name": "Zulage"
+    }
+  ],
+  "closingperiod": [
+    {
+      "to": 20140104,
+      "id": "20131223_Weihnachtsferien",
+      "oneday": false,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Weihnachtsferien",
+      "from": 20131223
+    },
+    {
+      "to": 20140106,
+      "id": "20140106_Heilige Drei Koenige",
+      "oneday": true,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Heilige Drei Koenige",
+      "from": 20140106
+    },
+    {
+      "to": 20140307,
+      "id": "20140303_Winterferien",
+      "oneday": false,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Winterferien",
+      "from": 20140303
+    },
+    {
+      "to": 20140426,
+      "id": "20140414_Osterferien",
+      "oneday": false,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Osterferien",
+      "from": 20140414
+    },
+    {
+      "to": 20140501,
+      "id": "20140501_Tag der Arbeit",
+      "oneday": true,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Tag der Arbeit",
+      "from": 20140501
+    },
+    {
+      "to": 20140529,
+      "id": "20140529_Christi Himmelfahrt",
+      "oneday": true,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Christi Himmelfahrt",
+      "from": 20140529
+    },
+    {
+      "to": 20140609,
+      "id": "20140609_Pfingstmontag",
+      "oneday": true,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Pfingstmontag",
+      "from": 20140609
+    },
+    {
+      "to": 20140621,
+      "id": "20140610_Pfingstferien",
+      "oneday": false,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Pfingstferien",
+      "from": 20140610
+    },
+    {
+      "to": 20140915,
+      "id": "20140730_Sommerferien",
+      "oneday": false,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Sommerferien",
+      "from": 20140730
+    },
+    {
+      "to": 20141003,
+      "id": "20141003_Tag der Deutschen Einheit",
+      "oneday": true,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Tag der Deutschen Einheit",
+      "from": 20141003
+    },
+    {
+      "to": 20141031,
+      "id": "20141027_Herbstferien",
+      "oneday": false,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Herbstferien",
+      "from": 20141027
+    },
+    {
+      "to": 20141101,
+      "id": "20141101_Allerheiligen",
+      "oneday": true,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Allerheiligen",
+      "from": 20141101
+    },
+    {
+      "to": 20150105,
+      "id": "20141224_Weihnachtsferien",
+      "oneday": false,
+      "locations": "Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B",
+      "name": "Weihnachtsferien",
+      "from": 20141224
+    }
+  ],
+  "location": [
+    {
+      "id": "Turnhalle Grundschule Süd",
+      "street": "Camerloher Straße 20",
+      "name": "Turnhalle Grundschule Süd",
+      "closedons": "20131223_Weihnachtsferien,20140106_Heilige Drei Koenige,20140303_Winterferien,20140414_Osterferien,20140501_Tag der Arbeit,20140529_Christi Himmelfahrt,20140609_Pfingstmontag,20140610_Pfingstferien,20140730_Sommerferien,20141003_Tag der Deutschen Einheit,20141027_Herbstferien,20141101_Allerheiligen,20141224_Weihnachtsferien",
+      "city": "85737 Ismaning"
+    },
+    {
+      "id": "Turnhalle Grundschule Süd B",
+      "street": "Camerloher Str. 20",
+      "name": "Turnhalle Grundschule Süd B",
+      "closedons": "20131223_Weihnachtsferien,20140106_Heilige Drei Koenige,20140303_Winterferien,20140414_Osterferien,20140501_Tag der Arbeit,20140529_Christi Himmelfahrt,20140609_Pfingstmontag,20140610_Pfingstferien,20140730_Sommerferien,20141003_Tag der Deutschen Einheit,20141027_Herbstferien,20141101_Allerheiligen,20141224_Weihnachtsferien",
+      "city": "85737 Ismaning"
+    }
+  ],
+  "sport": [
+    {
+      "id": "Aikido",
+      "name": "Aikido"
+    },
+    {
+      "id": "Chanbara",
+      "name": "Chanbara"
+    },
+    {
+      "id": "Haidong Gumdo",
+      "name": "Haidong Gumdo",
+      "shortname": "Haidong"
+    },
+    {
+      "id": "Iaido",
+      "name": "Iaido"
+    },
+    {
+      "id": "Kampfsport allgemein",
+      "name": "Kampfsport allgemein",
+      "shortname": "Schultraining"
+    },
+    {
+      "id": "Tang Soo Do",
+      "name": "Tang Soo Do",
+      "shortname": "Tang S. Do"
+    }
+  ],
+  "trainerrole": [
+    {
+      "id": "Trainer",
+      "name": "Trainer",
+      "salary": [
+        {
+          "id": "Trainer_null",
+          "time": "45 min",
+          "rolename": "Trainer",
+          "component": [
+            {
+              "time": "45 min",
+              "salaryComponentType": "Vergütung",
+              "description": "Vergütung Trainer",
+              "money": "7.75 euro"
+            },
+            {
+              "time": "45 min",
+              "salaryComponentType": "Zulage",
+              "description": "Zulage Trainer, ohne Rechtsanspruch",
+              "money": "2.25 euro"
+            }
+          ],
+          "money": "10.00 euro"
+        },
+        {
+          "id": "Trainer_Fachübungsleiter",
+          "time": "45 min",
+          "rolename": "Trainer",
+          "component": [
+            {
+              "time": "45 min",
+              "salaryComponentType": "Vergütung",
+              "description": "Vergütung Trainer ÜL",
+              "money": "10.25 euro"
+            },
+            {
+              "time": "45 min",
+              "salaryComponentType": "Zulage",
+              "description": "Zulage Trainer ÜL, ohne Rechtsanspruch",
+              "money": "1.75 euro"
+            }
+          ],
+          "money": "12.00 euro",
+          "trainerattribute": "Fachübungsleiter"
+        }
+      ]
+    },
+    {
+      "id": "Cotrainer",
+      "name": "Cotrainer",
+      "salary": {
+        "id": "Cotrainer_null",
+        "time": "45 min",
+        "rolename": "Cotrainer",
+        "component": [
+          {
+            "time": "45 min",
+            "salaryComponentType": "Vergütung",
+            "description": "Vergütung Co-Trainer",
+            "money": "2.75 euro"
+          },
+          {
+            "time": "45 min",
+            "salaryComponentType": "Zulage",
+            "description": "Zulage Co-Trainer, ohne Rechtsanspruch",
+            "money": "1.25 euro"
+          }
+        ],
+        "money": "4.00 euro"
+      }
+    },
+    {
+      "id": "Trainer-Grundschule",
+      "name": "Trainer-Grundschule",
+      "salary": {
+        "id": "Trainer-Grundschule_null",
+        "time": "90 min",
+        "rolename": "Trainer-Grundschule",
+        "component": {
+          "time": "90 min",
+          "salaryComponentType": "Vergütung",
+          "description": "Vergütung Grundschultrainer",
+          "money": "65.00 euro"
+        },
+        "money": "65.00 euro"
+      }
+    }
+  ],
+  "trainerattribute": {
+    "id": "Fachübungsleiter",
+    "name": "Fachübungsleiter"
+  },
+  "trainer": [
+    {
+      "id": "Blümel_Martin_",
+      "icon": 20080718010024,
+      "middlename": "",
+      "trainerattributes": "Fachübungsleiter",
+      "email": "martin.bluemel@web.de",
+      "trainerplannings": 15,
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Blümel",
+      "trainingsheld": "10100,10105,10110,10115,10120,10125,10130,10140,10145,10150,10155,10160,10165,10170,10175,10180,10114",
+      "firstname": "Martin"
+    },
+    {
+      "id": "Blümel_Ulrike_",
+      "icon": 20071216204722,
+      "middlename": "",
+      "trainerattributes": "Fachübungsleiter",
+      "email": "ulrike.bluemel1@web.de",
+      "trainerplannings": 14,
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Blümel",
+      "trainingsheld": "10099,10104,10109,10119,10124,10129,10134,10139,10144,10149,10154,10159,10164,10169,10174,10179,10184",
+      "firstname": "Ulrike"
+    },
+    {
+      "id": "Dahlheimer_Berit_",
+      "middlename": "",
+      "trainerattributes": "",
+      "email": "bdahlheimer@alice-dsl.net",
+      "trainerplannings": "",
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Dahlheimer",
+      "firstname": "Berit"
+    },
+    {
+      "id": "Holler_Josef_",
+      "icon": 20100901220932,
+      "middlename": "",
+      "email": "hollersepp@web.de",
+      "trainerplannings": "",
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Holler",
+      "trainingsheld": "10185,10186,10187,10188,10189,10190,10191,10192",
+      "firstname": "Josef"
+    },
+    {
+      "id": "Hummel_Benjamin_",
+      "icon": 20121021223048,
+      "middlename": "",
+      "email": "hummelb@in.tum.de",
+      "trainerplannings": "70,69",
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Hummel",
+      "trainingsheld": "10097,10098,10102,10103,10107,10108,10112,10113,10117,10118,10122,10123,10127,10128,10132,10133,10137,10138,10147,10148,10152,10153,10157,10158,10162,10163,10167,10168,10172,10173,10177,10178,10182,10183",
+      "firstname": "Benjamin"
+    },
+    {
+      "id": "Höppner_Christoph_",
+      "middlename": "",
+      "trainerattributes": "",
+      "trainerplannings": 15,
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Höppner",
+      "trainingsheld": 10135,
+      "firstname": "Christoph"
+    },
+    {
+      "id": "Landsberger_Reinhard_",
+      "middlename": "",
+      "email": "Reinhard@aikido-ismaning.de",
+      "trainerplannings": "",
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Landsberger",
+      "firstname": "Reinhard"
+    },
+    {
+      "id": "Mair_Doris_",
+      "icon": 20091121205627,
+      "middlename": "",
+      "trainerattributes": "Fachübungsleiter",
+      "email": "doris@budo-club-ismaning.de",
+      "trainerplannings": 15,
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Mair",
+      "firstname": "Doris"
+    },
+    {
+      "id": "Russ_Kevin_",
+      "icon": 20101117195836,
+      "middlename": "",
+      "email": "kevin-russ@gmx.de",
+      "trainerplannings": "72,70,69,81",
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Russ",
+      "trainingsheld": "10101,10106,10111,10116,10121,10126,10131,10136,10141,10146,10151,10156,10161,10166,10171,10176,10181,10396,10400,10404,10408,10412,10416,10420,10424,10428,10432,10436,10440,10444,10448,10452,10456,10460,10464",
+      "firstname": "Kevin"
+    },
+    {
+      "id": "Sieber_Hans_",
+      "middlename": "",
+      "email": "Hans@aikido-ismaning.de",
+      "trainerplannings": "70,69",
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Sieber",
+      "firstname": "Hans"
+    },
+    {
+      "id": "Vogel_Harald_",
+      "middlename": "",
+      "email": "harald@aikido-ismaning.de",
+      "trainerplannings": "70,69",
+      "departments": "Budo-Club Ismaning/Aikido",
+      "lastname": "Vogel",
+      "trainingsheld": "10143,10142",
+      "firstname": "Harald"
+    }
+  ],
+  "club": {
+    "id": "Budo-Club Ismaning",
+    "department": {
+      "id": "Budo-Club Ismaning/Aikido",
+      "name": "Aikido",
+      "trainingdate": [
+        {
+          "training": [
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20140901",
+              "heldbytrainer": {
+                "id": 10097,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "closed",
+              "date": 20140901
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20140908",
+              "heldbytrainer": {
+                "id": 10102,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "closed",
+              "date": 20140908
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20140915",
+              "heldbytrainer": {
+                "id": 10107,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "closed",
+              "date": 20140915
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20140922",
+              "heldbytrainer": {
+                "id": 10112,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20140922
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20140929",
+              "heldbytrainer": {
+                "id": 10117,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20140929
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141006",
+              "heldbytrainer": {
+                "id": 10122,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141006
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141013",
+              "heldbytrainer": {
+                "id": 10127,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141013
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141020",
+              "heldbytrainer": {
+                "id": 10132,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141020
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141027",
+              "heldbytrainer": {
+                "id": 10137,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "closed",
+              "date": 20141027
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141103",
+              "heldbytrainer": {
+                "id": 10142,
+                "role": "Trainer",
+                "trainer": "Vogel_Harald_"
+              },
+              "partipiciantscount": 4,
+              "state": "checked",
+              "checkedByUser": "vogel",
+              "notes": "",
+              "date": 20141103,
+              "checkedDate": 201411220731
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141110",
+              "heldbytrainer": {
+                "id": 10147,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "partipiciantscount": 3,
+              "state": "checked",
+              "checkedByUser": "hummel",
+              "notes": "",
+              "date": 20141110,
+              "checkedDate": 201411102309
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141117",
+              "heldbytrainer": {
+                "id": 10152,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141117
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141124",
+              "heldbytrainer": {
+                "id": 10157,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141124
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141201",
+              "heldbytrainer": {
+                "id": 10162,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "partipiciantscount": 6,
+              "state": "checked",
+              "checkedByUser": "hummel",
+              "notes": "",
+              "date": 20141201,
+              "checkedDate": 201412032314
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141208",
+              "heldbytrainer": {
+                "id": 10167,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "partipiciantscount": 5,
+              "state": "checked",
+              "checkedByUser": "hummel",
+              "notes": "",
+              "date": 20141208,
+              "checkedDate": 201412120005
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141215",
+              "heldbytrainer": {
+                "id": 10172,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141215
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141222",
+              "heldbytrainer": {
+                "id": 10177,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141222
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd/20141229",
+              "heldbytrainer": {
+                "id": 10182,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "closed",
+              "date": 20141229
+            }
+          ],
+          "id": "Budo-Club Ismaning/Aikido/monday_19:00_Turnhalle Grundschule Süd",
+          "location": "Turnhalle Grundschule Süd",
+          "name": "Toho-Iaido",
+          "timeend": "20:00",
+          "timestart": "19:00",
+          "sport": "Iaido",
+          "dayofweek": "monday",
+          "trainerplanning": {
+            "id": 69,
+            "role": "Trainer",
+            "defaulttrainers": "Hummel_Benjamin_,Russ_Kevin_,Sieber_Hans_,Vogel_Harald_"
+          }
+        },
+        {
+          "training": [
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20140901",
+              "heldbytrainer": {
+                "id": 10098,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "closed",
+              "date": 20140901
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20140908",
+              "heldbytrainer": {
+                "id": 10103,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "closed",
+              "date": 20140908
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20140915",
+              "heldbytrainer": {
+                "id": 10108,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "closed",
+              "date": 20140915
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20140922",
+              "heldbytrainer": {
+                "id": 10113,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20140922
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20140929",
+              "heldbytrainer": {
+                "id": 10118,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20140929
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141006",
+              "heldbytrainer": {
+                "id": 10123,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141006
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141013",
+              "heldbytrainer": {
+                "id": 10128,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141013
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141020",
+              "heldbytrainer": {
+                "id": 10133,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141020
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141027",
+              "heldbytrainer": {
+                "id": 10138,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "closed",
+              "date": 20141027
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141103",
+              "heldbytrainer": {
+                "id": 10143,
+                "role": "Trainer",
+                "trainer": "Vogel_Harald_"
+              },
+              "partipiciantscount": 8,
+              "state": "checked",
+              "checkedByUser": "vogel",
+              "notes": "",
+              "date": 20141103,
+              "checkedDate": 201411220731
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141110",
+              "heldbytrainer": {
+                "id": 10148,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "partipiciantscount": 5,
+              "state": "checked",
+              "checkedByUser": "hummel",
+              "notes": "Kokyo-Nage\r\nUchi-Kaiten-Nage\r\nAihanmi Ikkyo\r\nAihanmi Shiho-Nage\r\nShomen-Uchi Ikkyo\r\nShomen-Uchi Shiho-Nage\r\nShomen-Uchi Iriminage\r\nGyakuhanmi Kotegaeshi\r\nChudan-Tsuki Kotegaeshi",
+              "date": 20141110,
+              "checkedDate": 201411102311
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141117",
+              "heldbytrainer": {
+                "id": 10153,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141117
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141124",
+              "heldbytrainer": {
+                "id": 10158,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141124
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141201",
+              "heldbytrainer": {
+                "id": 10163,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141201
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141208",
+              "heldbytrainer": {
+                "id": 10168,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141208
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141215",
+              "heldbytrainer": {
+                "id": 10173,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141215
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141222",
+              "heldbytrainer": {
+                "id": 10178,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "asplanned",
+              "date": 20141222
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd/20141229",
+              "heldbytrainer": {
+                "id": 10183,
+                "role": "Trainer",
+                "trainer": "Hummel_Benjamin_"
+              },
+              "state": "closed",
+              "date": 20141229
+            }
+          ],
+          "id": "Budo-Club Ismaning/Aikido/monday_20:00_Turnhalle Grundschule Süd",
+          "location": "Turnhalle Grundschule Süd",
+          "name": "Aikido Erwachsene, Nishio-Stil",
+          "timeend": "21:30",
+          "timestart": "20:00",
+          "dayofweek": "monday",
+          "trainerplanning": {
+            "id": 70,
+            "role": "Trainer",
+            "defaulttrainers": "Hummel_Benjamin_,Russ_Kevin_,Sieber_Hans_,Vogel_Harald_"
+          }
+        },
+        {
+          "training": [
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20140902",
+              "heldbytrainer": {
+                "id": 10099,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "state": "closed",
+              "date": 20140902
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20140909",
+              "heldbytrainer": {
+                "id": 10104,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "state": "closed",
+              "date": 20140909
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20140916",
+              "partipiciantscount": 9,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20140916,
+              "checkedDate": 201409172206,
+              "heldbytrainer": {
+                "id": 10109,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              }
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20140923",
+              "heldbytrainer": {
+                "id": 10114,
+                "role": "Trainer",
+                "trainer": "Blümel_Martin_"
+              },
+              "partipiciantscount": 8,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20140923,
+              "checkedDate": 201410162237
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20140930",
+              "heldbytrainer": {
+                "id": 10119,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "partipiciantscount": 8,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20140930,
+              "checkedDate": 201410162236
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141007",
+              "heldbytrainer": {
+                "id": 10124,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "partipiciantscount": 6,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141007,
+              "checkedDate": 201410162236
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141014",
+              "heldbytrainer": {
+                "id": 10129,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "partipiciantscount": 7,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141014,
+              "checkedDate": 201410162235
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141021",
+              "heldbytrainer": {
+                "id": 10134,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "partipiciantscount": 10,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141021,
+              "checkedDate": 201410250954
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141028",
+              "heldbytrainer": {
+                "id": 10139,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "state": "closed",
+              "date": 20141028
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141104",
+              "heldbytrainer": {
+                "id": 10144,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "state": "asplanned",
+              "date": 20141104
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141111",
+              "heldbytrainer": {
+                "id": 10149,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "partipiciantscount": 10,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141111,
+              "checkedDate": 201411172242
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141118",
+              "heldbytrainer": {
+                "id": 10154,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "partipiciantscount": 10,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141118,
+              "checkedDate": 201411282018
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141125",
+              "heldbytrainer": {
+                "id": 10159,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "partipiciantscount": 8,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141125,
+              "checkedDate": 201411282019
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141202",
+              "heldbytrainer": {
+                "id": 10164,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "state": "asplanned",
+              "date": 20141202
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141209",
+              "heldbytrainer": {
+                "id": 10169,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "state": "asplanned",
+              "date": 20141209
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141216",
+              "heldbytrainer": {
+                "id": 10174,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "state": "asplanned",
+              "date": 20141216
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141223",
+              "heldbytrainer": {
+                "id": 10179,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "state": "asplanned",
+              "date": 20141223
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd/20141230",
+              "heldbytrainer": {
+                "id": 10184,
+                "role": "Trainer",
+                "trainer": "Blümel_Ulrike_"
+              },
+              "state": "closed",
+              "date": 20141230
+            }
+          ],
+          "id": "Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd",
+          "location": "Turnhalle Grundschule Süd",
+          "name": "Aikido Kinder / Erwachsene",
+          "timeend": "19:30",
+          "timestart": "18:00",
+          "dayofweek": "tuesday",
+          "trainerplanning": {
+            "id": 14,
+            "role": "Trainer",
+            "defaulttrainers": "Blümel_Ulrike_"
+          }
+        },
+        {
+          "training": [
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20140903",
+              "heldbytrainer": {
+                "id": 10396,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "closed",
+              "date": 20140903
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20140910",
+              "heldbytrainer": {
+                "id": 10400,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "closed",
+              "date": 20140910
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20140917",
+              "heldbytrainer": {
+                "id": 10404,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20140917
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20140924",
+              "heldbytrainer": {
+                "id": 10408,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20140924
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141001",
+              "heldbytrainer": {
+                "id": 10412,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141001
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141008",
+              "heldbytrainer": {
+                "id": 10416,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141008
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141015",
+              "heldbytrainer": {
+                "id": 10420,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141015
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141022",
+              "heldbytrainer": {
+                "id": 10424,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141022
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141029",
+              "heldbytrainer": {
+                "id": 10428,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "closed",
+              "date": 20141029
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141105",
+              "heldbytrainer": {
+                "id": 10432,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141105
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141112",
+              "heldbytrainer": {
+                "id": 10436,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141112
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141119",
+              "heldbytrainer": {
+                "id": 10440,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141119
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141126",
+              "heldbytrainer": {
+                "id": 10444,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141126
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141203",
+              "heldbytrainer": {
+                "id": 10448,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141203
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141210",
+              "heldbytrainer": {
+                "id": 10452,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141210
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141217",
+              "heldbytrainer": {
+                "id": 10456,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "asplanned",
+              "date": 20141217
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141224",
+              "heldbytrainer": {
+                "id": 10460,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "closed",
+              "date": 20141224
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd/20141231",
+              "heldbytrainer": {
+                "id": 10464,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "closed",
+              "date": 20141231
+            }
+          ],
+          "id": "Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd",
+          "location": "Turnhalle Grundschule Süd",
+          "name": "Katori Shinto Ryu",
+          "timeend": "21:30",
+          "timestart": "20:00",
+          "sport": "Aikido",
+          "dayofweek": "wednesday",
+          "trainerplanning": {
+            "id": 81,
+            "role": "Trainer",
+            "defaulttrainers": "Russ_Kevin_"
+          }
+        },
+        {
+          "training": [
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20140904",
+              "heldbytrainer": {
+                "id": 10100,
+                "role": "Trainer",
+                "trainer": "Blümel_Martin_"
+              },
+              "state": "closed",
+              "date": 20140904
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20140911",
+              "heldbytrainer": {
+                "id": 10105,
+                "role": "Trainer",
+                "trainer": "Blümel_Martin_"
+              },
+              "state": "closed",
+              "date": 20140911
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20140918",
+              "heldbytrainer": {
+                "id": 10110,
+                "role": "Trainer",
+                "trainer": "Blümel_Martin_"
+              },
+              "partipiciantscount": 10,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20140918,
+              "checkedDate": 201409182246
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20140925",
+              "heldbytrainer": {
+                "id": 10115,
+                "role": "Trainer",
+                "trainer": "Blümel_Martin_"
+              },
+              "partipiciantscount": 9,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20140925,
+              "checkedDate": 201410162237
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141002",
+              "heldbytrainer": [
+                {
+                  "id": 10120,
+                  "role": "Trainer",
+                  "trainer": "Blümel_Martin_"
+                },
+                {
+                  "id": 10187,
+                  "role": "Trainer",
+                  "trainer": "Holler_Josef_"
+                }
+              ],
+              "partipiciantscount": 9,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141002,
+              "checkedDate": 201410162236
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141009",
+              "heldbytrainer": [
+                {
+                  "id": 10125,
+                  "role": "Trainer",
+                  "trainer": "Blümel_Martin_"
+                },
+                {
+                  "id": 10186,
+                  "role": "Trainer",
+                  "trainer": "Holler_Josef_"
+                }
+              ],
+              "partipiciantscount": 8,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141009,
+              "checkedDate": 201410162235
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141016",
+              "heldbytrainer": [
+                {
+                  "id": 10130,
+                  "role": "Trainer",
+                  "trainer": "Blümel_Martin_"
+                },
+                {
+                  "id": 10185,
+                  "role": "Trainer",
+                  "trainer": "Holler_Josef_"
+                }
+              ],
+              "partipiciantscount": 12,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141016,
+              "checkedDate": 201410162235
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141023",
+              "heldbytrainer": [
+                {
+                  "id": 10135,
+                  "role": "Trainer",
+                  "trainer": "Höppner_Christoph_"
+                },
+                {
+                  "id": 10188,
+                  "role": "Trainer",
+                  "trainer": "Holler_Josef_"
+                }
+              ],
+              "partipiciantscount": 10,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141023,
+              "checkedDate": 201410250954
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141030",
+              "heldbytrainer": {
+                "id": 10140,
+                "role": "Trainer",
+                "trainer": "Blümel_Martin_"
+              },
+              "state": "closed",
+              "date": 20141030
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141106",
+              "heldbytrainer": [
+                {
+                  "id": 10145,
+                  "role": "Trainer",
+                  "trainer": "Blümel_Martin_"
+                },
+                {
+                  "id": 10189,
+                  "role": "Trainer",
+                  "trainer": "Holler_Josef_"
+                }
+              ],
+              "partipiciantscount": 10,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141106,
+              "checkedDate": 201411172242
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141113",
+              "heldbytrainer": [
+                {
+                  "id": 10150,
+                  "role": "Trainer",
+                  "trainer": "Blümel_Martin_"
+                },
+                {
+                  "id": 10190,
+                  "role": "Trainer",
+                  "trainer": "Holler_Josef_"
+                }
+              ],
+              "partipiciantscount": 10,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141113,
+              "checkedDate": 201411172243
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141120",
+              "heldbytrainer": [
+                {
+                  "id": 10155,
+                  "role": "Trainer",
+                  "trainer": "Blümel_Martin_"
+                },
+                {
+                  "id": 10191,
+                  "role": "Trainer",
+                  "trainer": "Holler_Josef_"
+                }
+              ],
+              "partipiciantscount": 10,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141120,
+              "checkedDate": 201411282018
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141127",
+              "heldbytrainer": [
+                {
+                  "id": 10160,
+                  "role": "Trainer",
+                  "trainer": "Blümel_Martin_"
+                },
+                {
+                  "id": 10192,
+                  "role": "Trainer",
+                  "trainer": "Holler_Josef_"
+                }
+              ],
+              "partipiciantscount": 12,
+              "state": "checked",
+              "checkedByUser": "bluemel",
+              "notes": "",
+              "date": 20141127,
+              "checkedDate": 201411282019
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141204",
+              "heldbytrainer": {
+                "id": 10165,
+                "role": "Trainer",
+                "trainer": "Blümel_Martin_"
+              },
+              "state": "asplanned",
+              "date": 20141204
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141211",
+              "heldbytrainer": {
+                "id": 10170,
+                "role": "Trainer",
+                "trainer": "Blümel_Martin_"
+              },
+              "state": "asplanned",
+              "date": 20141211
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141218",
+              "heldbytrainer": {
+                "id": 10175,
+                "role": "Trainer",
+                "trainer": "Blümel_Martin_"
+              },
+              "state": "asplanned",
+              "date": 20141218
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd/20141225",
+              "heldbytrainer": {
+                "id": 10180,
+                "role": "Trainer",
+                "trainer": "Blümel_Martin_"
+              },
+              "state": "closed",
+              "date": 20141225
+            }
+          ],
+          "id": "Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd",
+          "location": "Turnhalle Grundschule Süd",
+          "name": "Aikido Erwachsene",
+          "timeend": "21:30",
+          "timestart": "20:00",
+          "dayofweek": "thursday",
+          "trainerplanning": {
+            "id": 15,
+            "role": "Trainer",
+            "defaulttrainers": "Blümel_Martin_,Höppner_Christoph_,Mair_Doris_"
+          }
+        },
+        {
+          "training": [
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20140905",
+              "heldbytrainer": {
+                "id": 10101,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "closed",
+              "date": 20140905
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20140912",
+              "heldbytrainer": {
+                "id": 10106,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "closed",
+              "date": 20140912
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20140919",
+              "heldbytrainer": {
+                "id": 10111,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20140919,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20140926",
+              "heldbytrainer": {
+                "id": 10116,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20140926,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141003",
+              "heldbytrainer": {
+                "id": 10121,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "closed",
+              "date": 20141003
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141010",
+              "heldbytrainer": {
+                "id": 10126,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20141010,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141017",
+              "heldbytrainer": {
+                "id": 10131,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20141017,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141024",
+              "heldbytrainer": {
+                "id": 10136,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20141024,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141031",
+              "heldbytrainer": {
+                "id": 10141,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "closed",
+              "date": 20141031
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141107",
+              "heldbytrainer": {
+                "id": 10146,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20141107,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141114",
+              "heldbytrainer": {
+                "id": 10151,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20141114,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141121",
+              "heldbytrainer": {
+                "id": 10156,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20141121,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141128",
+              "heldbytrainer": {
+                "id": 10161,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20141128,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141205",
+              "heldbytrainer": {
+                "id": 10166,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20141205,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141212",
+              "heldbytrainer": {
+                "id": 10171,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20141212,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141219",
+              "heldbytrainer": {
+                "id": 10176,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "cancelled",
+              "checkedByUser": "bluemel",
+              "date": 20141219,
+              "checkedDate": 201410250953
+            },
+            {
+              "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd/20141226",
+              "heldbytrainer": {
+                "id": 10181,
+                "role": "Trainer",
+                "trainer": "Russ_Kevin_"
+              },
+              "state": "closed",
+              "date": 20141226
+            }
+          ],
+          "id": "Budo-Club Ismaning/Aikido/friday_20:00_Turnhalle Grundschule Süd",
+          "location": "Turnhalle Grundschule Süd",
+          "name": "Aikido Fortgeschrittene",
+          "timeend": "21:30",
+          "timestart": "20:00",
+          "sport": "Aikido",
+          "dayofweek": "friday",
+          "trainerplanning": {
+            "id": 72,
+            "role": "Trainer",
+            "defaulttrainers": "Russ_Kevin_"
+          }
+        }
+      ],
+      "trainers": "Blümel_Martin_,Blümel_Ulrike_,Dahlheimer_Berit_,Holler_Josef_,Hummel_Benjamin_,Höppner_Christoph_,Landsberger_Reinhard_,Mair_Doris_,Russ_Kevin_,Sieber_Hans_,Vogel_Harald_"
+    },
+    "name": "Budo-Club Ismaning"
+  },
+  "user": [
+    {
+      "id": "bluemel",
+      "accountname": "bluemel",
+      "email": "martin.bluemel@web.de",
+      "lastname": "Blümel",
+      "firstname": "Martin"
+    },
+    {
+      "id": "hummel",
+      "accountname": "hummel",
+      "email": "hummelb@in.tum.de",
+      "lastname": "Hummel",
+      "firstname": "Benjamin"
+    },
+    {
+      "id": "vogel",
+      "accountname": "vogel",
+      "email": "aikido.harald@arcor.de",
+      "lastname": "Vogel",
+      "firstname": "Harald"
+    }
+  ]
+}
+}
