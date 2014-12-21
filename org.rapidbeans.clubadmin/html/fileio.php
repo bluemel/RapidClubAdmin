@@ -26,7 +26,7 @@ if ($op === "read") {
 	readfile($data_root . $file);
 } elseif ($op === "write") {
 	$contents = $_POST["contents"];
-	if(get_magic_quotes_gpc()) {
+	if (get_magic_quotes_gpc()) {
 		$contents = stripslashes($contents);
 	}
 	$handle = fopen ($data_root . $file, "w");
@@ -75,6 +75,12 @@ if ($op === "read") {
 	$message = $msgargs[3];
 	$result = mail($to, $subject, $message, $headers);
 	echo "Mail result is " . $result;
+} elseif ($op === "readj") {
+	$dom = new DOMDocument();
+	$dom->loadXML(file_get_contents($data_root . $file));
+	changeAttributesIntoElements($dom, $dom);
+	$sxml = simplexml_load_string($dom->saveXML());
+	echo json_encode($sxml);
 } else {
 	header('HTTP/1.1 405 Method not allowed');
 }
@@ -85,6 +91,18 @@ function deobfcte($str) {
         $ret = $ret . chr(ord($str{$i}) + (($i + 3) % 4));
     }
     return $ret;
+}
+
+function changeAttributesIntoElements($dom, $elem) {
+	foreach ($elem->attributes as $attr) {
+		$elem->appendChild($dom->createElement($attr->name, $attr->value));
+	}
+	while ($elem->attributes->length > 0) {
+		$elem->removeAttributeNode($elem->attributes->item(0));
+	}
+	foreach ($elem->childNodes as $subnode) {
+		changeAttributesIntoElements($dom, $subnode);
+	}
 }
 
 ?>
