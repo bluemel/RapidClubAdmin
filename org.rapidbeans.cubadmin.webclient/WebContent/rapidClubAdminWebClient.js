@@ -35,12 +35,13 @@ angular.module('RapidClubAdminWebClient', [])
 
   .controller('TrainingsListCtrl', function($scope, $http, TrainingSelector, Comparators) {
     $scope.trainingSelector = TrainingSelector;
-    $http.get('trainingslist.json').then(function(httpResponse) {
+    $http.get('trainingslist2.json').then(function(httpResponse) {
+    // $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Aikido/trainingslist.xml&op=readj').success(function(httpResponse) {
       $scope.trainingslist = httpResponse;
       $scope.trainingsForTable = [];
       // build an array of flat Trainings objects combined with their parent Trainingdates
-      for (i = 0; i < httpResponse.data.bean.club.department.trainingdate.length; i++) {
-        trainingdate = httpResponse.data.bean.club.department.trainingdate[i];
+      for (i = 0; i < httpResponse.data.club.department.trainingdate.length; i++) {
+        trainingdate = httpResponse.data.club.department.trainingdate[i];
         trainingsOfTd = new Array(trainingdate.training.length);
         for (j = 0; j < trainingdate.training.length; j++) {
           training = trainingdate.training[j];
