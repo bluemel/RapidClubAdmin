@@ -1,13 +1,6 @@
-// compare two
-function compareTrainingsAccordingToDateAndTime(t1, t2) {
-  if (t1.date - t2.date != 0) {
-    return t1.training.date - t2.training.date;
-  }
-  return t1.trainingdate.timestart - t2.trainingdate.timestart;
-}
-
 angular.module('RapidClubAdminWebClient', [])
-  .factory('TrainingSelector', function() {
+
+.factory('TrainingSelector', function() {
     var selectedTraining;
     return {
       getSelectedTraining: function() {
@@ -29,14 +22,25 @@ angular.module('RapidClubAdminWebClient', [])
       },
     };
   })
-  .controller('TrainingsListCtrl', function($scope, $http, TrainingSelector) {
-    $http.get('trainingslist.json').then(function(trainingslistJsonRoot) {
-      $scope.trainingSelector = TrainingSelector;
-      $scope.trainingslist = trainingslistJsonRoot;
+
+  .service("Comparators", function() { 
+	// compare two training table entries
+	this.compareTrainingsAccordingToDateAndTime = function (t1, t2) {
+	  if (t1.date - t2.date != 0) {
+	    return t1.training.date - t2.training.date;
+	  }
+	  return t1.trainingdate.timestart - t2.trainingdate.timestart;
+	};
+  })
+
+  .controller('TrainingsListCtrl', function($scope, $http, TrainingSelector, Comparators) {
+    $scope.trainingSelector = TrainingSelector;
+    $http.get('trainingslist.json').then(function(httpResponse) {
+      $scope.trainingslist = httpResponse;
       $scope.trainingsForTable = [];
       // build an array of flat Trainings objects combined with their parent Trainingdates
-      for (i = 0; i < trainingslistJsonRoot.data.bean.club.department.trainingdate.length; i++) {
-        trainingdate = trainingslistJsonRoot.data.bean.club.department.trainingdate[i];
+      for (i = 0; i < httpResponse.data.bean.club.department.trainingdate.length; i++) {
+        trainingdate = httpResponse.data.bean.club.department.trainingdate[i];
         trainingsOfTd = new Array(trainingdate.training.length);
         for (j = 0; j < trainingdate.training.length; j++) {
           training = trainingdate.training[j];
@@ -54,7 +58,7 @@ angular.module('RapidClubAdminWebClient', [])
         $scope.trainingsForTable = $scope.trainingsForTable.concat(trainingsOfTd);
       }
       // sort the trainings array according to training.date and trainingdate.timestart
-      $scope.trainingsForTable = $scope.trainingsForTable.sort(compareTrainingsAccordingToDateAndTime);
+      $scope.trainingsForTable = $scope.trainingsForTable.sort(Comparators.compareTrainingsAccordingToDateAndTime);
       $scope.trainingSelector = TrainingSelector;
     }
     );
