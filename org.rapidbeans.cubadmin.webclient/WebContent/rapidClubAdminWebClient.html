@@ -41,17 +41,8 @@
         ng-init="trainingSelector.init(trainingsForTable)"
         ng-click="trainingSelector.setSelectedTraining(trainingForTable)"
         ng-repeat="trainingForTable in trainingsForTable">
-        <td>
-          <div ng-switch on="trainingForTable.trainingdate.dayofweek">
-            <div ng-switch-when="monday">MO</div>
-            <div ng-switch-when="tuesday">DI</div>
-            <div ng-switch-when="wednesday">MI</div>
-            <div ng-switch-when="thursday">DO</div>
-            <div ng-switch-when="friday">FR</div>
-            <div ng-switch-default>??{{trainingForTable.trainingdate.dayofweek}}??<div>
-          </div>
-        </td>
-        <td>{{trainingForTable.datestr}}</td>
+        <td>{{helpers.dayOfWeekShort(trainingForTable.trainingdate.dayofweek)}}</td>
+        <td>{{helpers.formatDateGerman(trainingForTable.training.date)}}</td>
         <td>{{trainingForTable.trainingdate.timestart}}</td>
         <td>{{trainingForTable.trainingdate.name}}</td>
         <td style="text-indent:10px;">
@@ -75,27 +66,41 @@
     <table>
       <tr>
         <td style="text-indent:20px;"><b>Training</b></td>
-        <td style="text-indent:20px;"><textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.id}}</textarea></td>
+        <td style="text-indent:20px;">
+          <textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTrainingTitle()}}</textarea>
+        </td>
       </tr>
       <tr>
         <td style="text-indent:20px;"><b>Anzahl Teilnehmer</b></td>
-        <td style="text-indent:20px;"><textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.partipiciantscount}}</textarea></td>
+        <td style="text-indent:20px;">
+          <textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.partipiciantscount}}</textarea>
+        </td>
       </tr>
       <tr>
         <td style="text-indent:20px;"><b>Status</b></td>
-        <td style="text-indent:20px;"><textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.state}}</textarea></td>
+        <td style="text-indent:20px;">
+          <textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTrainingState()}}</textarea>
+        </td>
       </tr>
       <tr>
         <td style="text-indent:20px;"><b>Best&auml;tigt durch</b></td>
-        <td style="text-indent:20px;"><textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.partipiciantscount}}</textarea></td>
+        <td style="text-indent:20px;">
+          <textarea cols="90" rows="1" disabled>{{userModel.getFullName(trainingSelector.getSelectedTraining().training.checkedByUser)}}</textarea>
+        </td>
       </tr>
       <tr>
         <td style="text-indent:20px;"><b>Best&auml;tigt am</b></td>
-        <td style="text-indent:20px;"><textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.checkedByUser}}</textarea></td>
+        <td style="text-indent:20px;">
+          <textarea cols="90" rows="1" disabled>{{helpers.formatDateTimeGerman(trainingSelector.getSelectedTraining().training.checkedDate)}}</textarea>
+        </td>
       </tr>
       <tr>
         <td style="text-indent:20px;"><b>Notizen</b></td>
-        <td style="text-indent:20px;"><textarea cols="90" rows="5" disabled>{{trainingSelector.getSelectedTraining().training.notes}}</textarea></td>
+        <td style="text-indent:20px;">
+          <div ng-switch on="trainingSelector.getSelectedTraining().training.notes">
+            <textarea cols="90" rows="5" disabled>{{trainingSelector.getSelectedTraining().training.notes}}</textarea>
+          </div>
+        </td>
       </tr>
     </table>
   </td>

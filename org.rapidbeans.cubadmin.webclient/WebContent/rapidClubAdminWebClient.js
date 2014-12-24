@@ -1,15 +1,70 @@
 angular.module('RapidClubAdminWebClient', [])
 
-.factory('TrainingSelector', function() {
+.service("Helpers", function() {
+    // map a dayofweek to its short representation
+    this.dayOfWeekShort = function(dayofweek) {
+        if (dayofweek == 'monday') {
+          return 'MO';
+        } else if (dayofweek == 'tuesday') {
+          return 'DI';
+        } else if (dayofweek == 'wednesday') {
+          return 'MI';
+        } else if (dayofweek == 'thursday') {
+          return 'DO';
+        } else if (dayofweek == 'friday') {
+          return 'FR';
+        }
+      };
+// asplanned training0Default.png
+// modified training1InWork.png
+// checked training2Checked.png
+// cancelled training3Cancelled.png
+// closed training4Closed.png
+    this.stateToDescriptionShort = function(state) {
+      if (state == 'asplanned') {
+          return 'Betreuung gemäß Planung';
+        } else if (state == 'checked') {
+          return 'Betreuung geändert';
+        } else if (state == 'checked') {
+          return 'Betreuung bestätigt';
+        } else if (state == 'cancelled') {
+          return 'Training abgesagt';
+        } else if (state == 'closed') {
+          return 'Trainingsort geschlossen';
+        }
+      };
+    this.formatDateGerman = function(date) {
+      return date.slice(6, 8) + "." + date.slice(4, 6) + "." + date.slice(0, 4);
+    };
+    this.formatDateTimeGerman = function(dtime) {
+      return dtime.slice(6, 8) + "." + dtime.slice(4, 6) + "." + dtime.slice(0, 4)
+        + " " + dtime.slice(8, 10) + ":" + dtime.slice(10, 12);
+    };
+  })
+
+.factory('TrainingSelector', function(Helpers) {
     var selectedTraining;
     return {
       getSelectedTraining: function() {
         return selectedTraining;
       },
+      getSelectedTrainingTitle: function() {
+        return Helpers.dayOfWeekShort(selectedTraining.trainingdate.dayofweek)
+          + ", " + Helpers.formatDateGerman(selectedTraining.training.date)
+          + ", " + selectedTraining.trainingdate.name
+          + ", " + selectedTraining.trainingdate.location;
+      },
+      getSelectedTrainingDayOfWeekShort: function() {
+        return Helpers.dayOfWeekShort(selectedTraining.trainingdate.dayofweek);
+      },
+      getSelectedTrainingState: function() {
+        return Helpers.stateToDescriptionShort(selectedTraining.training.state);
+      },
       setSelectedTraining: function(training) {
         selectedTraining = training;
       },
       init: function(trainings) {
+        // search the first training not yet closed, cancelled or checked
         selectedTraining = trainings[1];
         for (i = 0; i < trainings.length; i++) {
           if (trainings[i].training.state != 'closed'
@@ -23,23 +78,43 @@ angular.module('RapidClubAdminWebClient', [])
     };
   })
 
-  .service("Comparators", function() { 
-	// compare two training table entries
-	this.compareTrainingsAccordingToDateAndTime = function (t1, t2) {
-	  if (t1.date - t2.date != 0) {
-	    return t1.training.date - t2.training.date;
-	  }
-	  return t1.trainingdate.timestart - t2.trainingdate.timestart;
-	};
+  .factory('UserModel', function() {
+    var map = new Map();
+    return {
+      findById: function(id) {
+        return map.get(id);
+      },
+      getFullName: function(id) {
+          return map.get(id).lastname + ", " + map.get(id).firstname;
+        },
+      init: function(users) {
+        for (i = 0; i < users.length; i++) {
+          map.set(users[i].id, users[i]);
+        }
+      }
+    };
   })
 
-  .controller('TrainingsListCtrl', function($scope, $http, TrainingSelector, Comparators) {
+  .service("Comparators", function() {
+    // compare two training table entries
+    this.compareTrainingsAccordingToDateAndTime = function (t1, t2) {
+      if (t1.date - t2.date != 0) {
+        return t1.training.date - t2.training.date;
+      }
+      return t1.trainingdate.timestart - t2.trainingdate.timestart;
+    };
+  })
+
+  .controller('TrainingsListCtrl', function($scope, $http, TrainingSelector, UserModel, Comparators, Helpers) {
     $scope.trainingSelector = TrainingSelector;
+    $scope.helpers = Helpers;
+    $scope.userModel = UserModel;
     $http.get('trainingslist2.json').then(function(httpResponse) {
     // $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Aikido/trainingslist.xml&op=readj').success(function(httpResponse) {
       $scope.trainingslist = httpResponse;
       $scope.trainingsForTable = [];
-      // build an array of flat Trainings objects combined with their parent Trainingdates
+      $scope.userModel.init(httpResponse.data.user);
+      // build an array of flat trainings objects combined with their parent Trainingdates
       for (i = 0; i < httpResponse.data.club.department.trainingdate.length; i++) {
         trainingdate = httpResponse.data.club.department.trainingdate[i];
         trainingsOfTd = new Array(trainingdate.training.length);
@@ -52,8 +127,6 @@ angular.module('RapidClubAdminWebClient', [])
             "training": training,
             // the parent Trainingdate
             "trainingdate": trainingdate,
-            // the Training's date in German date format
-            "datestr": date.slice(6, 8) + "." + date.slice(4, 6) + "." + date.slice(0, 4)
           };
         }
         $scope.trainingsForTable = $scope.trainingsForTable.concat(trainingsOfTd);
