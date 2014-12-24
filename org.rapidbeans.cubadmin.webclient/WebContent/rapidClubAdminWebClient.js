@@ -109,8 +109,9 @@ angular.module('RapidClubAdminWebClient', [])
     $scope.trainingSelector = TrainingSelector;
     $scope.helpers = Helpers;
     $scope.userModel = UserModel;
-    $http.get('trainingslist2.json').then(function(httpResponse) {
-    // $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Aikido/trainingslist.xml&op=readj').success(function(httpResponse) {
+    // for local test
+    // $http.get('trainingslist2.json').then(function(httpResponse) {
+    $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Aikido/trainingslist.xml&op=readj').then(function(httpResponse) {
       $scope.trainingslist = httpResponse;
       $scope.trainingsForTable = [];
       $scope.userModel.init(httpResponse.data.user);
