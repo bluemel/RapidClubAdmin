@@ -83,11 +83,14 @@
               "heldbytrainer":{
                 "id":"10132",
                 "role":"Trainer",
-                "trainer":"Hummel_Benjamin_"
+                "trainer":"Sieber_Hans_"
               },
               "id":"Budo-Club Ismaning\/Aikido\/monday_19:00_Turnhalle Grundschule S\u00fcd\/20141020",
               "date":"20141020",
-              "state":"asplanned"
+              "partipiciantscount":"8",
+              "state":"checked",
+              "checkedByUser":"sieber",
+              "checkedDate":"201412220759"
             },
             {
               "heldbytrainer":{
@@ -105,9 +108,6 @@
                 "role":"Trainer",
                 "trainer":"Vogel_Harald_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/monday_19:00_Turnhalle Grundschule S\u00fcd\/20141103",
               "date":"20141103",
               "partipiciantscount":"4",
@@ -120,9 +120,6 @@
                 "id":"10147",
                 "role":"Trainer",
                 "trainer":"Hummel_Benjamin_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/monday_19:00_Turnhalle Grundschule S\u00fcd\/20141110",
               "date":"20141110",
@@ -157,9 +154,6 @@
                 "role":"Trainer",
                 "trainer":"Hummel_Benjamin_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/monday_19:00_Turnhalle Grundschule S\u00fcd\/20141201",
               "date":"20141201",
               "partipiciantscount":"6",
@@ -173,9 +167,6 @@
                 "role":"Trainer",
                 "trainer":"Hummel_Benjamin_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/monday_19:00_Turnhalle Grundschule S\u00fcd\/20141208",
               "date":"20141208",
               "partipiciantscount":"5",
@@ -188,9 +179,6 @@
                 "id":"10172",
                 "role":"Trainer",
                 "trainer":"Hummel_Benjamin_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/monday_19:00_Turnhalle Grundschule S\u00fcd\/20141215",
               "date":"20141215",
@@ -207,7 +195,10 @@
               },
               "id":"Budo-Club Ismaning\/Aikido\/monday_19:00_Turnhalle Grundschule S\u00fcd\/20141222",
               "date":"20141222",
-              "state":"asplanned"
+              "partipiciantscount":"3",
+              "state":"checked",
+              "checkedByUser":"sieber",
+              "checkedDate":"201412222346"
             },
             {
               "heldbytrainer":{
@@ -269,11 +260,14 @@
               "heldbytrainer":{
                 "id":"10113",
                 "role":"Trainer",
-                "trainer":"Hummel_Benjamin_"
+                "trainer":"Sieber_Hans_"
               },
               "id":"Budo-Club Ismaning\/Aikido\/monday_20:00_Turnhalle Grundschule S\u00fcd\/20140922",
               "date":"20140922",
-              "state":"asplanned"
+              "partipiciantscount":"8",
+              "state":"checked",
+              "checkedByUser":"sieber",
+              "checkedDate":"201412220739"
             },
             {
               "heldbytrainer":{
@@ -330,9 +324,6 @@
                 "id":"10143",
                 "role":"Trainer",
                 "trainer":"Vogel_Harald_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/monday_20:00_Turnhalle Grundschule S\u00fcd\/20141103",
               "date":"20141103",
@@ -470,9 +461,6 @@
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Ulrike_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20140916",
               "date":"20140916",
               "partipiciantscount":"9",
@@ -485,9 +473,6 @@
                 "id":"10114",
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Martin_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20140923",
               "date":"20140923",
@@ -502,9 +487,6 @@
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Ulrike_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20140930",
               "date":"20140930",
               "partipiciantscount":"8",
@@ -517,9 +499,6 @@
                 "id":"10124",
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Ulrike_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20141007",
               "date":"20141007",
@@ -534,9 +513,6 @@
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Ulrike_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20141014",
               "date":"20141014",
               "partipiciantscount":"7",
@@ -549,9 +525,6 @@
                 "id":"10134",
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Ulrike_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20141021",
               "date":"20141021",
@@ -586,9 +559,6 @@
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Ulrike_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20141111",
               "date":"20141111",
               "partipiciantscount":"10",
@@ -601,9 +571,6 @@
                 "id":"10154",
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Ulrike_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20141118",
               "date":"20141118",
@@ -618,9 +585,6 @@
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Ulrike_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20141125",
               "date":"20141125",
               "partipiciantscount":"8",
@@ -634,9 +598,6 @@
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Ulrike_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20141202",
               "date":"20141202",
               "partipiciantscount":"6",
@@ -649,9 +610,6 @@
                 "id":"10169",
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Ulrike_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/tuesday_18:00_Turnhalle Grundschule S\u00fcd\/20141209",
               "date":"20141209",
@@ -938,9 +896,6 @@
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Martin_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20140918",
               "date":"20140918",
               "partipiciantscount":"10",
@@ -953,9 +908,6 @@
                 "id":"10115",
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Martin_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20140925",
               "date":"20140925",
@@ -977,9 +929,6 @@
                   "trainer":"Holler_Josef_"
                 }
               ],
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141002",
               "date":"20141002",
               "partipiciantscount":"9",
@@ -1000,9 +949,6 @@
                   "trainer":"Holler_Josef_"
                 }
               ],
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141009",
               "date":"20141009",
               "partipiciantscount":"8",
@@ -1023,9 +969,6 @@
                   "trainer":"Holler_Josef_"
                 }
               ],
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141016",
               "date":"20141016",
               "partipiciantscount":"12",
@@ -1046,9 +989,6 @@
                   "trainer":"Holler_Josef_"
                 }
               ],
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141023",
               "date":"20141023",
               "partipiciantscount":"10",
@@ -1079,9 +1019,6 @@
                   "trainer":"Holler_Josef_"
                 }
               ],
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141106",
               "date":"20141106",
               "partipiciantscount":"10",
@@ -1102,9 +1039,6 @@
                   "trainer":"Holler_Josef_"
                 }
               ],
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141113",
               "date":"20141113",
               "partipiciantscount":"10",
@@ -1125,9 +1059,6 @@
                   "trainer":"Holler_Josef_"
                 }
               ],
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141120",
               "date":"20141120",
               "partipiciantscount":"10",
@@ -1148,9 +1079,6 @@
                   "trainer":"Holler_Josef_"
                 }
               ],
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141127",
               "date":"20141127",
               "partipiciantscount":"12",
@@ -1163,9 +1091,6 @@
                 "id":"10165",
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Martin_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141204",
               "date":"20141204",
@@ -1180,9 +1105,6 @@
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Martin_"
               },
-              "notes":{
-
-              },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141211",
               "date":"20141211",
               "partipiciantscount":"11",
@@ -1195,9 +1117,6 @@
                 "id":"10175",
                 "role":"Trainer",
                 "trainer":"Bl\u00fcmel_Martin_"
-              },
-              "notes":{
-
               },
               "id":"Budo-Club Ismaning\/Aikido\/thursday_20:00_Turnhalle Grundschule S\u00fcd\/20141218",
               "date":"20141218",
@@ -1511,7 +1430,7 @@
       },
       "email":"hummelb@in.tum.de",
       "trainerplannings":"70,69",
-      "trainingsheld":"10097,10098,10102,10103,10107,10108,10112,10113,10117,10118,10122,10123,10127,10128,10132,10133,10137,10138,10147,10148,10152,10153,10157,10158,10162,10163,10167,10168,10172,10182,10183",
+      "trainingsheld":"10097,10098,10102,10103,10107,10108,10112,10117,10118,10122,10123,10127,10128,10133,10137,10138,10147,10148,10152,10153,10157,10158,10162,10163,10167,10168,10172,10182,10183",
       "departments":"Budo-Club Ismaning\/Aikido",
       "icon":"20121021223048"
     },
@@ -1577,7 +1496,7 @@
       },
       "email":"Hans@aikido-ismaning.de",
       "trainerplannings":"70,69",
-      "trainingsheld":"10173,10177",
+      "trainingsheld":"10173,10177,10113,10132",
       "departments":"Budo-Club Ismaning\/Aikido"
     },
     {
