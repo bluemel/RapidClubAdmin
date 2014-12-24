@@ -100,6 +100,21 @@ function changeAttributesIntoElements($dom, $elem) {
 	while ($elem->attributes->length > 0) {
 		$elem->removeAttributeNode($elem->attributes->item(0));
 	}
+	$deletedEmptyNode = TRUE;
+	while ($deletedEmptyNode) {
+		$deletedEmptyNode = FALSE;
+		$emptyNode = NULL;
+		foreach ($elem->childNodes as $subnode) {
+			if ($subnode->nodeValue === "") {
+				$emptyNode = $subnode;
+				break;
+			}
+		}
+		if (!is_null($emptyNode)) {
+//			$elem.removeChild($emptyNode)
+//			$deletedEmptyNode = TRUE;
+		}
+	}
 	foreach ($elem->childNodes as $subnode) {
 		changeAttributesIntoElements($dom, $subnode);
 	}
