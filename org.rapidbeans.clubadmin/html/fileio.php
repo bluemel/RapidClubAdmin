@@ -94,30 +94,32 @@ function deobfcte($str) {
 }
 
 function changeAttributesIntoElements($dom, $elem) {
+	// replace all attributes with elements
 	foreach ($elem->attributes as $attr) {
 		$elem->appendChild($dom->createElement($attr->name, $attr->value));
 	}
 	while ($elem->attributes->length > 0) {
 		$elem->removeAttributeNode($elem->attributes->item(0));
 	}
-	$deletedEmptyNode = TRUE;
-	while ($deletedEmptyNode) {
-		$deletedEmptyNode = FALSE;
-		$emptyNode = NULL;
-		foreach ($elem->childNodes as $subnode) {
-			if ($subnode->nodeValue === "") {
-				$emptyNode = $subnode;
-				break;
-			}
-		}
-		if (!is_null($emptyNode)) {
-//			$elem.removeChild($emptyNode)
-//			$deletedEmptyNode = TRUE;
-		}
+	// remove all empty "notes" elements
+	$nodeToDelete = findSubnode($elem, "notes", "");
+	while (!is_null($nodeToDelete)) {
+		$elem->removeChild($nodeToDelete);
+		$nodeToDelete = findSubnode($elem, "notes", "");
 	}
+	// recurse over child nodes
 	foreach ($elem->childNodes as $subnode) {
 		changeAttributesIntoElements($dom, $subnode);
 	}
+}
+
+function findSubnode($elem, $name, $value) {
+	foreach ($elem->childNodes as $subnode) {
+		if ($subnode->nodeName === $name and $subnode->nodeValue === $value) {
+			return $subnode;
+		}
+	}
+	return NULL;
 }
 
 ?>
