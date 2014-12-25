@@ -48,6 +48,16 @@ angular.module('RapidClubAdminWebClient', [])
       getSelectedTraining: function() {
         return selectedTraining;
       },
+      getSelectedTrainingHeldbytrainers: function() {
+        heldbyarray = [];
+        prtype = Object.prototype.toString.call(selectedTraining.training.heldbytrainer);
+        if (prtype == '[object Array]') {
+          heldbyarray = selectedTraining.training.heldbytrainer;
+        } else {
+          heldbyarray.push(selectedTraining.training.heldbytrainer);
+        }
+        return heldbyarray;
+      },
       getSelectedTrainingTitle: function() {
         return Helpers.dayOfWeekShort(selectedTraining.trainingdate.dayofweek)
           + ", " + Helpers.formatDateGerman(selectedTraining.training.date)
@@ -95,6 +105,23 @@ angular.module('RapidClubAdminWebClient', [])
     };
   })
 
+  .factory('TrainerModel', function() {
+    var map = new Map();
+    return {
+      findById: function(id) {
+        return map.get(id);
+      },
+      getFullName: function(id) {
+          return map.get(id).lastname + ", " + map.get(id).firstname;
+        },
+      init: function(trainers) {
+        for (i = 0; i < trainers.length; i++) {
+          map.set(trainers[i].id, trainers[i]);
+        }
+      }
+    };
+  })
+
   .service("Comparators", function() {
     // compare two training table entries
     this.compareTrainingsAccordingToDateAndTime = function (t1, t2) {
@@ -105,16 +132,21 @@ angular.module('RapidClubAdminWebClient', [])
     };
   })
 
-  .controller('TrainingsListCtrl', function($scope, $http, TrainingSelector, UserModel, Comparators, Helpers) {
+// Example URL for trainer picture download
+// http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=trainerIcons/Russ_Kevin_.jpg&op=read
+
+  .controller('TrainingsListCtrl', function($scope, $http, TrainingSelector, UserModel, TrainerModel, Comparators, Helpers) {
     $scope.trainingSelector = TrainingSelector;
     $scope.helpers = Helpers;
     $scope.userModel = UserModel;
+    $scope.trainerModel = TrainerModel;
     // for local test
     $http.get('trainingslist2.json').then(function(httpResponse) {
     // $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Aikido/trainingslist.xml&op=readj').then(function(httpResponse) {
       $scope.trainingslist = httpResponse;
       $scope.trainingsForTable = [];
       $scope.userModel.init(httpResponse.data.user);
+      $scope.trainerModel.init(httpResponse.data.trainer);
       // build an array of flat trainings objects combined with their parent Trainingdates
       for (i = 0; i < httpResponse.data.club.department.trainingdate.length; i++) {
         trainingdate = httpResponse.data.club.department.trainingdate[i];
