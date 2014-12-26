@@ -8,6 +8,11 @@
   <meta charset="utf8" />
   <title>RapidClubAdmin Web Client</title>
   <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+  <style type="text/css">
+td {
+    padding: 2px;
+}
+  </style>
 </head>
 
 <body>
@@ -15,16 +20,55 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.js"></script>
   <script src="rapidClubAdminWebClient.js"></script>
 
+  <div  ng-controller="TrainingsListCtrl">
 
-  <table><tr>
+  <div style="height:150px; width:600px;">
+    <table>
+      <tr>
+        <td nowrap><b>Training</b></td>
+        <td>{{trainingSelector.getSelectedTrainingTitle()}}</td>
+      </tr>
+      <tr>
+        <td nowrap><b>Anzahl Teilnehmer</b></td>
+        <td>{{trainingSelector.getSelectedTraining().training.partipiciantscount}}</td>
+      </tr>
+      <tr>
+        <td nowrap><b>Status</b></td>
+        <td>{{trainingSelector.getSelectedTrainingState()}}</td>
+      </tr>
+      <tr>
+        <td nowrap><b>Best&auml;tigt durch</b></td>
+        <td>{{userModel.getFullName(trainingSelector.getSelectedTraining().training.checkedByUser)}}</td>
+      </tr>
+      <tr>
+        <td nowrap><b>Best&auml;tigt am</b></td>
+        <td>{{helpers.formatDateTimeGerman(trainingSelector.getSelectedTraining().training.checkedDate)}}</td>
+      </tr>
+      <tr>
+        <td nowrap><b>Notizen</b></td>
+        <td>
+          <div ng-switch on="trainingSelector.getSelectedTraining().training.notes">
+            <textarea rows="5" cols="70" disabled>{{trainingSelector.getSelectedTraining().training.notes}}</textarea>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <table>
+            <tr>
+            <td ng-repeat="heldby in trainingSelector.getSelectedTrainingHeldbytrainers()">
+              <p style="margin-left:20px;" align="center">{{heldby.role}}</p>
+              <img style="margin-left:20px;" width="70px" height="70px" src="img/person.png"/>
+              <p style="margin-left:20px;" align="center">{{trainerModel.getFullName(heldby.trainer)}}</p>
+            </td>
+          </tr>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-  <td>
-
-  <!-- style="width:350px;" would work but does not make too much sense here -->
-  <table
-    border="2" rules="all"
-    ng-controller="TrainingsListCtrl"
-    >
+  <div style="width:600px; height:200px; overflow:auto; border:1px solid #000000; margin-left:5px;">
+  <table width="580px" border="0" cellspacing="1" cellpadding="2">
     <thead>
       <tr>
         <th>Tag</th>
@@ -58,66 +102,9 @@
        </tr>
     </tbody>
   </table>
+  </div>
 
-  </td>
-
-  <td style="text-indent:20px;vertical-align:top;" ng-controller="TrainingsListCtrl">
-    <p></p>
-    <table>
-      <tr>
-        <td style="text-indent:20px;"><b>Training</b></td>
-        <td style="text-indent:20px;">
-          <textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTrainingTitle()}}</textarea>
-        </td>
-      </tr>
-      <tr>
-        <td style="text-indent:20px;"><b>Anzahl Teilnehmer</b></td>
-        <td style="text-indent:20px;">
-          <textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTraining().training.partipiciantscount}}</textarea>
-        </td>
-      </tr>
-      <tr>
-        <td style="text-indent:20px;"><b>Status</b></td>
-        <td style="text-indent:20px;">
-          <textarea cols="90" rows="1" disabled>{{trainingSelector.getSelectedTrainingState()}}</textarea>
-        </td>
-      </tr>
-      <tr>
-        <td style="text-indent:20px;"><b>Best&auml;tigt durch</b></td>
-        <td style="text-indent:20px;">
-          <textarea cols="90" rows="1" disabled>{{userModel.getFullName(trainingSelector.getSelectedTraining().training.checkedByUser)}}</textarea>
-        </td>
-      </tr>
-      <tr>
-        <td style="text-indent:20px;"><b>Best&auml;tigt am</b></td>
-        <td style="text-indent:20px;">
-          <textarea cols="90" rows="1" disabled>{{helpers.formatDateTimeGerman(trainingSelector.getSelectedTraining().training.checkedDate)}}</textarea>
-        </td>
-      </tr>
-      <tr>
-        <td style="text-indent:20px;"><b>Notizen</b></td>
-        <td style="text-indent:20px;">
-          <div ng-switch on="trainingSelector.getSelectedTraining().training.notes">
-            <textarea cols="90" rows="5" disabled>{{trainingSelector.getSelectedTraining().training.notes}}</textarea>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <table>
-            <tr>
-            <td ng-repeat="heldby in trainingSelector.getSelectedTrainingHeldbytrainers()">
-              <p style="margin-left:20px;" align="center">{{heldby.role}}</p>
-              <img style="margin-left:20px;" width="70px" height="70px" src="img/person.png"/>
-              <p style="margin-left:20px;" align="center">{{trainerModel.getFullName(heldby.trainer)}}</p>
-            </td>
-          </tr>
-        </td>
-      </tr>
-    </table>
-  </td>
-
-  </tr></table>
+  </div>
 
 </body>
 
