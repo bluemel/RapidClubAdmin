@@ -73,7 +73,7 @@ angular.module('RapidClubAdminWebClient', [])
       setSelectedTraining: function(training) {
         selectedTraining = training;
       },
-      init: function(trainings) {
+      setData: function(trainings) {
         // search the first training not yet closed, cancelled or checked
         selectedTraining = trainings[1];
         for (i = 0; i < trainings.length; i++) {
@@ -97,7 +97,7 @@ angular.module('RapidClubAdminWebClient', [])
       getFullName: function(id) {
           return map.get(id).lastname + ", " + map.get(id).firstname;
         },
-      init: function(users) {
+      setData: function(users) {
         for (i = 0; i < users.length; i++) {
           map.set(users[i].id, users[i]);
         }
@@ -114,10 +114,42 @@ angular.module('RapidClubAdminWebClient', [])
       getFullName: function(id) {
           return map.get(id).lastname + ", " + map.get(id).firstname;
         },
-      init: function(trainers) {
+      setData: function(trainers) {
         for (i = 0; i < trainers.length; i++) {
           map.set(trainers[i].id, trainers[i]);
         }
+      }
+    };
+  })
+
+  .factory('TrainingslistModel', function(Comparators) {
+    var root;
+    var trainingslistArray = [];
+    return {
+      getRoot: function() {
+        return root();
+      },
+      getTrainingslist: function() {
+        return trainingslistArray;
+      },
+      setData: function(dataRoot) {
+        // build an array of flat trainings objects combined with their parent Trainingdates
+    	trainingslistArray = [];
+        for (i = 0; i < dataRoot.club.department.trainingdate.length; i++) {
+          trainingdate = dataRoot.club.department.trainingdate[i];
+          trainingsOfTd = new Array(trainingdate.training.length);
+          for (j = 0; j < trainingdate.training.length; j++) {
+            trainingsOfTd[j] = {
+              // the Training to render
+              "training": trainingdate.training[j],
+              // the parent Trainingdate
+              "trainingdate": trainingdate,
+            };
+          }
+          trainingslistArray = trainingslistArray.concat(trainingsOfTd);
+        }
+        // sort the trainings array according to training.date and trainingdate.timestart
+        trainingslistArray = trainingslistArray.sort(Comparators.compareTrainingsAccordingToDateAndTime);
       }
     };
   })
@@ -135,39 +167,23 @@ angular.module('RapidClubAdminWebClient', [])
 // Example URL for trainer picture download
 // http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=trainerIcons/Russ_Kevin_.jpg&op=read
 
-  .controller('TrainingsListCtrl', function($scope, $http, TrainingSelector, UserModel, TrainerModel, Comparators, Helpers) {
+  .controller('TrainingsListCtrl', function($scope, $http, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators, Helpers) {
     $scope.trainingSelector = TrainingSelector;
     $scope.helpers = Helpers;
+    $scope.trainingslistModel = TrainingslistModel;
     $scope.userModel = UserModel;
     $scope.trainerModel = TrainerModel;
-    // for local test
-    $http.get('trainingslist2.json').then(function(httpResponse) {
-    // $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Aikido/trainingslist.xml&op=readj').then(function(httpResponse) {
-      $scope.trainingslist = httpResponse;
-      $scope.trainingsForTable = [];
-      $scope.userModel.init(httpResponse.data.user);
-      $scope.trainerModel.init(httpResponse.data.trainer);
-      // build an array of flat trainings objects combined with their parent Trainingdates
-      for (i = 0; i < httpResponse.data.club.department.trainingdate.length; i++) {
-        trainingdate = httpResponse.data.club.department.trainingdate[i];
-        trainingsOfTd = new Array(trainingdate.training.length);
-        for (j = 0; j < trainingdate.training.length; j++) {
-          training = trainingdate.training[j];
-          // enforce a new String copied by value in order to apply a Javascript built-in function
-          date = new String(training.date);
-          trainingsOfTd[j] = {
-            // the Training to render
-            "training": training,
-            // the parent Trainingdate
-            "trainingdate": trainingdate,
-          };
-        }
-        $scope.trainingsForTable = $scope.trainingsForTable.concat(trainingsOfTd);
+    // file URL for local test
+    // $http.get('trainingslist2.json').then(function(httpResponse) {
+    $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Aikido/trainingslist.xml&op=readj').then(function(httpResponse) {
+        $scope.trainingslistModel.setData(httpResponse.data);
+        $scope.userModel.setData(httpResponse.data.user);
+        $scope.trainerModel.setData(httpResponse.data.trainer);
+        // no effect here so we use
+        // ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
+        // in HTML code
+        // $scope.trainingSelector.setData(trainingslistModel.getTrainingslist());
       }
-      // sort the trainings array according to training.date and trainingdate.timestart
-      $scope.trainingsForTable = $scope.trainingsForTable.sort(Comparators.compareTrainingsAccordingToDateAndTime);
-      $scope.trainingSelector = TrainingSelector;
-    }
     );
   })
 ;

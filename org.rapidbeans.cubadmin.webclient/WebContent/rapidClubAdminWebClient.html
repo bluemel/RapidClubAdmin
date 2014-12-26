@@ -82,9 +82,9 @@ td {
       <tr
         ng-style="trainingSelector.getSelectedTraining().training.id === trainingForTable.training.id
           && {'background-color': '#D0E0FF'} || {'background-color': 'white'}"
-        ng-init="trainingSelector.init(trainingsForTable)"
+        ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
         ng-click="trainingSelector.setSelectedTraining(trainingForTable)"
-        ng-repeat="trainingForTable in trainingsForTable">
+        ng-repeat="trainingForTable in trainingslistModel.getTrainingslist()">
         <td>{{helpers.dayOfWeekShort(trainingForTable.trainingdate.dayofweek)}}</td>
         <td>{{helpers.formatDateGerman(trainingForTable.training.date)}}</td>
         <td>{{trainingForTable.trainingdate.timestart}}</td>
