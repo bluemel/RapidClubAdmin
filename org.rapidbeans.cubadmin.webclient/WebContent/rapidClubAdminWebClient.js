@@ -40,6 +40,10 @@ angular.module('RapidClubAdminWebClient', [])
       return dtime.slice(6, 8) + "." + dtime.slice(4, 6) + "." + dtime.slice(0, 4)
         + " " + dtime.slice(8, 10) + ":" + dtime.slice(10, 12);
     };
+    this.isArray = function(obj) {
+      prtype = Object.prototype.toString.call(obj);
+      return (prtype == '[object Array]');
+      };
   })
 
   .service("Comparators", function() {
@@ -60,8 +64,9 @@ angular.module('RapidClubAdminWebClient', [])
       },
       getSelectedTrainingHeldbytrainers: function() {
         heldbyarray = [];
-        prtype = Object.prototype.toString.call(selectedTraining.training.heldbytrainer);
-        if (prtype == '[object Array]') {
+//        prtype = Object.prototype.toString.call(selectedTraining.training.heldbytrainer);
+//        if (prtype == '[object Array]') {
+        if (Helpers.isArray(selectedTraining.training.heldbytrainer)) {
           heldbyarray = selectedTraining.training.heldbytrainer;
         } else {
           heldbyarray.push(selectedTraining.training.heldbytrainer);
@@ -144,7 +149,7 @@ angular.module('RapidClubAdminWebClient', [])
     };
   })
 
-  .factory('TrainingslistModel', function(Comparators) {
+  .factory('TrainingslistModel', function(Comparators, Helpers) {
     var root;
     var trainingslistArray = [];
     return {
@@ -156,22 +161,28 @@ angular.module('RapidClubAdminWebClient', [])
       },
       setData: function(dataRoot) {
         // build an array of flat trainings objects combined with their parent Trainingdates
-      trainingslistArray = [];
-        for (i = 0; i < dataRoot.club.department.trainingdate.length; i++) {
-          trainingdate = dataRoot.club.department.trainingdate[i];
-          trainingsOfTd = new Array(trainingdate.training.length);
-          for (j = 0; j < trainingdate.training.length; j++) {
-            trainingsOfTd[j] = {
-              // the Training to render
-              "training": trainingdate.training[j],
-              // the parent Trainingdate
-              "trainingdate": trainingdate,
-            };
+        trainingslistArray = [];
+        if (Helpers.isArray(dataRoot.club.department.trainingdate)) {
+          for (i = 0; i < dataRoot.club.department.trainingdate.length; i++) {
+            trainingslistArray = trainingslistArray.concat(this.readTrainingsOfTd(dataRoot.club.department.trainingdate[i]));
           }
-          trainingslistArray = trainingslistArray.concat(trainingsOfTd);
+        } else {
+        	trainingslistArray = trainingslistArray.concat(this.readTrainingsOfTd(dataRoot.club.department.trainingdate));
         }
         // sort the trainings array according to training.date and trainingdate.timestart
         trainingslistArray = trainingslistArray.sort(Comparators.compareTrainingsAccordingToDateAndTime);
+      },
+      readTrainingsOfTd: function(trainingdate) {
+        trainingsOfTd = new Array(trainingdate.training.length);
+        for (j = 0; j < trainingdate.training.length; j++) {
+          trainingsOfTd[j] = {
+            // the Training to render
+            "training": trainingdate.training[j],
+            // the parent Trainingdate
+            "trainingdate": trainingdate,
+          };
+        }
+        return trainingsOfTd;
       }
     };
   })
@@ -186,9 +197,9 @@ angular.module('RapidClubAdminWebClient', [])
         // example URLfor browser test
         // $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Haidong%20Gumdo/trainingslist.xml&op=readj').then(function(httpResponse) {
         // file URL for local test
-        // $http.get('trainingslist'
-        //  + $scope.departmentSelector.getSelectedDepartment()
-        //  + '.json').then(function(httpResponse) {
+//        $http.get('trainingslist'
+//          + $scope.departmentSelector.getSelectedDepartment()
+//          + '.json').then(function(httpResponse) {
         $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/'
             + $scope.departmentSelector.getSelectedDepartment()
             + '/trainingslist.xml&op=readj').then(function(httpResponse) {
