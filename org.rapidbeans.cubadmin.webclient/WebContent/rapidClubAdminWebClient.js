@@ -42,6 +42,16 @@ angular.module('RapidClubAdminWebClient', [])
     };
   })
 
+  .service("Comparators", function() {
+    // compare two training table entries
+    this.compareTrainingsAccordingToDateAndTime = function (t1, t2) {
+      if (t1.date - t2.date != 0) {
+        return t1.training.date - t2.training.date;
+      }
+      return t1.trainingdate.timestart - t2.trainingdate.timestart;
+    };
+  })
+
 .factory('TrainingSelector', function(Helpers) {
     var selectedTraining;
     return {
@@ -85,6 +95,18 @@ angular.module('RapidClubAdminWebClient', [])
           }
         }
       },
+    };
+  })
+
+.factory('DepartmentSelector', function(Helpers) {
+    var selectedDepartment = 'Judo';
+    return {
+      getSelectedDepartment: function() {
+        return selectedDepartment;
+      },
+      setSelectedDepartment: function(department) {
+        selectedDepartment = department;
+      }
     };
   })
 
@@ -134,7 +156,7 @@ angular.module('RapidClubAdminWebClient', [])
       },
       setData: function(dataRoot) {
         // build an array of flat trainings objects combined with their parent Trainingdates
-    	trainingslistArray = [];
+      trainingslistArray = [];
         for (i = 0; i < dataRoot.club.department.trainingdate.length; i++) {
           trainingdate = dataRoot.club.department.trainingdate[i];
           trainingsOfTd = new Array(trainingdate.training.length);
@@ -154,36 +176,39 @@ angular.module('RapidClubAdminWebClient', [])
     };
   })
 
-  .service("Comparators", function() {
-    // compare two training table entries
-    this.compareTrainingsAccordingToDateAndTime = function (t1, t2) {
-      if (t1.date - t2.date != 0) {
-        return t1.training.date - t2.training.date;
-      }
-      return t1.trainingdate.timestart - t2.trainingdate.timestart;
-    };
-  })
-
 // Example URL for trainer picture download
 // http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=trainerIcons/Russ_Kevin_.jpg&op=read
 
-  .controller('TrainingsListCtrl', function($scope, $http, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators, Helpers) {
+  .controller('TrainingsListCtrl', function($scope, $http, DepartmentSelector, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators, Helpers) {
+
+    $scope.loadTrainingslist = function (department) {
+        $scope.departmentSelector.setSelectedDepartment(department);
+        // example URLfor browser test
+        // $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Haidong%20Gumdo/trainingslist.xml&op=readj').then(function(httpResponse) {
+        // file URL for local test
+        // $http.get('trainingslist'
+        //  + $scope.departmentSelector.getSelectedDepartment()
+        //  + '.json').then(function(httpResponse) {
+        $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/'
+            + $scope.departmentSelector.getSelectedDepartment()
+            + '/trainingslist.xml&op=readj').then(function(httpResponse) {
+            $scope.trainingslistModel.setData(httpResponse.data);
+            $scope.userModel.setData(httpResponse.data.user);
+            $scope.trainerModel.setData(httpResponse.data.trainer);
+            // no effect here so we use
+            // ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
+            // in HTML code
+            // $scope.trainingSelector.setData(trainingslistModel.getTrainingslist());
+          }
+        );
+      };
+
+    $scope.departmentSelector = DepartmentSelector;
     $scope.trainingSelector = TrainingSelector;
     $scope.helpers = Helpers;
     $scope.trainingslistModel = TrainingslistModel;
     $scope.userModel = UserModel;
     $scope.trainerModel = TrainerModel;
-    // file URL for local test
-    // $http.get('trainingslist2.json').then(function(httpResponse) {
-    $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Aikido/trainingslist.xml&op=readj').then(function(httpResponse) {
-        $scope.trainingslistModel.setData(httpResponse.data);
-        $scope.userModel.setData(httpResponse.data.user);
-        $scope.trainerModel.setData(httpResponse.data.trainer);
-        // no effect here so we use
-        // ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
-        // in HTML code
-        // $scope.trainingSelector.setData(trainingslistModel.getTrainingslist());
-      }
-    );
+    $scope.loadTrainingslist('Aikido');
   })
 ;
