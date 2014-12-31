@@ -20,33 +20,17 @@ How to set up the development environment for RapidClubAdmin:
      The folder where you place all 3rd-party Java librairies
      used for this project
 
-2) Install Subversion and check out code base
+2) Install Git and check out code base
 
-  2.1) Subversion:
-    purpose: version control
-    version: 1.5.0, maybe earlier or later versions are also possible.
-    installation: via Subversion installer
-    installation location: anywhere you want
-    Project URL: http://svn.tigris.org
-    Dowload URL: 
-    remarks:
-      - command "svn" should be in you command path after
-        installation
-      - Windows users may (additionally or alternatively) install the
-        Tortoise Client
-        http://tortoise.tigris.org
-
-  2.2) Checkout the code base from subversion:
-   https://svnbroy.informatik.tu-muenchen.de/hummelb/bci
-   Local folder could be named ~/RapidbeansProjects
-
+   GitHub home is here: https://github.com/bluemel/RapidClubAdmin
+   To clone the project use
+      $ git clone https://github.com/bluemel/RapidClubAdmin.git
 
 3) Install Java Tools and 3rd-party libraries needed
 
 
   3.1)
      Java Tools
-
 
     3.1.1) JDK
       purpose: Jave Development Kit containing:
