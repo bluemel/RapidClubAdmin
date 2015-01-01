@@ -37,8 +37,12 @@ angular.module('RapidClubAdminWebClient', [])
       return date.slice(6, 8) + "." + date.slice(4, 6) + "." + date.slice(0, 4);
     };
     this.formatDateTimeGerman = function(dtime) {
-      return dtime.slice(6, 8) + "." + dtime.slice(4, 6) + "." + dtime.slice(0, 4)
-        + " " + dtime.slice(8, 10) + ":" + dtime.slice(10, 12);
+      if (dtime) {
+        return dtime.slice(6, 8) + "." + dtime.slice(4, 6) + "." + dtime.slice(0, 4)
+          + " " + dtime.slice(8, 10) + ":" + dtime.slice(10, 12);
+      } else {
+        return '';
+      }
     };
     this.isArray = function(obj) {
       prtype = Object.prototype.toString.call(obj);
