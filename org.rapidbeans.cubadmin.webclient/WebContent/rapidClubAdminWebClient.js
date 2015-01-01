@@ -206,12 +206,12 @@ angular.module('RapidClubAdminWebClient', [])
         // example URLfor browser test
         // $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Haidong%20Gumdo/trainingslist.xml&op=readj').then(function(httpResponse) {
         // file URL for local test
-        $http.get('data/trainingslist'
-          + $scope.departmentSelector.getSelectedDepartment()
-          + '.json').then(function(httpResponse) {
-//        $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/'
-//            + $scope.departmentSelector.getSelectedDepartment()
-//            + '/trainingslist.xml&op=readj').then(function(httpResponse) {
+//        $http.get('data/trainingslist'
+//          + $scope.departmentSelector.getSelectedDepartment()
+//          + '.json').then(function(httpResponse) {
+        $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/'
+            + $scope.departmentSelector.getSelectedDepartment()
+            + '/trainingslist.xml&op=readj').then(function(httpResponse) {
             $scope.trainingslistModel.setData(httpResponse.data);
             $scope.userModel.setData(httpResponse.data.user);
             $scope.trainerModel.setData(httpResponse.data.trainer);
