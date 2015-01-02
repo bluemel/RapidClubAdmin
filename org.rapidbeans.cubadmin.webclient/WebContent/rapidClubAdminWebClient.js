@@ -61,7 +61,7 @@ angular.module('RapidClubAdminWebClient', [])
   })
 
 .factory('TrainingSelector', function(Helpers) {
-    var selectedTraining;
+    var selectedTraining = null;
     return {
       getSelectedTraining: function() {
         return selectedTraining;
@@ -95,6 +95,7 @@ angular.module('RapidClubAdminWebClient', [])
       setData: function(trainings) {
         // search the first training not yet closed, cancelled or checked
         selectedTraining = trainings[1];
+        var i;
         for (i = 0; i < trainings.length; i++) {
           if (trainings[i].training.state != 'closed'
             && trainings[i].training.state != 'cancelled'
@@ -119,40 +120,69 @@ angular.module('RapidClubAdminWebClient', [])
     };
   })
 
-  .factory('UserModel', function() {
-    var map = new Map();
+  .factory('UserModel', function(Helpers) {
+    var userMap = new Map();
     return {
       findById: function(id) {
-        return map.get(id);
+        return userMap.get(id);
       },
       getFullName: function(id) {
-    	  user = map.get(id);
-    	  if (!user) {
-            return '';
-    	  } else {
-            return user.lastname + ", " + user.firstname;
-    	  }
-        },
+        if (!id) {
+          return '';
+        }
+        user = userMap.get(id);
+        if (!user) {
+          return 'ERROR: unknown user "' + id + '"';
+        } else {
+          return user.lastname + ", " + user.firstname;
+        }
+      },
       setData: function(users) {
-        for (i = 0; i < users.length; i++) {
-          map.set(users[i].id, users[i]);
+    	userMap.clear();
+        if (!users) {
+          return;
+        }
+        if (Helpers.isArray(users)) {
+          var i;
+          for (i = 0; i < users.length; i++) {
+            userMap.set(users[i].id, users[i]);
+          }
+        } else {
+          userMap.set(users.id, users);
         }
       }
     };
   })
 
-  .factory('TrainerModel', function() {
-    var map = new Map();
+  .factory('TrainerModel', function(Helpers) {
+    var trainerMap = new Map();
     return {
       findById: function(id) {
-        return map.get(id);
+        return trainerMap.get(id);
       },
       getFullName: function(id) {
-          return map.get(id).lastname + ", " + map.get(id).firstname;
-        },
+        if (!id) {
+          return '';
+        }
+        trainer = trainerMap.get(id);
+        if (!trainer) {
+          return 'ERROR: unknown trainer "' + id + '"';
+        } else {
+          return trainer.lastname + ", " + trainer.firstname;
+        }
+      },
       setData: function(trainers) {
-        for (i = 0; i < trainers.length; i++) {
-          map.set(trainers[i].id, trainers[i]);
+      	trainerMap.clear();
+        if (!trainers) {
+          return;
+        }
+        if (Helpers.isArray(trainers)) {
+          var i;
+          for (i = 0; i < trainers.length; i++) {
+            trainerMap.set(trainers[i].id, trainers[i]);
+          }
+        } else {
+          trainerMap.set(trainers.id, trainers);
         }
       }
     };
@@ -172,6 +202,7 @@ angular.module('RapidClubAdminWebClient', [])
         // build an array of flat trainings objects combined with their parent Trainingdates
         trainingslistArray = [];
         if (Helpers.isArray(dataRoot.club.department.trainingdate)) {
+          var i;
           for (i = 0; i < dataRoot.club.department.trainingdate.length; i++) {
             trainingslistArray = trainingslistArray.concat(this.readTrainingsOfTd(dataRoot.club.department.trainingdate[i]));
           }
@@ -183,6 +214,7 @@ angular.module('RapidClubAdminWebClient', [])
       },
       readTrainingsOfTd: function(trainingdate) {
         trainingsOfTd = new Array(trainingdate.training.length);
+        var j;
         for (j = 0; j < trainingdate.training.length; j++) {
           trainingsOfTd[j] = {
             // the Training to render
@@ -209,7 +241,7 @@ angular.module('RapidClubAdminWebClient', [])
 //        $http.get('data/trainingslist'
 //          + $scope.departmentSelector.getSelectedDepartment()
 //          + '.json').then(function(httpResponse) {
-        $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/'
+          $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/'
             + $scope.departmentSelector.getSelectedDepartment()
             + '/trainingslist.xml&op=readj').then(function(httpResponse) {
             $scope.trainingslistModel.setData(httpResponse.data);
