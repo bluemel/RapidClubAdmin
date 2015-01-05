@@ -94,7 +94,7 @@ angular.module('RapidClubAdminWebClient', [])
       },
       setData: function(trainings) {
         // search the first training not yet closed, cancelled or checked
-        selectedTraining = trainings[1];
+        selectedTraining = null;
         var i;
         for (i = 0; i < trainings.length; i++) {
           if (trainings[i].training.state != 'closed'
@@ -211,6 +211,9 @@ angular.module('RapidClubAdminWebClient', [])
         }
         // sort the trainings array according to training.date and trainingdate.timestart
         trainingslistArray = trainingslistArray.sort(Comparators.compareTrainingsAccordingToDateAndTime);
+        for (i = 0; i < trainingslistArray.length; i++) {
+          trainingslistArray[i].index = i;
+        }
       },
       readTrainingsOfTd: function(trainingdate) {
         trainingsOfTd = new Array(trainingdate.training.length);
@@ -221,6 +224,7 @@ angular.module('RapidClubAdminWebClient', [])
             "training": trainingdate.training[j],
             // the parent Trainingdate
             "trainingdate": trainingdate,
+            "index": -1
           };
         }
         return trainingsOfTd;
@@ -231,9 +235,10 @@ angular.module('RapidClubAdminWebClient', [])
 // Example URL for trainer picture download
 // http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=trainerIcons/Russ_Kevin_.jpg&op=read
 
-  .controller('TrainingsListCtrl', function($scope, $http, DepartmentSelector, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators, Helpers) {
+  .controller('TrainingsListCtrl', function($scope, $http, $timeout, DepartmentSelector, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators, Helpers) {
 
     $scope.loadTrainingslist = function (department) {
+        $('#trainingstable').perfectScrollbar({minScrollbarLength:30});
         $scope.departmentSelector.setSelectedDepartment(department);
         // example URLfor browser test
         // $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Haidong%20Gumdo/trainingslist.xml&op=readj').then(function(httpResponse) {
@@ -253,7 +258,18 @@ angular.module('RapidClubAdminWebClient', [])
             // $scope.trainingSelector.setData(trainingslistModel.getTrainingslist());
           }
         );
+        $timeout($scope.updateScrollbar, 200);
       };
+
+    $scope.updateScrollbar = function(){
+      var selectedTraining = $scope.trainingSelector.getSelectedTraining();
+      if (selectedTraining) {
+        $("#trainingstable").scrollTop(selectedTraining.index * 30);
+      } else {
+        $("#trainingstable").scrollTop(0);
+      }
+      $('#trainingstable').perfectScrollbar('update');
+    }
 
     $scope.departmentSelector = DepartmentSelector;
     $scope.trainingSelector = TrainingSelector;
