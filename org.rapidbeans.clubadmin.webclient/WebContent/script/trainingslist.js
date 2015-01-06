@@ -223,28 +223,28 @@ angular.module('rcaTrainingsList', [])
   .controller('TrainingsListCtrl', function($scope, $http, $timeout, DepartmentSelector, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators, Helpers) {
 
     $scope.loadTrainingslist = function (department) {
-        $('#trainingstable').perfectScrollbar({minScrollbarLength:30});
-        $scope.departmentSelector.setSelectedDepartment(department);
-        // example URLfor browser test
-        // $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=current/Haidong%20Gumdo/trainingslist.xml&op=readj').then(function(httpResponse) {
-        // file URL for local test
-//        $http.get('data/trainingslist'
-//          + $scope.departmentSelector.getSelectedDepartment()
-//          + '.json').then(function(httpResponse) {
-          $http.get('http://trainer.budo-club-ismaning.de/rapidclubadmintest/fileio.php?password=musashi09&file=current/'
-            + $scope.departmentSelector.getSelectedDepartment()
-            + '/trainingslist.xml&op=readj').then(function(httpResponse) {
-            $scope.trainingslistModel.setData(httpResponse.data);
-            $scope.userModel.setData(httpResponse.data.user);
-            $scope.trainerModel.setData(httpResponse.data.trainer);
-            // no effect here so we use
-            // ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
-            // in HTML code
-            // $scope.trainingSelector.setData(trainingslistModel.getTrainingslist());
-          }
-        );
-        $timeout($scope.updateScrollbar, 200);
-      };
+      $('#trainingstable').perfectScrollbar({minScrollbarLength:30});
+      $scope.departmentSelector.setSelectedDepartment(department);
+      // example URLfor browser test
+      // $http.get('fileio.php?password=musashi09&file=current/Haidong%20Gumdo/trainingslist.xml&op=readj').then(function(httpResponse) {
+      // file URL for local test
+//      $http.get('data/trainingslist'
+//        + $scope.departmentSelector.getSelectedDepartment()
+//        + '.json').then(function(httpResponse) {
+        $http.get('fileio.php?password=musashi09&file=current/'
+          + $scope.departmentSelector.getSelectedDepartment()
+          + '/trainingslist.xml&op=readj').then(function(httpResponse) {
+          $scope.trainingslistModel.setData(httpResponse.data);
+          $scope.userModel.setData(httpResponse.data.user);
+          $scope.trainerModel.setData(httpResponse.data.trainer);
+          // no effect here so we use
+          // ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
+          // in HTML code
+          // $scope.trainingSelector.setData(trainingslistModel.getTrainingslist());
+        }
+      );
+      $timeout($scope.updateScrollbar, 200);
+    };
 
     $scope.updateScrollbar = function(){
       var selectedTraining = $scope.trainingSelector.getSelectedTraining();
@@ -254,7 +254,7 @@ angular.module('rcaTrainingsList', [])
         $("#trainingstable").scrollTop(0);
       }
       $('#trainingstable').perfectScrollbar('update');
-    }
+    };
 
     $scope.departmentSelector = DepartmentSelector;
     $scope.trainingSelector = TrainingSelector;
