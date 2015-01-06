@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-md-6 col-md-offset-3">
+			<div
+				style="margin-top: 40px; padding: 30px; background: #eee; border-radius: 10px;">
+				<h1>Trainingsverwaltung</h1>
+				<form name="loginForm" novalidate>
+					<div class="form-group">
+						<label for="inputUser">Anwender</label> <input
+							ng-model="loginData.username" type="text" class="form-control"
+							id="inputUser" required placeholder="Anwender">
+					</div>
+					<div class="form-group">
+						<label for="inputPassword">Passwort</label> <input
+							ng-model="loginData.password" required type="password"
+							class="form-control" id="inputPassword" placeholder="Passwort">
+					</div>
+					<button ng-disabled="loginForm.$invalid" ng-click="login()"
+						class="btn btn-default">Anmelden</button>
+					<div ng-show="error" class="alert alert-danger">
+						<strong>Fehler:</strong> Ungültiger Benutzer oder falsches
+						Passwort!
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

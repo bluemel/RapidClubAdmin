@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html ng-app="RapidClubAdminWebClient">
+
+<head>
+<meta charset="utf8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>RapidClubAdmin Web Client</title>
+
+<link rel="stylesheet"
+	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
+<link rel="stylesheet" href="css/perfect-scrollbar-0.5.8.min.css"></link>
+<link rel="stylesheet" href="css/rapidClubAdmin.css"></link>
+
+<script src="http://code.jquery.com/jquery-1.11.2.js"></script>
+<script src="script/perfect-scrollbar-0.5.8.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+
+<script src="script/main.js"></script>
+<script src="script/trainingslist.js"></script>
+<script src="script/login.js"></script>
+
+</head>
+
+<body ng-controller="loginBranchCtrl">
+	<ng-switch on="loginTarget">
+	<div ng-switch-when="login">
+		<ng-include src="'html/login.html'"></ng-include>
+	</diV>
+
+	<div ng-switch-when="trainingslist">
+		<ng-include src="'html/nav.html'"></ng-include>
+		<ng-include src="'html/trainingslist.html'"></ng-include>
+	</diV>
+
+	<div ng-switch-default>
+		<div class="container">
+			<div class="row">
+				<div class="well" style="text-align: center; padding: 60px;">
+					<h1>Anwendung wird geladen...</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	</ng-switch>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-angular.module('RapidClubAdminWebClient', [])
+angular.module('rcaTrainingsList', [])
 
 .service("Helpers", function() {
     // map a dayofweek to its short representation
