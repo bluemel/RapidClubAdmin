@@ -1,20 +1,32 @@
 td {
-  padding: 2px;
+	padding: 2px;
 }
 
 .ps-container>.ps-scrollbar-y-rail {
-  width: 15px;
+	width: 15px;
 }
 
 .ps-container>.ps-scrollbar-y-rail>.ps-scrollbar-y {
-  width: 15px;
+	width: 15px;
 }
 
-#trainingstable {
-  overflow: hidden;
-  position: relative;
-  width: 600px;
-  height: 250px;
-  border: 1px solid #000000;
-  margin-left: 5px;
+.training-edit-area,.trainingslist-selector {
+	height: 550px;
+	border: 1px solid #888;
+	overflow: auto;
+}
+
+.first-column-bold td:first-child {
+	font-weight: bold;
+	background: #eee;
+}
+
+.trainer-icon {
+	display: inline-block;
+	background: #ddd;
+	border-radius: 5px;
+	margin: 10px;
+	padding: 10px;
+	text-align: center;
+	white-space: nowrap;
 }

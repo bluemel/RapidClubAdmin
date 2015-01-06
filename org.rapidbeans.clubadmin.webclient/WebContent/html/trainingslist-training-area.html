@@ -1,0 +1,46 @@
+<div class="training-edit-area">
+	<table class="table">
+		<tbody class="first-column-bold">
+			<tr>
+				<td>Training</td>
+				<td>{{trainingSelector.getSelectedTrainingTitle()}}</td>
+			</tr>
+			<tr>
+				<td>Anzahl Teilnehmer</td>
+				<td>{{trainingSelector.getSelectedTraining().training.partipiciantscount}}</td>
+			</tr>
+			<tr>
+				<td>Status</td>
+				<td>{{trainingSelector.getSelectedTrainingState()}}</td>
+			</tr>
+			<tr>
+				<td>Bestätigt durch</td>
+				<td>{{userModel.getFullName(trainingSelector.getSelectedTraining().training.checkedByUser)}}</td>
+			</tr>
+			<tr>
+				<td>Bestätigt am</td>
+				<td>{{helpers.formatDateTimeGerman(trainingSelector.getSelectedTraining().training.checkedDate)}}</td>
+			</tr>
+			<tr>
+				<td>Notizen</td>
+				<td>
+					<div>
+						<textarea class="form-control" rows="7" disabled>{{trainingSelector.getSelectedTraining().training.notes}}</textarea>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="background: white;">
+					<div class="trainer-icon"
+						ng-repeat="heldby in trainingSelector.getSelectedTrainingHeldbytrainers()">
+						<div>{{heldby.role}}</div>
+						<div>
+							<img width="70px" height="70px" src="img/person.png">
+						</div>
+						<div>{{trainerModel.getFullName(heldby.trainer)}}</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

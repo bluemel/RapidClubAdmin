@@ -1,126 +1,26 @@
-<div ng-controller="TrainingsListCtrl">
+<div class="container" ng-controller="TrainingsListCtrl">
 
-  <div class='body'>
-  <table>
-    <tr>
-      <td style="padding:10px;">
-        <button ng-click="loadTrainingslist('Aikido')">
-          <img width="52px" height="52px" src="data/trainerIcons/Department_Budo-Club%20Ismaning_Aikido.bmp"/>
-        </button>
-      </td>
-      <td style="padding:10px;">
-        <button ng-click="loadTrainingslist('Chanbara')">
-          <img width="52px" height="52px" src="data/trainerIcons/Department_Budo-Club%20Ismaning_Chanbara.bmp"></img>
-        </button>
-      </td>
-      <td style="padding:10px;">
-        <button ng-click="loadTrainingslist('Grundschule')">
-          <img width="52px" height="52px" src="data/trainerIcons/Department_Budo-Club%20Ismaning_Grundschule.bmp"></img>
-        </button>
-      </td>
-      <td style="padding:10px;">
-        <button ng-click="loadTrainingslist('Haidong Gumdo')">
-          <img width="52px" height="52px" src="data/trainerIcons/Department_Budo-Club%20Ismaning_Haidong%20Gumdo.jpg"></img>
-        </button>
-      </td>
-      <td style="padding:10px;">
-        <button ng-click="loadTrainingslist('Judo')">
-          <img width="52px" height="52px" src="data/trainerIcons/Department_Budo-Club%20Ismaning_Judo.bmp"></img>
-        </button>
-      </td>
-      <td style="padding:10px;">
-        <button ng-click="loadTrainingslist('Tang Soo Do')">
-          <img width="52px" height="52px" src="data/trainerIcons/Department_Budo-Club%20Ismaning_Tang%20Soo%20Do.bmp"></img>
-        </button>
-      </td>
-    </tr>
-  </table>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="btn-group">
+				<button class="btn" ng-disabled="dep == departmentSelector.getSelectedDepartment()"
+					ng-class="dep == departmentSelector.getSelectedDepartment() ? 'btn-primary' : 'btn-info'"
+					ng-repeat="dep in ['Aikido', 'Chanbara', 'Grundschule', 'Haidong Gumdo', 'Judo', 'Tang Soo Do']"
+					ng-click="loadTrainingslist(dep)">
+					<img width="32px" height="32px"
+						src="data/trainerIcons/Department_Budo-Club%20Ismaning_{{dep}}.png"> 
+					{{dep}}
+				</button>
+			</div>
+		</div>
+	</div>
 
-  <div style="height:150px; width:600px;">
-    <table>
-      <tr>
-        <td nowrap><b>Training</b></td>
-        <td>{{trainingSelector.getSelectedTrainingTitle()}}</td>
-      </tr>
-      <tr>
-        <td nowrap><b>Anzahl Teilnehmer</b></td>
-        <td>{{trainingSelector.getSelectedTraining().training.partipiciantscount}}</td>
-      </tr>
-      <tr>
-        <td nowrap><b>Status</b></td>
-        <td>{{trainingSelector.getSelectedTrainingState()}}</td>
-      </tr>
-      <tr>
-        <td nowrap><b>Best&auml;tigt durch</b></td>
-        <td>{{userModel.getFullName(trainingSelector.getSelectedTraining().training.checkedByUser)}}</td>
-      </tr>
-      <tr>
-        <td nowrap><b>Best&auml;tigt am</b></td>
-        <td>{{helpers.formatDateTimeGerman(trainingSelector.getSelectedTraining().training.checkedDate)}}</td>
-      </tr>
-      <tr>
-        <td nowrap><b>Notizen</b></td>
-        <td>
-          <div ng-switch on="trainingSelector.getSelectedTraining().training.notes">
-            <textarea rows="2" cols="70" disabled>{{trainingSelector.getSelectedTraining().training.notes}}</textarea>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <table>
-            <tr>
-            <td ng-repeat="heldby in trainingSelector.getSelectedTrainingHeldbytrainers()">
-              <p style="margin-left:20px;" align="center">{{heldby.role}}</p>
-              <img style="margin-left:20px;" width="70px" height="70px" src="img/person.png"/>
-              <p style="margin-left:20px;" align="center">{{trainerModel.getFullName(heldby.trainer)}}</p>
-            </td>
-          </tr>
-        </td>
-      </tr>
-    </table>
-  </div>
-
-  <table width="580px" border="0" cellspacing="1" cellpadding="2">
-    <thead>
-      <tr>
-        <th width="5px"></th>
-        <th width="40px">Tag</th>
-        <th width="110px">Datum</th>
-        <th width="70px">Beginn</th>
-        <th width="280px">Training</th>
-        <th>Zustand</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
-
-  <div id="trainingstable">
-  <table width="580px" border="0" cellspacing="1" cellpadding="2">
-    <tbody>
-      <tr
-        ng-style="trainingSelector.getSelectedTraining().training.id === trainingForTable.training.id
-          && {'background-color': '#D0E0FF'} || {'background-color': 'white'}"
-        ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
-        ng-click="trainingSelector.setSelectedTraining(trainingForTable)"
-        ng-repeat="trainingForTable in trainingslistModel.getTrainingslist()">
-        <td>{{helpers.dayOfWeekShort(trainingForTable.trainingdate.dayofweek)}}</td>
-        <td>{{helpers.formatDateGerman(trainingForTable.training.date)}}</td>
-        <td>{{trainingForTable.trainingdate.timestart}}</td>
-        <td>{{trainingForTable.trainingdate.name}}</td>
-        <td style="text-indent:10px;">
-          <div ng-switch on="trainingForTable.training.state">
-            <div ng-switch-when="asplanned"><img src="img/training0Default.png"></div>
-            <div ng-switch-when="modified"><img src="img/training1InWork.png"></div>
-            <div ng-switch-when="checked"><img src="img/training2Checked.png"></div>
-            <div ng-switch-when="cancelled"><img src="img/training3Cancelled.png"></img></div>
-            <div ng-switch-when="closed"><img src="img/training4Closed.png"></img></div>
-            <div ng-switch-default>??{{trainingForTable.training.state}}??<div>
-          </div>
-        </td>
-       </tr>
-    </tbody>
-  </table>
-  </div>
+	<div class="row" style="margin-top: 20px">
+		<div class="col-xs-12 col-sm-4">
+			<ng-include src="'html/trainingslist-selection-table.html'"></ng-include>
+		</div>
+		<div class="col-xs-12 col-sm-8">
+			<ng-include src="'html/trainingslist-training-area.html'"></ng-include>
+		</div>
+	</div>
 </div>

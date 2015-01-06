@@ -18,6 +18,15 @@ angular.module('rcaTrainingsList', [])
 // checked training2Checked.png
 // cancelled training3Cancelled.png
 // closed training4Closed.png
+      this.stateImageName = function(state) {
+    	return {
+    		asplanned : 'training0Default.png',
+    		modified : 'training1InWork.png',
+    		checked : 'training2Checked.png',
+    		cancelled : 'training3Cancelled.png',
+    		closed : 'training4Closed.png'
+    	}[state] || 'unknown.png';  
+      };
     this.stateToDescriptionShort = function(state) {
     	return {
     		asplanned: 'Betreuung gemäß Planung',
@@ -223,7 +232,7 @@ angular.module('rcaTrainingsList', [])
   .controller('TrainingsListCtrl', function($scope, $http, $timeout, DepartmentSelector, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators, Helpers) {
 
     $scope.loadTrainingslist = function (department) {
-      $('#trainingstable').perfectScrollbar({minScrollbarLength:30});
+      // $('#trainingstable').perfectScrollbar({minScrollbarLength:30});
       $scope.departmentSelector.setSelectedDepartment(department);
       // example URLfor browser test
       // $http.get('fileio.php?password=musashi09&file=current/Haidong%20Gumdo/trainingslist.xml&op=readj').then(function(httpResponse) {
