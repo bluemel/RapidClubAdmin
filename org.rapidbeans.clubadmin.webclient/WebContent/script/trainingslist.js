@@ -3,17 +3,15 @@ angular.module('rcaTrainingsList', [])
 .service("Helpers", function() {
     // map a dayofweek to its short representation
     this.dayOfWeekShort = function(dayofweek) {
-        if (dayofweek == 'monday') {
-          return 'MO';
-        } else if (dayofweek == 'tuesday') {
-          return 'DI';
-        } else if (dayofweek == 'wednesday') {
-          return 'MI';
-        } else if (dayofweek == 'thursday') {
-          return 'DO';
-        } else if (dayofweek == 'friday') {
-          return 'FR';
-        }
+    	return {
+    		monday: 'MO',
+    		tuesday : 'DI',
+    		wednesday : 'MI',
+    		thursday : 'DO',
+    		friday : 'FR',
+    		saturday: 'SA',
+    		sunday: 'SO'
+    	}[dayofweek];
       };
 // asplanned training0Default.png
 // modified training1InWork.png
@@ -21,42 +19,31 @@ angular.module('rcaTrainingsList', [])
 // cancelled training3Cancelled.png
 // closed training4Closed.png
     this.stateToDescriptionShort = function(state) {
-      if (state == 'asplanned') {
-          return 'Betreuung gemäß Planung';
-        } else if (state == 'modified') {
-          return 'Betreuung geändert';
-        } else if (state == 'checked') {
-          return 'Betreuung bestätigt';
-        } else if (state == 'cancelled') {
-          return 'Training abgesagt';
-        } else if (state == 'closed') {
-          return 'Trainingsort geschlossen';
-        }
+    	return {
+    		asplanned: 'Betreuung gemäß Planung',
+    		modified: 'Betreuung geändert',
+    		checked: 'Betreuung bestätigt',
+    		cancelled: 'Training abgesagt',
+    		closed: 'Trainingsort geschlossen'
+    	}[state];
       };
     this.formatDateGerman = function(date) {
       return date.slice(6, 8) + "." + date.slice(4, 6) + "." + date.slice(0, 4);
     };
     this.formatDateTimeGerman = function(dtime) {
       if (dtime) {
-        return dtime.slice(6, 8) + "." + dtime.slice(4, 6) + "." + dtime.slice(0, 4)
-          + " " + dtime.slice(8, 10) + ":" + dtime.slice(10, 12);
+        return this.formatDateGerman(dtime) + " " + dtime.slice(8, 10) + ":" + dtime.slice(10, 12);
       } else {
         return '';
       }
     };
-    this.isArray = function(obj) {
-      prtype = Object.prototype.toString.call(obj);
-      return (prtype == '[object Array]');
-      };
   })
 
   .service("Comparators", function() {
     // compare two training table entries
     this.compareTrainingsAccordingToDateAndTime = function (t1, t2) {
-      if (t1.date - t2.date != 0) {
-        return t1.training.date - t2.training.date;
-      }
-      return t1.trainingdate.timestart - t2.trainingdate.timestart;
+        return t1.training.date - t2.training.date || 
+        	t1.trainingdate.timestart - t2.trainingdate.timestart;
     };
   })
 
@@ -68,9 +55,7 @@ angular.module('rcaTrainingsList', [])
       },
       getSelectedTrainingHeldbytrainers: function() {
         heldbyarray = [];
-//        prtype = Object.prototype.toString.call(selectedTraining.training.heldbytrainer);
-//        if (prtype == '[object Array]') {
-        if (Helpers.isArray(selectedTraining.training.heldbytrainer)) {
+        if (angular.isArray(selectedTraining.training.heldbytrainer)) {
           heldbyarray = selectedTraining.training.heldbytrainer;
         } else {
           heldbyarray.push(selectedTraining.training.heldbytrainer);
@@ -108,7 +93,7 @@ angular.module('rcaTrainingsList', [])
     };
   })
 
-.factory('DepartmentSelector', function(Helpers) {
+.factory('DepartmentSelector', function() {
     var selectedDepartment = 'Judo';
     return {
       getSelectedDepartment: function() {
@@ -120,7 +105,7 @@ angular.module('rcaTrainingsList', [])
     };
   })
 
-  .factory('UserModel', function(Helpers) {
+  .factory('UserModel', function() {
     var userMap = new Map();
     return {
       findById: function(id) {
@@ -142,7 +127,7 @@ angular.module('rcaTrainingsList', [])
         if (!users) {
           return;
         }
-        if (Helpers.isArray(users)) {
+        if (angular.isArray(users)) {
           var i;
           for (i = 0; i < users.length; i++) {
             userMap.set(users[i].id, users[i]);
@@ -154,7 +139,7 @@ angular.module('rcaTrainingsList', [])
     };
   })
 
-  .factory('TrainerModel', function(Helpers) {
+  .factory('TrainerModel', function() {
     var trainerMap = new Map();
     return {
       findById: function(id) {
@@ -176,7 +161,7 @@ angular.module('rcaTrainingsList', [])
         if (!trainers) {
           return;
         }
-        if (Helpers.isArray(trainers)) {
+        if (angular.isArray(trainers)) {
           var i;
           for (i = 0; i < trainers.length; i++) {
             trainerMap.set(trainers[i].id, trainers[i]);
@@ -188,7 +173,7 @@ angular.module('rcaTrainingsList', [])
     };
   })
 
-  .factory('TrainingslistModel', function(Comparators, Helpers) {
+  .factory('TrainingslistModel', function(Comparators) {
     var root;
     var trainingslistArray = [];
     return {
@@ -201,7 +186,7 @@ angular.module('rcaTrainingsList', [])
       setData: function(dataRoot) {
         // build an array of flat trainings objects combined with their parent Trainingdates
         trainingslistArray = [];
-        if (Helpers.isArray(dataRoot.club.department.trainingdate)) {
+        if (angular.isArray(dataRoot.club.department.trainingdate)) {
           var i;
           for (i = 0; i < dataRoot.club.department.trainingdate.length; i++) {
             trainingslistArray = trainingslistArray.concat(this.readTrainingsOfTd(dataRoot.club.department.trainingdate[i]));
