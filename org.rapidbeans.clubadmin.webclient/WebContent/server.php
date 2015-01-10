@@ -1,5 +1,6 @@
 <?php
 
+
 // we always return JSON (unless there is an error)
 header('Content-Type: application/json');
 
@@ -24,8 +25,8 @@ class User {
 	public function getAuthenticationHash() {
 		return sha1($this->username . ':' . $this->passwordHash);
 	}
-	
-	public function matchesPassword ($password) {
+
+	public function matchesPassword($password) {
 		error_log("PW : $password");
 		error_log("Expected Hash : $this->passwordHash");
 		error_log("Actual Hash : " . base64_encode(sha1($password, true)));
@@ -45,14 +46,14 @@ function loadUser($username) {
 	if ($masterdata === FALSE) {
 		error('Could not load masterdata.xml!');
 	}
-	
+
 	$xml = new SimpleXMLElement($masterdata);
-	foreach($xml->user as $user) {
+	foreach ($xml->user as $user) {
 		if ($user['id'] == $username) {
 			return new User($user);
 		}
 	}
-	
+
 	return null;
 }
 
@@ -80,6 +81,50 @@ function getUser() {
 	} else {
 		echo json_encode($user);
 	}
+}
+function findSubnode($elem, $name, $value) {
+	foreach ($elem->childNodes as $subnode) {
+		if ($subnode->nodeName === $name and $subnode->nodeValue === $value) {
+			return $subnode;
+		}
+	}
+	return NULL;
+}
+
+function changeAttributesIntoElements($dom, $elem) {
+	// replace all attributes with elements
+	foreach ($elem->attributes as $attr) {
+		$elem->appendChild($dom->createElement($attr->name, $attr->value));
+	}
+	while ($elem->attributes->length > 0) {
+		$elem->removeAttributeNode($elem->attributes->item(0));
+	}
+	// remove all empty "notes" elements
+	$nodeToDelete = findSubnode($elem, "notes", "");
+	while (!is_null($nodeToDelete)) {
+		$elem->removeChild($nodeToDelete);
+		$nodeToDelete = findSubnode($elem, "notes", "");
+	}
+	// recurse over child nodes
+	foreach ($elem->childNodes as $subnode) {
+		changeAttributesIntoElements($dom, $subnode);
+	}
+}
+
+function getList() {
+	$department = $_GET['department'];
+	$file = 'data/current/' . $department . '/trainingslist.xml';
+	if (!file_exists($file)) {
+		error_log($file);
+		error("Could not find file for department $department");
+	}
+
+	// TODO: Permission check
+
+	$dom = new DOMDocument();
+	$dom->loadXML(file_get_contents($file));
+	changeAttributesIntoElements($dom, $dom);
+	echo json_encode(simplexml_load_string($dom->saveXML()));
 }
 
 function logout() {
@@ -109,6 +154,9 @@ switch ($_GET['action']) {
 		break;
 	case 'logout' :
 		logout();
+		break;
+	case 'getlist' :
+		getList();
 		break;
 	default :
 		error('Unsupported action: ' . $_GET['action']);

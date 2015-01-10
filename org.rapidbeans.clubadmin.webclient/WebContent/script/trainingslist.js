@@ -240,9 +240,8 @@ angular.module('rcaTrainingsList', [])
 //      $http.get('data/trainingslist'
 //        + $scope.departmentSelector.getSelectedDepartment()
 //        + '.json').then(function(httpResponse) {
-        $http.get('fileio.php?password=musashi09&file=current/'
-          + $scope.departmentSelector.getSelectedDepartment()
-          + '/trainingslist.xml&op=readj').then(function(httpResponse) {
+        $http.get('server.php?action=getlist&department='
+          + $scope.departmentSelector.getSelectedDepartment()).then(function(httpResponse) {
           $scope.trainingslistModel.setData(httpResponse.data);
           $scope.userModel.setData(httpResponse.data.user);
           $scope.trainerModel.setData(httpResponse.data.trainer);
