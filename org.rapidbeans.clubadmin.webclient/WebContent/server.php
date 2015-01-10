@@ -124,7 +124,8 @@ function getList() {
 	$dom = new DOMDocument();
 	$dom->loadXML(file_get_contents($file));
 	changeAttributesIntoElements($dom, $dom);
-	echo json_encode(simplexml_load_string($dom->saveXML()));
+	// TODO (BH): remove pretty printing
+	echo json_encode(simplexml_load_string($dom->saveXML()), JSON_PRETTY_PRINT);
 }
 
 function logout() {

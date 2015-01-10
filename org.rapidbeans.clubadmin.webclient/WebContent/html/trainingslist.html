@@ -6,7 +6,7 @@
 				<button class="btn" ng-disabled="dep == selectedDepartment"
 					ng-class="dep == selectedDepartment ? 'btn-primary' : 'btn-info'"
 					ng-repeat="dep in availableDepartments | orderBy"
-					ng-click="loadTrainingslist(dep)">
+					ng-click="loadTrainingsList(dep)">
 					<img width="32px" height="32px"
 						src="img/Department_Budo-Club%20Ismaning_{{dep}}.png"> 
 					{{dep}}
