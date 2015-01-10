@@ -6,11 +6,11 @@
 				ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
 				ng-click="trainingSelector.setSelectedTraining(trainingForTable)"
 				ng-repeat="trainingForTable in trainingslistModel.getTrainingslist()">
-				<td>{{helpers.dayOfWeekShort(trainingForTable.trainingdate.dayofweek)}}, 
-				    {{helpers.formatDateGerman(trainingForTable.training.date)}}</td>
+				<td>{{ trainingForTable.trainingdate.dayofweek | shortDayOfWeek }}, 
+				    {{ trainingForTable.training.date | formatDate }}</td>
 				<td>{{trainingForTable.trainingdate.timestart}}</td>
 				<td>{{trainingForTable.trainingdate.name}}</td>
-				<td><img src="img/{{ helpers.stateImageName (trainingForTable.training.state) }}"></td>
+				<td><img src="img/{{ trainingForTable.training.state | stateImageName }}"></td>
 			</tr>
 		</tbody>
 	</table>

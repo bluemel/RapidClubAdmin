@@ -1,9 +1,7 @@
 angular.module('rcaTrainingsList', [])
 
-.service("Helpers", function() {
-	
-	// map a dayofweek to its short representation
-	this.dayOfWeekShort = function(dayofweek) {
+.filter('shortDayOfWeek', function(){
+	return function(dayofweek) {
 		return {
 			monday : 'MO',
 			tuesday : 'DI',
@@ -12,10 +10,12 @@ angular.module('rcaTrainingsList', [])
 			friday : 'FR',
 			saturday : 'SA',
 			sunday : 'SO'
-		}[dayofweek];
+		}[dayofweek] || dayofweek;
 	};
-	
-	this.stateImageName = function(state) {
+})
+
+.filter('stateImageName', function(){
+	return function(state) {
 		return {
 			asplanned : 'training0Default.png',
 			modified : 'training1InWork.png',
@@ -24,8 +24,10 @@ angular.module('rcaTrainingsList', [])
 			closed : 'training4Closed.png'
 		}[state] || 'unknown.png';
 	};
-	
-	this.stateToDescriptionShort = function(state) {
+})
+
+.filter('stateShortDescription', function(){
+	return function(state) {
 		return {
 			asplanned : 'Betreuung gemäß Planung',
 			modified : 'Betreuung geändert',
@@ -34,33 +36,40 @@ angular.module('rcaTrainingsList', [])
 			closed : 'Trainingsort geschlossen'
 		}[state];
 	};
-	
-	this.formatDateGerman = function(date) {
-		return date.slice(6, 8) + "." + date.slice(4, 6) + "."
-				+ date.slice(0, 4);
-	};
-	
-	this.formatDateTimeGerman = function(dtime) {
-		if (dtime) {
-			return this.formatDateGerman(dtime) + " "
-					+ dtime.slice(8, 10) + ":"
-					+ dtime.slice(10, 12);
-		} else {
+})
+
+.filter('formatDate', function(){
+	return function(date) {
+		if (!date) {
 			return '';
 		}
+		return date.slice(6, 8) + "." + date.slice(4, 6) + "."
+			+ date.slice(0, 4);
+	};
+})
+
+.filter('formatDateTime', function($filter){
+	return function(dateTime) {
+		if (!dateTime) {
+			return '';
+		}
+		var dateFilter = $filter('formatDate');
+		return dateFilter(dateTime) + " "
+				+ dateTime.slice(8, 10) + ":"
+				+ dateTime.slice(10, 12);
 	};
 })
 
 // TODO (BH): Maybe delete?
-  .service("Comparators", function() {
+.service("Comparators", function() {
     // compare two training table entries
     this.compareTrainingsAccordingToDateAndTime = function (t1, t2) {
         return t1.training.date - t2.training.date || 
         	t1.trainingdate.timestart - t2.trainingdate.timestart;
     };
-  })
+})
 
-.factory('TrainingSelector', function(Helpers) {
+.factory('TrainingSelector', function() {
     var selectedTraining = null;
     return {
       getSelectedTraining: function() {
@@ -75,26 +84,13 @@ angular.module('rcaTrainingsList', [])
         }
         return heldbyarray;
       },
-      getSelectedTrainingTitle: function() {
-        return Helpers.dayOfWeekShort(selectedTraining.trainingdate.dayofweek)
-          + ", " + Helpers.formatDateGerman(selectedTraining.training.date)
-          + ", " + selectedTraining.trainingdate.name
-          + ", " + selectedTraining.trainingdate.location;
-      },
-      getSelectedTrainingDayOfWeekShort: function() {
-        return Helpers.dayOfWeekShort(selectedTraining.trainingdate.dayofweek);
-      },
-      getSelectedTrainingState: function() {
-        return Helpers.stateToDescriptionShort(selectedTraining.training.state);
-      },
       setSelectedTraining: function(training) {
         selectedTraining = training;
       },
       setData: function(trainings) {
         // search the first training not yet closed, cancelled or checked
         selectedTraining = null;
-        var i;
-        for (i = 0; i < trainings.length; i++) {
+        for (var i = 0; i < trainings.length; i++) {
           if (trainings[i].training.state != 'closed'
             && trainings[i].training.state != 'cancelled'
             && trainings[i].training.state != 'checked') {
@@ -218,7 +214,7 @@ angular.module('rcaTrainingsList', [])
     };
   })
 
-.controller('trainingsListCtrl', function($scope, $http, $timeout, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators, Helpers) {
+.controller('trainingsListCtrl', function($scope, $http, $timeout, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators) {
 
 	// TODO (BH): Limit depending on user.
 	$scope.availableDepartments = ['Aikido', 'Chanbara', 'Grundschule', 'Haidong Gumdo', 'Judo', 'Tang Soo Do'];
@@ -243,7 +239,6 @@ angular.module('rcaTrainingsList', [])
     
 
     $scope.trainingSelector = TrainingSelector;
-    $scope.helpers = Helpers;
     
     $scope.trainingslistModel = TrainingslistModel;
     $scope.userModel = UserModel;

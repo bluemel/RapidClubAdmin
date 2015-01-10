@@ -3,7 +3,12 @@
 		<tbody class="first-column-bold">
 			<tr>
 				<td>Training</td>
-				<td>{{trainingSelector.getSelectedTrainingTitle()}}</td>
+				<td>
+					{{ trainingSelector.getSelectedTraining().trainingdate.dayofweek | shortDayOfWeek }},
+					{{ trainingSelector.getSelectedTraining().training.date | formatDate }},
+					{{ trainingSelector.getSelectedTraining().trainingdate.name }},
+					{{ trainingSelector.getSelectedTraining().trainingdate.location }}
+				</td>
 			</tr>
 			<tr>
 				<td>Anzahl Teilnehmer</td>
@@ -11,7 +16,7 @@
 			</tr>
 			<tr>
 				<td>Status</td>
-				<td>{{trainingSelector.getSelectedTrainingState()}}</td>
+				<td>{{ trainingSelector.getSelectedTraining().training.state | stateShortDescription }}</td>
 			</tr>
 			<tr>
 				<td>Bestätigt durch</td>
@@ -19,7 +24,7 @@
 			</tr>
 			<tr>
 				<td>Bestätigt am</td>
-				<td>{{helpers.formatDateTimeGerman(trainingSelector.getSelectedTraining().training.checkedDate)}}</td>
+				<td>{{ trainingSelector.getSelectedTraining().training.checkedDate | formatDateTime }}</td>
 			</tr>
 			<tr>
 				<td>Notizen</td>
