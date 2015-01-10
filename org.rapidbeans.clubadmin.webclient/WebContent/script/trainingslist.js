@@ -52,11 +52,17 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 				var trainingdate = trainingdates[i];
 				for ( var j = 0; j < trainingdate.training.length; j++) {
 					var training = trainingdate.training[j];
-					training.heldbytrainer = ensureArray(training.heldbytrainer);
-					
 					trainings.push({
-						training : training,
-						trainingdate : trainingdate,
+						name : trainingdate.name,
+						date: training.date,
+						timestart: trainingdate.timestart,
+						dayofweek : trainingdate.dayofweek,
+						state: training.state,
+						location: trainingdate.location,
+						participantscount : training.participantscount,
+						checkedByUser: training.checkedByUser,
+						checkedDate : training.checkedDate,
+						heldbytrainer: ensureArray(training.heldbytrainer),
 						sortKey : training.date + '-' + trainingdate.timestart
 					});
 				}
@@ -83,7 +89,7 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
     	};
 		for ( var i = 0; i < $scope.trainings.length; i++) {
 			var training = $scope.trainings[i];
-			if (!ignoreStates[training.training.state]
+			if (!ignoreStates[training.state]
 					&& (!bestTraining || training.sortKey < bestTraining.sortKey)) {
 				bestTraining = training;
 			}

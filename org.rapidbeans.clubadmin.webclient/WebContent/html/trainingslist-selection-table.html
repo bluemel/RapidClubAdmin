@@ -4,11 +4,11 @@
 			<tr ng-repeat="training in trainings | orderBy:'sortKey'"
 				ng-click="setSelectedTraining(training)"
 				ng-style="selectedTraining === training ? {'background-color': '#D0E0FF'} : {}" >
-				<td>{{ training.trainingdate.dayofweek | shortDayOfWeek }}, 
-				    {{ training.training.date | formatDate }}</td>
-				<td>{{ training.trainingdate.timestart }}</td>
-				<td>{{ training.trainingdate.name }}</td>
-				<td><img src="img/{{ training.training.state | stateImageName }}"></td>
+				<td>{{ training.dayofweek | shortDayOfWeek }}, 
+				    {{ training.date | formatDate }}</td>
+				<td>{{ training.timestart }}</td>
+				<td>{{ training.name }}</td>
+				<td><img src="img/{{ training.state | stateImageName }}"></td>
 			</tr>
 		</tbody>
 	</table>

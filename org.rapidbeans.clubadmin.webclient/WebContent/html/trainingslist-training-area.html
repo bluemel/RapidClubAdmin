@@ -4,43 +4,45 @@
 			<tr>
 				<td>Training</td>
 				<td>
-					{{ selectedTraining.trainingdate.dayofweek | shortDayOfWeek }},
-					{{ selectedTraining.training.date | formatDate }},
-					{{ selectedTraining.trainingdate.name }},
-					{{ selectedTraining.trainingdate.location }}
+					{{ selectedTraining.dayofweek | shortDayOfWeek }},
+					{{ selectedTraining.date | formatDate }},
+					{{ selectedTraining.name }},
+					{{ selectedTraining.location }}
 				</td>
 			</tr>
 			<tr>
 				<td>Anzahl Teilnehmer</td>
-				<td>{{ selectedTraining.training.partipiciantscount }}</td>
+				<td>{{ selectedTraining.partipiciantscount }}</td>
 			</tr>
 			<tr>
 				<td>Status</td>
-				<td>{{ selectedTraining.training.state | stateShortDescription }}</td>
+				<td>{{ selectedTraining.state | stateShortDescription }}</td>
 			</tr>
 			<tr>
 				<td>Bestätigt durch</td>
-				<td>{{ selectedTraining.training.checkedByUser | resolveUser }}</td>
+				<td>{{ selectedTraining.checkedByUser | resolveUser }}</td>
 			</tr>
 			<tr>
 				<td>Bestätigt am</td>
-				<td>{{ selectedTraining.training.checkedDate | formatDateTime }}</td>
+				<td>{{ selectedTraining.checkedDate | formatDateTime }}</td>
 			</tr>
 			<tr>
 				<td>Notizen</td>
 				<td>
 					<div>
-						<textarea class="form-control" rows="7" disabled>{{ selectedTraining.training.notes }}</textarea>
+						<textarea class="form-control" rows="7" disabled>{{ selectedTraining.notes }}</textarea>
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" style="background: white;">
 					<div class="trainer-icon"
-						ng-repeat="heldby in selectedTraining.training.heldbytrainer">
+						ng-repeat="heldby in selectedTraining.heldbytrainer">
 						<div>{{ heldby.role }}</div>
 						<div>
-							<img width="70px" height="70px" src="img/person.png">
+							<img width="70px" height="70px" style="border-radius: 5px"  
+								src="data/trainerIcons/{{heldby.trainer}}.jpg" 
+								onerror="this.onerror=null; this.src='img/person.png';">
 						</div>
 						<div>{{ heldby.trainer | resolveTrainer }}</div>
 					</div>
