@@ -1,11 +1,11 @@
-<div class="container" ng-controller="TrainingsListCtrl">
+<div class="container" ng-controller="trainingsListCtrl">
 
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="btn-group">
-				<button class="btn" ng-disabled="dep == departmentSelector.getSelectedDepartment()"
-					ng-class="dep == departmentSelector.getSelectedDepartment() ? 'btn-primary' : 'btn-info'"
-					ng-repeat="dep in ['Aikido', 'Chanbara', 'Grundschule', 'Haidong Gumdo', 'Judo', 'Tang Soo Do']"
+				<button class="btn" ng-disabled="dep == selectedDepartment"
+					ng-class="dep == selectedDepartment ? 'btn-primary' : 'btn-info'"
+					ng-repeat="dep in availableDepartments | orderBy"
 					ng-click="loadTrainingslist(dep)">
 					<img width="32px" height="32px"
 						src="img/Department_Budo-Club%20Ismaning_{{dep}}.png"> 

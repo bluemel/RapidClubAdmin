@@ -1,53 +1,57 @@
 angular.module('rcaTrainingsList', [])
 
 .service("Helpers", function() {
-    // map a dayofweek to its short representation
-    this.dayOfWeekShort = function(dayofweek) {
-    	return {
-    		monday: 'MO',
-    		tuesday : 'DI',
-    		wednesday : 'MI',
-    		thursday : 'DO',
-    		friday : 'FR',
-    		saturday: 'SA',
-    		sunday: 'SO'
-    	}[dayofweek];
-      };
-// asplanned training0Default.png
-// modified training1InWork.png
-// checked training2Checked.png
-// cancelled training3Cancelled.png
-// closed training4Closed.png
-      this.stateImageName = function(state) {
-    	return {
-    		asplanned : 'training0Default.png',
-    		modified : 'training1InWork.png',
-    		checked : 'training2Checked.png',
-    		cancelled : 'training3Cancelled.png',
-    		closed : 'training4Closed.png'
-    	}[state] || 'unknown.png';  
-      };
-    this.stateToDescriptionShort = function(state) {
-    	return {
-    		asplanned: 'Betreuung gemäß Planung',
-    		modified: 'Betreuung geändert',
-    		checked: 'Betreuung bestätigt',
-    		cancelled: 'Training abgesagt',
-    		closed: 'Trainingsort geschlossen'
-    	}[state];
-      };
-    this.formatDateGerman = function(date) {
-      return date.slice(6, 8) + "." + date.slice(4, 6) + "." + date.slice(0, 4);
-    };
-    this.formatDateTimeGerman = function(dtime) {
-      if (dtime) {
-        return this.formatDateGerman(dtime) + " " + dtime.slice(8, 10) + ":" + dtime.slice(10, 12);
-      } else {
-        return '';
-      }
-    };
-  })
+	
+	// map a dayofweek to its short representation
+	this.dayOfWeekShort = function(dayofweek) {
+		return {
+			monday : 'MO',
+			tuesday : 'DI',
+			wednesday : 'MI',
+			thursday : 'DO',
+			friday : 'FR',
+			saturday : 'SA',
+			sunday : 'SO'
+		}[dayofweek];
+	};
+	
+	this.stateImageName = function(state) {
+		return {
+			asplanned : 'training0Default.png',
+			modified : 'training1InWork.png',
+			checked : 'training2Checked.png',
+			cancelled : 'training3Cancelled.png',
+			closed : 'training4Closed.png'
+		}[state] || 'unknown.png';
+	};
+	
+	this.stateToDescriptionShort = function(state) {
+		return {
+			asplanned : 'Betreuung gemäß Planung',
+			modified : 'Betreuung geändert',
+			checked : 'Betreuung bestätigt',
+			cancelled : 'Training abgesagt',
+			closed : 'Trainingsort geschlossen'
+		}[state];
+	};
+	
+	this.formatDateGerman = function(date) {
+		return date.slice(6, 8) + "." + date.slice(4, 6) + "."
+				+ date.slice(0, 4);
+	};
+	
+	this.formatDateTimeGerman = function(dtime) {
+		if (dtime) {
+			return this.formatDateGerman(dtime) + " "
+					+ dtime.slice(8, 10) + ":"
+					+ dtime.slice(10, 12);
+		} else {
+			return '';
+		}
+	};
+})
 
+// TODO (BH): Maybe delete?
   .service("Comparators", function() {
     // compare two training table entries
     this.compareTrainingsAccordingToDateAndTime = function (t1, t2) {
@@ -99,18 +103,6 @@ angular.module('rcaTrainingsList', [])
           }
         }
       },
-    };
-  })
-
-.factory('DepartmentSelector', function() {
-    var selectedDepartment = 'Judo';
-    return {
-      getSelectedDepartment: function() {
-        return selectedDepartment;
-      },
-      setSelectedDepartment: function(department) {
-        selectedDepartment = department;
-      }
     };
   })
 
@@ -226,50 +218,36 @@ angular.module('rcaTrainingsList', [])
     };
   })
 
-// Example URL for trainer picture download
-// http://trainer.budo-club-ismaning.de/rapidclubadmin/fileio.php?password=musashi09&file=trainerIcons/Russ_Kevin_.jpg&op=read
+.controller('trainingsListCtrl', function($scope, $http, $timeout, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators, Helpers) {
 
-  .controller('TrainingsListCtrl', function($scope, $http, $timeout, DepartmentSelector, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators, Helpers) {
-
+	// TODO (BH): Limit depending on user.
+	$scope.availableDepartments = ['Aikido', 'Chanbara', 'Grundschule', 'Haidong Gumdo', 'Judo', 'Tang Soo Do'];
+	
     $scope.loadTrainingslist = function (department) {
-      // $('#trainingstable').perfectScrollbar({minScrollbarLength:30});
-      $scope.departmentSelector.setSelectedDepartment(department);
       // example URLfor browser test
       // $http.get('fileio.php?password=musashi09&file=current/Haidong%20Gumdo/trainingslist.xml&op=readj').then(function(httpResponse) {
       // file URL for local test
-//      $http.get('data/trainingslist'
-//        + $scope.departmentSelector.getSelectedDepartment()
-//        + '.json').then(function(httpResponse) {
-        $http.get('server.php?action=getlist&department='
-          + $scope.departmentSelector.getSelectedDepartment()).then(function(httpResponse) {
-          $scope.trainingslistModel.setData(httpResponse.data);
-          $scope.userModel.setData(httpResponse.data.user);
-          $scope.trainerModel.setData(httpResponse.data.trainer);
-          // no effect here so we use
-          // ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
-          // in HTML code
-          // $scope.trainingSelector.setData(trainingslistModel.getTrainingslist());
-        }
-      );
-      $timeout($scope.updateScrollbar, 200);
+//      $http.get('data/trainingslist' + department + '.json').success(function(data) {
+        $http.get('server.php?action=getlist&department=' + department).success(function(data) {
+        	 $scope.selectedDepartment = department;
+	          $scope.trainingslistModel.setData(data);
+	          $scope.userModel.setData(data.user);
+	          $scope.trainerModel.setData(data.trainer);
+	          // no effect here so we use
+	          // ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
+	          // in HTML code
+	          // $scope.trainingSelector.setData(trainingslistModel.getTrainingslist());
+        });
     };
+    $scope.loadTrainingslist($scope.availableDepartments[0]);
+    
 
-    $scope.updateScrollbar = function(){
-      var selectedTraining = $scope.trainingSelector.getSelectedTraining();
-      if (selectedTraining) {
-        $("#trainingstable").scrollTop(selectedTraining.index * 30);
-      } else {
-        $("#trainingstable").scrollTop(0);
-      }
-      $('#trainingstable').perfectScrollbar('update');
-    };
-
-    $scope.departmentSelector = DepartmentSelector;
     $scope.trainingSelector = TrainingSelector;
     $scope.helpers = Helpers;
+    
     $scope.trainingslistModel = TrainingslistModel;
     $scope.userModel = UserModel;
     $scope.trainerModel = TrainerModel;
-    $scope.loadTrainingslist('Aikido');
-  })
+})
+  
 ;
