@@ -12,7 +12,8 @@
 			</tr>
 			<tr>
 				<td>Anzahl Teilnehmer</td>
-				<td>{{ selectedTraining.partipiciantscount }}</td>
+				<td ng-if="!editableTraining">{{ selectedTraining.partipiciantscount }}</td>
+				<td ng-if="editableTraining"><input type="number" ng-model="editableTraining.partipiciantscount"></td>
 			</tr>
 			<tr>
 				<td>Status</td>
@@ -30,21 +31,52 @@
 				<td>Notizen</td>
 				<td>
 					<div>
-						<textarea class="form-control" rows="7" disabled>{{ selectedTraining.notes }}</textarea>
+						<textarea ng-if="!editableTraining" class="form-control" rows="6" 
+							style="background: white;" disabled>{{ selectedTraining.notes }}</textarea>
+						<textarea ng-if="editableTraining" class="form-control" rows="6" ng-model="editableTraining.notes"></textarea>
 					</div>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="background: white;">
+				<td ng-if="!editableTraining" colspan="2" style="background: white;">
 					<div class="trainer-icon"
 						ng-repeat="heldby in selectedTraining.heldbytrainer">
 						<div>{{ heldby.role }}</div>
 						<div>
 							<img width="70px" height="70px" style="border-radius: 5px"  
 								src="data/trainerIcons/{{heldby.trainer}}.jpg" 
-								onerror="this.onerror=null; this.src='img/person.png';">
+								onerror="this.src='img/person.png';">
 						</div>
 						<div>{{ heldby.trainer | resolveTrainer }}</div>
+					</div>
+				</td>
+				<td ng-if="editableTraining" colspan="2" style="background: white;">
+					<div class="trainer-icon"
+						ng-repeat="heldby in editableTraining.heldbytrainer">
+						<div>
+							<div style="padding-right: 28px; display: inline-block;">
+								<select class="form-control" ng-model="heldby.role" style="margin-bottom: 4px;" 
+									ng-options="trainerRole for trainerRole in trainerRoles">
+								</select>
+							</div>
+							<button class="btn btn-danger btn-sm" title="Trainer entfernen"
+								style="margin-left: -28px"
+								ng-click="removeTrainer(heldby)"><i class="fa fa-close"></i></button>
+						</div>
+						<div>
+							<img width="70px" height="70px" style="border-radius: 5px"  
+								src="data/trainerIcons/{{heldby.trainer}}.jpg" 
+								onerror="this.src='img/person.png';">
+						</div>
+						<div>
+							<select class="form-control" ng-model="heldby.trainer" style="margin-top: 4px; width: 100%;"
+								ng-options="trainerId | resolveTrainer for trainerId in allTrainerIds">
+							</select>
+						</div>
+					</div>
+					<div class="trainer-add" ng-click="addTrainer()">
+						<div><i class="fa fa-plus-circle"></i></div>
+						<p>Klicken für weiteren Trainer<p>
 					</div>
 				</td>
 			</tr>

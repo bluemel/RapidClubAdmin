@@ -18,6 +18,7 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 	var usersById = {};
 	var trainersById = {};
 	var trainings = [];
+	var trainerRoles = [];
 	
 	var buildUserMap = function(users) {
 		var result = {};
@@ -40,11 +41,28 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 		getTrainings: function() {
 			return trainings;
 		},
+		
+		getTrainerRoles: function () {
+			return trainerRoles;
+		},
+		
+		getAllTrainerIds: function () {
+			var ids = [];
+			angular.forEach (trainersById, function(value, key) {
+				ids.push(key);
+			});
+			return ids;
+		},
 
 		setData : function(dataRoot) {
 			usersById = buildUserMap(dataRoot.user);
 			trainersById = buildUserMap(dataRoot.trainer);
 
+			trainerRoles = [];
+			for (var i = 0; i < dataRoot.trainerrole.length; ++i) {
+				trainerRoles.push (dataRoot.trainerrole[i].id);
+			}
+			
 			trainings = [];
 
 			var trainingdates = ensureArray(dataRoot.club.department.trainingdate);
@@ -77,24 +95,30 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 	$scope.availableDepartments = ['Aikido', 'Chanbara', 'Grundschule', 'Haidong Gumdo', 'Judo', 'Tang Soo Do'];
 
     $scope.trainings = [];
+    $scope.allTrainerIds = [];
+    $scope.trainerRoles = [];
     $scope.selectedTraining = {};
+    
+    var isCompleted = function (training) {
+    	var completeStates = {
+        		closed: 1,
+        		cancelled : 1,
+        		checked : 1
+        	};
+    	return !!completeStates[training.state];
+    };
     
     // search the first training not yet closed, cancelled or checked
     var resetSelectedTraining = function() {
     	var bestTraining = null;
-    	var ignoreStates = {
-    		closed: 1,
-    		cancelled : 1,
-    		checked : 1
-    	};
 		for ( var i = 0; i < $scope.trainings.length; i++) {
 			var training = $scope.trainings[i];
-			if (!ignoreStates[training.state]
+			if (!isCompleted(training)
 					&& (!bestTraining || training.sortKey < bestTraining.sortKey)) {
 				bestTraining = training;
 			}
 		}
-        $scope.selectedTraining = bestTraining;
+		$scope.setSelectedTraining (bestTraining);
     };
 
     $scope.loadTrainingsList = function (department) {
@@ -104,14 +128,49 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
         	 $scope.selectedDepartment = department;
         	 $rcaTrainingsData.setData(data);
         	 $scope.trainings = $rcaTrainingsData.getTrainings();
+        	 
+        	 $scope.allTrainerIds = $rcaTrainingsData.getAllTrainerIds();
+        	 $scope.trainerRoles = $rcaTrainingsData.getTrainerRoles();
+        	 
         	 resetSelectedTraining ();
         });
     };
     
     $scope.loadTrainingsList($scope.availableDepartments[0]);
     
+    var mayEditTraining = function (training) {
+    	// TODO(BH): respect permissions of the user here
+    	return !isCompleted (training);
+    };
+    
     $scope.setSelectedTraining = function(training) {
     	$scope.selectedTraining = training;
+    	if (mayEditTraining (training)) {
+    		$scope.editableTraining = angular.copy (training);
+    	} else {
+    		$scope.editableTraining = null;
+    	}
+    };
+    
+    $scope.addTrainer = function () {
+    	if ($scope.editableTraining) {
+    		$scope.editableTraining.heldbytrainer.push({
+    			role: $scope.trainerRoles[0],
+    			trainer: $scope.allTrainerIds[0]
+    		});
+    	}
+    };
+    
+    $scope.removeTrainer = function (trainer) {
+    	if ($scope.editableTraining) {
+    		var newHeldBy = [];
+    		angular.forEach($scope.editableTraining.heldbytrainer, function(value) {
+    			if (value !== trainer) {
+    				newHeldBy.push(value);
+    			}
+    		});
+    		$scope.editableTraining.heldbytrainer = newHeldBy;
+    	}
     };
 })
   
