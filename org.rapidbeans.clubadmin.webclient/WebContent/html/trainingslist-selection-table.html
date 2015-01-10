@@ -8,7 +8,8 @@
 				    {{ training.date | formatDate }}</td>
 				<td>{{ training.timestart }}</td>
 				<td>{{ training.name }}</td>
-				<td><img src="img/{{ training.state | stateImageName }}"></td>
+				<td><i class="fa state-icon" ng-class="training.state | stateIconName" 
+						title="{{ training.state | stateShortDescription }}"></i></td>
 			</tr>
 		</tbody>
 	</table>

@@ -14,14 +14,14 @@ angular.module('rcaFilters', [])
 	};
 })
 
-.filter('stateImageName', function(){
+.filter('stateIconName', function(){
 	return function(state) {
 		return {
-			asplanned : 'training0Default.png',
-			modified : 'training1InWork.png',
-			checked : 'training2Checked.png',
-			cancelled : 'training3Cancelled.png',
-			closed : 'training4Closed.png'
+			asplanned : 'fa-check-circle-o state-orange',
+			modified : 'fa-exclamation-circle state-orange',
+			checked : 'fa-check-circle-o state-green',
+			cancelled : 'fa-times-circle-o state-red',
+			closed : 'fa-dot-circle-o state-blue'
 		}[state] || 'unknown.png';
 	};
 })

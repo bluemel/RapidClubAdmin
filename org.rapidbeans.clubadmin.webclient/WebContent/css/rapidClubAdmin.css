@@ -52,3 +52,23 @@ td {
 .trainer-add:hover {
 	color: #888;
 }
+
+.state-icon {
+	font-size: 40px;
+}
+
+.state-green {
+	color: green;
+}
+
+.state-orange {
+	color: orange;
+}
+
+.state-red {
+	color: red;
+}
+
+.state-blue {
+	color: blue;
+}
