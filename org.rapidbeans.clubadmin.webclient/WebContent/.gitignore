@@ -1,2 +1,7 @@
 experimental
 data/masterdata.xml
+data/customersettings.xml
+data/current
+data/history
+data/trainerIcons
+data/traininslist.xml
