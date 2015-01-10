@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td>Bestätigt durch</td>
-				<td>{{userModel.getFullName(trainingSelector.getSelectedTraining().training.checkedByUser)}}</td>
+				<td>{{ trainingSelector.getSelectedTraining().training.checkedByUser | resolveUser}}</td>
 			</tr>
 			<tr>
 				<td>Bestätigt am</td>
@@ -42,7 +42,7 @@
 						<div>
 							<img width="70px" height="70px" src="img/person.png">
 						</div>
-						<div>{{trainerModel.getFullName(heldby.trainer)}}</div>
+						<div>{{ heldby.trainer | resolveTrainer }}</div>
 					</div>
 				</td>
 			</tr>

@@ -1,64 +1,4 @@
-angular.module('rcaTrainingsList', [])
-
-.filter('shortDayOfWeek', function(){
-	return function(dayofweek) {
-		return {
-			monday : 'MO',
-			tuesday : 'DI',
-			wednesday : 'MI',
-			thursday : 'DO',
-			friday : 'FR',
-			saturday : 'SA',
-			sunday : 'SO'
-		}[dayofweek] || dayofweek;
-	};
-})
-
-.filter('stateImageName', function(){
-	return function(state) {
-		return {
-			asplanned : 'training0Default.png',
-			modified : 'training1InWork.png',
-			checked : 'training2Checked.png',
-			cancelled : 'training3Cancelled.png',
-			closed : 'training4Closed.png'
-		}[state] || 'unknown.png';
-	};
-})
-
-.filter('stateShortDescription', function(){
-	return function(state) {
-		return {
-			asplanned : 'Betreuung gemäß Planung',
-			modified : 'Betreuung geändert',
-			checked : 'Betreuung bestätigt',
-			cancelled : 'Training abgesagt',
-			closed : 'Trainingsort geschlossen'
-		}[state];
-	};
-})
-
-.filter('formatDate', function(){
-	return function(date) {
-		if (!date) {
-			return '';
-		}
-		return date.slice(6, 8) + "." + date.slice(4, 6) + "."
-			+ date.slice(0, 4);
-	};
-})
-
-.filter('formatDateTime', function($filter){
-	return function(dateTime) {
-		if (!dateTime) {
-			return '';
-		}
-		var dateFilter = $filter('formatDate');
-		return dateFilter(dateTime) + " "
-				+ dateTime.slice(8, 10) + ":"
-				+ dateTime.slice(10, 12);
-	};
-})
+angular.module('rcaTrainingsList', ['rcaFilters'])
 
 // TODO (BH): Maybe delete?
 .service("Comparators", function() {
@@ -67,6 +7,64 @@ angular.module('rcaTrainingsList', [])
         return t1.training.date - t2.training.date || 
         	t1.trainingdate.timestart - t2.trainingdate.timestart;
     };
+})
+
+.filter('resolveTrainer', function($filter, $rcaTrainers){
+	return function(id) {
+		var resolve = $filter('resolveUserByMap');
+		return resolve(id, $rcaTrainers.getMap());
+	};
+})
+
+.filter('resolveUser', function($filter, $rcaUsers){
+	return function(id) {
+		var resolve = $filter('resolveUserByMap');
+		return resolve(id, $rcaUsers.getMap());
+	};
+})
+
+.factory('$rcaUsers', function() {
+	var usersById = {};
+	return {
+		getMap : function() {
+			return usersById;
+		},
+		setData : function(users) {
+			usersById = {};
+			if (!users) {
+				return;
+			}
+			if (angular.isArray(users)) {
+				for (var i = 0; i < users.length; i++) {
+					usersById[users[i].id] = users[i];
+				}
+			} else {
+				usersById[users.id] = users;
+			}
+		}
+	};
+})
+
+.factory('$rcaTrainers', function() {
+	var trainersById = {};
+	return {
+		getMap : function() {
+			return trainersById;
+		},
+		setData : function(trainers) {
+			trainersById = {};
+			if (!trainers) {
+				return;
+			}
+			if (angular.isArray(trainers)) {
+				for (var i = 0; i < trainers.length; i++) {
+					trainersById[trainers[i].id] = trainers[i];
+				}
+			} else {
+				trainersById[trainers.id] = trainers;
+			}
+		}
+	};
 })
 
 .factory('TrainingSelector', function() {
@@ -101,75 +99,7 @@ angular.module('rcaTrainingsList', [])
       },
     };
   })
-
-  .factory('UserModel', function() {
-    var userMap = new Map();
-    return {
-      findById: function(id) {
-        return userMap.get(id);
-      },
-      getFullName: function(id) {
-        if (!id) {
-          return '';
-        }
-        user = userMap.get(id);
-        if (!user) {
-          return 'ERROR: unknown user "' + id + '"';
-        } else {
-          return user.lastname + ", " + user.firstname;
-        }
-      },
-      setData: function(users) {
-    	userMap.clear();
-        if (!users) {
-          return;
-        }
-        if (angular.isArray(users)) {
-          var i;
-          for (i = 0; i < users.length; i++) {
-            userMap.set(users[i].id, users[i]);
-          }
-        } else {
-          userMap.set(users.id, users);
-        }
-      }
-    };
-  })
-
-  .factory('TrainerModel', function() {
-    var trainerMap = new Map();
-    return {
-      findById: function(id) {
-        return trainerMap.get(id);
-      },
-      getFullName: function(id) {
-        if (!id) {
-          return '';
-        }
-        trainer = trainerMap.get(id);
-        if (!trainer) {
-          return 'ERROR: unknown trainer "' + id + '"';
-        } else {
-          return trainer.lastname + ", " + trainer.firstname;
-        }
-      },
-      setData: function(trainers) {
-      	trainerMap.clear();
-        if (!trainers) {
-          return;
-        }
-        if (angular.isArray(trainers)) {
-          var i;
-          for (i = 0; i < trainers.length; i++) {
-            trainerMap.set(trainers[i].id, trainers[i]);
-          }
-        } else {
-          trainerMap.set(trainers.id, trainers);
-        }
-      }
-    };
-  })
-
+  
   .factory('TrainingslistModel', function(Comparators) {
     var root;
     var trainingslistArray = [];
@@ -214,7 +144,7 @@ angular.module('rcaTrainingsList', [])
     };
   })
 
-.controller('trainingsListCtrl', function($scope, $http, $timeout, TrainingSelector, TrainingslistModel, UserModel, TrainerModel, Comparators) {
+.controller('trainingsListCtrl', function($scope, $http, $timeout, TrainingSelector, TrainingslistModel, $rcaUsers, $rcaTrainers, Comparators) {
 
 	// TODO (BH): Limit depending on user.
 	$scope.availableDepartments = ['Aikido', 'Chanbara', 'Grundschule', 'Haidong Gumdo', 'Judo', 'Tang Soo Do'];
@@ -227,8 +157,8 @@ angular.module('rcaTrainingsList', [])
         $http.get('server.php?action=getlist&department=' + department).success(function(data) {
         	 $scope.selectedDepartment = department;
 	          $scope.trainingslistModel.setData(data);
-	          $scope.userModel.setData(data.user);
-	          $scope.trainerModel.setData(data.trainer);
+	          $rcaUsers.setData(data.user);
+	          $rcaTrainers.setData(data.trainer);
 	          // no effect here so we use
 	          // ng-init="trainingSelector.setData(trainingslistModel.getTrainingslist())"
 	          // in HTML code
@@ -236,13 +166,8 @@ angular.module('rcaTrainingsList', [])
         });
     };
     $scope.loadTrainingslist($scope.availableDepartments[0]);
-    
-
     $scope.trainingSelector = TrainingSelector;
-    
     $scope.trainingslistModel = TrainingslistModel;
-    $scope.userModel = UserModel;
-    $scope.trainerModel = TrainerModel;
 })
   
 ;
