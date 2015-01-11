@@ -112,7 +112,6 @@ function getList() {
 	$department = $_GET['department'];
 	$file = 'data/current/' . $department . '/trainingslist.xml';
 	if (!file_exists($file)) {
-		error_log($file);
 		error("Could not find file for department $department");
 	}
 
@@ -121,8 +120,7 @@ function getList() {
 	$dom = new DOMDocument();
 	$dom->loadXML(file_get_contents($file));
 	changeAttributesIntoElements($dom, $dom);
-	// TODO (BH): remove pretty printing
-	echo json_encode(simplexml_load_string($dom->saveXML()), JSON_PRETTY_PRINT);
+	echo json_encode(simplexml_load_string($dom->saveXML()));
 }
 
 function logout() {
