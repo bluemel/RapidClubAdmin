@@ -27,9 +27,6 @@ class User {
 	}
 
 	public function matchesPassword($password) {
-		error_log("PW : $password");
-		error_log("Expected Hash : $this->passwordHash");
-		error_log("Actual Hash : " . base64_encode(sha1($password, true)));
 		return $this->passwordHash == base64_encode(sha1($password, true));
 	}
 }
