@@ -135,7 +135,28 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
         	 resetSelectedTraining ();
         });
     };
-    
+
+    $scope.saveTrainingsList = function () {
+    	var department = $scope.selectedDepartment;
+		$http({
+			method : 'POST',
+			url : 'server.php?action=putlist&department=' + department,
+			data : { trainings : $scope.trainings },
+			headers : {
+				'Content-Type' : 'application/x-www-form-urlencoded'
+			}
+		}).success(function() {
+        	alert("Trainingsliste gesichert.");
+        })
+        .error (function(data, status, headers, config) {
+    		alert("Fehler beim Sichern der Trainingsliste!\n"
+    				+ "data: " + data + "\n"
+    				+ "status: " + status + "\n"
+    				+ "headears: " + headers + "\n"
+    				+ "config: " + config);
+		});
+    };
+
     $scope.loadTrainingsList($scope.availableDepartments[0]);
     
     var mayEditTraining = function (training) {

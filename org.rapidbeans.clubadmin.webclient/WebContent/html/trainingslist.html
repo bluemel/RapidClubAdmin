@@ -3,6 +3,12 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="btn-group">
+				<button class="btn"
+					ng-click="saveTrainingsList()">
+					<img width="32px" height="32px"
+						src="img/save.png">
+						Save
+				</button>
 				<button class="btn" ng-disabled="dep == selectedDepartment"
 					ng-class="dep == selectedDepartment ? 'btn-primary' : 'btn-info'"
 					ng-repeat="dep in availableDepartments | orderBy"

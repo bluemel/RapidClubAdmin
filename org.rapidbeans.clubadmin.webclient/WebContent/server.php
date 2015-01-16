@@ -123,6 +123,13 @@ function getList() {
 	echo json_encode(simplexml_load_string($dom->saveXML()));
 }
 
+function putList($department, $contents)
+{
+	$handle = fopen ("data/test.txt", "w");
+	fwrite($handle, "|" . $contents . "|");
+	fclose($handle);
+}
+
 function logout() {
 	setcookie('RapidClubAdminSession', '', time() - 3600);
 }
@@ -153,6 +160,9 @@ switch ($_GET['action']) {
 		break;
 	case 'getlist' :
 		getList();
+		break;
+	case 'putlist' :
+		putList($_GET['department'], $_POST['trainings']);
 		break;
 	default :
 		error('Unsupported action: ' . $_GET['action']);
