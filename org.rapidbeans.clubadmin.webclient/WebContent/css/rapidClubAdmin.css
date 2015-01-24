@@ -16,6 +16,22 @@ td {
 	overflow: auto;
 }
 
+.training-edit-area.may-edit {
+	height: 504px;
+}
+
+.training-save-area {
+	height: 46px;
+	width: 100%;
+	background : #888;
+	padding: 6px;
+	vertical-align: top;
+}
+
+.training-save-area i {
+	font-size: 18px;
+}
+
 .first-column-bold td:first-child {
 	font-weight: bold;
 	background: #eee;

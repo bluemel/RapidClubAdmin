@@ -1,4 +1,4 @@
-<div class="training-edit-area">
+<div class="training-edit-area" ng-class="editableTraining || mayReopen ? 'may-edit' : ''">
 	<table class="table">
 		<tbody class="first-column-bold">
 			<tr>
@@ -31,9 +31,10 @@
 				<td>Notizen</td>
 				<td>
 					<div>
-						<textarea ng-if="!editableTraining" class="form-control" rows="6" 
+						<textarea ng-if="!editableTraining" class="form-control" rows="3" 
 							style="background: white;" disabled>{{ selectedTraining.notes }}</textarea>
-						<textarea ng-if="editableTraining" class="form-control" rows="6" ng-model="editableTraining.notes"></textarea>
+						<textarea ng-if="editableTraining" class="form-control" rows="3" 
+							ng-model="editableTraining.notes"></textarea>
 					</div>
 				</td>
 			</tr>
@@ -82,4 +83,11 @@
 			</tr>
 		</tbody>
 	</table>
+</div>
+<div ng-if="editableTraining || mayReopen" class="training-save-area">
+	<div class="btn-group" ng-if="editableTraining">
+		<button ng-click="confirmTraining()" class="btn btn-primary"><i class="fa fa-check-circle-o"></i> Training hat stattgefunden</button>
+		<button ng-click="cancelTraining()" class="btn btn-danger"><i class="fa fa-times-circle-o"></i> Training wurde abgesagt</button>
+	</div>
+	<button ng-click="reopenTraining()" ng-if="mayReopen" class="btn btn-warning"><i class="fa fa-exclamation-circle"></i> Training nochmal bearbeiten</button>
 </div>

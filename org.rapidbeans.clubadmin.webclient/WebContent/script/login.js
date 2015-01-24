@@ -32,6 +32,15 @@ angular.module('rcaLogin', [])
 		});
 	};
 
+	$scope.isSuperAdmin = function () {
+		return $scope.user.role.search(/SuperAdministrator/) >= 0;
+	};
+
+	$scope.isDepartmentAdmin = function () {
+		// both department admins and super admins
+		return $scope.user.role.search(/Administrator/) >= 0;
+	};
+
 	$http.get('server.php?action=getuser').success(function(user) {
 		$scope.user = user;
 		if ($scope.user.username) {

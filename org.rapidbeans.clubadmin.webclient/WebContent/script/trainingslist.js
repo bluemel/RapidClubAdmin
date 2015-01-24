@@ -71,13 +71,15 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 				for ( var j = 0; j < trainingdate.training.length; j++) {
 					var training = trainingdate.training[j];
 					trainings.push({
+						id: training.id,
 						name : trainingdate.name,
 						date: training.date,
 						timestart: trainingdate.timestart,
 						dayofweek : trainingdate.dayofweek,
 						state: training.state,
 						location: trainingdate.location,
-						participantscount : training.participantscount,
+						partipiciantscount : training.partipiciantscount,
+						notes : training.notes,
 						checkedByUser: training.checkedByUser,
 						checkedDate : training.checkedDate,
 						heldbytrainer: ensureArray(training.heldbytrainer),
@@ -90,10 +92,15 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 })
   
 .controller('trainingsListCtrl', function($scope, $http, $rcaTrainingsData) {
-
-	// TODO (BH): Limit depending on user.
-	$scope.availableDepartments = ['Aikido', 'Chanbara', 'Grundschule', 'Haidong Gumdo', 'Judo', 'Tang Soo Do'];
-
+	$scope.availableDepartments = [];
+	if ($scope.isSuperAdmin()) {
+		$scope.availableDepartments = ['Aikido', 'Chanbara', 'Grundschule', 'Haidong Gumdo', 'Judo', 'Tang Soo Do'];
+	} else {
+		for (var i = 0; i < $scope.user.departments.length; ++i) {
+			$scope.availableDepartments.push($scope.user.departments[i].split('/')[1]);
+		}
+	}
+	
     $scope.trainings = [];
     $scope.allTrainerIds = [];
     $scope.trainerRoles = [];
@@ -108,11 +115,16 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
     	return !!completeStates[training.state];
     };
     
-    // search the first training not yet closed, cancelled or checked
-    var resetSelectedTraining = function() {
+    // Search the first training not yet closed, cancelled or checked.
+    // If id is provided, pick training with given id of possible.
+    var resetSelectedTraining = function(id) {
     	var bestTraining = null;
 		for ( var i = 0; i < $scope.trainings.length; i++) {
 			var training = $scope.trainings[i];
+			if (id && training.id == id) {
+				bestTraining = training;
+				break;
+			}
 			if (!isCompleted(training)
 					&& (!bestTraining || training.sortKey < bestTraining.sortKey)) {
 				bestTraining = training;
@@ -121,7 +133,7 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 		$scope.setSelectedTraining (bestTraining);
     };
 
-    $scope.loadTrainingsList = function (department) {
+    $scope.loadTrainingsList = function (department, id) {
     	// file URL for local test
         // $http.get('data/trainingslist' + department + '.json').success(function(data) {
         $http.get('server.php?action=getlist&department=' + department).success(function(data) {
@@ -132,44 +144,21 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
         	 $scope.allTrainerIds = $rcaTrainingsData.getAllTrainerIds();
         	 $scope.trainerRoles = $rcaTrainingsData.getTrainerRoles();
         	 
-        	 resetSelectedTraining ();
+        	 resetSelectedTraining (id);
         });
     };
-
-    $scope.saveTrainingsList = function () {
-    	var department = $scope.selectedDepartment;
-		$http({
-			method : 'POST',
-			url : 'server.php?action=putlist&department=' + department,
-			data : { trainings : $scope.trainings },
-			headers : {
-				'Content-Type' : 'application/x-www-form-urlencoded'
-			}
-		}).success(function() {
-        	alert("Trainingsliste gesichert.");
-        })
-        .error (function(data, status, headers, config) {
-    		alert("Fehler beim Sichern der Trainingsliste!\n"
-    				+ "data: " + data + "\n"
-    				+ "status: " + status + "\n"
-    				+ "headears: " + headers + "\n"
-    				+ "config: " + config);
-		});
-    };
-
     $scope.loadTrainingsList($scope.availableDepartments[0]);
-    
-    var mayEditTraining = function (training) {
-    	// TODO(BH): respect permissions of the user here
-    	return !isCompleted (training);
-    };
-    
+
     $scope.setSelectedTraining = function(training) {
     	$scope.selectedTraining = training;
-    	if (mayEditTraining (training)) {
+    	$scope.mayReopen = false;
+    	if (!isCompleted (training)) {
     		$scope.editableTraining = angular.copy (training);
     	} else {
     		$scope.editableTraining = null;
+    		if (training.state !== 'closed' && $scope.isDepartmentAdmin()) {
+    			$scope.mayReopen = true;
+    		}
     	}
     };
     
@@ -193,6 +182,39 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
     		$scope.editableTraining.heldbytrainer = newHeldBy;
     	}
     };
+    
+    var updateTraining = function (changedValues) {
+    	var newTraining = angular.extend ({}, $scope.selectedTraining, $scope.editableTraining, changedValues);
+
+    	var department = $scope.selectedDepartment;
+		$http.post('server.php?action=updatetraining&department=' + department, newTraining)
+			.success(function() {
+	        	$scope.loadTrainingsList(department, newTraining.id);
+	        });
+    };
+    
+    $scope.confirmTraining = function () {
+    	if ($scope.editableTraining.heldbytrainer.length == 0) {
+    		alert ('Bitte mindestens einen Trainer eintragen!');
+    		return;
+    	}
+    	
+    	if (!$scope.editableTraining.partipiciantscount) {
+    		alert ('Bitte Anzahl der Teilnehmer eintragen!');
+    		return;
+    	}
+    	
+    	updateTraining({ state: 'checked' });
+    };
+    
+    $scope.cancelTraining = function () {
+    	updateTraining({ heldbytrainer: [], state: 'cancelled', partipiciantscount: 0 });
+    };
+    
+    $scope.reopenTraining = function () {
+    	updateTraining({ state: 'modified' });
+    };
+
 })
   
 ;
