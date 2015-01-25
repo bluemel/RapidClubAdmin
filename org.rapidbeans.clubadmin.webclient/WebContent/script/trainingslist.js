@@ -221,6 +221,7 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
     	var department = $scope.selectedDepartment;
 		$http.post('server.php?action=updatetraining&department=' + department, newTraining)
 			.success(function() {
+				$scope.editableTraining = null;
 	        	$scope.loadTrainingsList(department, newTraining.id);
 	        });
     };
