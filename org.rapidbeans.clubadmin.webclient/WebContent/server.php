@@ -165,7 +165,9 @@ function updateTraining() {
 	$updatedTraining->setAttribute('state', $data->state);
 	$updatedTraining->setAttribute('checkedByUser', $user->username);
 	$updatedTraining->setAttribute('checkedDate', date('YmdHi'));
-	$updatedTraining->setAttribute('partipiciantscount', $data->partipiciantscount);
+	if (property_exists($data, 'partipiciantscount')) {
+		$updatedTraining->setAttribute('partipiciantscount', $data->partipiciantscount);
+	}
 	if (property_exists($data, 'notes')) {
 		$updatedTraining->setAttribute('notes', $data->notes);
 	}
@@ -186,7 +188,7 @@ function updateTraining() {
 		if ($trainer->hasAttribute('trainingsheld')) {
 			$heldIds = split(',', $trainer->getAttribute('trainingsheld'));
 			$heldIds = array_filter($heldIds, function ($value) use ($discardIds) {
-				return array_key_exists($value, $discardIds);
+				return !array_key_exists($value, $discardIds);
 			});
 			$trainer->setAttribute('trainingsheld', join(',', $heldIds));
 			foreach ($heldIds as $id) {

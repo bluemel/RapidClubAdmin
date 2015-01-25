@@ -153,6 +153,18 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
     };
     $scope.loadTrainingsList($scope.availableDepartments[0]);
 
+    var ensureTwoDigits = function (number) {
+    	var result = '' + number;
+    	if (result.length < 2) {
+    		return '0' + result;
+    	}
+    	return result;
+    };
+    var formatDate = function (date) {
+    	return date.getFullYear() + ensureTwoDigits (date.getMonth()+1) + ensureTwoDigits(date.getDate()) 
+    		+ ensureTwoDigits(date.getHours()) + ensureTwoDigits(date.getMinutes());
+    };
+    
     $scope.setSelectedTraining = function(training) {
     	if ($scope.selectedTraining == training) {
     		return;
@@ -173,7 +185,9 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
     		$scope.editableTraining = angular.copy (training);
     	} else {
     		$scope.editableTraining = null;
-    		if (training.state !== 'closed' && $scope.isDepartmentAdmin()) {
+    		var maxChangeDate = formatDate(new Date(new Date().getTime() - 24*60*60*1000));
+    		var isNotOld = !training.checkedDate || training.checkedDate > maxChangeDate;
+    		if (training.state !== 'closed' && ($scope.isDepartmentAdmin() || isNotOld)) {
     			$scope.mayReopen = true;
     		}
     	}
@@ -229,11 +243,6 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
     $scope.confirmTraining = function () {
     	if ($scope.editableTraining.heldbytrainer.length == 0) {
     		alert ('Bitte mindestens einen Trainer eintragen!');
-    		return;
-    	}
-    	
-    	if (!$scope.editableTraining.partipiciantscount) {
-    		alert ('Bitte Anzahl der Teilnehmer eintragen!');
     		return;
     	}
     	
