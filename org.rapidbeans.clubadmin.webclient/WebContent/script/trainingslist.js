@@ -154,6 +154,18 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
     $scope.loadTrainingsList($scope.availableDepartments[0]);
 
     $scope.setSelectedTraining = function(training) {
+    	if ($scope.selectedTraining == training) {
+    		return;
+    	}
+    	
+    	if ($scope.editableTraining && $scope.selectedTraining && 
+    			!angular.equals($scope.selectedTraining, $scope.editableTraining)) {
+    		if (!confirm('Änderungen sind nicht gespeichert! '+ 
+    				'Soll das aktuelle Training trotzdem gewechselt werden?')) {
+    			return;
+    		}
+    	}
+    	
     	$scope.selectedTraining = training;
     	console.log('set training to ' + training.id);
     	$scope.mayReopen = false;
