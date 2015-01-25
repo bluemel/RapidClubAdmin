@@ -87,11 +87,15 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 					});
 				}
 			}
+			
+			trainings.sort(function(a, b) { 
+			    return a.sortKey < b.sortKey ? -1 : 1;
+			});
 		}
     };
 })
   
-.controller('trainingsListCtrl', function($scope, $http, $rcaTrainingsData) {
+.controller('trainingsListCtrl', function($scope, $http, $rcaTrainingsData, $timeout) {
 	$scope.availableDepartments = [];
 	if ($scope.isSuperAdmin()) {
 		$scope.availableDepartments = ['Aikido', 'Chanbara', 'Grundschule', 'Haidong Gumdo', 'Judo', 'Tang Soo Do'];
@@ -151,6 +155,7 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 
     $scope.setSelectedTraining = function(training) {
     	$scope.selectedTraining = training;
+    	console.log('set training to ' + training.id);
     	$scope.mayReopen = false;
     	if (!isCompleted (training)) {
     		$scope.editableTraining = angular.copy (training);
@@ -160,6 +165,21 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
     			$scope.mayReopen = true;
     		}
     	}
+    	
+    	$timeout(function(){
+			var container = $('#trainingslist-selector');
+		    var containerHeight = container.height();
+
+		    var selected = $('.selected-training');
+		    var selectedTop = selected.position().top;
+		    var selectedBottom = selectedTop + selected.height();
+
+		    if (selectedTop < 0) {
+		    	container.scrollTop(Math.max(0, container.scrollTop() + selectedTop - 20));		    	
+		    } else if (selectedBottom > containerHeight) {
+		    	container.scrollTop(container.scrollTop() + selectedBottom - containerHeight + 20);
+		    }
+		});
     };
     
     $scope.addTrainer = function () {
@@ -214,7 +234,36 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
     $scope.reopenTraining = function () {
     	updateTraining({ state: 'modified' });
     };
-
+    
+    var selectNextTraining = function (offset) {
+    	for (var i = 0; i < $scope.trainings.length; ++i) {
+    		if ($scope.trainings[i] === $scope.selectedTraining) {
+    			if (i + offset >= 0 && i + offset < $scope.trainings.length) {
+    				$scope.setSelectedTraining ($scope.trainings[i + offset]);
+    				$scope.$apply();
+    			}
+    			return;
+    		}
+    	}
+    };
+    
+    var keyHandler = function(event){
+    	if ($(event.target).is('textarea')) {
+    		return;
+    	}
+    	
+    	if (event.keyCode == 38 /* up */) {
+    		selectNextTraining(-1);
+    		event.preventDefault();
+    	} else if (event.keyCode == 40 /* down */) {
+    		selectNextTraining(+1);
+    		event.preventDefault();
+    	}
+    };
+    $(window).keydown(keyHandler);
+    $scope.$on('$destroy', function() {
+    	$window.unbind('keydown', keyHandler);
+    });
 })
   
 ;

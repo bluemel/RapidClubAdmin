@@ -32,6 +32,10 @@ td {
 	font-size: 18px;
 }
 
+.selected-training {
+	background-color: #D0E0FF !important;
+}
+
 .first-column-bold td:first-child {
 	font-weight: bold;
 	background: #eee;

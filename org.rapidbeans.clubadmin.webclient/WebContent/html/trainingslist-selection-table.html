@@ -1,9 +1,9 @@
-<div class="trainingslist-selector">
+<div id="trainingslist-selector" class="trainingslist-selector">
 	<table class="table table-striped">
 		<tbody>
 			<tr ng-repeat="training in trainings | orderBy:'sortKey'"
 				ng-click="setSelectedTraining(training)"
-				ng-style="selectedTraining === training ? {'background-color': '#D0E0FF'} : {}" >
+				ng-class="selectedTraining === training ? 'selected-training' : ''" >
 				<td>{{ training.dayofweek | shortDayOfWeek }}, 
 				    {{ training.date | formatDate }}</td>
 				<td>{{ training.timestart }}</td>
