@@ -73,4 +73,13 @@ angular.module('rcaFilters', [])
 	};
 })
 
+.filter('replaceNonAlnum', function(){
+	return function(string) {
+		if (!angular.isString(string)) {
+			return string;
+		}
+		return string.replace(/[^-a-zA-Z0-9_]/g, '_');
+	};
+})
+
 ;
