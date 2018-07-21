@@ -442,7 +442,7 @@ public class RapidClubAdminClient extends Application {
         return docView;
     }
 
-    private Department getWorkingDepartment(final String workingDepartmentId) {
+    public Department getWorkingDepartment(final String workingDepartmentId) {
         Department workingDepartment = null;
         if (workingDepartmentId == null) {
             workingDepartment = getAuthorizedWorkingDepartment();
