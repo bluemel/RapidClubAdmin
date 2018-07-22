@@ -13,14 +13,19 @@ import java.util.Map.Entry;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.rapidbeans.clubadmin.domain.Department;
+import org.rapidbeans.clubadmin.domain.Trainer;
 import org.rapidbeans.clubadmin.domain.Training;
+import org.rapidbeans.clubadmin.domain.TrainingDate;
 import org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.core.util.StringHelper;
 import org.rapidbeans.core.util.StringHelper.FillMode;
 import org.rapidbeans.datasource.Document;
 import org.rapidbeans.domain.finance.Money;
+import org.rapidbeans.domain.math.Time;
+import org.rapidbeans.domain.math.UnitTime;
 
 public class HistoryReportTest {
 
@@ -30,14 +35,23 @@ public class HistoryReportTest {
         TypePropertyCollection.setDefaultCharSeparator(',');
         final File histdir = new File("history");
         assertTrue(histdir.exists());
-        final List<Trstat> trainings = new ArrayList<Trstat>();
+
         // final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         final NumberFormat nf = NumberFormat.getInstance();
         nf.setMinimumFractionDigits(2);
         nf.setMaximumFractionDigits(2);
+        RapidBeansLocale locale = new RapidBeansLocale();
+
+        final List<Trstat> trainings = new ArrayList<Trstat>();
         final List<Integer> years = readTrainingsFromHistory(histdir, trainings, 2009, 2018);
 
+        // collect statistics
         final Map<Integer, Map<Department, Money>> statDepOverYears = new HashMap<Integer, Map<Department, Money>>();
+        final Map<Integer, Map<Department, Integer>> statDepTrainingsOverYears = new HashMap<Integer, Map<Department, Integer>>();
+        final Map<Integer, Map<Department, Time>> statDepTrTimeOverYears = new HashMap<Integer, Map<Department, Time>>();
+        final Map<Integer, Map<Department, Map<String, Money>>> statDepTrdateOverYears = new HashMap<Integer, Map<Department, Map<String, Money>>>();
+        final Map<Integer, Map<Department, Map<String, Money>>> statDepTrainerOverYears = new HashMap<Integer, Map<Department, Map<String, Money>>>();
+
         for (final Trstat trstat : trainings) {
             final Training training = trstat.getTraining();
             final int year = trstat.getYear();
@@ -48,22 +62,83 @@ public class HistoryReportTest {
                 depMap = new HashMap<Department, Money>();
                 statDepOverYears.put(year, depMap);
             }
+            Map<Department, Integer> trSumMap = statDepTrainingsOverYears.get(year);
+            if (trSumMap == null) {
+                trSumMap = new HashMap<Department, Integer>();
+                statDepTrainingsOverYears.put(year, trSumMap);
+            }
+            Map<Department, Time> trTimeMap = statDepTrTimeOverYears.get(year);
+            if (trTimeMap == null) {
+                trTimeMap = new HashMap<Department, Time>();
+                statDepTrTimeOverYears.put(year, trTimeMap);
+            }
+            Map<Department, Map<String, Money>> trDateDepMap = statDepTrdateOverYears.get(year);
+            if (trDateDepMap == null) {
+                trDateDepMap = new HashMap<Department, Map<String, Money>>();
+                statDepTrdateOverYears.put(year, trDateDepMap);
+            }
+            Map<Department, Map<String, Money>> trainerDepMap = statDepTrainerOverYears.get(year);
+            if (trainerDepMap == null) {
+                trainerDepMap = new HashMap<Department, Map<String, Money>>();
+                statDepTrainerOverYears.put(year, trainerDepMap);
+            }
             final Department dep = training.getParentBean() instanceof Department ? (Department) training
                     .getParentBean() : (Department) training.getParentBean().getParentBean();
             Money depYearMoney = depMap.get(dep);
             if (depYearMoney == null) {
                 depYearMoney = new Money("0 euro");
             }
-            // System.out.println(String.format("%s: %s %s",
-            // df.format(training.getDate()), department.getName(),
-            // training.getTimeWorked(UnitTime.h)));
+            Integer trSum = trSumMap.get(dep);
+            if (trSum == null) {
+                trSum = 0;
+            }
+            Time trTime = trTimeMap.get(dep);
+            if (trTime == null) {
+                trTime = new Time("0 h");
+            }
+            Map<String, Money> trDateMap = trDateDepMap.get(dep);
+            if (trDateMap == null) {
+                trDateMap = new HashMap<String, Money>();
+                trDateDepMap.put(dep, trDateMap);
+            }
+            final String trDateName = training.getParentBean() instanceof Department ? "Sonderveranstaltung "
+                    + ((Department) training.getParentBean()).getName() : ((TrainingDate) training.getParentBean())
+                    .getDayofweek().toString()
+                    + ", "
+                    + ((TrainingDate) training.getParentBean()).getTimestart()
+                    + "-"
+                    + ((TrainingDate) training.getParentBean()).getTimeend()
+                    + ", "
+                    + ((TrainingDate) training.getParentBean()).getName();
+            Money depTradateYearMoney = trDateMap.get(trDateName);
+            if (depTradateYearMoney == null) {
+                depTradateYearMoney = new Money("0 euro");
+            }
+            Map<String, Money> trainerMap = trainerDepMap.get(dep);
+            if (trainerMap == null) {
+                trainerMap = new HashMap<String, Money>();
+                trainerDepMap.put(dep, trainerMap);
+            }
+
             for (TrainingHeldByTrainer trhbt : training.getHeldbytrainersSortedByValue()) {
-                depYearMoney = (Money) depYearMoney.add(trhbt.getMoneyEarned());
-                // System.out.println(String.format("  (%s) %s: %s EUR",
-                // trhbt.getRole(), trhbt.getTrainer(),
-                // nf.format(trhbt.getMoneyEarned().getMagnitudeDouble())));
+                final Money moneyEarned = trhbt.getMoneyEarned();
+                depYearMoney = (Money) depYearMoney.add(moneyEarned);
+                depTradateYearMoney = (Money) depTradateYearMoney.add(moneyEarned);
+
+                final Trainer trainer = trhbt.getTrainer();
+                final String trainerName = trainer == null ? "Kein Trainer vermerkt" : trainer.getLastname() + ", "
+                        + trainer.getFirstname();
+                Money depTrainerYearMoney = trainerMap.get(trainerName);
+                if (depTrainerYearMoney == null) {
+                    depTrainerYearMoney = new Money("0 euro");
+                }
+                depTrainerYearMoney = (Money) depTrainerYearMoney.add(moneyEarned);
+                trainerMap.put(trainerName, depTrainerYearMoney);
             }
             depMap.put(dep, depYearMoney);
+            trSumMap.put(dep, ++trSum);
+            trTimeMap.put(dep, (Time) trTime.add(training.getTimeWorked(UnitTime.h)));
+            trDateMap.put(trDateName, depTradateYearMoney);
         }
 
         for (final int year : years) {
@@ -72,13 +147,68 @@ public class HistoryReportTest {
             Money sumYears = new Money("0 euro");
             Money sumYearsWoGrundschule = new Money("0 euro");
             Map<Department, Money> depMap = statDepOverYears.get(year);
+            Map<Department, Integer> trSumMap = statDepTrainingsOverYears.get(year);
+            Map<Department, Time> trTimeMap = statDepTrTimeOverYears.get(year);
             for (final Entry<Department, Money> entry : depMap.entrySet()) {
-                System.out.println(String.format("%s %s EUR",
-                        StringHelper.fillUp(entry.getKey().getName() + ':', 14, ' ', FillMode.right),
+                System.out.println(String.format("%s %s Trainings, %s: %s EUR",
+                        StringHelper.fillUp(entry.getKey().getName(), 14, ' ', FillMode.right),
+                        StringHelper.fillUp(Integer.toString(trSumMap.get(entry.getKey())), 5, ' ', FillMode.left),
+                        StringHelper.fillUp(trTimeMap.get(entry.getKey()).toString(), 7, ' ', FillMode.left),
                         StringHelper.fillUp(nf.format(entry.getValue().getMagnitudeDouble()), 10, ' ', FillMode.left)));
                 sumYears = (Money) sumYears.add(entry.getValue());
                 if (!entry.getKey().getName().equals("Grundschule")) {
                     sumYearsWoGrundschule = (Money) sumYearsWoGrundschule.add(entry.getValue());
+                }
+            }
+            System.out.println(String.format("-----------------------------"));
+            if (!sumYearsWoGrundschule.equals(sumYears)) {
+                System.out.println(String.format("Summe Jahr (Gs)%s EUR",
+                        StringHelper.fillUp(nf.format(sumYears.getMagnitudeDouble()), 10, ' ', FillMode.left)));
+            }
+            System.out
+                    .println(String.format("Summe Jahr     %s EUR", StringHelper.fillUp(
+                            nf.format(sumYearsWoGrundschule.getMagnitudeDouble()), 10, ' ', FillMode.left)));
+            System.out.println(String.format("-----------------------------"));
+        }
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        for (final int year : years) {
+            System.out.println();
+            System.out.println();
+            System.out.println(String.format("--- %s --------------------", year));
+            Money sumYears = new Money("0 euro");
+            Money sumYearsWoGrundschule = new Money("0 euro");
+            Map<Department, Money> depMap = statDepOverYears.get(year);
+            Map<Department, Integer> trSumMap = statDepTrainingsOverYears.get(year);
+            Map<Department, Time> trTimeMap = statDepTrTimeOverYears.get(year);
+            Map<Department, Map<String, Money>> trDateDepMap = statDepTrdateOverYears.get(year);
+            Map<Department, Map<String, Money>> trainerDepMap = statDepTrainerOverYears.get(year);
+            for (final Entry<Department, Money> entry : depMap.entrySet()) {
+                System.out.println();
+                System.out.println(String.format("%s %s Trainings, %s: %s EUR",
+                        StringHelper.fillUp(entry.getKey().getName(), 14, ' ', FillMode.right),
+                        StringHelper.fillUp(Integer.toString(trSumMap.get(entry.getKey())), 5, ' ', FillMode.left),
+                        StringHelper.fillUp(trTimeMap.get(entry.getKey()).toString(), 7, ' ', FillMode.left),
+                        StringHelper.fillUp(nf.format(entry.getValue().getMagnitudeDouble()), 10, ' ', FillMode.left)));
+                sumYears = (Money) sumYears.add(entry.getValue());
+                if (!entry.getKey().getName().equals("Grundschule")) {
+                    sumYearsWoGrundschule = (Money) sumYearsWoGrundschule.add(entry.getValue());
+                }
+                System.out.println(String.format("-----------------------------"));
+                final Map<String, Money> trDateMap = trDateDepMap.get(entry.getKey());
+                for (final Entry<String, Money> entryTrdate : trDateMap.entrySet()) {
+                    System.out.println(String.format("  TERMIN  %s: %s EUR", StringHelper.fillUp(entryTrdate.getKey(),
+                            60, ' ', FillMode.right), StringHelper.fillUp(
+                            nf.format(entryTrdate.getValue().getMagnitudeDouble()), 10, ' ', FillMode.left)));
+                }
+                System.out.println(String.format("-----------------------------"));
+                final Map<String, Money> trainerMap = trainerDepMap.get(entry.getKey());
+                for (final Entry<String, Money> entryTrainer : trainerMap.entrySet()) {
+                    System.out.println(String.format("  TRAINER %s: %s EUR", StringHelper.fillUp(entryTrainer.getKey(),
+                            60, ' ', FillMode.right), StringHelper.fillUp(
+                            nf.format(entryTrainer.getValue().getMagnitudeDouble()), 10, ' ', FillMode.left)));
                 }
             }
             System.out.println(String.format("-----------------------------"));
