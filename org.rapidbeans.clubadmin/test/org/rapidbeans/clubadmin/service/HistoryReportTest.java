@@ -18,7 +18,6 @@ import org.rapidbeans.clubadmin.domain.Training;
 import org.rapidbeans.clubadmin.domain.TrainingDate;
 import org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer;
 import org.rapidbeans.core.basic.RapidBean;
-import org.rapidbeans.core.common.RapidBeansLocale;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.core.util.StringHelper;
 import org.rapidbeans.core.util.StringHelper.FillMode;
@@ -40,7 +39,6 @@ public class HistoryReportTest {
         final NumberFormat nf = NumberFormat.getInstance();
         nf.setMinimumFractionDigits(2);
         nf.setMaximumFractionDigits(2);
-        RapidBeansLocale locale = new RapidBeansLocale();
 
         final List<Trstat> trainings = new ArrayList<Trstat>();
         final List<Integer> years = readTrainingsFromHistory(histdir, trainings, 2009, 2018);
