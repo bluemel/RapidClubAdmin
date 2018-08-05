@@ -1,0 +1,1187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.clubadmin.domain.TrainingsList"
+	from="20100101"
+	to="20100331"
+	forSingleClub="FC Hintertupfingen"
+	forSingleDepartment="FC Hintertupfingen/Fußball"
+	trainerhour="45 min"
+	>
+	<club
+		id="FC Hintertupfingen"
+		name="FC Hintertupfingen"
+		>
+		<department
+			id="FC Hintertupfingen/Fußball"
+			name="Fußball"
+			trainers="Klinsmann_Jürgen_,Löw_Joachim_Jogi"
+			>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A"
+				dayofweek="tuesday"
+				timestart="18:00"
+				location="Platz A"
+				name="Jugend_B_A"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="1"
+					role="Trainer"
+					defaulttrainers="Löw_Joachim_Jogi"
+					/>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100105"
+					date="20100105"
+					state="checked"
+					checkedByUser="administrator"
+					checkedDate="201002232330"
+					>
+					<heldbytrainer
+						id="101"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100112"
+					date="20100112"
+					partipiciantscount="16"
+					state="asplanned"
+					checkedByUser="administrator"
+					checkedDate="201002210328"
+					>
+					<heldbytrainer
+						id="109"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100119"
+					date="20100119"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="117"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100126"
+					date="20100126"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="125"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100202"
+					date="20100202"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="133"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100209"
+					date="20100209"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="141"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100216"
+					date="20100216"
+					state="closed"
+					>
+					<heldbytrainer
+						id="149"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100223"
+					date="20100223"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="157"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100302"
+					date="20100302"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="165"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100309"
+					date="20100309"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="173"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100316"
+					date="20100316"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="181"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100323"
+					date="20100323"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="189"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz A/20100330"
+					date="20100330"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="197"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+			</trainingdate>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B"
+				dayofweek="tuesday"
+				timestart="18:00"
+				location="Platz B"
+				name="Kinder_E_D_C"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="2"
+					role="Trainer"
+					defaulttrainers="Klinsmann_Jürgen_"
+					/>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100105"
+					date="20100105"
+					state="checked"
+					checkedByUser="administrator"
+					checkedDate="201002232330"
+					>
+					<heldbytrainer
+						id="102"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100112"
+					date="20100112"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="110"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100119"
+					date="20100119"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="118"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100126"
+					date="20100126"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="126"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100202"
+					date="20100202"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="134"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100209"
+					date="20100209"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="142"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100216"
+					date="20100216"
+					state="closed"
+					>
+					<heldbytrainer
+						id="150"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100223"
+					date="20100223"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="158"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100302"
+					date="20100302"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="166"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100309"
+					date="20100309"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="174"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100316"
+					date="20100316"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="182"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100323"
+					date="20100323"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="190"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_18:00_Platz B/20100330"
+					date="20100330"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="198"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+			</trainingdate>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A"
+				dayofweek="tuesday"
+				timestart="19:30"
+				location="Platz A"
+				name="Erwachsene"
+				timeend="21:00"
+				>
+				<trainerplanning
+					id="3"
+					role="Trainer"
+					defaulttrainers="Klinsmann_Jürgen_"
+					/>
+				<trainerplanning
+					id="4"
+					role="Cotrainer"
+					defaulttrainers="Löw_Joachim_Jogi"
+					/>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100105"
+					date="20100105"
+					state="checked"
+					checkedByUser="administrator"
+					checkedDate="201002232330"
+					>
+					<heldbytrainer
+						id="103"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="104"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100112"
+					date="20100112"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="111"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="112"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100119"
+					date="20100119"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="119"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="120"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100126"
+					date="20100126"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="127"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="128"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100202"
+					date="20100202"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="135"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="136"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100209"
+					date="20100209"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="143"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="144"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100216"
+					date="20100216"
+					state="closed"
+					>
+					<heldbytrainer
+						id="151"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="152"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100223"
+					date="20100223"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="159"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="160"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100302"
+					date="20100302"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="167"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="168"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100309"
+					date="20100309"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="175"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="176"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100316"
+					date="20100316"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="183"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="184"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100323"
+					date="20100323"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="191"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="192"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/tuesday_19:30_Platz A/20100330"
+					date="20100330"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="199"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="200"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+			</trainingdate>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A"
+				dayofweek="thursday"
+				timestart="18:00"
+				location="Platz A"
+				name="Jugend_B_A"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="8"
+					role="Trainer"
+					defaulttrainers="Löw_Joachim_Jogi"
+					/>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100107"
+					date="20100107"
+					state="checked"
+					checkedByUser="administrator"
+					checkedDate="201002232330"
+					>
+					<heldbytrainer
+						id="105"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100114"
+					date="20100114"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="113"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100121"
+					date="20100121"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="121"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100128"
+					date="20100128"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="129"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100204"
+					date="20100204"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="137"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100211"
+					date="20100211"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="145"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100218"
+					date="20100218"
+					state="closed"
+					>
+					<heldbytrainer
+						id="153"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100225"
+					date="20100225"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="161"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100304"
+					date="20100304"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="169"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100311"
+					date="20100311"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="177"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100318"
+					date="20100318"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="185"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz A/20100325"
+					date="20100325"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="193"
+						role="Trainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+			</trainingdate>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B"
+				dayofweek="thursday"
+				timestart="18:00"
+				location="Platz B"
+				name="Kinder_E_D_C"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="7"
+					role="Trainer"
+					defaulttrainers="Klinsmann_Jürgen_"
+					/>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100107"
+					date="20100107"
+					state="checked"
+					checkedByUser="administrator"
+					checkedDate="201002240059"
+					>
+					<heldbytrainer
+						id="106"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100114"
+					date="20100114"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="114"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100121"
+					date="20100121"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="122"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100128"
+					date="20100128"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="130"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100204"
+					date="20100204"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="138"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100211"
+					date="20100211"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="146"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100218"
+					date="20100218"
+					state="closed"
+					>
+					<heldbytrainer
+						id="154"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100225"
+					date="20100225"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="162"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100304"
+					date="20100304"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="170"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100311"
+					date="20100311"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="178"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100318"
+					date="20100318"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="186"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_18:00_Platz B/20100325"
+					date="20100325"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="194"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+				</training>
+			</trainingdate>
+			<trainingdate
+				id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A"
+				dayofweek="thursday"
+				timestart="19:30"
+				location="Platz A"
+				name="Erwachsene"
+				timeend="21:00"
+				>
+				<trainerplanning
+					id="5"
+					role="Trainer"
+					defaulttrainers="Klinsmann_Jürgen_"
+					/>
+				<trainerplanning
+					id="6"
+					role="Cotrainer"
+					defaulttrainers="Löw_Joachim_Jogi"
+					/>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100107"
+					date="20100107"
+					state="checked"
+					checkedByUser="administrator"
+					checkedDate="201002232329"
+					>
+					<heldbytrainer
+						id="107"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="108"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100114"
+					date="20100114"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="115"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="116"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100121"
+					date="20100121"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="123"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="124"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100128"
+					date="20100128"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="131"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="132"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100204"
+					date="20100204"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="139"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="140"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100211"
+					date="20100211"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="147"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="148"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100218"
+					date="20100218"
+					state="closed"
+					>
+					<heldbytrainer
+						id="155"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="156"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100225"
+					date="20100225"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="163"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="164"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100304"
+					date="20100304"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="171"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="172"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100311"
+					date="20100311"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="179"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="180"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100318"
+					date="20100318"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="187"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="188"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+				<training
+					id="FC Hintertupfingen/Fußball/thursday_19:30_Platz A/20100325"
+					date="20100325"
+					state="asplanned"
+					>
+					<heldbytrainer
+						id="195"
+						role="Trainer"
+						trainer="Klinsmann_Jürgen_"
+						/>
+					<heldbytrainer
+						id="196"
+						role="Cotrainer"
+						trainer="Löw_Joachim_Jogi"
+						/>
+				</training>
+			</trainingdate>
+		</department>
+	</club>
+	<trainer
+		id="Klinsmann_Jürgen_"
+		lastname="Klinsmann"
+		firstname="Jürgen"
+		middlename=""
+		email="klinsi@hotmail.com"
+		trainerplannings="2,3,5,7"
+		trainingsheld="102,103,106,107,110,111,114,115,118,119,122,123,126,127,130,131,134,135,138,139,142,143,146,147,150,151,154,155,158,159,162,163,166,167,170,171,174,175,178,179,182,183,186,187,190,191,194,195,198,199"
+		departments="FC Hintertupfingen/Fußball"
+		salaries="Trainer_Klinsmann_Jürgen_"
+		/>
+	<trainer
+		id="Löw_Joachim_Jogi"
+		lastname="Löw"
+		firstname="Joachim"
+		middlename="Jogi"
+		email="jogi.loew@dfb.de"
+		trainerattributes="Fachübungsleiter,Trainer A"
+		trainerplannings="1,4,6,8"
+		trainingsheld="101,104,105,108,109,112,113,116,117,120,121,124,125,128,129,132,133,136,137,140,141,144,145,148,149,152,153,156,157,160,161,164,165,168,169,172,173,176,177,180,181,184,185,188,189,192,193,196,197,200"
+		departments="FC Hintertupfingen/Fußball"
+		/>
+	<trainerrole
+		id="Trainer"
+		name="Trainer"
+		>
+		<salary
+			id="Trainer_Trainer A"
+			rolename="Trainer"
+			trainerattribute="Trainer A"
+			money="20 euro"
+			time="45 min"
+			/>
+		<salary
+			id="Trainer_Fachübungsleiter,Trainer A"
+			rolename="Trainer"
+			trainerattribute="Fachübungsleiter,Trainer A"
+			money="25 euro"
+			time="45 min"
+			/>
+		<personalSalary
+			id="Trainer_Klinsmann_Jürgen_"
+			rolename="Trainer"
+			person="Klinsmann_Jürgen_"
+			money="100 euro"
+			time="45 min"
+			/>
+	</trainerrole>
+	<trainerrole
+		id="Cotrainer"
+		name="Cotrainer"
+		>
+		<salary
+			id="Cotrainer_Trainer A"
+			rolename="Cotrainer"
+			trainerattribute="Trainer A"
+			money="10 euro"
+			time="45 min"
+			/>
+		<salary
+			id="Cotrainer_Fachübungsleiter,Trainer A"
+			rolename="Cotrainer"
+			trainerattribute="Fachübungsleiter,Trainer A"
+			money="15 euro"
+			time="45 min"
+			/>
+	</trainerrole>
+	<sport
+		id="Fußball"
+		name="Fußball"
+		shortname="Fußb."
+		/>
+	<trainerattribute
+		id="Fachübungsleiter"
+		name="Fachübungsleiter"
+		/>
+	<trainerattribute
+		id="Trainer A"
+		name="Trainer A"
+		/>
+	<location
+		id="Platz A"
+		name="Platz A"
+		street="Am Anger 1"
+		city="Hintertupfingen"
+		closedons="20100215_Winterferien"
+		/>
+	<location
+		id="Platz B"
+		name="Platz B"
+		street="Am Anger 1"
+		city="Hintertupfingen"
+		closedons="20100215_Winterferien"
+		/>
+	<closingperiod
+		id="20100215_Winterferien"
+		from="20100215"
+		name="Winterferien"
+		to="20100219"
+		locations="Platz A,Platz B"
+		/>
+	<user
+		id="administrator"
+		accountname="administrator"
+		lastname="Administrator"
+		email="michael.schmidt@aol.com"
+		/>
+</rb:bean>

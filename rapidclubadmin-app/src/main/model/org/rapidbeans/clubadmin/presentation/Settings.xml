@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.presentation.Settings"
+	extends="org.rapidbeans.presentation.settings.SettingsAll"
+	incremental="true">
+	<property name="settings"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.clubadmin.presentation.RapidClubAdminSettings"
+		collectionclass="java.util.ArrayList"
+		minmult="1"
+		maxmult="1"
+	/>
+    <property name="basic"
+        type="association"
+        composition="true"
+        targettype="org.rapidbeans.clubadmin.presentation.SettingsBasic"
+        collectionclass="java.util.ArrayList"
+        minmult="1"
+        maxmult="1"
+    />
+	<codegen mode="joint"/>
+</beantype>

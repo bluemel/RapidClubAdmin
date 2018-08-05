@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.TrainerAttribute"
+	idtype="keyprops"
+	incremental="false"
+	>
+	<property name="name"
+		type="string"
+		key="true"
+	/>
+</beantype>

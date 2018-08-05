@@ -1,0 +1,1950 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------< org.rapidbeans:rapidclubadmin-app >------------------
+[INFO] Building rapidclubadmin-app 1.0.0-SNAPSHOT
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- build-helper-maven-plugin:3.0.0:add-source (add-source) @ rapidclubadmin-app ---
+[INFO] Source directory: D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\target\generated-sources\rapidbeans added.
+[INFO] 
+[INFO] --- rapidbeans-sdk:1.0.0-SNAPSHOT:rapidbeans-generator (generate-sources-rapidbeans) @ rapidclubadmin-app ---
+[INFO] Running RapidBeans code generator...
+Running RapidBeans code generator...
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.tools.ant.taskdefs.optional.TraXLiaison (file:/D:/Projects/mavenrepo/org/apache/ant/ant/1.9.4/ant-1.9.4.jar) to field com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl._isNotSecureProcessing
+WARNING: Please consider reporting this to the maintainers of org.apache.tools.ant.taskdefs.optional.TraXLiaison
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+[INFO] Finished RapidBEans code generator successfully.
+Finished RapidBEans code generator successfully.
+[INFO] 
+[INFO] --- build-helper-maven-plugin:3.0.0:add-resource (add-resource) @ rapidclubadmin-app ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ rapidclubadmin-app ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 62 resources
+[INFO] Copying 39 resources
+[INFO] Copying 39 resources to classes
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:compile (default-compile) @ rapidclubadmin-app ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 160 source files to D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\target\classes
+[WARNING] /D:/Projects/sources/RapidClubAdmin/rapidclubadmin-app/src/main/java/org/rapidbeans/clubadmin/datasource/WebFileManager.java:[38,19] sun.net.ftp.FtpProtocolException is internal proprietary API and may be removed in a future release
+[WARNING] /D:/Projects/sources/RapidClubAdmin/rapidclubadmin-app/src/main/java/org/rapidbeans/clubadmin/datasource/WebFileManager.java:[354,76] sun.net.ftp.FtpProtocolException is internal proprietary API and may be removed in a future release
+[WARNING] /D:/Projects/sources/RapidClubAdmin/rapidclubadmin-app/src/main/java/org/rapidbeans/clubadmin/RapidClubAdminApplet.java: Some input files use or override a deprecated API.
+[WARNING] /D:/Projects/sources/RapidClubAdmin/rapidclubadmin-app/src/main/java/org/rapidbeans/clubadmin/RapidClubAdminApplet.java: Recompile with -Xlint:deprecation for details.
+[WARNING] /D:/Projects/sources/RapidClubAdmin/rapidclubadmin-app/src/main/java/org/rapidbeans/clubadmin/presentation/swing/ViewOverview.java: Some input files use unchecked or unsafe operations.
+[WARNING] /D:/Projects/sources/RapidClubAdmin/rapidclubadmin-app/src/main/java/org/rapidbeans/clubadmin/presentation/swing/ViewOverview.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ rapidclubadmin-app ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 76 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.0:testCompile (default-testCompile) @ rapidclubadmin-app ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 29 source files to D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\target\test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ rapidclubadmin-app ---
+[INFO] Surefire report directory: D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.rapidbeans.clubadmin.closingdays.SchulferienReaderTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.385 sec
+Running org.rapidbeans.clubadmin.datasource.DocumentTest
+Aug. 05, 2018 9:19:08 VORM. org.rapidbeans.core.util.PlatformHelper determineSystem
+INFORMATION: OS name = "Windows 7"
+Aug. 05, 2018 9:19:08 VORM. org.rapidbeans.core.util.PlatformHelper determineSystem
+INFORMATION: OS version = "6.1"
+Tests run: 10, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.357 sec <<< FAILURE!
+testDetectProblemWithSortedTrainings(org.rapidbeans.clubadmin.datasource.DocumentTest)  Time elapsed: 0.084 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20060101_20060331.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.datasource.DocumentTest.testDetectProblemWithSortedTrainings(DocumentTest.java:337)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 32 more
+
+testWriteAndRead(org.rapidbeans.clubadmin.datasource.DocumentTest)  Time elapsed: 0.049 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20060101_20060331.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.datasource.DocumentTest.testWriteAndRead(DocumentTest.java:293)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 32 more
+
+Running org.rapidbeans.clubadmin.datasource.QueryTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running org.rapidbeans.clubadmin.domain.ClosingPeriodTest
+Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 sec
+Running org.rapidbeans.clubadmin.domain.CreditInstituteTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running org.rapidbeans.clubadmin.domain.export.ExportJobTest
+WARNING:You shouldn't use 'user' reserved word as column name in the table Login (it refers to the database user).
+ Escape it in your SQL! 
+(e.g. SELECT [USER] FROM TABLE WHERE [USER]='Joe')
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.186 sec
+Running org.rapidbeans.clubadmin.domain.report.EvidenceTest
+Tests run: 8, Failures: 0, Errors: 5, Skipped: 0, Time elapsed: 0.355 sec <<< FAILURE!
+testReportDepartmentSimple(org.rapidbeans.clubadmin.domain.report.EvidenceTest)  Time elapsed: 0.232 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\testevidence\trainingsDataAikido.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.domain.report.EvidenceTest.testReportDepartmentSimple(EvidenceTest.java:82)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:285)
+	... 32 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 41 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 46 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 51 more
+
+testReportCollected(org.rapidbeans.clubadmin.domain.report.EvidenceTest)  Time elapsed: 0.024 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\testevidence\trainingsDataAikido.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.domain.report.EvidenceTest.testReportCollected(EvidenceTest.java:157)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:285)
+	... 32 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedConstructorAccessor52.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 41 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 45 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 50 more
+
+testReportOverflowDepartmentSingle(org.rapidbeans.clubadmin.domain.report.EvidenceTest)  Time elapsed: 0.022 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\testevidence\trainingsDataAikido.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.domain.report.EvidenceTest.testReportOverflowDepartmentSingle(EvidenceTest.java:101)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:285)
+	... 32 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedConstructorAccessor52.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 41 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 45 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 50 more
+
+testReportOverflowDepartmentsCoherent(org.rapidbeans.clubadmin.domain.report.EvidenceTest)  Time elapsed: 0.021 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\testevidence\trainingsDataAikido.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.domain.report.EvidenceTest.testReportOverflowDepartmentsCoherent(EvidenceTest.java:138)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:285)
+	... 32 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedConstructorAccessor52.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 41 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 45 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 50 more
+
+testReportOverflowDepartmentCoherent(org.rapidbeans.clubadmin.domain.report.EvidenceTest)  Time elapsed: 0.024 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\testevidence\trainingsDataAikido.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.domain.report.EvidenceTest.testReportOverflowDepartmentCoherent(EvidenceTest.java:119)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:285)
+	... 32 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedConstructorAccessor52.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 41 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 45 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 50 more
+
+Running org.rapidbeans.clubadmin.domain.report.OverviewTest
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.056 sec <<< FAILURE!
+testAsStringMartin1(org.rapidbeans.clubadmin.domain.report.OverviewTest)  Time elapsed: 0.009 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20060101_20060331.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.domain.report.OverviewTest.testAsStringMartin1(OverviewTest.java:44)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:285)
+	... 32 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedConstructorAccessor52.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 41 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 45 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 50 more
+
+testAsStringMartin2(org.rapidbeans.clubadmin.domain.report.OverviewTest)  Time elapsed: 0.019 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20070901_20071231.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.domain.report.OverviewTest.testAsStringMartin2(OverviewTest.java:79)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:285)
+	... 32 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedConstructorAccessor52.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 41 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 45 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 50 more
+
+testAsStringReinhard(org.rapidbeans.clubadmin.domain.report.OverviewTest)  Time elapsed: 0.028 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20070901_20071231.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.domain.report.OverviewTest.testAsStringReinhard(OverviewTest.java:114)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:285)
+	... 32 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedConstructorAccessor52.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 41 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 45 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 50 more
+
+Running org.rapidbeans.clubadmin.domain.RoleTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running org.rapidbeans.clubadmin.domain.SalaryTest
+Tests run: 9, Failures: 0, Errors: 9, Skipped: 0, Time elapsed: 0.069 sec <<< FAILURE!
+testSalaryWithComponentsChangeComponentMoney(org.rapidbeans.clubadmin.domain.SalaryTest)  Time elapsed: 0 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:44)
+	at org.rapidbeans.clubadmin.domain.SalaryTest.testSalaryWithComponentsChangeComponentMoney(SalaryTest.java:121)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 35 more
+
+testCompareToSalaryEqualMagDiffUnitGreater(org.rapidbeans.clubadmin.domain.SalaryTest)  Time elapsed: 0.003 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:44)
+	at org.rapidbeans.clubadmin.domain.SalaryTest.testCompareToSalaryEqualMagDiffUnitGreater(SalaryTest.java:79)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 35 more
+
+testSalaryAddComponent(org.rapidbeans.clubadmin.domain.SalaryTest)  Time elapsed: 0.021 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:44)
+	at org.rapidbeans.clubadmin.domain.SalaryTest.testSalaryAddComponent(SalaryTest.java:107)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 35 more
+
+testSalaryWithComponentsChangeCompositeTime(org.rapidbeans.clubadmin.domain.SalaryTest)  Time elapsed: 0 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:44)
+	at org.rapidbeans.clubadmin.domain.SalaryTest.testSalaryWithComponentsChangeCompositeTime(SalaryTest.java:151)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 35 more
+
+testCompareToSalaryEqualMagDiffUnitLess(org.rapidbeans.clubadmin.domain.SalaryTest)  Time elapsed: 0.013 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:44)
+	at org.rapidbeans.clubadmin.domain.SalaryTest.testCompareToSalaryEqualMagDiffUnitLess(SalaryTest.java:93)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 35 more
+
+testCompareToSalaryLesserMagEqualUnit(org.rapidbeans.clubadmin.domain.SalaryTest)  Time elapsed: 0.003 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:44)
+	at org.rapidbeans.clubadmin.domain.SalaryTest.testCompareToSalaryLesserMagEqualUnit(SalaryTest.java:37)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 35 more
+
+testCompareToSalaryGreaterMagEqualUnit(org.rapidbeans.clubadmin.domain.SalaryTest)  Time elapsed: 0.009 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:44)
+	at org.rapidbeans.clubadmin.domain.SalaryTest.testCompareToSalaryGreaterMagEqualUnit(SalaryTest.java:23)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 35 more
+
+testCompareToSalaryEqualMagDiffUnitEqual(org.rapidbeans.clubadmin.domain.SalaryTest)  Time elapsed: 0.006 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:44)
+	at org.rapidbeans.clubadmin.domain.SalaryTest.testCompareToSalaryEqualMagDiffUnitEqual(SalaryTest.java:65)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 35 more
+
+testCompareToSalaryEqualMagAndUnit(org.rapidbeans.clubadmin.domain.SalaryTest)  Time elapsed: 0.013 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:44)
+	at org.rapidbeans.clubadmin.domain.SalaryTest.testCompareToSalaryEqualMagAndUnit(SalaryTest.java:51)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 35 more
+
+Running org.rapidbeans.clubadmin.domain.TrainerTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running org.rapidbeans.clubadmin.domain.TrainingDateTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running org.rapidbeans.clubadmin.domain.TrainingHeldByTrainerTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running org.rapidbeans.clubadmin.domain.TrainingsListTest
+Tests run: 11, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.038 sec <<< FAILURE!
+testLoadDocument(org.rapidbeans.clubadmin.domain.TrainingsListTest)  Time elapsed: 0.02 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20060101_20060331.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.domain.TrainingsListTest.testLoadDocument(TrainingsListTest.java:163)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:285)
+	... 32 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedConstructorAccessor52.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 41 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 45 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 50 more
+
+testDeserializeFile(org.rapidbeans.clubadmin.domain.TrainingsListTest)  Time elapsed: 0.014 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:104)
+	at org.rapidbeans.clubadmin.domain.TrainingsListTest.testDeserializeFile(TrainingsListTest.java:111)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedConstructorAccessor52.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 40 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 44 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 49 more
+
+Running org.rapidbeans.clubadmin.domain.TrainingTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running org.rapidbeans.clubadmin.presentation.CustomerSettingsTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.046 sec
+Running org.rapidbeans.clubadmin.presentation.IconInfoListTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.01 sec
+Running org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.038 sec <<< FAILURE!
+testMastardataDisabledForJogi(org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest)  Time elapsed: 0.026 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\config\test01\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest$ApplicationMock.getMasterDoc(RapidClubAdminClientIntegrationTest.java:259)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getAuthnDoc(RapidClubAdminClient.java:365)
+	at org.rapidbeans.presentation.Application.logon(Application.java:494)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest.setUp(RapidClubAdminClientIntegrationTest.java:103)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: java.lang.reflect.InvocationTargetException
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:99)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:73)
+	at org.rapidbeans.core.basic.RapidBeanImplParent.createInstance(RapidBeanImplParent.java:58)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:333)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanSubnode(RapidBeanDeserializer.java:334)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBeanNode(RapidBeanDeserializer.java:315)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:178)
+	at org.rapidbeans.core.common.RapidBeanDeserializer.loadBean(RapidBeanDeserializer.java:118)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:285)
+	... 37 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at jdk.internal.reflect.GeneratedConstructorAccessor52.newInstance(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:488)
+	at org.rapidbeans.core.basic.RapidBeanImplStrict.createInstance(RapidBeanImplStrict.java:89)
+	... 46 more
+Caused by: org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterData(RapidClubAdminClient.java:383)
+	at org.rapidbeans.clubadmin.domain.AbstractSalary.init(AbstractSalary.java:37)
+	at org.rapidbeans.clubadmin.domain.Salary.<init>(Salary.java:64)
+	... 50 more
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 55 more
+
+testOpenTrainingsList(org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest)  Time elapsed: 0.009 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:270)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getMasterDoc(RapidClubAdminClient.java:298)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.getWorkingDepartment(RapidClubAdminClient.java:445)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClient.openCurrentTrainingsList(RapidClubAdminClient.java:394)
+	at org.rapidbeans.clubadmin.service.OpenCurrentTrainingsList.execute(OpenCurrentTrainingsList.java:35)
+	at org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest.testOpenTrainingsList(RapidClubAdminClientIntegrationTest.java:142)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 39 more
+
+Running org.rapidbeans.clubadmin.presentation.SettingsTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.128 sec
+Running org.rapidbeans.clubadmin.presentation.swing.ModelTrainingsTableTest
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.04 sec <<< FAILURE!
+testSortTrainings(org.rapidbeans.clubadmin.presentation.swing.ModelTrainingsTableTest)  Time elapsed: 0.021 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_withSpecialTrainings.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.presentation.swing.ModelTrainingsTableTest.testSortTrainings(ModelTrainingsTableTest.java:46)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Turnhalle Grundschule Süd"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20070730_Sommerferien,20071029_Herbsferien,20071224_Weihnachtsferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 33 more
+
+testModelSorting(org.rapidbeans.clubadmin.presentation.swing.ModelTrainingsTableTest)  Time elapsed: 0.019 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_withSpecialTrainings.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.presentation.swing.ModelTrainingsTableTest.testModelSorting(ModelTrainingsTableTest.java:98)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Turnhalle Grundschule Süd"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20070730_Sommerferien,20071029_Herbsferien,20071224_Weihnachtsferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 33 more
+
+Running org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest
+Tests run: 3, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 0.02 sec <<< FAILURE!
+testCreateNewTrainingsList(org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest)  Time elapsed: 0.005 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest$ApplicationMock.getMasterDoc(RapidClubAdminClientIntegrationTest.java:197)
+	at org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest.testCreateNewTrainingsList(RapidClubAdminClientIntegrationTest.java:94)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 34 more
+
+testBPUpdateTrainings(org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest)  Time elapsed: 0.008 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest$ApplicationMock.getMasterDoc(RapidClubAdminClientIntegrationTest.java:197)
+	at org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest.testBPUpdateTrainings(RapidClubAdminClientIntegrationTest.java:105)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 34 more
+
+testBPUpdateClosingPeriods(org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest)  Time elapsed: 0.007 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest$ApplicationMock.getMasterDoc(RapidClubAdminClientIntegrationTest.java:197)
+	at org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest.testBPUpdateClosingPeriods(RapidClubAdminClientIntegrationTest.java:124)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 34 more
+
+Running org.rapidbeans.clubadmin.presentation.swing.TrainerIconManagerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.147 sec
+Running org.rapidbeans.clubadmin.service.CreateTrainingsListTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.009 sec <<< FAILURE!
+testCreateNewTrainingsList(org.rapidbeans.clubadmin.service.CreateTrainingsListTest)  Time elapsed: 0.009 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.clubadmin.service.CreateTrainingsListTest.testCreateNewTrainingsList(CreateTrainingsListTest.java:19)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 31 more
+
+Running org.rapidbeans.clubadmin.service.HistoryReportTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0 sec
+Running org.rapidbeans.clubadmin.service.ObfcteTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running org.rapidbeans.core.basic.RapidClubAdminBeanTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.013 sec <<< FAILURE!
+testGetParentCompColProperty(org.rapidbeans.core.basic.RapidClubAdminBeanTest)  Time elapsed: 0.013 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20060101_20060331.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:260)
+	at org.rapidbeans.core.basic.RapidClubAdminBeanTest.testGetParentCompColProperty(RapidClubAdminBeanTest.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 32 more
+
+Running org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.03 sec <<< FAILURE!
+org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest  Time elapsed: 0.029 sec  <<< ERROR!
+org.rapidbeans.core.exception.RapidBeansRuntimeException: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\masterdata.xml"
+	at org.rapidbeans.datasource.Document.<init>(Document.java:291)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:250)
+	at org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest$ApplicationMock.getMasterDoc(RapidClubAdminClientIntegrationTest.java:3775)
+	at org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest$ApplicationMock.start(RapidClubAdminClientIntegrationTest.java:3724)
+	at org.rapidbeans.presentation.ApplicationManager.start(ApplicationManager.java:175)
+	at org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest.setUpClass(RapidClubAdminClientIntegrationTest.java:124)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:24)
+	at org.junit.internal.runners.statements.RunAfters.evaluate(RunAfters.java:27)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Caused by: org.rapidbeans.core.exception.ValidationException: could not resolve reference from bean:
+"org.rapidbeans.clubadmin.domain.Location::Eurythmiesaal 1 Waldorfschule"
+property: "closedons"
+to bean "org.rapidbeans.clubadmin.domain.ClosingPeriod::20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+	at org.rapidbeans.datasource.Document$DocumentTreeVisitorResolveFrozenLinks.processBean(Document.java:958)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:991)
+	at org.rapidbeans.datasource.Document.traverseDocumentTree(Document.java:1003)
+	at org.rapidbeans.datasource.Document.resolveFrozenLinks(Document.java:406)
+	at org.rapidbeans.datasource.Document.init(Document.java:397)
+	at org.rapidbeans.datasource.Document.<init>(Document.java:287)
+	... 27 more
+
+Running org.rapidbeans.SettingsTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+
+Results :
+
+Tests in error: 
+  testDetectProblemWithSortedTrainings(org.rapidbeans.clubadmin.datasource.DocumentTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20060101_20060331.xml"
+  testWriteAndRead(org.rapidbeans.clubadmin.datasource.DocumentTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20060101_20060331.xml"
+  testReportDepartmentSimple(org.rapidbeans.clubadmin.domain.report.EvidenceTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\testevidence\trainingsDataAikido.xml"
+  testReportCollected(org.rapidbeans.clubadmin.domain.report.EvidenceTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\testevidence\trainingsDataAikido.xml"
+  testReportOverflowDepartmentSingle(org.rapidbeans.clubadmin.domain.report.EvidenceTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\testevidence\trainingsDataAikido.xml"
+  testReportOverflowDepartmentsCoherent(org.rapidbeans.clubadmin.domain.report.EvidenceTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\testevidence\trainingsDataAikido.xml"
+  testReportOverflowDepartmentCoherent(org.rapidbeans.clubadmin.domain.report.EvidenceTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\testevidence\trainingsDataAikido.xml"
+  testAsStringMartin1(org.rapidbeans.clubadmin.domain.report.OverviewTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20060101_20060331.xml"
+  testAsStringMartin2(org.rapidbeans.clubadmin.domain.report.OverviewTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20070901_20071231.xml"
+  testAsStringReinhard(org.rapidbeans.clubadmin.domain.report.OverviewTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20070901_20071231.xml"
+  testSalaryWithComponentsChangeComponentMoney(org.rapidbeans.clubadmin.domain.SalaryTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+  testCompareToSalaryEqualMagDiffUnitGreater(org.rapidbeans.clubadmin.domain.SalaryTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+  testSalaryAddComponent(org.rapidbeans.clubadmin.domain.SalaryTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+  testSalaryWithComponentsChangeCompositeTime(org.rapidbeans.clubadmin.domain.SalaryTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+  testCompareToSalaryEqualMagDiffUnitLess(org.rapidbeans.clubadmin.domain.SalaryTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+  testCompareToSalaryLesserMagEqualUnit(org.rapidbeans.clubadmin.domain.SalaryTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+  testCompareToSalaryGreaterMagEqualUnit(org.rapidbeans.clubadmin.domain.SalaryTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+  testCompareToSalaryEqualMagDiffUnitEqual(org.rapidbeans.clubadmin.domain.SalaryTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+  testCompareToSalaryEqualMagAndUnit(org.rapidbeans.clubadmin.domain.SalaryTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+  testLoadDocument(org.rapidbeans.clubadmin.domain.TrainingsListTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20060101_20060331.xml"
+  testDeserializeFile(org.rapidbeans.clubadmin.domain.TrainingsListTest): java.lang.reflect.InvocationTargetException
+  testMastardataDisabledForJogi(org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\config\test01\data\masterdata.xml"
+  testOpenTrainingsList(org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\data\masterdata.xml"
+  testSortTrainings(org.rapidbeans.clubadmin.presentation.swing.ModelTrainingsTableTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_withSpecialTrainings.xml"
+  testModelSorting(org.rapidbeans.clubadmin.presentation.swing.ModelTrainingsTableTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_withSpecialTrainings.xml"
+  testCreateNewTrainingsList(org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\masterdata.xml"
+  testBPUpdateTrainings(org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\masterdata.xml"
+  testBPUpdateClosingPeriods(org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\masterdata.xml"
+  testCreateNewTrainingsList(org.rapidbeans.clubadmin.service.CreateTrainingsListTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\masterdata.xml"
+  testGetParentCompColProperty(org.rapidbeans.core.basic.RapidClubAdminBeanTest): Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\trainingslist_20060101_20060331.xml"
+  org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest: Error while deserializing document from file "D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\src\test\resources\masterdata.xml"
+
+Tests run: 91, Failures: 0, Errors: 31, Skipped: 2
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 14.239 s
+[INFO] Finished at: 2018-08-05T09:19:12+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.12.4:test (default-test) on project rapidclubadmin-app: There are test failures.
+[ERROR] 
+[ERROR] Please refer to D:\Projects\sources\RapidClubAdmin\rapidclubadmin-app\target\surefire-reports for the individual test results.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

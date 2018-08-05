@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.ClosingPeriod"
+	idtype="keyprops"
+	>
+	<property name="from"
+		key="true"
+		type="date"
+		propclass="ClosingPeriodPropFrom"
+	/>
+	<property name="name"
+		key="true" maxlen="30"
+	/>
+	<property name="to"
+		type="date"
+		mandatory="true"
+		propclass="ClosingPeriodPropTo"
+	/>
+	<property name="oneday"
+		type="boolean"	
+		mandatory="true"
+		propclass="ClosingPeriodPropOneday"
+	/>
+	<property name="locations"
+		type="association"
+		targettype="Location"
+		collectionclass="java.util.TreeSet"
+		inverse="closedons"
+	/>
+    <codegen mode="split"/>
+</beantype>
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.clubadmin.domain.MasterData"
+	trainerhour="45 min"
+	>
+	<user
+		id="administrator"
+		accountname="administrator"
+		roles="SuperAdministrator"
+		/>
+</rb:bean>

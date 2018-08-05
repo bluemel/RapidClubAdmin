@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+
+<applicationcfg
+	name="RapidClubAdmin"
+	rootpackage="org.rapidbeans.clubadmin"
+	applicationclass="org.rapidbeans.clubadmin.presentation.RapidClubAdminClient"
+	guitype="swing"
+	lookandfeel="metal"
+	defaultlocale="de"
+	defaultcharset="ISO-8859-1"
+	>
+
+	<currency
+		restricttoone="true"
+		uselocal="true"
+		defaultcurrency="euro"
+	/>
+
+	<!-- languages supported -->
+	<locale name="de"/>
+	<locale name="en"/>
+
+	<authorization
+		authenticationmethod="userpassword"
+		pwdhashalgorithm="SHA-1"
+		roletype="org.rapidbeans.clubadmin.domain.Role"
+	/>
+
+	<branding
+		icon="org/rapidbeans/clubadmin/presentation/pictures/rapidClubAdmin32.png"
+		>
+		<splash file="org/rapidbeans/clubadmin/presentation/pictures/rapidClubAdminSplash.jpg"
+			timemin="2 s"/>
+    </branding>
+
+	<xmlbinding separator="," escape="\\"/>
+
+	<!-- documents and views -->
+	<document name="trainingslist" defaultview="trainings"
+		rootclass="org.rapidbeans.clubadmin.domain.TrainingsList">
+		<view name="trainings"
+			viewclass="org.rapidbeans.clubadmin.presentation.swing.ViewTrainings"/>
+		<view name="overview"
+			viewclass="org.rapidbeans.clubadmin.presentation.swing.ViewOverview"/>
+		<view name="expert"
+			viewclass="org.rapidbeans.presentation.DocumentViewSwing"/>
+	</document>
+	<document name="settings"
+		rootclass="org.rapidbeans.clubadmin.presentation.Settings">
+		<view name="standard"
+			viewclass="org.rapidbeans.presentation.DocumentViewSwing"
+			persistencestrategy="oncloseeditor"/>
+	</document>
+	<document name="masterdata"
+		rootclass="org.rapidbeans.clubadmin.domain.MasterData"
+		defaultview="standard">
+		<view name="userselfadmin"
+			viewclass="org.rapidbeans.clubadmin.presentation.swing.DocumentViewUserSelfAdmin"
+			persistencestrategy="oncloseeditor"/>
+		<view name="billingperiod"
+			viewclass="org.rapidbeans.clubadmin.presentation.swing.DocumentViewBillingPeriod"
+			persistencestrategy="oncloseeditor"/>
+	</document>
+
+	<!-- bean editors for the generic standard view -->
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.BillingPeriod"
+		editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorBillingPeriod">
+		<propertycfg name="from"/>
+		<propertycfg name="to"/>
+        <propertycfg name="dateClosing" enabled="true"/>
+		<propertycfg name="dateExportFirst" enabled="false"/>
+		<propertycfg name="departments"/>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.TrainingsList"
+		editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorTrainingsList">
+		<propertycfg name="from"/>
+		<propertycfg name="to"/>
+		<propertycfg name="trainerhour"/>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.ClosingPeriod"
+		editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorClosingPeriod">
+		<propertycfg name="name"/>
+		<propertycfg name="from"/>
+		<propertycfg name="to">
+			<editor editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorPropertyClosingPeriodTo"/>
+		</propertycfg>
+		<propertycfg name="oneday"/>
+		<propertycfg name="locations">
+			<editor basepackage="org.rapidbeans.presentation"
+				classnamepart="List"/>
+		</propertycfg>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.ClubadminUser"
+		editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorUser">
+		<propertycfg name="accountname"/>
+		<propertycfg name="pwd"/>
+		<propertycfg name="changePwdAfterNextLogon"/>
+		<propertycfg name="lastname"/>
+		<propertycfg name="firstname"/>
+		<propertycfg name="email"/>
+		<propertycfg name="roles">
+			<editor basepackage="org.rapidbeans.presentation" 
+				classnamepart="Combobox"/>
+		</propertycfg>
+		<propertycfg name="departments"/>
+		<propertycfg name="isalsotrainer"/>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.Department">
+		<propertycfg name="name"/>
+		<propertycfg name="trainers"/>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.Salary">
+		<propertycfg name="trainerattribute"
+			nullbehaviour="always_null"/>
+		<propertycfg name="money">
+			<editor
+				editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorPropertyAbstractSalaryMoney"/>
+		</propertycfg>
+		<propertycfg name="time"/>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.PersonalSalary">
+		<propertycfg name="person"
+			nullbehaviour="always_null"/>
+		<propertycfg name="money">
+			<editor
+				editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorPropertyAbstractSalaryMoney"/>
+		</propertycfg>
+		<propertycfg name="time"/>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.SalaryComponent"
+		editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorSalaryComponent">
+		<propertycfg name="salaryComponentType"/>
+		<propertycfg name="description"/>
+		<propertycfg name="money">
+			<editor
+				editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorPropertySalaryComponentMoney"/>
+		</propertycfg>
+		<propertycfg name="time" enabled="false">
+			<editor
+				editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorPropertySalaryComponentTime"/>
+		</propertycfg>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.Trainer"
+		editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorTrainer">
+		<propertycfg name="lastname"/>
+		<propertycfg name="firstname"/>
+		<propertycfg name="middlename"/>
+		<propertycfg name="email"/>
+		<propertycfg name="icon">
+			<editor
+				editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorPropertyTrainerIcon"/>
+		</propertycfg>
+		<propertycfg name="trainerattributes"/>
+		<propertycfg name="departments"/>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.TrainingRegular">
+		<propertycfg name="date"/>
+		<propertycfg name="heldbytrainers"/>
+		<propertycfg name="partipiciantscount"/>
+		<propertycfg name="state"/>
+		<propertycfg name="checkedByUser" enabled="false"/>
+		<propertycfg name="checkedDate" enabled="false"/>
+		<propertycfg name="notes"/>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.TrainingSpecial">
+		<propertycfg name="date">
+			<editor
+				editorclass="org.rapidbeans.clubadmin.presentation.swing.EditorPropertyDateSwing"/>
+		</propertycfg>
+		<propertycfg name="dayofweek" enabled="false"/>
+		<propertycfg name="timestart">
+			<editor basepackage="org.rapidbeans.presentation" 
+				classnamepart="Text"/>
+		</propertycfg>
+		<propertycfg name="location"/>
+		<propertycfg name="name"/>
+		<propertycfg name="timeend">
+			<editor basepackage="org.rapidbeans.presentation" 
+				classnamepart="Text"/>
+		</propertycfg>
+		<propertycfg name="sport"/>
+		<propertycfg name="partipiciantscount" enabled="false"/>
+		<propertycfg name="state" enabled="false"/>
+		<propertycfg name="checkedByUser" enabled="false"/>
+		<propertycfg name="checkedDate" enabled="false"/>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.TrainingDate">
+		<propertycfg name="dayofweek"/>
+		<propertycfg name="timestart">
+			<!--<editor editorclass="org.rapidbeans.presentation.swing.EditorPropertyTimeOfDaySwing"/>-->
+			<editor basepackage="org.rapidbeans.presentation" 
+				classnamepart="Text"/>
+		</propertycfg>
+		<propertycfg name="location"/>
+		<propertycfg name="name"/>
+		<propertycfg name="timeend">
+			<!--<editor editorclass="org.rapidbeans.presentation.swing.EditorPropertyTimeOfDaySwing"/>-->
+			<editor basepackage="org.rapidbeans.presentation" 
+				classnamepart="Text"/>
+		</propertycfg>
+		<propertycfg name="trainerplannings"/>
+		<propertycfg name="sport"/>
+	</beaneditor>
+	<beaneditor beantype="org.rapidbeans.clubadmin.domain.TrainerPlanning">
+        <propertycfg name="role"/>
+        <propertycfg name="defaulttrainers">
+			<argument name="restrictchoicetovalid" value="true"/>
+		</propertycfg>
+	</beaneditor>
+
+	<action classname="org.rapidbeans.clubadmin.service.DocumentSave"
+		waitcursor="true"
+		background="false"
+		progressbar="false">
+		<enabler classname="org.rapidbeans.presentation.enabler.EnablerDocumentSave"/>
+	</action>
+
+	<!-- mainwindow, menues and actions -->
+	<mainwindow name="mainwindow"
+		width="900"
+		height="600">
+
+		<toolbar name="trainingslist"
+			classname="org.rapidbeans.clubadmin.presentation.swing.ToolbarTrainingslistSwing">
+			<button name="save"
+				action="org.rapidbeans.clubadmin.service.DocumentSave"
+			/>
+		</toolbar>
+
+		<toolbar name="trainingslistview">
+			<button name="trainings">
+				<action classname="org.rapidbeans.clubadmin.service.ViewTrainingsAction"/>
+				<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerViewTrainings"/>
+			</button>
+			<button name="overview"
+				rolesrequired="SuperAdministrator,DepartmentAdministrator,Trainer"
+				>
+				<action classname="org.rapidbeans.clubadmin.service.ViewOverviewAction"/>
+				<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerViewOverview"/>
+			</button>
+			<button name="expert"
+				rolesrequired="SuperAdministrator,DepartmentAdministrator"
+				>
+				<action classname="org.rapidbeans.clubadmin.service.ViewExpertAction"/>
+				<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerViewExpert"/>
+			</button>
+		</toolbar>
+
+		<toolbar name="settings">
+			<button name="masterdata"
+				rolesrequired="SuperAdministrator,DepartmentAdministrator"
+				>
+				<action classname="org.rapidbeans.clubadmin.service.OpenMasterdata"/>
+			</button>
+			<button name="myuseraccount">
+				<action classname="org.rapidbeans.clubadmin.service.OpenMyUserAccount"/>
+			</button>
+			<button name="settings">
+				<action classname="org.rapidbeans.service.ActionSettings"/>
+			</button>
+		</toolbar>
+
+		<menubar name="menubar">
+			<menu name="file">
+				<submenu name="new"
+					rolesrequired="SuperAdministrator,DepartmentAdministrator"
+					>
+					<submenu name="trainingslist"
+						rolesrequired="SuperAdministrator,DepartmentAdministrator"
+						/>
+					<menuitem name="specialtraining"
+						rolesrequired="SuperAdministrator,DepartmentAdministrator"
+						>
+						<action classname="org.rapidbeans.clubadmin.service.NewSpecialTraining"/>
+						<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerViewExpert"/>
+					</menuitem>
+				</submenu>
+				<submenu name="open">
+					<submenu name="current"/>
+                    <submenu name="history"/>
+                    <menuitem name="local"
+						rolesrequired="SuperAdministrator"
+						>
+                        <action classname="org.rapidbeans.service.ActionDocumentOpen"/>
+                    </menuitem>
+				</submenu>
+				<menuitem name="close">
+                    <action classname="org.rapidbeans.service.ActionActiveViewClose"/>
+                    <enabler classname="org.rapidbeans.presentation.enabler.EnablerActiveViewClose"/>					
+				</menuitem>
+                <separator/>
+				<menuitem name="save"
+					action="org.rapidbeans.clubadmin.service.DocumentSave"
+				/>
+				<menuitem name="saveas"
+					rolesrequired="SuperAdministrator"
+					>
+					<action classname="org.rapidbeans.clubadmin.service.DocumentSaveAs"/>
+					<enabler classname="org.rapidbeans.presentation.enabler.EnablerDocumentSaveAs"/>
+				</menuitem>
+                <separator/>
+				<menuitem name="quit">
+					<action classname="org.rapidbeans.service.ActionQuit"/>
+				</menuitem>
+			</menu>
+			<menu name="edit">
+				<submenu name="view">
+					<menuitem name="trainings">
+						<action classname="org.rapidbeans.clubadmin.service.ViewTrainingsAction"/>
+						<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerViewTrainings"/>
+					</menuitem>
+					<menuitem name="overview"
+						rolesrequired="SuperAdministrator,DepartmentAdministrator,Trainer"
+						>
+						<action classname="org.rapidbeans.clubadmin.service.ViewOverviewAction"/>
+						<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerViewOverview"/>
+					</menuitem>
+					<menuitem name="expert"
+						rolesrequired="SuperAdministrator,DepartmentAdministrator"
+						>
+						<action classname="org.rapidbeans.clubadmin.service.ViewExpertAction"/>
+						<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerViewExpert"/>
+					</menuitem>
+				</submenu>
+				<toolbarsmenu name ="toolbars"/>
+			</menu>
+			<menu name="admin">
+				<menuitem name="masterdata"
+					rolesrequired="SuperAdministrator,DepartmentAdministrator"
+					>
+					<action classname="org.rapidbeans.clubadmin.service.OpenMasterdata"/>
+				</menuitem>
+				<submenu name="currentbillingperiod"
+					rolesrequired="SuperAdministrator"
+					>
+                    <menuitem name="open">
+                        <action classname="org.rapidbeans.clubadmin.service.OpenCurrentBillingPeriod"/>
+                        <enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerOpenCurrentBillingPeriod"/>
+                    </menuitem>
+					<menuitem name="startnew">
+						<action classname="org.rapidbeans.clubadmin.service.StartNewBillingPeriod"/>
+						<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerStartNewBillingPeriod"/>
+					</menuitem>
+                    <menuitem name="backup">
+                        <action classname="org.rapidbeans.clubadmin.service.Backup">
+							<argument name="mode" value="intermediate"/>
+						</action>
+                        <enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerOpenCurrentBillingPeriod"/>
+                    </menuitem>
+                    <menuitem name="restore">
+                        <action classname="org.rapidbeans.clubadmin.service.Restore"/>
+                    </menuitem>
+				</submenu>
+				<menuitem name="myuseraccount">
+					<action classname="org.rapidbeans.clubadmin.service.OpenMyUserAccount"/>
+				</menuitem>
+				<menuitem name="settings">
+					<action classname="org.rapidbeans.service.ActionSettings"/>
+				</menuitem>
+				<submenu name="saveas"
+					rolesrequired="SuperAdministrator,DepartmentAdministrator"
+					>
+					<menuitem name="currenttrainingslist">
+						<action classname="org.rapidbeans.clubadmin.service.DocumentSaveAsCurrentTrainingsList"/>
+						<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerDocumentSaveAsCurrentTrainingsList"/>
+					</menuitem>
+					<menuitem name="masterdata">
+						<action classname="org.rapidbeans.clubadmin.service.DocumentSaveAsCurrentMasterdata"/>
+						<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerDocumentSaveAsCurrentMasterdata"/>
+					</menuitem>
+				</submenu>
+				<menuitem name="usersfortrainers"
+					rolesrequired="SuperAdministrator,DepartmentAdministrator">
+					<action classname="org.rapidbeans.clubadmin.service.UsersForTrainers"/>
+					<enabler classname="org.rapidbeans.clubadmin.presentation.enabler.EnablerUsersForTrainers"/>
+				</menuitem>
+				<menuitem name="readclosingdays">
+					<action classname="org.rapidbeans.clubadmin.service.ReadClosingDays"/>
+				</menuitem>
+				<menuitem name="test">
+					<action classname="org.rapidbeans.clubadmin.service.Test"/>
+				</menuitem>
+			</menu>
+			<menu name="help">
+				<menuitem name="about">
+					<action classname="org.rapidbeans.service.ActionHelpAbout"/>
+				</menuitem>
+			</menu>
+		</menubar>
+		<footer presentationmode="onmessagegeneral"/>
+	</mainwindow>
+</applicationcfg>

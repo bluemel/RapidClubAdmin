@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.clubadmin.domain.MasterData"
+	trainerhour="45 min"
+	>
+	<club
+		id="Budo-Club Ismaning"
+		name="Budo-Club Ismaning"
+		>
+		<department
+			id="Budo-Club Ismaning/Aikido"
+			name="Aikido"
+			trainers="Blümel_Martin_,Blümel_Ulrike_,Dahlheimer_Berit_,Dautovic_Damir_,Höppner_Christoph_"
+			>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/monday_19:00_Eurythmiesaal 1 Waldorfschule"
+				dayofweek="monday"
+				timestart="19:00"
+				location="Eurythmiesaal 1 Waldorfschule"
+				name="Meditation I"
+				timeend="20:30"
+				>
+				<trainerplanning
+					id="17"
+					role="Trainer"
+					defaulttrainers="Blümel_Ulrike_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd"
+				dayofweek="monday"
+				timestart="19:30"
+				location="Turnhalle Grundschule Süd"
+				name="Iaido/Aikido Erwachsene"
+				timeend="21:30"
+				sport="Iaido"
+				>
+				<trainerplanning
+					id="11"
+					role="Trainer"
+					defaulttrainers="Dahlheimer_Berit_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/monday_20:30_Eurythmiesaal 1 Waldorfschule"
+				dayofweek="monday"
+				timestart="20:30"
+				location="Eurythmiesaal 1 Waldorfschule"
+				name="Meditation II"
+				timeend="22:00"
+				>
+				<trainerplanning
+					id="18"
+					role="Trainer"
+					defaulttrainers="Blümel_Martin_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/tuesday_16:30_Turnhalle Grundschule Süd"
+				dayofweek="tuesday"
+				timestart="16:30"
+				location="Turnhalle Grundschule Süd"
+				name="Aikido Kinder"
+				timeend="18:00"
+				>
+				<trainerplanning
+					id="12"
+					role="Trainer"
+					defaulttrainers="Dautovic_Damir_"
+					/>
+				<trainerplanning
+					id="13"
+					role="Cotrainer"
+					defaulttrainers="Blümel_Ulrike_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd"
+				dayofweek="tuesday"
+				timestart="18:00"
+				location="Turnhalle Grundschule Süd"
+				name="Aikido Kinder/Erwachsene"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="14"
+					role="Trainer"
+					defaulttrainers="Dautovic_Damir_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd"
+				dayofweek="thursday"
+				timestart="20:00"
+				location="Turnhalle Grundschule Süd"
+				name="Aikido Erwachsene"
+				timeend="21:30"
+				>
+				<trainerplanning
+					id="15"
+					role="Trainer"
+					defaulttrainers="Blümel_Martin_,Höppner_Christoph_"
+					/>
+			</trainingdate>
+		</department>
+		<department
+			id="Budo-Club Ismaning/Tang Soo Do"
+			name="Tang Soo Do"
+			trainers="Igel_Alf_"
+			/>
+	</club>
+	<trainer
+		id="Blümel_Martin_"
+		lastname="Blümel"
+		firstname="Martin"
+		middlename=""
+		email="martin.bluemel@web.de"
+		creditinstitute="Hypovereinsbank München"
+		accountno="47110815"
+		trainerattributes="Fachübungsleiter"
+		trainerplannings="18,15"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<trainer
+		id="Blümel_Ulrike_"
+		lastname="Blümel"
+		firstname="Ulrike"
+		middlename=""
+		email="martin.bluemel@web.de"
+		creditinstitute="Hypovereinsbank München"
+		accountno="47110815"
+		trainerattributes=""
+		trainerplannings="17,13"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<trainer
+		id="Dahlheimer_Berit_"
+		lastname="Dahlheimer"
+		firstname="Berit"
+		middlename=""
+		creditinstitute="Hypovereinsbank München"
+		accountno="12345678"
+		trainerattributes="Trainer A,Trainer B"
+		trainerplannings="11"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<trainer
+		id="Dautovic_Damir_"
+		lastname="Dautovic"
+		firstname="Damir"
+		middlename=""
+		creditinstitute="Hypovereinsbank München"
+		accountno="999888777"
+		trainerattributes=""
+		trainerplannings="12,14"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<trainer
+		id="Höppner_Christoph_"
+		lastname="Höppner"
+		firstname="Christoph"
+		middlename=""
+		creditinstitute="Bayrische Landesbank"
+		accountno="12345678"
+		trainerattributes=""
+		trainerplannings="15"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<trainer
+		id="Igel_Alf_"
+		lastname="Igel"
+		firstname="Alf"
+		middlename=""
+		email="alf@igel.com"
+		creditinstitute="Halsabschneider Bank"
+		accountno="1112223334"
+		trainerattributes=""
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<trainerrole
+		id="Trainer"
+		name="Trainer"
+		>
+		<salary
+			id="Trainer_null"
+			rolename="Trainer"
+			money="10 euro"
+			time="45 min"
+			>
+			<component
+				salaryComponentType="Vergütung"
+				description="Vergütung Trainer"
+				money="7.75 euro"
+				time="45 min"
+				/>
+			<component
+				salaryComponentType="Zulage"
+				description="Zulage Trainer, ohne Rechtsanspruch"
+				money="2.25 euro"
+				time="45 min"
+				/>
+		</salary>
+		<salary
+			id="Trainer_Fachübungsleiter"
+			rolename="Trainer"
+			trainerattribute="Fachübungsleiter"
+			money="12 euro"
+			time="45 min"
+			>
+			<component
+				salaryComponentType="Vergütung"
+				description="Vergütung Trainer ÜL"
+				money="10.25 euro"
+				time="45 min"
+				/>
+			<component
+				salaryComponentType="Zulage"
+				description="Zulage Trainer ÜL, ohne Rechtsanspruch"
+				money="1.75 euro"
+				time="45 min"
+				/>
+		</salary>
+		<salary
+			id="Trainer_Abteilungsleiter,Fachübungsleiter"
+			rolename="Trainer"
+			trainerattribute="Abteilungsleiter,Fachübungsleiter"
+			money="14 euro"
+			time="45 min"
+			>
+			<component
+				salaryComponentType="Vergütung"
+				description="Vergütung Trainer ÜL"
+				money="10.25 euro"
+				time="45 min"
+				/>
+			<component
+				salaryComponentType="Zulage"
+				description="Zulage Trainer ÜL, ohne Rechtsanspruch"
+				money="1.75 euro"
+				time="45 min"
+				/>		
+			<component
+				salaryComponentType="ZulageAbteilungsleiter"
+				description="Zulage Abteilungsleiter"
+				money="2.00 euro"
+				time="45 min"
+				/>		
+		</salary>
+	</trainerrole>
+	<trainerrole
+		id="Cotrainer"
+		name="Cotrainer"
+		>
+		<salary
+			id="Cotrainer_null"
+			rolename="Cotrainer"
+			money="5 euro"
+			time="45 min"
+			>
+			<component
+				salaryComponentType="Vergütung"
+				description="Vergütung CO-Trainer"
+				money="2.75 euro"
+				time="45 min"
+				/>
+			<component
+				salaryComponentType="Zulage"
+				description="Zulage CO-Trainer, ohne Rechtsansprunch"
+				money="2.25 euro"
+				time="45 min"
+				/>
+		</salary>
+		<salary
+			id="Cotrainer_Abteilungsleiter"
+			rolename="Trainer"
+			trainerattribute="Abteilungsleiter"
+			money="7 euro"
+			time="45 min"
+			>
+			<component
+				salaryComponentType="Vergütung"
+				description="Vergütung CO-Trainer"
+				money="2.75 euro"
+				time="45 min"
+				/>
+			<component
+				salaryComponentType="Zulage"
+				description="Zulage CO-Trainer, ohne Rechtsansprunch"
+				money="2.25 euro"
+				time="45 min"
+				/>
+			<component
+				salaryComponentType="ZulageAbteilungsleiter"
+				description="Zulage Abteilungsleiter"
+				money="2.00 euro"
+				time="45 min"
+				/>		
+		</salary>
+	</trainerrole>
+	<salaryComponentType
+		id="Vergütung"
+		name="Vergütung"
+		/>
+	<salaryComponentType
+		id="Zulage"
+		name="Zulage"
+		/>
+	<salaryComponentType
+		id="ZulageAbteilungsleiter"
+		name="ZulageAbteilungsleiter"
+		/>
+	<sport
+		name="Iaido"
+		/>
+	<trainerattribute
+		id="Fachübungsleiter"
+		name="Fachübungsleiter"
+		/>
+	<trainerattribute
+		id="Abteilungsleiter"
+		name="Abteilungsleiter"
+		/>
+	<trainerattribute
+		id="Trainer A"
+		name="Trainer A"
+		/>
+	<trainerattribute
+		id="Trainer B"
+		name="Trainer B"
+		/>
+	<location
+		id="Eurythmiesaal 1 Waldorfschule"
+		name="Eurythmiesaal 1 Waldorfschule"
+		street="Dorfstraße 52"
+		city="85737 Ismaning"
+		closedons="20051222_Weihnachtsferien,20060116_Schulputztag,20061223_Weihnachtsferien,20070301_20-Jahre-Feier,20070330_Osterferien"
+		/>
+	<location
+		id="Turnhalle Grundschule Süd"
+		name="Turnhalle Grundschule Süd"
+		street="Camerloher Straße 20"
+		city="85737 Ismaning"
+		closedons="20051222_Weihnachtsferien,20061223_Weihnachtsferien,20070330_Osterferien"
+		/>
+	<closingperiod
+		id="20051222_Weihnachtsferien"
+		from="20051222"
+		name="Weihnachtsferien"
+		to="20060108"
+		locations="Turnhalle Grundschule Süd,Eurythmiesaal 1 Waldorfschule"
+		/>
+	<closingperiod
+		id="20060116_Schulputztag"
+		from="20060116"
+		name="Schulputztag"
+		to="20060116"
+		locations="Eurythmiesaal 1 Waldorfschule"
+		/>
+	<closingperiod
+		id="20061223_Weihnachtsferien"
+		from="20061223"
+		name="Weihnachtsferien"
+		to="20070106"
+		locations="Turnhalle Grundschule Süd,Eurythmiesaal 1 Waldorfschule"
+		/>
+	<closingperiod
+		id="20070301_20-Jahre-Feier"
+		from="20070301"
+		name="20-Jahre-Feier"
+		to="20070305"
+		locations="Eurythmiesaal 1 Waldorfschule"
+		/>
+	<closingperiod
+		id="20070330_Osterferien"
+		from="20070330"
+		name="Osterferien"
+		to="20070410"
+		locations="Turnhalle Grundschule Süd,Eurythmiesaal 1 Waldorfschule"
+		/>
+	<user
+		id="testuser"
+		accountname="testuser"
+		lastname="Blümel"
+		firstname="Martin"
+		email="martin.bluemel@web.de"
+		roles="SuperAdministrator"
+		/>
+	<role
+		id="SuperAdministrator"
+		name="SuperAdministrator"
+		users="testuser"
+		/>
+</rb:bean>

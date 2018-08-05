@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF8" standalone="yes" ?>
+<table>
+	<thead>
+		<tr>
+			<th></th>
+			<th class="land_ferien_region_ferien_link land_ferien_head_ferien">
+				<a title="Winterferien Bayern" href="http://www.schulferien.org/Schulferien_nach_Ferien/Winterferien-Bayern.html">
+					Winterferien
+				</a>
+			</th>
+			<th class="land_ferien_region_ferien_link land_ferien_head_ferien">
+				<a title="Osterferien Bayern" href="http://www.schulferien.org/Schulferien_nach_Ferien/Osterferien-Bayern.html">
+					Osterferien
+				</a>
+			</th>
+			<th class="land_ferien_region_ferien_link land_ferien_head_ferien">
+				<a title="Pfingstferien Bayern" href="http://www.schulferien.org/Schulferien_nach_Ferien/Pfingstferien-Bayern.html">
+					Pfingstferien
+				</a>
+			</th>
+			<th class="land_ferien_region_ferien_link land_ferien_head_ferien">
+				<a title="Sommerferien Bayern" href="http://www.schulferien.org/Schulferien_nach_Ferien/Sommerferien-Bayern.html">
+					Sommerferien
+				</a>
+			</th>
+			<th class="land_ferien_region_ferien_link land_ferien_head_ferien">
+				<a title="Herbstferien Bayern" href="http://www.schulferien.org/Schulferien_nach_Ferien/Herbstferien-Bayern.html">
+					Herbstferien
+				</a>
+			</th>
+			<th class="land_ferien_region_ferien_link land_ferien_head_ferien">
+				<a title="Weihnachtsferien Bayern" href="http://www.schulferien.org/Schulferien_nach_Ferien/Weihnachtsferien-Bayern.html">
+					Weihnachtsferien
+				</a>
+			</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<tr class="odd">
+			<td class="land_ferien_region_link land_ferien_jahr_spalte"
+				onclick="location.href='http://www.schulferien.org/Kalender_mit_Ferien/kalender_2012_ferien_Bayern.html'"
+				onmouseover="document.getElementById('fussnote_bereich_3_2012').style.display=''"
+				onmouseout="document.getElementById('fussnote_bereich_3_2012').style.display='none'">
+				<div style="position: relative; height: 100%;">
+					<a title="Ferien 2012 Bayern" class="land_ferien_region_link" href="http://www.schulferien.org/Kalender_mit_Ferien/kalender_2012_ferien_Bayern.html">
+						<span class="land_ferien_landesregion">2012</span>
+					</a>
+					<span class="land_ferien_terminbereich_fussnote">*</span>
+					<div id="fussnote_bereich_3_2012" class="land_ferien_terminbereich_fussnote_div" style="display: none;">Der
+						Buß-und-Bettag
+						ist für
+						die
+						Schüler
+						Bayerns
+						unterrichtsfrei, für
+						Lehrer ist jedoch nicht arbeitsfrei.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin" onmouseover="document.getElementById('fussnote_ferien_termin_1_3_2012').style.display=''" onmouseout="document.getElementById('fussnote_ferien_termin_1_3_2012').style.display='none'">
+				20.02. - 24.02.
+				<div style="position: relative; height: 100%; float: right;">
+
+					<span class="land_ferien_termin_fussnote">*</span>
+					<div id="fussnote_ferien_termin_1_3_2012" class="land_ferien_termin_fussnote_div" style="display: none;">Die
+						hier wegen der übersichtlichkeit
+						als
+						Winterferien
+						angezeigten Ferien sind eigentlich die bayerischen Frühjahrsferien.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin">
+				02.04. - 14.04.
+			</td>
+			<td class="land_ferien_termin">
+				29.05. - 09.06.
+			</td>
+			<td class="land_ferien_termin">
+				01.08. - 12.09.
+			</td>
+			<td class="land_ferien_termin">
+				29.10. - 03.11.
+			</td>
+			<td class="land_ferien_termin">
+				24.12. - 05.01.
+			</td>
+		</tr>
+		<tr class="even land_ferien_current_year">
+			<td class="land_ferien_region_link land_ferien_jahr_spalte" onclick="location.href='http://www.schulferien.org/Kalender_mit_Ferien/kalender_2013_ferien_Bayern.html'"
+				onmouseover="document.getElementById('fussnote_bereich_3_2013').style.display=''" onmouseout="document.getElementById('fussnote_bereich_3_2013').style.display='none'">
+				<div style="position: relative; height: 100%;">
+					<a title="Ferien 2013 Bayern" class="land_ferien_region_link" href="http://www.schulferien.org/Kalender_mit_Ferien/kalender_2013_ferien_Bayern.html">
+						<span class="land_ferien_landesregion">2013</span>
+					</a>
+					<span class="land_ferien_terminbereich_fussnote">*</span>
+					<div id="fussnote_bereich_3_2013" class="land_ferien_terminbereich_fussnote_div" style="display: none;">Der
+						Buß-und-Bettag
+						ist für
+						die
+						Schüler
+						Bayerns
+						unterrichtsfrei, für
+						Lehrer ist jedoch nicht arbeitsfrei.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin" onmouseover="document.getElementById('fussnote_ferien_termin_1_3_2013').style.display=''" onmouseout="document.getElementById('fussnote_ferien_termin_1_3_2013').style.display='none'">
+				11.02. - 15.02.
+				<div style="position: relative; height: 100%; float: right;">
+
+					<span class="land_ferien_termin_fussnote">*</span>
+					<div id="fussnote_ferien_termin_1_3_2013" class="land_ferien_termin_fussnote_div" style="display: none;">Die
+						hier wegen der übersichtlichkeit
+						als
+						Winterferien
+						angezeigten Ferien sind eigentlich die bayerischen Frühjahrsferien.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin">
+				25.03. - 06.04.
+			</td>
+			<td class="land_ferien_termin">
+				21.05. - 31.05.
+			</td>
+			<td class="land_ferien_termin">
+				31.07. - 11.09.
+			</td>
+			<td class="land_ferien_termin">
+				28.10. - 31.10.
+			</td>
+			<td class="land_ferien_termin next_ferien">
+				23.12. - 04.01.
+			</td>
+		</tr>
+		<tr class="odd">
+			<td class="land_ferien_region_link land_ferien_jahr_spalte" onclick="location.href='http://www.schulferien.org/Kalender_mit_Ferien/kalender_2014_ferien_Bayern.html'"
+				onmouseover="document.getElementById('fussnote_bereich_3_2014').style.display=''" onmouseout="document.getElementById('fussnote_bereich_3_2014').style.display='none'">
+				<div style="position: relative; height: 100%;">
+					<a title="Ferien 2014 Bayern" class="land_ferien_region_link" href="http://www.schulferien.org/Kalender_mit_Ferien/kalender_2014_ferien_Bayern.html">
+						<span class="land_ferien_landesregion">2014</span>
+					</a>
+					<span class="land_ferien_terminbereich_fussnote">*</span>
+					<div id="fussnote_bereich_3_2014" class="land_ferien_terminbereich_fussnote_div" style="display: none;">Der
+						Buß-und-Bettag
+						ist für
+						die
+						Schüler
+						Bayerns
+						unterrichtsfrei, für
+						Lehrer ist jedoch nicht arbeitsfrei.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin" onmouseover="document.getElementById('fussnote_ferien_termin_1_3_2014').style.display=''" onmouseout="document.getElementById('fussnote_ferien_termin_1_3_2014').style.display='none'">
+				03.03. - 07.03.
+				<div style="position: relative; height: 100%; float: right;">
+
+					<span class="land_ferien_termin_fussnote">*</span>
+					<div id="fussnote_ferien_termin_1_3_2014" class="land_ferien_termin_fussnote_div" style="display: none;">Die
+						hier wegen der übersichtlichkeit
+						als
+						Winterferien
+						angezeigten Ferien sind eigentlich die bayerischen Frühjahrsferien.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin">
+				14.04. - 26.04.
+			</td>
+			<td class="land_ferien_termin">
+				10.06. - 21.06.
+			</td>
+			<td class="land_ferien_termin">
+				30.07. - 15.09.
+			</td>
+			<td class="land_ferien_termin">
+				27.10. - 31.10.
+			</td>
+			<td class="land_ferien_termin">
+				24.12. - 05.01.
+			</td>
+		</tr>
+		<tr class="even">
+			<td class="land_ferien_region_link land_ferien_jahr_spalte" onclick="location.href='http://www.schulferien.org/Kalender_mit_Ferien/kalender_2015_ferien_Bayern.html'"
+				onmouseover="document.getElementById('fussnote_bereich_3_2015').style.display=''" onmouseout="document.getElementById('fussnote_bereich_3_2015').style.display='none'">
+				<div style="position: relative; height: 100%;">
+					<a title="Ferien 2015 Bayern" class="land_ferien_region_link" href="http://www.schulferien.org/Kalender_mit_Ferien/kalender_2015_ferien_Bayern.html">
+						<span class="land_ferien_landesregion">2015</span>
+					</a>
+					<span class="land_ferien_terminbereich_fussnote">*</span>
+					<div id="fussnote_bereich_3_2015" class="land_ferien_terminbereich_fussnote_div" style="display: none;">Der
+						Buß-und-Bettag
+						ist für
+						die
+						Schüler
+						Bayerns
+						unterrichtsfrei, für
+						Lehrer ist jedoch nicht arbeitsfrei.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin" onmouseover="document.getElementById('fussnote_ferien_termin_1_3_2015').style.display=''" onmouseout="document.getElementById('fussnote_ferien_termin_1_3_2015').style.display='none'">
+				16.02. - 20.02.
+				<div style="position: relative; height: 100%; float: right;">
+
+					<span class="land_ferien_termin_fussnote">*</span>
+					<div id="fussnote_ferien_termin_1_3_2015" class="land_ferien_termin_fussnote_div" style="display: none;">Die
+						hier wegen der übersichtlichkeit
+						als
+						Winterferien
+						angezeigten Ferien sind eigentlich die bayerischen Frühjahrsferien.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin">
+				30.03. - 11.04.
+			</td>
+			<td class="land_ferien_termin">
+				26.05. - 05.06.
+			</td>
+			<td class="land_ferien_termin">
+				01.08. - 14.09.
+			</td>
+			<td class="land_ferien_termin">
+				02.11. - 07.11.
+			</td>
+			<td class="land_ferien_termin">
+				24.12. - 05.01.
+			</td>
+		</tr>
+		<tr class="odd">
+			<td class="land_ferien_region_link land_ferien_jahr_spalte" onclick="location.href='http://www.schulferien.org/Kalender_mit_Ferien/kalender_2016_ferien_Bayern.html'"
+				onmouseover="document.getElementById('fussnote_bereich_3_2016').style.display=''" onmouseout="document.getElementById('fussnote_bereich_3_2016').style.display='none'">
+				<div style="position: relative; height: 100%;">
+					<a title="Ferien 2016 Bayern" class="land_ferien_region_link" href="http://www.schulferien.org/Kalender_mit_Ferien/kalender_2016_ferien_Bayern.html">
+						<span class="land_ferien_landesregion">2016</span>
+					</a>
+					<span class="land_ferien_terminbereich_fussnote">*</span>
+					<div id="fussnote_bereich_3_2016" class="land_ferien_terminbereich_fussnote_div" style="display: none;">Der
+						Buß-und-Bettag
+						ist für
+						die
+						Schüler
+						Bayerns
+						unterrichtsfrei, für
+						Lehrer ist jedoch nicht arbeitsfrei.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin" onmouseover="document.getElementById('fussnote_ferien_termin_1_3_2016').style.display=''" onmouseout="document.getElementById('fussnote_ferien_termin_1_3_2016').style.display='none'">
+				08.02. - 12.02.
+				<div style="position: relative; height: 100%; float: right;">
+
+					<span class="land_ferien_termin_fussnote">*</span>
+					<div id="fussnote_ferien_termin_1_3_2016" class="land_ferien_termin_fussnote_div" style="display: none;">Die
+						hier wegen der übersichtlichkeit
+						als
+						Winterferien
+						angezeigten Ferien sind eigentlich die bayerischen Frühjahrsferien.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin">
+				21.03. - 01.04.
+			</td>
+			<td class="land_ferien_termin">
+				17.05. - 28.05.
+			</td>
+			<td class="land_ferien_termin">
+				30.07. - 12.09.
+			</td>
+			<td class="land_ferien_termin">
+				31.10. - 04.11.
+			</td>
+			<td class="land_ferien_termin">
+				24.12. - 05.01.
+			</td>
+		</tr>
+		<tr class="even">
+			<td class="land_ferien_region_link land_ferien_jahr_spalte" onclick="location.href='http://www.schulferien.org/Kalender_mit_Ferien/kalender_2017_ferien_Bayern.html'"
+				onmouseover="document.getElementById('fussnote_bereich_3_2017').style.display=''" onmouseout="document.getElementById('fussnote_bereich_3_2017').style.display='none'">
+				<div style="position: relative; height: 100%;">
+					<a title="Ferien 2017 Bayern" class="land_ferien_region_link" href="http://www.schulferien.org/Kalender_mit_Ferien/kalender_2017_ferien_Bayern.html">
+						<span class="land_ferien_landesregion">2017</span>
+					</a>
+					<span class="land_ferien_terminbereich_fussnote">*</span>
+					<div id="fussnote_bereich_3_2017" class="land_ferien_terminbereich_fussnote_div" style="display: none;">Der
+						Buß-und-Bettag
+						ist für
+						die
+						Schüler
+						Bayerns
+						unterrichtsfrei, für
+						Lehrer ist jedoch nicht arbeitsfrei.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin" onmouseover="document.getElementById('fussnote_ferien_termin_1_3_2017').style.display=''" onmouseout="document.getElementById('fussnote_ferien_termin_1_3_2017').style.display='none'">
+				27.02. - 03.03.
+				<div style="position: relative; height: 100%; float: right;">
+
+					<span class="land_ferien_termin_fussnote">*</span>
+					<div id="fussnote_ferien_termin_1_3_2017" class="land_ferien_termin_fussnote_div" style="display: none;">Die
+						hier wegen der übersichtlichkeit
+						als
+						Winterferien
+						angezeigten Ferien sind eigentlich die bayerischen Frühjahrsferien.
+					</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin">
+				10.04. - 22.04.
+			</td>
+			<td class="land_ferien_termin">
+				06.06. - 16.06.
+			</td>
+			<td class="land_ferien_termin">
+				29.07. - 11.09.
+			</td>
+			<td class="land_ferien_termin" onmouseover="document.getElementById('fussnote_ferien_termin_6_3_2017').style.display=''" onmouseout="document.getElementById('fussnote_ferien_termin_6_3_2017').style.display='none'">
+				<div style="position: relative; height: 100%; float: right;">
+
+					<span class="land_ferien_termin_fussnote">*</span>
+					<div id="fussnote_ferien_termin_6_3_2017" class="land_ferien_termin_fussnote_div" style="display: none;">Ferientermine liegen noch nicht vor.</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin" onmouseover="document.getElementById('fussnote_ferien_termin_7_3_2017').style.display=''" onmouseout="document.getElementById('fussnote_ferien_termin_7_3_2017').style.display='none'">
+				<div style="position: relative; height: 100%; float: right;">
+
+					<span class="land_ferien_termin_fussnote">*</span>
+					<div id="fussnote_ferien_termin_7_3_2017" class="land_ferien_termin_fussnote_div" style="display: none;">Ferientermine liegen noch nicht vor.</div>
+				</div>
+			</td>
+		</tr>
+		<tr class="odd">
+			<td class="land_ferien_region_link land_ferien_jahr_spalte" onclick="location.href='http://www.schulferien.org/Kalender_mit_Ferien/kalender_2018_ferien_Bayern.html'">
+				<div style="position: relative; height: 100%;">
+					<a title="Ferien 2018 Bayern" class="land_ferien_region_link" href="http://www.schulferien.org/Kalender_mit_Ferien/kalender_2018_ferien_Bayern.html">
+						<span class="land_ferien_landesregion">2018</span>
+					</a>
+				</div>
+			</td>
+			<td class="land_ferien_termin" onmouseover="document.getElementById('fussnote_ferien_termin_1_3_2018').style.display=''" onmouseout="document.getElementById('fussnote_ferien_termin_1_3_2018').style.display='none'">
+				<div style="position: relative; height: 100%; float: right;">
+
+					<span class="land_ferien_termin_fussnote">*</span>
+					<div id="fussnote_ferien_termin_1_3_2018" class="land_ferien_termin_fussnote_div" style="display: none;">Ferientermine liegen noch nicht vor.</div>
+				</div>
+			</td>
+			<td class="land_ferien_termin">
+			</td>
+			<td class="land_ferien_termin">
+			</td>
+			<td class="land_ferien_termin">
+			</td>
+			<td class="land_ferien_termin">
+			</td>
+			<td class="land_ferien_termin">
+			</td>
+		</tr>
+	</tbody>
+</table>

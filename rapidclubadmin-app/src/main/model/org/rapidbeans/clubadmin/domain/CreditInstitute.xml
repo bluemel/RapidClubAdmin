@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.CreditInstitute"
+	idtype="keyprops"
+	>
+	<property name="name"
+		type="string"
+		key="true"
+	/>
+	<property name="identnumber"
+		type="integer"
+		minval="10000000"
+		maxval="99999999"
+	/>
+	<codegen mode="split"/>
+</beantype>

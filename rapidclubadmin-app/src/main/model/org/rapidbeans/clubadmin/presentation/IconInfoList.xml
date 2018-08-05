@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.presentation.IconInfoList">
+	<property name="icons"
+		type="association"
+		composition="true"
+		targettype="org.rapidbeans.clubadmin.presentation.IconInfo"
+		collectionclass="java.util.ArrayList"
+	/>
+	<codegen mode="joint"/>
+</beantype>

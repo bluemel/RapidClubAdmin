@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<enumtype name="org.rapidbeans.clubadmin.domain.Role">
+	<enum name="Trainer"/>
+	<enum name="DepartmentAdministrator"/>
+	<enum name="SuperAdministrator"/>
+</enumtype>

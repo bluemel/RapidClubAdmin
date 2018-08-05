@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.Trainer"
+	idtype="keyprops"
+	>
+	<property name="lastname" key="true"/>
+	<property name="firstname" key="true"/>
+	<property name="middlename" key="true"
+		emptyvalid="true" default=""/>
+	<!-- an example for a valid email is a@b.c -->
+	<property name="email"
+		/>
+	<property name="trainerattributes"
+		type="association"
+		targettype="TrainerAttribute"
+	/>
+	<property name="trainerplannings"
+		type="association"
+		targettype="TrainerPlanning"
+		inverse="defaulttrainers"
+	/>
+	<property name="trainingsheld"
+		singular="trainingheld"
+		type="association"
+		targettype="TrainingHeldByTrainer"
+		inverse="trainer"
+	/>
+	<property name="departments"
+		type="association"
+		targettype="Department"
+		inverse="trainers"
+		propclass="TrainerPropDepartments"
+	/>
+	<property name="icon"
+		type="date"
+		precision="second"
+	/>
+	<property name="user"
+		type="association"
+		targettype="ClubadminUser"
+		maxmult="1"
+		inverse="isalsotrainer"
+	/>
+	<property name="salaries"
+		type="association"
+		targettype="PersonalSalary"
+		inverse="person"
+	/>
+	<codegen mode="split"/>
+</beantype>

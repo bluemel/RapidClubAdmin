@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.Club"
+	idtype="keyprops">
+	<property name="name" key="true"/>
+	<property name="departments"
+		type="association"
+		composition="true"
+		targettype="Department"
+		collectionclass="java.util.TreeSet"
+	/>
+	<property name="defaultpassword" minlen="4"/>
+</beantype>

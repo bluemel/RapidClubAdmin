@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.TrainerPlanning"
+	idtype="numeric"
+	incremental="false"
+	>
+	<property name="role"
+		type="association"
+		targettype="TrainerRole"
+		mandatory="true"
+		maxmult="1"
+	/>
+	<property name="defaulttrainers"
+		type="association"
+		targettype="Trainer"
+		propclass="TrainerPlanningPropDefaulttrainers"
+		inverse="trainerplannings"
+	/>
+</beantype>

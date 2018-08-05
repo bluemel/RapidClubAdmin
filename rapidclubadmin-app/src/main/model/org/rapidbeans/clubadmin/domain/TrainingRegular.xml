@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.TrainingRegular"
+	extends="org.rapidbeans.clubadmin.domain.Training"
+	idtype="keypropswithparentscope"
+	idtypeparentscopedepth="3"
+	>
+
+	<!-- overridden attributes to get from TrainingDate -->
+	<property name="dayofweek"
+		type="choice"
+		enum="org.rapidbeans.domain.math.DayOfWeek"
+		transient="true"
+		propclass="TrainingRegularPropDayofweek"
+	/>
+	<property name="timestart"
+		type="quantity"
+		quantity="org.rapidbeans.domain.math.TimeOfDay"
+		transient="true"
+		propclass="TrainingRegularPropTimestart"
+	/>
+	<property name="location"
+		type="association"
+		targettype="Location"
+		transient="true"
+		readonly="true"
+		maxmult="1"
+		propclass="TrainingRegularPropLocation"
+	/>
+	<property name="name"
+		type="string"
+		transient="true"
+		mandatory="true"
+		propclass="TrainingRegularPropName"
+	/>
+	<property name="timeend"
+		type="quantity"
+		quantity="org.rapidbeans.domain.math.TimeOfDay"
+		mandatory="true"
+		transient="true"
+		propclass="TrainingRegularPropTimeend"
+	/>
+	<property name="sport"
+		type="association"
+		targettype="Sport"
+		transient="true"
+		maxmult="1"
+		propclass="TrainingRegularPropSport"
+	/>
+
+	<!-- overridden just to define the key attribute -->
+	<property name="date"
+		type="date"
+		key="true"
+	/>
+    <codegen mode="split"/>
+</beantype>

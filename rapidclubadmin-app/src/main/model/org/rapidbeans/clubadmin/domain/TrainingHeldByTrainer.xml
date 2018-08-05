@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer"
+	idtype="numeric"
+	>
+	<property name="role"
+		type="association"
+		targettype="TrainerRole"
+		mandatory="true"
+		minmult="1"
+		maxmult="1"
+	/>
+	<property name="trainer"
+		type="association"
+		propclass="TrainingHeldByTrainerPropTrainer"
+		targettype="Trainer"
+		inverse="trainingsheld"
+		mandatory="false"
+		maxmult="1"
+	/>
+	<codegen mode="split"/>
+</beantype>

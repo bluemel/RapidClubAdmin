@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.ClubadminUser"
+	extends="org.rapidbeans.security.User">
+    <property name="roles"
+        type="choice"
+        enum="org.rapidbeans.clubadmin.domain.Role"
+		multiple="false"
+    />
+	<property name="isalsotrainer"
+		type="association"
+		targettype="Trainer"
+		maxmult="1"
+		inverse="user"
+	/>
+	<property name="departments"
+		type="association"
+		targettype="Department"
+	/>
+	<codegen mode="split"/>
+</beantype>

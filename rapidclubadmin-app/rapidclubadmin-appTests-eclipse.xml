@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="rapidclubadmin-app Tests" project="rapidclubadmin-app" tests="142" started="142" failures="0" errors="0" ignored="2">
+  <testsuite name="org.rapidbeans.clubadmin.service.HistoryReportTest" time="0.002">
+    <testcase name="test" classname="org.rapidbeans.clubadmin.service.HistoryReportTest" time="0.002" ignored="true"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.export.ExportJobTest" time="2.128">
+    <testcase name="testAccesMsAccess" classname="org.rapidbeans.clubadmin.domain.export.ExportJobTest" time="1.731"/>
+    <testcase name="testGenerateExportJob" classname="org.rapidbeans.clubadmin.domain.export.ExportJobTest" time="0.397"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.presentation.swing.TrainerIconManagerTest" time="0.48">
+    <testcase name="testUpdateIcons" classname="org.rapidbeans.clubadmin.presentation.swing.TrainerIconManagerTest" time="0.4"/>
+    <testcase name="testDeleteIcon" classname="org.rapidbeans.clubadmin.presentation.swing.TrainerIconManagerTest" time="0.038"/>
+    <testcase name="testImportIcon" classname="org.rapidbeans.clubadmin.presentation.swing.TrainerIconManagerTest" time="0.042"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.RoleTest" time="0.0">
+    <testcase name="testOrder" classname="org.rapidbeans.clubadmin.domain.RoleTest" time="0.0"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.datasource.QueryTest" time="0.0">
+    <testcase name="testInterpretComplexQuery" classname="org.rapidbeans.clubadmin.datasource.QueryTest" time="0.0"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.report.OverviewTest" time="0.126">
+    <testcase name="testAsStringMartin1" classname="org.rapidbeans.clubadmin.domain.report.OverviewTest" time="0.063"/>
+    <testcase name="testAsStringMartin2" classname="org.rapidbeans.clubadmin.domain.report.OverviewTest" time="0.035"/>
+    <testcase name="testAsStringReinhard" classname="org.rapidbeans.clubadmin.domain.report.OverviewTest" time="0.028"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.presentation.SettingsTest" time="0.191">
+    <testcase name="testSettings" classname="org.rapidbeans.clubadmin.presentation.SettingsTest" time="0.191"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="2.983">
+    <testcase name="testEditClosingPeriodLocationDeleteApply" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.253"/>
+    <testcase name="testEditClosingPeriodInvalidDateToEmptyCancel" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.04"/>
+    <testcase name="testEditClosingPeriodToInvalidDateToLetter" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.051"/>
+    <testcase name="testTrainingSetTrainerTwice" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.107"/>
+    <testcase name="testCreateClosingPeriodOnedayConvenient" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.032"/>
+    <testcase name="testCreateLocationOk" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.046"/>
+    <testcase name="testEditTrainingNullRole" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.101"/>
+    <testcase name="testCreateLocationApply" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.033"/>
+    <testcase name="testEditClosingPeriodOnedayToMoreDays" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.016"/>
+    <testcase name="testDeleteTrainingDate" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.025"/>
+    <testcase name="testEditClosingPeriodLocationMultipleLinks" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.035"/>
+    <testcase name="testCreateClosingPeriodWithLocationNone" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.039"/>
+    <testcase name="testDeleteClosingPeriod" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.068"/>
+    <testcase name="testEditorUpdateClosingPeriodLocation" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.031"/>
+    <testcase name="testEditClosingPeriodLocationBeanRemoved" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.045"/>
+    <testcase name="testCreateTrainerPlanning" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.056"/>
+    <testcase name="testCreateSalaryMultipleEditMoneyBefore" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.365"/>
+    <testcase name="testEditClosingPeriodLocationDeleteCancel" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.032"/>
+    <testcase name="testCreateClosingPeriodInvalidTo" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.048"/>
+    <testcase name="testCreateTrainer" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.023"/>
+    <testcase name="testCreateSalaryDuplicateWithAttributes" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.022"/>
+    <testcase name="testEditClosingPeriodLocationDeleteSimple" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.025"/>
+    <testcase name="testCreateTrainerDuplicate" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.015"/>
+    <testcase name="testTreeViewShowTrainings" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.02"/>
+    <testcase name="testEditLocationAndClosingPeriodCloseCp" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.014"/>
+    <testcase name="testCreateClosingPeriodAndEditAfterwards" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.03"/>
+    <testcase name="testCreateClubTypingSuccessively" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.021"/>
+    <testcase name="testCreateSalarySingle" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.043"/>
+    <testcase name="testEditTrainer" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.017"/>
+    <testcase name="testCreateClosingPeriod" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.017"/>
+    <testcase name="testBPUpdateTrainings" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.046"/>
+    <testcase name="testCreateSalaryPersonalOk" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.055"/>
+    <testcase name="testCreateSalaryAfterDuplicateDefaultWithAttributes" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.131"/>
+    <testcase name="testCreateSalaryPersonalApply" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.084"/>
+    <testcase name="testInitDocumentViews" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.036"/>
+    <testcase name="testCreateTwoDuplicateTrainers" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.021"/>
+    <testcase name="testCreateClosingPeriodWithLocationAll" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.046"/>
+    <testcase name="testCreateClosingPeriodWithLocationKey" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.035"/>
+    <testcase name="testEditTrainerPlanning" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.026"/>
+    <testcase name="testCreateSalaryPersonalApplyConsecutive" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.068"/>
+    <testcase name="testCreateSalaryAfterDuplicateWithAttributes" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.34"/>
+    <testcase name="testEditSalary" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.021"/>
+    <testcase name="testEditClosingPeriodToInvalidDateToSmallerFrom" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.016"/>
+    <testcase name="testCreateTrainerTypingSuccessively" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.028"/>
+    <testcase name="testCreateSalaryMultipleEditMoneyAfter" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.033"/>
+    <testcase name="testCreateSalaryDuplicateWithoutAttribute" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.016"/>
+    <testcase name="testEditClosingPeriodOutsideChangeNotModifiedClosed" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.019"/>
+    <testcase name="testCreateClosingPeriodOneday" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.019"/>
+    <testcase name="testEditLocationClosingPeriodsAddRemoveWithTreeView" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.037"/>
+    <testcase name="testCreateTrainingSpecial" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.135"/>
+    <testcase name="testCreateClosingPeriodAndLocation" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.073"/>
+    <testcase name="testCreateClosingPeriodTwice" classname="org.rapidbeans.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.026"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.TrainingDateTest" time="0.003">
+    <testcase name="testDeleteTraining" classname="org.rapidbeans.clubadmin.domain.TrainingDateTest" time="0.002"/>
+    <testcase name="testValidateToLessFrom" classname="org.rapidbeans.clubadmin.domain.TrainingDateTest" time="0.001"/>
+    <testcase name="testGetType" classname="org.rapidbeans.clubadmin.domain.TrainingDateTest" time="0.0"/>
+    <testcase name="testValidateFromGreaterTo" classname="org.rapidbeans.clubadmin.domain.TrainingDateTest" time="0.0"/>
+    <testcase name="testTrainingDate" classname="org.rapidbeans.clubadmin.domain.TrainingDateTest" time="0.0"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.report.EvidenceTest" time="0.588">
+    <testcase name="testDetermineRowCount30" classname="org.rapidbeans.clubadmin.domain.report.EvidenceTest" time="0.023"/>
+    <testcase name="testDetermineRowCount32" classname="org.rapidbeans.clubadmin.domain.report.EvidenceTest" time="0.013"/>
+    <testcase name="testReadTemplate" classname="org.rapidbeans.clubadmin.domain.report.EvidenceTest" time="0.036"/>
+    <testcase name="testReportDepartmentSimple" classname="org.rapidbeans.clubadmin.domain.report.EvidenceTest" time="0.074"/>
+    <testcase name="testReportCollected" classname="org.rapidbeans.clubadmin.domain.report.EvidenceTest" time="0.228"/>
+    <testcase name="testReportOverflowDepartmentSingle" classname="org.rapidbeans.clubadmin.domain.report.EvidenceTest" time="0.061"/>
+    <testcase name="testReportOverflowDepartmentsCoherent" classname="org.rapidbeans.clubadmin.domain.report.EvidenceTest" time="0.09"/>
+    <testcase name="testReportOverflowDepartmentCoherent" classname="org.rapidbeans.clubadmin.domain.report.EvidenceTest" time="0.062"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.presentation.IconInfoListTest" time="0.008">
+    <testcase name="testAddIcon" classname="org.rapidbeans.clubadmin.presentation.IconInfoListTest" time="0.005"/>
+    <testcase name="testRemoveIcon" classname="org.rapidbeans.clubadmin.presentation.IconInfoListTest" time="0.003"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.095">
+    <testcase name="testDeleteTraining" classname="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.001"/>
+    <testcase name="testDetectProblemWithSortedTrainings" classname="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.02"/>
+    <testcase name="testFindTrainingWithSorting" classname="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.001"/>
+    <testcase name="testWriteAndRead" classname="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.058"/>
+    <testcase name="testSetupTestTrainingsListDoc" classname="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.001"/>
+    <testcase name="testCreateDuplicates" classname="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.001"/>
+    <testcase name="testReadInitMasterData" classname="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.004"/>
+    <testcase name="testDeleteTrainer" classname="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.001"/>
+    <testcase name="testRemoveLinkComponentDeleteOrphanedFromDoc_nton" classname="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.006"/>
+    <testcase name="testSetupTestMasterDataDoc" classname="org.rapidbeans.clubadmin.datasource.DocumentTest" time="0.001"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.066">
+    <testcase name="testCreateNewTrainingsList" classname="org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.01"/>
+    <testcase name="testBPUpdateTrainings" classname="org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.05"/>
+    <testcase name="testBPUpdateClosingPeriods" classname="org.rapidbeans.clubadmin.presentation.swing.RapidClubAdminClientIntegrationTest" time="0.006"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.TrainingTest" time="0.001">
+    <testcase name="testCompareTo" classname="org.rapidbeans.clubadmin.domain.TrainingTest" time="0.001"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.core.basic.RapidClubAdminBeanTest" time="0.019">
+    <testcase name="testGetParentCompColProperty" classname="org.rapidbeans.core.basic.RapidClubAdminBeanTest" time="0.019"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest" time="0.224">
+    <testcase name="testMastardataDisabledForJogi" classname="org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest" time="0.145"/>
+    <testcase name="testOpenTrainingsList" classname="org.rapidbeans.clubadmin.presentation.RapidClubAdminClientIntegrationTest" time="0.079"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.CreditInstituteTest" time="0.0">
+    <testcase name="testDelete" classname="org.rapidbeans.clubadmin.domain.CreditInstituteTest" time="0.0"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.service.ObfcteTest" time="0.001">
+    <testcase name="testObfcte" classname="org.rapidbeans.clubadmin.service.ObfcteTest" time="0.001"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.SalaryTest" time="0.002">
+    <testcase name="testSalaryWithComponentsChangeComponentMoney" classname="org.rapidbeans.clubadmin.domain.SalaryTest" time="0.0"/>
+    <testcase name="testCompareToSalaryEqualMagDiffUnitGreater" classname="org.rapidbeans.clubadmin.domain.SalaryTest" time="0.001"/>
+    <testcase name="testSalaryAddComponent" classname="org.rapidbeans.clubadmin.domain.SalaryTest" time="0.0"/>
+    <testcase name="testSalaryWithComponentsChangeCompositeTime" classname="org.rapidbeans.clubadmin.domain.SalaryTest" time="0.0"/>
+    <testcase name="testCompareToSalaryEqualMagDiffUnitLess" classname="org.rapidbeans.clubadmin.domain.SalaryTest" time="0.0"/>
+    <testcase name="testCompareToSalaryLesserMagEqualUnit" classname="org.rapidbeans.clubadmin.domain.SalaryTest" time="0.001"/>
+    <testcase name="testCompareToSalaryGreaterMagEqualUnit" classname="org.rapidbeans.clubadmin.domain.SalaryTest" time="0.0"/>
+    <testcase name="testCompareToSalaryEqualMagDiffUnitEqual" classname="org.rapidbeans.clubadmin.domain.SalaryTest" time="0.0"/>
+    <testcase name="testCompareToSalaryEqualMagAndUnit" classname="org.rapidbeans.clubadmin.domain.SalaryTest" time="0.0"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.presentation.swing.ModelTrainingsTableTest" time="0.045">
+    <testcase name="testSortTrainings" classname="org.rapidbeans.clubadmin.presentation.swing.ModelTrainingsTableTest" time="0.016"/>
+    <testcase name="testModelSorting" classname="org.rapidbeans.clubadmin.presentation.swing.ModelTrainingsTableTest" time="0.029"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.TrainerTest" time="0.001">
+    <testcase name="testGetIdStringWithEmptyMiddleName" classname="org.rapidbeans.clubadmin.domain.TrainerTest" time="0.001"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.TrainingHeldByTrainerTest" time="0.003">
+    <testcase name="testSetTrainerSame" classname="org.rapidbeans.clubadmin.domain.TrainingHeldByTrainerTest" time="0.001"/>
+    <testcase name="testSetTrainerTwoDifferent" classname="org.rapidbeans.clubadmin.domain.TrainingHeldByTrainerTest" time="0.0"/>
+    <testcase name="testTrainingHeldByTrainer" classname="org.rapidbeans.clubadmin.domain.TrainingHeldByTrainerTest" time="0.0"/>
+    <testcase name="testSetTrainerAlreadyHeldAnotherTraingAtOverlappingTime" classname="org.rapidbeans.clubadmin.domain.TrainingHeldByTrainerTest" time="0.001"/>
+    <testcase name="testSetTrainerSameToTwoDiffTrainingsSameDateNoOverlap" classname="org.rapidbeans.clubadmin.domain.TrainingHeldByTrainerTest" time="0.001"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.ClosingPeriodTest" time="0.003">
+    <testcase name="testSetOnedayTrue" classname="org.rapidbeans.clubadmin.domain.ClosingPeriodTest" time="0.001"/>
+    <testcase name="testClosingPeriod" classname="org.rapidbeans.clubadmin.domain.ClosingPeriodTest" time="0.0"/>
+    <testcase name="testClosingPeriodInvalidCombiProperty" classname="org.rapidbeans.clubadmin.domain.ClosingPeriodTest" time="0.001"/>
+    <testcase name="testCreateClosingPeriodFromToDifferent" classname="org.rapidbeans.clubadmin.domain.ClosingPeriodTest" time="0.0"/>
+    <testcase name="testCreateClosingPeriodFromToSame" classname="org.rapidbeans.clubadmin.domain.ClosingPeriodTest" time="0.0"/>
+    <testcase name="testCreateClosingPeriodOnedayFalse" classname="org.rapidbeans.clubadmin.domain.ClosingPeriodTest" time="0.0"/>
+    <testcase name="testClosingPeriodValid" classname="org.rapidbeans.clubadmin.domain.ClosingPeriodTest" time="0.0"/>
+    <testcase name="testCreateClosingPeriodOnedayTrue" classname="org.rapidbeans.clubadmin.domain.ClosingPeriodTest" time="0.001"/>
+    <testcase name="testClosingPeriodInvalidSingleProperty" classname="org.rapidbeans.clubadmin.domain.ClosingPeriodTest" time="0.0"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.SettingsTest" time="0.004">
+    <testcase name="testReadSettingsAuthnEmpty" classname="org.rapidbeans.SettingsTest" time="0.003"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.066">
+    <testcase name="testGenerateTrainingsOne" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.001"/>
+    <testcase name="testChangeFromAndGenTraings" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.001"/>
+    <testcase name="testTrainingsListString" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.0"/>
+    <testcase name="testGenerateTrainingsNone" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.001"/>
+    <testcase name="testLoadDocument" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.055"/>
+    <testcase name="testGetType" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.0"/>
+    <testcase name="testGenerateTrainingsNormal" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.002"/>
+    <testcase name="testGenerateTrainingsIllegal" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.0"/>
+    <testcase name="testTrainingsList" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.001"/>
+    <testcase name="testDeserializeFile" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.005"/>
+    <testcase name="testTrainingsListStringArray" classname="org.rapidbeans.clubadmin.domain.TrainingsListTest" time="0.0"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.presentation.CustomerSettingsTest" time="0.427">
+    <testcase name="testReadSettings" classname="org.rapidbeans.clubadmin.presentation.CustomerSettingsTest" time="0.423"/>
+    <testcase name="testWriteSettings" classname="org.rapidbeans.clubadmin.presentation.CustomerSettingsTest" time="0.004"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.closingdays.SchulferienReaderTest" time="0.048">
+    <testcase name="testReadFromSchulferienOrg" classname="org.rapidbeans.clubadmin.closingdays.SchulferienReaderTest" time="0.0" ignored="true"/>
+    <testcase name="testReadSchulferienBayern" classname="org.rapidbeans.clubadmin.closingdays.SchulferienReaderTest" time="0.032"/>
+    <testcase name="testReadFeiertageBayern" classname="org.rapidbeans.clubadmin.closingdays.SchulferienReaderTest" time="0.016"/>
+  </testsuite>
+  <testsuite name="org.rapidbeans.clubadmin.service.CreateTrainingsListTest" time="0.027">
+    <testcase name="testCreateNewTrainingsList" classname="org.rapidbeans.clubadmin.service.CreateTrainingsListTest" time="0.027"/>
+  </testsuite>
+</testrun>

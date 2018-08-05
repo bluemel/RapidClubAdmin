@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.AbstractSalary"
+	abstract="true"
+	>
+	<description><![CDATA[Defines a named amount of money per time
+     * associated with a certain role.
+     * Optionally a salary can be combined from various components]]></description>
+	<property name="rolename"
+		type="string"
+		key="true"
+	/>
+	<property name="money"
+		type="quantity"
+		mandatory="true"
+		quantity="org.rapidbeans.domain.finance.Money"
+		minval="0 euro"
+	/>
+	<property name="time"
+		type="quantity"
+		mandatory="true"
+		quantity="org.rapidbeans.domain.math.Time"
+		propclass="AbstractSalaryPropTime"
+		minval="1 min"
+	/>
+	<property name="components" 
+		type="association"
+		composition="true"
+		targettype="SalaryComponent"
+		propclass="AbstractSalaryPropComponents"
+	/>
+    <codegen mode="split"/>
+</beantype>

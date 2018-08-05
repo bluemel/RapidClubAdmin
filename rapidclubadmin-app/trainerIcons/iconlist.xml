@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.clubadmin.presentation.IconInfoList"
+	>
+</rb:bean>

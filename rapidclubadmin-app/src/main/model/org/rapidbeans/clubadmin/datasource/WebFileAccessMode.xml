@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<enumtype name="org.rapidbeans.clubadmin.datasource.WebFileAccessMode">
+	<enum name="php"/>
+	<enum name="ftp"/>
+	<enum name="httpreadonly"/>
+</enumtype>

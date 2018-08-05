@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<beantype name="org.rapidbeans.clubadmin.domain.Sport"
+	idtype="keyprops"
+	>
+	<property name="name"
+		type="string"
+		key="true"
+	/>
+	<property name="shortname"
+		type="string"
+	/>
+</beantype>
