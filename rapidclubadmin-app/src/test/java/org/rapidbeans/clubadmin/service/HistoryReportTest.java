@@ -4,7 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,12 +19,14 @@ import org.rapidbeans.clubadmin.domain.Trainer;
 import org.rapidbeans.clubadmin.domain.Training;
 import org.rapidbeans.clubadmin.domain.TrainingDate;
 import org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer;
+import org.rapidbeans.clubadmin.domain.TrainingState;
 import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.core.util.StringHelper;
 import org.rapidbeans.core.util.StringHelper.FillMode;
 import org.rapidbeans.datasource.Document;
 import org.rapidbeans.domain.finance.Money;
+import org.rapidbeans.domain.math.DayOfWeek;
 import org.rapidbeans.domain.math.Time;
 import org.rapidbeans.domain.math.UnitTime;
 
@@ -30,7 +34,80 @@ public class HistoryReportTest {
 
 	@Test
 	@Ignore
-	public void test() {
+	public void generateMultipleTrainerStatistics() {
+		TypePropertyCollection.setDefaultCharSeparator(',');
+		final File histdir = new File("history");
+		assertTrue(histdir.exists());
+
+		// final SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		final NumberFormat nf = NumberFormat.getInstance();
+		nf.setMinimumFractionDigits(2);
+		nf.setMaximumFractionDigits(2);
+
+		final List<Trstat> trainings = new ArrayList<Trstat>();
+		readTrainingsFromHistory(histdir, trainings, 2017, 2018);
+
+		SimpleDateFormat sfmt = new SimpleDateFormat("dd.MM.yyyy");
+		for (final Trstat trstat : trainings) {
+			final Training training = trstat.getTraining();
+			final Collection<TrainingHeldByTrainer> trhbts = training.getHeldbytrainersSortedByValue();
+			switch (trhbts.size()) {
+			case 0:
+				if (training.getState() != TrainingState.cancelled && training.getState() != TrainingState.closed) {
+					System.out.println(String.format("%s: !!! kein Trainer??? %s", sfmt.format(training.getDate()),
+							training.getState()));
+				}
+				break;
+			case 1:
+				// System.out.println(String.format("%s: 1 Trainer", training.getDate(),
+				// training.getState()));
+				break;
+			default:
+				System.out.print(
+						String.format("%s %s %s: %d Trainer: ", training.getName(), german(training.getDayofweek()),
+								sfmt.format(training.getDate()), trhbts.size(), training.getState()));
+				int i = 0;
+				for (TrainingHeldByTrainer trhbt : training.getHeldbytrainersSortedByValue()) {
+					final Money moneyEarned = trhbt.getMoneyEarned();
+					final Trainer trainer = trhbt.getTrainer();
+					final String trainerName = trainer == null ? "Kein Trainer vermerkt"
+							: trainer.getLastname() + ", " + trainer.getFirstname();
+					final String role = trhbt.getRole().getName();
+					if (i > 0) {
+						System.out.print(" || ");
+					}
+					System.out.print(String.format("%s / %s: %s €", role, trainerName,
+							nf.format(moneyEarned.getMagnitudeDouble())));
+					i++;
+				}
+				System.out.println();
+			}
+		}
+	}
+
+	private String german(DayOfWeek dayofweek) {
+		switch (dayofweek) {
+		case monday:
+			return "MO";
+		case tuesday:
+			return "DI";
+		case wednesday:
+			return "MI";
+		case thursday:
+			return "DO";
+		case friday:
+			return "FR";
+		case saturday:
+			return "SA";
+		case sunday:
+			return "SO";
+		}
+		return "???";
+	}
+
+	@Test
+	@Ignore
+	public void generateOverallTrainingsStatistics() {
 		TypePropertyCollection.setDefaultCharSeparator(',');
 		final File histdir = new File("history");
 		assertTrue(histdir.exists());
