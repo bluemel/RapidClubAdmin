@@ -1,0 +1,1443 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rb:bean xmlns:rb="http://rapidbeans.org/core/basic"
+	rb:type="org.rapidbeans.clubadmin.domain.MasterData"
+	trainerhour="45 min"
+	>
+	<club
+		id="Budo-Club Ismaning"
+		name="Budo-Club Ismaning"
+		defaultpassword="musashi10"
+		>
+		<department
+			id="Budo-Club Ismaning/Aikido"
+			name="Aikido"
+			trainers="Blümel_Martin_,Blümel_Ulrike_,Holler_Josef_,Hummel_Benjamin_,Höppner_Christoph_,Landsberger_Reinhard_,Mair_Doris_,Russ_Kevin_,Sieber_Hans_,Vogel_Harald_,Wallner_Nicole_"
+			>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/monday_19:30_Turnhalle Grundschule Süd"
+				dayofweek="monday"
+				timestart="19:30"
+				location="Turnhalle Grundschule Süd"
+				name="Aikido Erwachsene, Nishio-Stil"
+				timeend="21:30"
+				>
+				<trainerplanning
+					id="70"
+					role="Trainer"
+					defaulttrainers="Russ_Kevin_,Wallner_Nicole_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/tuesday_18:00_Turnhalle Grundschule Süd"
+				dayofweek="tuesday"
+				timestart="18:00"
+				location="Turnhalle Grundschule Süd"
+				name="Aikido Kinder / Erwachsene"
+				timeend="19:30"
+				>
+				<trainerplanning
+					id="14"
+					role="Trainer"
+					defaulttrainers="Blümel_Martin_,Blümel_Ulrike_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/wednesday_20:00_Turnhalle Grundschule Süd"
+				dayofweek="wednesday"
+				timestart="20:00"
+				location="Turnhalle Grundschule Süd"
+				name="Katori Shinto Ryu"
+				timeend="21:30"
+				sport="Katori Shinto-ryu"
+				>
+				<trainerplanning
+					id="80"
+					role="Trainer"
+					defaulttrainers="Russ_Kevin_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Aikido/thursday_20:00_Turnhalle Grundschule Süd"
+				dayofweek="thursday"
+				timestart="20:00"
+				location="Turnhalle Grundschule Süd"
+				name="Aikido Erwachsene"
+				timeend="21:30"
+				>
+				<trainerplanning
+					id="15"
+					role="Trainer"
+					defaulttrainers="Blümel_Martin_,Höppner_Christoph_,Mair_Doris_"
+					/>
+			</trainingdate>
+		</department>
+		<department
+			id="Budo-Club Ismaning/Chanbara"
+			name="Chanbara"
+			trainers="Piske_Evelyn_,Schwarz_Thorsten_"
+			>
+			<trainingdate
+				id="Budo-Club Ismaning/Chanbara/monday_18:00_Turnhalle Grundschule Süd B"
+				dayofweek="monday"
+				timestart="18:00"
+				location="Turnhalle Grundschule Süd B"
+				name="Bujinkan Ninjutsu Jugendliche"
+				timeend="19:30"
+				sport="Bujinkan Ninjutsu"
+				>
+				<trainerplanning
+					id="88"
+					role="Trainer"
+					defaulttrainers="Schwarz_Thorsten_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Chanbara/wednesday_18:30_Turnhalle Grundschule Süd"
+				dayofweek="wednesday"
+				timestart="18:30"
+				location="Turnhalle Grundschule Süd"
+				name="Bujinkan Ninjutsu Erwachsene"
+				timeend="20:00"
+				sport="Bujinkan Ninjutsu"
+				>
+				<trainerplanning
+					id="90"
+					role="Trainer"
+					defaulttrainers="Schwarz_Thorsten_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Chanbara/friday_19:30_Turnhalle Grundschule Süd"
+				dayofweek="friday"
+				timestart="19:30"
+				location="Turnhalle Grundschule Süd"
+				name="Bujinkan Ninjutsu Erwachsene"
+				timeend="21:00"
+				sport="Bujinkan Ninjutsu"
+				>
+				<trainerplanning
+					id="92"
+					role="Trainer"
+					defaulttrainers="Schwarz_Thorsten_"
+					/>
+			</trainingdate>
+		</department>
+		<department
+			id="Budo-Club Ismaning/Grundschule"
+			name="Grundschule"
+			trainers="Blümel_Ulrike_,Kutzner_Verena_,Mair_Doris_,Mair_Holger_"
+			>
+			<trainingdate
+				id="Budo-Club Ismaning/Grundschule/monday_14:00_Turnhalle Grundschule Süd"
+				dayofweek="monday"
+				timestart="14:00"
+				location="Turnhalle Grundschule Süd"
+				name="Allgemeines Kampfsporttraining"
+				timeend="15:30"
+				sport="Kampfsport allgemein"
+				>
+				<trainerplanning
+					id="68"
+					role="Trainer-Grundschule"
+					defaulttrainers="Blümel_Ulrike_,Mair_Doris_,Mair_Holger_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Grundschule/wednesday_14:00_Turnhalle Grundschule Süd"
+				dayofweek="wednesday"
+				timestart="14:00"
+				location="Turnhalle Grundschule Süd"
+				name="Workshop: Aikido"
+				timeend="15:30"
+				sport="Aikido"
+				>
+				<trainerplanning
+					id="86"
+					role="Trainer-Grundschule"
+					defaulttrainers="Blümel_Ulrike_,Mair_Doris_,Mair_Holger_"
+					/>
+			</trainingdate>
+		</department>
+		<department
+			id="Budo-Club Ismaning/Haidong Gumdo"
+			name="Haidong Gumdo"
+			trainers="Fiegl_Bernhard_,Guggenberger_Caroline_,Guggenberger_Christine_Christl,Saler_Dennis_"
+			>
+			<trainingdate
+				id="Budo-Club Ismaning/Haidong Gumdo/monday_16:30_Turnhalle Grundschule Süd"
+				dayofweek="monday"
+				timestart="16:30"
+				location="Turnhalle Grundschule Süd"
+				name="Kummooyeh Kinder"
+				timeend="18:00"
+				sport="Kumdo Kummooyeh"
+				/>
+			<trainingdate
+				id="Budo-Club Ismaning/Haidong Gumdo/monday_18:00_Turnhalle Grundschule Süd"
+				dayofweek="monday"
+				timestart="18:00"
+				location="Turnhalle Grundschule Süd"
+				name="Kummooyeh Jugendliche"
+				timeend="19:30"
+				sport="Kumdo Kummooyeh"
+				/>
+			<trainingdate
+				id="Budo-Club Ismaning/Haidong Gumdo/tuesday_20:15_Turnhalle Grundschule Süd B"
+				dayofweek="tuesday"
+				timestart="20:15"
+				location="Turnhalle Grundschule Süd B"
+				name="Kummooyeh Erwachsene"
+				timeend="21:45"
+				sport="Kumdo Kummooyeh"
+				>
+				<trainerplanning
+					id="74"
+					role="Trainer"
+					defaulttrainers="Fiegl_Bernhard_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Haidong Gumdo/friday_20:00_Turnhalle Grundschule Süd B"
+				dayofweek="friday"
+				timestart="20:00"
+				location="Turnhalle Grundschule Süd B"
+				name="Kummooyeh Erwachsene"
+				timeend="21:30"
+				sport="Kumdo Kummooyeh"
+				>
+				<trainerplanning
+					id="78"
+					role="Trainer"
+					defaulttrainers="Fiegl_Bernhard_"
+					/>
+			</trainingdate>
+		</department>
+		<department
+			id="Budo-Club Ismaning/Judo"
+			name="Judo"
+			trainers="Axt_Stefan_,Becker_Karin_,Czeranski_Hennriette_Henny,Distel_Fabian_,Dörflinger_Florian_,Dörflinger_Jeannette_,Döring_Anett_,Döring_Dirk_,Elter_Tim_,Freund_Thomas_,Greulich_Alina_,Greulich_Maximo_,Haug_Giovanni_,Hockl_Doris_,Horrer_Christopher_,Kaufmann_Theresa_,Kutzner_Verena_,Mair_Holger_,Mair_Lucie_,Sonner_Jakob_,Sonner_Markus_Max,Wambsganz_Annette_,Zankl_Alexander_"
+			>
+			<trainingdate
+				id="Budo-Club Ismaning/Judo/tuesday_16:30_Turnhalle Grundschule Süd"
+				dayofweek="tuesday"
+				timestart="16:30"
+				location="Turnhalle Grundschule Süd"
+				name="Judo Kinder / Jugendgruppe"
+				timeend="18:00"
+				>
+				<trainerplanning
+					id="37"
+					role="Trainer"
+					defaulttrainers="Czeranski_Hennriette_Henny"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Judo/wednesday_16:00_Turnhalle Grundschule Süd"
+				dayofweek="wednesday"
+				timestart="16:00"
+				location="Turnhalle Grundschule Süd"
+				name="Judo Kleine Kinder"
+				timeend="17:30"
+				/>
+			<trainingdate
+				id="Budo-Club Ismaning/Judo/wednesday_17:30_Turnhalle Grundschule Süd"
+				dayofweek="wednesday"
+				timestart="17:30"
+				location="Turnhalle Grundschule Süd"
+				name="Judo Große Kinder"
+				timeend="19:00"
+				/>
+			<trainingdate
+				id="Budo-Club Ismaning/Judo/thursday_15:30_Turnhalle Grundschule Süd"
+				dayofweek="thursday"
+				timestart="15:30"
+				location="Turnhalle Grundschule Süd"
+				name="Judo im Elementarbereich"
+				timeend="17:00"
+				>
+				<trainerplanning
+					id="46"
+					role="Trainer"
+					defaulttrainers="Czeranski_Hennriette_Henny"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Judo/friday_15:30_Turnhalle Grundschule Süd"
+				dayofweek="friday"
+				timestart="15:30"
+				location="Turnhalle Grundschule Süd"
+				name="Judo Integrativ"
+				timeend="16:30"
+				>
+				<trainerplanning
+					id="93"
+					role="Trainer"
+					defaulttrainers="Wambsganz_Annette_"
+					/>
+				<trainerplanning
+					id="94"
+					role="Trainer"
+					defaulttrainers="Dörflinger_Jeannette_"
+					/>
+				<trainerplanning
+					id="95"
+					role="Cotrainer"
+					defaulttrainers="Kaufmann_Theresa_"
+					/>
+				<trainerplanning
+					id="96"
+					role="Cotrainer"
+					defaulttrainers="Greulich_Alina_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Judo/friday_16:30_Turnhalle Grundschule Süd"
+				dayofweek="friday"
+				timestart="16:30"
+				location="Turnhalle Grundschule Süd"
+				name="Judo Kinder und Jugend"
+				timeend="18:00"
+				>
+				<trainerplanning
+					id="48"
+					role="Trainer"
+					defaulttrainers="Sonner_Markus_Max"
+					/>
+				<trainerplanning
+					id="49"
+					role="Cotrainer"
+					defaulttrainers="Haug_Giovanni_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Judo/friday_18:00_Turnhalle Grundschule Süd"
+				dayofweek="friday"
+				timestart="18:00"
+				location="Turnhalle Grundschule Süd"
+				name="Judo Jugend / Erwachsene"
+				timeend="20:00"
+				>
+				<trainerplanning
+					id="36"
+					role="Trainer"
+					defaulttrainers="Sonner_Markus_Max"
+					/>
+			</trainingdate>
+		</department>
+		<department
+			id="Budo-Club Ismaning/Tang Soo Do"
+			name="Tang Soo Do"
+			trainers="Dörflinger_Andreas_,Dörflinger_Jeannette_,Fiegl_Bernhard_,Gonschor_Bernhard_,Guggenberger_Caroline_,Guggenberger_Christine_Christl,Knürr_Julia_,Knürr_Manfred_,Knürr_Nadja_,Maenner_Leonie_,Marko_Sascha_,Moscher_Janika_,Schmitt_Michael_,Schmitz_Lars_"
+			>
+			<trainingdate
+				id="Budo-Club Ismaning/Tang Soo Do/tuesday_19:30_Turnhalle Grundschule Süd"
+				dayofweek="tuesday"
+				timestart="19:30"
+				location="Turnhalle Grundschule Süd"
+				name="Tang Soo Do Erwachsene"
+				timeend="21:00"
+				sport="Tang Soo Do"
+				>
+				<trainerplanning
+					id="30"
+					role="Trainer"
+					defaulttrainers="Dörflinger_Andreas_"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Tang Soo Do/thursday_17:00_Turnhalle Grundschule Süd"
+				dayofweek="thursday"
+				timestart="17:00"
+				location="Turnhalle Grundschule Süd"
+				name="Tang Soo Do Kinder / Jugendgruppe"
+				timeend="18:30"
+				sport="Tang Soo Do"
+				>
+				<trainerplanning
+					id="28"
+					role="Trainer"
+					defaulttrainers="Guggenberger_Christine_Christl"
+					/>
+			</trainingdate>
+			<trainingdate
+				id="Budo-Club Ismaning/Tang Soo Do/thursday_18:30_Turnhalle Grundschule Süd"
+				dayofweek="thursday"
+				timestart="18:30"
+				location="Turnhalle Grundschule Süd"
+				name="Tang Soo Do Erwachsene"
+				timeend="20:00"
+				sport="Tang Soo Do"
+				>
+				<trainerplanning
+					id="26"
+					role="Trainer"
+					defaulttrainers="Guggenberger_Christine_Christl,Knürr_Nadja_"
+					/>
+			</trainingdate>
+		</department>
+	</club>
+	<trainer
+		id="Axt_Stefan_"
+		lastname="Axt"
+		firstname="Stefan"
+		middlename=""
+		departments="Budo-Club Ismaning/Judo"
+		user="axt_s"
+		/>
+	<trainer
+		id="Becker_Karin_"
+		lastname="Becker"
+		firstname="Karin"
+		middlename=""
+		departments="Budo-Club Ismaning/Judo"
+		user="becker"
+		/>
+	<trainer
+		id="Blümel_Martin_"
+		lastname="Blümel"
+		firstname="Martin"
+		middlename=""
+		email="martin.bluemel@web.de"
+		trainerattributes="Fachübungsleiter"
+		trainerplannings="14,15"
+		trainingsheld=""
+		departments="Budo-Club Ismaning/Aikido"
+		icon="20080718010024"
+		user="bluemel"
+		/>
+	<trainer
+		id="Blümel_Ulrike_"
+		lastname="Blümel"
+		firstname="Ulrike"
+		middlename=""
+		email="ulrike.bluemel1@web.de"
+		trainerattributes="Fachübungsleiter"
+		trainerplannings="68,86,14"
+		departments="Budo-Club Ismaning/Aikido,Budo-Club Ismaning/Grundschule"
+		icon="20071216204722"
+		user="blümel_u"
+		/>
+	<trainer
+		id="Czeranski_Hennriette_Henny"
+		lastname="Czeranski"
+		firstname="Hennriette"
+		middlename="Henny"
+		email="henny@budo-club-ismaning.de"
+		trainerattributes=""
+		trainerplannings="37,46"
+		departments="Budo-Club Ismaning/Judo"
+		icon="20100401151527"
+		user="czeranski_henny"
+		/>
+	<trainer
+		id="Distel_Fabian_"
+		lastname="Distel"
+		firstname="Fabian"
+		middlename=""
+		email="fabiandistel@yahoo.de"
+		trainerattributes="Fachübungsleiter"
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Judo"
+		icon="20101206155740"
+		user="distel_f"
+		/>
+	<trainer
+		id="Dörflinger_Andreas_"
+		lastname="Dörflinger"
+		firstname="Andreas"
+		middlename=""
+		email="andi.doerflinger@arcor.de"
+		trainerplannings="30"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		user="dörflinger_a"
+		/>
+	<trainer
+		id="Dörflinger_Florian_"
+		lastname="Dörflinger"
+		firstname="Florian"
+		middlename=""
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Judo"
+		user="dörflinger_f"
+		/>
+	<trainer
+		id="Dörflinger_Jeannette_"
+		lastname="Dörflinger"
+		firstname="Jeannette"
+		middlename=""
+		email="jeannette_miehling@yahoo.de"
+		trainerplannings="94"
+		departments="Budo-Club Ismaning/Judo,Budo-Club Ismaning/Tang Soo Do"
+		icon="20151122114848"
+		user="dörflinger_j"
+		/>
+	<trainer
+		id="Döring_Anett_"
+		lastname="Döring"
+		firstname="Anett"
+		middlename=""
+		email="anett.doering77@gmx.de"
+		trainerattributes="Fachübungsleiter"
+		departments="Budo-Club Ismaning/Judo"
+		user="döring_a"
+		/>
+	<trainer
+		id="Döring_Dirk_"
+		lastname="Döring"
+		firstname="Dirk"
+		middlename=""
+		email="dirk.doering70@gmx.de"
+		trainerattributes="Fachübungsleiter"
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Judo"
+		user="döring_d"
+		/>
+	<trainer
+		id="Elter_Tim_"
+		lastname="Elter"
+		firstname="Tim"
+		middlename=""
+		email="Tim.Elter@gmx.de"
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Judo"
+		user="elter"
+		/>
+	<trainer
+		id="Fiegl_Bernhard_"
+		lastname="Fiegl"
+		firstname="Bernhard"
+		middlename=""
+		email="bu.fiegl@bayern-mail.de"
+		trainerplannings="78,74"
+		departments="Budo-Club Ismaning/Tang Soo Do,Budo-Club Ismaning/Haidong Gumdo"
+		user="fiegl"
+		/>
+	<trainer
+		id="Freund_Thomas_"
+		lastname="Freund"
+		firstname="Thomas"
+		middlename=""
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<trainer
+		id="Gonschor_Bernhard_"
+		lastname="Gonschor"
+		firstname="Bernhard"
+		middlename=""
+		email="Bernhard@gonschor.com"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<trainer
+		id="Greulich_Alina_"
+		lastname="Greulich"
+		firstname="Alina"
+		middlename=""
+		trainerplannings="96"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<trainer
+		id="Greulich_Maximo_"
+		lastname="Greulich"
+		firstname="Maximo"
+		middlename=""
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<trainer
+		id="Guggenberger_Caroline_"
+		lastname="Guggenberger"
+		firstname="Caroline"
+		middlename=""
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Tang Soo Do,Budo-Club Ismaning/Haidong Gumdo"
+		icon="20091201154415"
+		user="guggenberger_caro"
+		/>
+	<trainer
+		id="Guggenberger_Christine_Christl"
+		lastname="Guggenberger"
+		firstname="Christine"
+		middlename="Christl"
+		trainerplannings="28,26"
+		departments="Budo-Club Ismaning/Tang Soo Do,Budo-Club Ismaning/Haidong Gumdo"
+		icon="20080316132600"
+		user="guggenberger"
+		/>
+	<trainer
+		id="Haug_Giovanni_"
+		lastname="Haug"
+		firstname="Giovanni"
+		middlename=""
+		trainerplannings="49"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<trainer
+		id="Hockl_Doris_"
+		lastname="Hockl"
+		firstname="Doris"
+		middlename=""
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<trainer
+		id="Holler_Josef_"
+		lastname="Holler"
+		firstname="Josef"
+		middlename=""
+		email="hollersepp@web.de"
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Aikido"
+		icon="20100901220932"
+		user="holler"
+		/>
+	<trainer
+		id="Horrer_Christopher_"
+		lastname="Horrer"
+		firstname="Christopher"
+		middlename=""
+		departments="Budo-Club Ismaning/Judo"
+		user="horrer"
+		/>
+	<trainer
+		id="Hummel_Benjamin_"
+		lastname="Hummel"
+		firstname="Benjamin"
+		middlename=""
+		email="hummelb@in.tum.de"
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Aikido"
+		icon="20121021223048"
+		user="hummel"
+		/>
+	<trainer
+		id="Höppner_Christoph_"
+		lastname="Höppner"
+		firstname="Christoph"
+		middlename=""
+		trainerattributes=""
+		trainerplannings="15"
+		departments="Budo-Club Ismaning/Aikido"
+		user="hoeppner"
+		/>
+	<trainer
+		id="Kaufmann_Theresa_"
+		lastname="Kaufmann"
+		firstname="Theresa"
+		middlename=""
+		email="amali49@web.de"
+		trainerplannings="95"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<trainer
+		id="Knürr_Julia_"
+		lastname="Knürr"
+		firstname="Julia"
+		middlename=""
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		user="knürr_j"
+		/>
+	<trainer
+		id="Knürr_Manfred_"
+		lastname="Knürr"
+		firstname="Manfred"
+		middlename=""
+		email="manfred.knuerr@t-online.de"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		user="knürr_m"
+		/>
+	<trainer
+		id="Knürr_Nadja_"
+		lastname="Knürr"
+		firstname="Nadja"
+		middlename=""
+		trainerattributes="Fachübungsleiter"
+		trainerplannings="26"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		user="knürr_n"
+		/>
+	<trainer
+		id="Kutzner_Verena_"
+		lastname="Kutzner"
+		firstname="Verena"
+		middlename=""
+		departments="Budo-Club Ismaning/Judo,Budo-Club Ismaning/Grundschule"
+		user="kutzner"
+		/>
+	<trainer
+		id="Landsberger_Reinhard_"
+		lastname="Landsberger"
+		firstname="Reinhard"
+		middlename=""
+		email="Reinhard@aikido-ismaning.de"
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Aikido"
+		user="landsberger"
+		/>
+	<trainer
+		id="Maenner_Leonie_"
+		lastname="Maenner"
+		firstname="Leonie"
+		middlename=""
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<trainer
+		id="Mair_Doris_"
+		lastname="Mair"
+		firstname="Doris"
+		middlename=""
+		email="doris@budo-club-ismaning.de"
+		trainerattributes="Fachübungsleiter"
+		trainerplannings="68,86,15"
+		departments="Budo-Club Ismaning/Aikido,Budo-Club Ismaning/Grundschule"
+		icon="20091121205627"
+		user="mair_d"
+		/>
+	<trainer
+		id="Mair_Holger_"
+		lastname="Mair"
+		firstname="Holger"
+		middlename=""
+		email="holger@budo-club-ismaning.de"
+		trainerplannings="68,86"
+		departments="Budo-Club Ismaning/Judo,Budo-Club Ismaning/Grundschule"
+		icon="20091123093038"
+		user="mair_h"
+		/>
+	<trainer
+		id="Mair_Lucie_"
+		lastname="Mair"
+		firstname="Lucie"
+		middlename=""
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<trainer
+		id="Marko_Sascha_"
+		lastname="Marko"
+		firstname="Sascha"
+		middlename=""
+		email="sascha.marko@vodafone.de"
+		trainerattributes="Fachübungsleiter"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<trainer
+		id="Moscher_Janika_"
+		lastname="Moscher"
+		firstname="Janika"
+		middlename=""
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<trainer
+		id="Piske_Evelyn_"
+		lastname="Piske"
+		firstname="Evelyn"
+		middlename=""
+		email="evelyn_piske@yahoo.de"
+		departments="Budo-Club Ismaning/Chanbara"
+		user="piske"
+		/>
+	<trainer
+		id="Russ_Kevin_"
+		lastname="Russ"
+		firstname="Kevin"
+		middlename=""
+		email="kevin-russ@gmx.de"
+		trainerattributes="Fachübungsleiter"
+		trainerplannings="80,70"
+		departments="Budo-Club Ismaning/Aikido"
+		icon="20101117195836"
+		user="russ"
+		/>
+	<trainer
+		id="Saler_Dennis_"
+		lastname="Saler"
+		firstname="Dennis"
+		middlename=""
+		email="dennis.saler@gmx.de"
+		departments="Budo-Club Ismaning/Haidong Gumdo"
+		icon="20161128215417"
+		user="saler"
+		/>
+	<trainer
+		id="Schmitt_Michael_"
+		lastname="Schmitt"
+		firstname="Michael"
+		middlename=""
+		email="mch1991schmitt@googlemail.com"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		user="schmitt"
+		/>
+	<trainer
+		id="Schmitz_Lars_"
+		lastname="Schmitz"
+		firstname="Lars"
+		middlename=""
+		email="Lars.ana.schmitz@gmail.com"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<trainer
+		id="Schwarz_Thorsten_"
+		lastname="Schwarz"
+		firstname="Thorsten"
+		middlename=""
+		email="tschwarz-muenchen@t-online.de"
+		trainerplannings="88,90,92"
+		departments="Budo-Club Ismaning/Chanbara"
+		icon="20150222124911"
+		user="schwarz"
+		/>
+	<trainer
+		id="Sieber_Hans_"
+		lastname="Sieber"
+		firstname="Hans"
+		middlename=""
+		email="Hans@aikido-ismaning.de"
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Aikido"
+		user="sieber"
+		/>
+	<trainer
+		id="Sonner_Jakob_"
+		lastname="Sonner"
+		firstname="Jakob"
+		middlename=""
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Judo"
+		user="sonner_j"
+		/>
+	<trainer
+		id="Sonner_Markus_Max"
+		lastname="Sonner"
+		firstname="Markus"
+		middlename="Max"
+		email="max@budo-club-ismaning.de"
+		trainerattributes="Fachübungsleiter"
+		trainerplannings="36,48"
+		departments="Budo-Club Ismaning/Judo"
+		user="sonner_m"
+		salaries="Trainer_Sonner_Markus_Max"
+		/>
+	<trainer
+		id="Vogel_Harald_"
+		lastname="Vogel"
+		firstname="Harald"
+		middlename=""
+		email="harald@aikido-ismaning.de"
+		trainerplannings=""
+		departments="Budo-Club Ismaning/Aikido"
+		user="vogel"
+		/>
+	<trainer
+		id="Wallner_Nicole_"
+		lastname="Wallner"
+		firstname="Nicole"
+		middlename=""
+		email="nicole.s.wallner@gmail.com"
+		trainerattributes="Fachübungsleiter"
+		trainerplannings="70"
+		departments="Budo-Club Ismaning/Aikido"
+		user="wallner"
+		/>
+	<trainer
+		id="Wambsganz_Annette_"
+		lastname="Wambsganz"
+		firstname="Annette"
+		middlename=""
+		trainerattributes="Fachübungsleiter"
+		trainerplannings="93"
+		departments="Budo-Club Ismaning/Judo"
+		user="wambsganz"
+		/>
+	<trainer
+		id="Zankl_Alexander_"
+		lastname="Zankl"
+		firstname="Alexander"
+		middlename=""
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<trainerrole
+		id="Trainer"
+		name="Trainer"
+		>
+		<salary
+			id="Trainer_null"
+			rolename="Trainer"
+			money="10 euro"
+			time="45 min"
+			>
+			<component
+				salaryComponentType="Vergütung"
+				description="Vergütung Trainer"
+				money="10 euro"
+				time="45 min"
+				/>
+		</salary>
+		<salary
+			id="Trainer_Fachübungsleiter"
+			rolename="Trainer"
+			trainerattribute="Fachübungsleiter"
+			money="12 euro"
+			time="45 min"
+			>
+			<component
+				salaryComponentType="Vergütung"
+				description="Vergütung Trainer ÜL"
+				money="12 euro"
+				time="45 min"
+				/>
+		</salary>
+		<personalSalary
+			id="Trainer_Sonner_Markus_Max"
+			rolename="Trainer"
+			person="Sonner_Markus_Max"
+			money="15 euro"
+			time="45 min"
+			>
+			<component
+				salaryComponentType="Vergütung"
+				description="Vergütung Haupttrainer"
+				money="15 euro"
+				time="45 min"
+				/>
+		</personalSalary>
+	</trainerrole>
+	<trainerrole
+		id="Cotrainer"
+		name="Cotrainer"
+		>
+		<salary
+			id="Cotrainer_null"
+			rolename="Cotrainer"
+			money="4 euro"
+			time="45 min"
+			>
+			<component
+				salaryComponentType="Vergütung"
+				description="Vergütung Co-Trainer"
+				money="4 euro"
+				time="45 min"
+				/>
+		</salary>
+	</trainerrole>
+	<trainerrole
+		id="Trainer-Grundschule"
+		name="Trainer-Grundschule"
+		>
+		<salary
+			id="Trainer-Grundschule_null"
+			rolename="Trainer-Grundschule"
+			money="50 euro"
+			time="90 min"
+			>
+			<component
+				salaryComponentType="Vergütung"
+				description="Vergütung Grundschultrainer"
+				money="50 euro"
+				time="90 min"
+				/>
+		</salary>
+	</trainerrole>
+	<salaryComponentType
+		id="Vergütung"
+		name="Vergütung"
+		/>
+	<sport
+		id="Aikido"
+		name="Aikido"
+		/>
+	<sport
+		id="Bujinkan Ninjutsu"
+		name="Bujinkan Ninjutsu"
+		shortname="Ninjutsu"
+		/>
+	<sport
+		id="Chanbara"
+		name="Chanbara"
+		/>
+	<sport
+		id="Haidong Gumdo"
+		name="Haidong Gumdo"
+		shortname="Haidong"
+		/>
+	<sport
+		id="Iaido"
+		name="Iaido"
+		/>
+	<sport
+		id="Kampfsport allgemein"
+		name="Kampfsport allgemein"
+		shortname="Schultraining"
+		/>
+	<sport
+		id="Katori Shinto-ryu"
+		name="Katori Shinto-ryu"
+		shortname="Shinto-ryu"
+		/>
+	<sport
+		id="Kumdo Kummooyeh"
+		name="Kumdo Kummooyeh"
+		shortname="Kummooyeh"
+		/>
+	<sport
+		id="Tang Soo Do"
+		name="Tang Soo Do"
+		shortname="Tang S. Do"
+		/>
+	<trainerattribute
+		id="Fachübungsleiter"
+		name="Fachübungsleiter"
+		/>
+	<location
+		id="Turnhalle Grundschule Süd"
+		name="Turnhalle Grundschule Süd"
+		street="Camerloher Straße 20"
+		city="85737 Ismaning"
+		closedons="20180106_Heilige Drei Könige,20180212_Winterferien 18,20180730_Sommerferien 18,20181222_Weihnachtsferien 18"
+		/>
+	<location
+		id="Turnhalle Grundschule Süd B"
+		name="Turnhalle Grundschule Süd B"
+		street="Camerloher Str. 20"
+		city="85737 Ismaning"
+		closedons="20180106_Heilige Drei Könige,20180212_Winterferien 18,20180730_Sommerferien 18,20181222_Weihnachtsferien 18"
+		/>
+	<closingperiod
+		id="20180106_Heilige Drei Könige"
+		from="20180106"
+		name="Heilige Drei Könige"
+		to="20180106"
+		oneday="true"
+		locations="Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B"
+		/>
+	<closingperiod
+		id="20180212_Winterferien 18"
+		from="20180212"
+		name="Winterferien 18"
+		to="20180216"
+		oneday="false"
+		locations="Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B"
+		/>
+	<closingperiod
+		id="20180730_Sommerferien 18"
+		from="20180730"
+		name="Sommerferien 18"
+		to="20180910"
+		oneday="false"
+		locations="Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B"
+		/>
+	<closingperiod
+		id="20181222_Weihnachtsferien 18"
+		from="20181222"
+		name="Weihnachtsferien 18"
+		to="20190105"
+		oneday="false"
+		locations="Turnhalle Grundschule Süd,Turnhalle Grundschule Süd B"
+		/>
+	<user
+		id="axt_s"
+		accountname="axt_s"
+		pwd="2U881D1w62CbipOBg1HpEouYPSU="
+		lastname="Axt"
+		firstname="Stefan"
+		roles="Trainer"
+		isalsotrainer="Axt_Stefan_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="becker"
+		accountname="becker"
+		pwd="p2Nx9SRAdCdAhKJyVO+loMYVbus="
+		lastname="Becker"
+		firstname="Karin"
+		roles="Trainer"
+		isalsotrainer="Becker_Karin_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="bluemel"
+		accountname="bluemel"
+		pwd="IWL1vqaVUF2qchhsOXeyQQIbIf8="
+		lastname="Blümel"
+		firstname="Martin"
+		email="martin.bluemel@web.de"
+		roles="SuperAdministrator"
+		isalsotrainer="Blümel_Martin_"
+		/>
+	<user
+		id="blümel_u"
+		accountname="blümel_u"
+		pwd="IWL1vqaVUF2qchhsOXeyQQIbIf8="
+		lastname="Blümel"
+		firstname="Ulrike"
+		email="ulrike.bluemel1@web.de"
+		roles="Trainer"
+		isalsotrainer="Blümel_Ulrike_"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<user
+		id="czeranski_henny"
+		accountname="czeranski_henny"
+		pwd="elwNOxSY1jofW/5ZRM1mqQfcJ3U="
+		lastname="Czeranski"
+		firstname="Hennriette"
+		email="henny@budo-club-ismaning.de"
+		roles="Trainer"
+		isalsotrainer="Czeranski_Hennriette_Henny"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="distel_f"
+		accountname="distel_f"
+		pwd="KtoRsB9mPIuK9hzJthMtMtHe2is="
+		lastname="Distel"
+		firstname="Fabian"
+		email="fabiandistel@yahoo.de"
+		roles="Trainer"
+		isalsotrainer="Distel_Fabian_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="dörflinger_a"
+		accountname="dörflinger_a"
+		pwd="p2Nx9SRAdCdAhKJyVO+loMYVbus="
+		lastname="Dörflinger"
+		firstname="Andreas"
+		email="doerflinger.andi81@gmail.com"
+		roles="Trainer"
+		isalsotrainer="Dörflinger_Andreas_"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<user
+		id="dörflinger_f"
+		accountname="dörflinger_f"
+		pwd="/bJ6EINBAaFLTk7MnfTI1KranMc="
+		lastname="Dörflinger"
+		firstname="Florian"
+		roles="Trainer"
+		isalsotrainer="Dörflinger_Florian_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="dörflinger_j"
+		accountname="dörflinger_j"
+		pwd="j86ezrI1Zl7A9RMMS79hVVetozM="
+		lastname="Dörflinger"
+		firstname="Jeannette"
+		email="jeannette.doerflinger@yahoo.de"
+		roles="Trainer"
+		isalsotrainer="Dörflinger_Jeannette_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="döring_a"
+		accountname="döring_a"
+		pwd="s6lUSyld6kY3rY/TtAy81mC2hjg="
+		lastname="Döring"
+		firstname="Anett"
+		email="anett.doering77@gmx.de"
+		roles="Trainer"
+		isalsotrainer="Döring_Anett_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="döring_d"
+		accountname="döring_d"
+		pwd="p2Nx9SRAdCdAhKJyVO+loMYVbus="
+		lastname="Döring"
+		firstname="Dirk"
+		email="dirk.doering70@gmx.de"
+		roles="Trainer"
+		isalsotrainer="Döring_Dirk_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="elter"
+		accountname="elter"
+		pwd="uHy3pEFsBGYyrNQrUJ8rqew3fBs="
+		lastname="Elter"
+		firstname="Tim"
+		email="Tim.Elter@gmx.de"
+		roles="Trainer"
+		isalsotrainer="Elter_Tim_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="fiegl"
+		accountname="fiegl"
+		pwd="TYoqMVBaPoyMlwd3b2xGHFGbMqs="
+		lastname="Fiegl"
+		firstname="Bernhard"
+		email="bu.fiegl@bayern-mail.de"
+		roles="Trainer"
+		isalsotrainer="Fiegl_Bernhard_"
+		departments="Budo-Club Ismaning/Haidong Gumdo"
+		/>
+	<user
+		id="guggenberger"
+		accountname="guggenberger"
+		pwd="p2Nx9SRAdCdAhKJyVO+loMYVbus="
+		lastname="Guggenberger"
+		firstname="Christine"
+		email="christl@gugg-is.de"
+		roles="Trainer"
+		isalsotrainer="Guggenberger_Christine_Christl"
+		departments="Budo-Club Ismaning/Tang Soo Do,Budo-Club Ismaning/Haidong Gumdo"
+		/>
+	<user
+		id="guggenberger_caro"
+		accountname="guggenberger_caro"
+		pwd="YnJUxfUZBQft/hDimX+QjZoVUGY="
+		lastname="Guggenberger"
+		firstname="Caroline"
+		email="caro.guggi@web.de"
+		roles="Trainer"
+		isalsotrainer="Guggenberger_Caroline_"
+		departments="Budo-Club Ismaning/Haidong Gumdo,Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<user
+		id="hoeppner"
+		accountname="hoeppner"
+		pwd="yyiUCgjIjtZIZGl5eCdkKVai2ow="
+		lastname="Höppner"
+		firstname="Christoph"
+		email="c_hoeppner@gmx.net"
+		roles="Trainer"
+		isalsotrainer="Höppner_Christoph_"
+		/>
+	<user
+		id="holler"
+		accountname="holler"
+		pwd="p2Nx9SRAdCdAhKJyVO+loMYVbus="
+		lastname="Holler"
+		firstname="Josef"
+		email="hollersepp@web.de"
+		roles="DepartmentAdministrator"
+		isalsotrainer="Holler_Josef_"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<user
+		id="horrer"
+		accountname="horrer"
+		pwd="p2Nx9SRAdCdAhKJyVO+loMYVbus="
+		lastname="Horrer"
+		firstname="Christopher"
+		roles="Trainer"
+		isalsotrainer="Horrer_Christopher_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="hummel"
+		accountname="hummel"
+		pwd="26+M0jb/6KVzBUtZkactp+K64ZU="
+		lastname="Hummel"
+		firstname="Benjamin"
+		email="hummelb@in.tum.de"
+		roles="SuperAdministrator"
+		isalsotrainer="Hummel_Benjamin_"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<user
+		id="knürr_j"
+		accountname="knürr_j"
+		pwd="/bJ6EINBAaFLTk7MnfTI1KranMc="
+		lastname="Knürr"
+		firstname="Julia"
+		roles="Trainer"
+		isalsotrainer="Knürr_Julia_"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<user
+		id="knürr_m"
+		accountname="knürr_m"
+		pwd="nloP/5FS73WL5o19UTCXFNDtXk8="
+		lastname="Knürr"
+		firstname="Manfred"
+		email="manfred.knuerr@t-online.de"
+		roles="Trainer"
+		isalsotrainer="Knürr_Manfred_"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<user
+		id="knürr_n"
+		accountname="knürr_n"
+		pwd="/bJ6EINBAaFLTk7MnfTI1KranMc="
+		lastname="Knürr"
+		firstname="Nadja"
+		email="nadja.knuerr@t-online.de"
+		roles="Trainer"
+		isalsotrainer="Knürr_Nadja_"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<user
+		id="kutzner"
+		accountname="kutzner"
+		pwd="p2Nx9SRAdCdAhKJyVO+loMYVbus="
+		lastname="Kutzner"
+		firstname="Verena"
+		roles="Trainer"
+		isalsotrainer="Kutzner_Verena_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="landsberger"
+		accountname="landsberger"
+		pwd="/bJ6EINBAaFLTk7MnfTI1KranMc="
+		lastname="Landsberger"
+		firstname="Reinhard"
+		email="chatos@t-online.de"
+		roles="Trainer"
+		isalsotrainer="Landsberger_Reinhard_"
+		/>
+	<user
+		id="mair_d"
+		accountname="mair_d"
+		pwd="/bJ6EINBAaFLTk7MnfTI1KranMc="
+		lastname="Mair"
+		firstname="Doris"
+		email="doris@mair-art.de"
+		roles="SuperAdministrator"
+		isalsotrainer="Mair_Doris_"
+		/>
+	<user
+		id="mair_h"
+		accountname="mair_h"
+		pwd="IbzWhtU29vdyjDdUbFsyJ4A9bE0="
+		lastname="Mair"
+		firstname="Holger"
+		email="holger@budo-club-ismaning.de"
+		roles="SuperAdministrator"
+		isalsotrainer="Mair_Holger_"
+		/>
+	<user
+		id="nataliya"
+		accountname="nataliya"
+		pwd="/5fKE5UY+3xuIlwY9YgvOjoEaSE="
+		lastname="Martsynkivska"
+		firstname="Nataliya"
+		email="nataliya.martsynkivska@gmail.com"
+		roles="SuperAdministrator"
+		/>
+	<user
+		id="piske"
+		accountname="piske"
+		pwd="/bJ6EINBAaFLTk7MnfTI1KranMc="
+		lastname="Piske"
+		firstname="Evelyn"
+		email="evelyn_piske@yahoo.de"
+		roles="SuperAdministrator"
+		isalsotrainer="Piske_Evelyn_"
+		departments="Budo-Club Ismaning/Chanbara"
+		/>
+	<user
+		id="russ"
+		accountname="russ"
+		pwd="irFudZYGsZYUHjBwrcQ3lqc30Ao="
+		lastname="Russ"
+		firstname="Kevin"
+		email="kevin-russ@gmx.de"
+		roles="Trainer"
+		isalsotrainer="Russ_Kevin_"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<user
+		id="saler"
+		accountname="saler"
+		pwd="XH8KqDGK7+zUxK712UCfO4wb0cM="
+		lastname="Saler"
+		firstname="Dennis"
+		email="dennis.saler@gmx.de"
+		roles="Trainer"
+		isalsotrainer="Saler_Dennis_"
+		departments="Budo-Club Ismaning/Haidong Gumdo"
+		/>
+	<user
+		id="schmitt"
+		accountname="schmitt"
+		pwd="qfJwlAYout2F3bU84gLSVVvAXIg="
+		lastname="Schmitt"
+		firstname="Michael"
+		email="mch1991schmitt@googlemail.com"
+		roles="Trainer"
+		isalsotrainer="Schmitt_Michael_"
+		departments="Budo-Club Ismaning/Tang Soo Do"
+		/>
+	<user
+		id="schwarz"
+		accountname="schwarz"
+		pwd="OvaT7rPuc6TAf4yvhRBltUxS/oU="
+		lastname="Schwarz"
+		firstname="Thorsten"
+		email="tschwarz-muenchen@t-online.de"
+		roles="Trainer"
+		isalsotrainer="Schwarz_Thorsten_"
+		departments="Budo-Club Ismaning/Chanbara"
+		/>
+	<user
+		id="sieber"
+		accountname="sieber"
+		pwd="b48ocERF36h2ura6vAfuNJoAOX4="
+		lastname="Sieber"
+		firstname="Hans"
+		email="Hans@shsieber.de"
+		roles="SuperAdministrator"
+		isalsotrainer="Sieber_Hans_"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<user
+		id="sonner_j"
+		accountname="sonner_j"
+		pwd="/bJ6EINBAaFLTk7MnfTI1KranMc="
+		lastname="Sonner"
+		firstname="Jakob"
+		roles="Trainer"
+		isalsotrainer="Sonner_Jakob_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="sonner_m"
+		accountname="sonner_m"
+		pwd="9z19KDTd0D7RAt3BShBLTv12ETE="
+		lastname="Soner"
+		firstname="Markus"
+		email="sonner-cjm@t-online.de"
+		roles="DepartmentAdministrator"
+		isalsotrainer="Sonner_Markus_Max"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<user
+		id="vogel"
+		accountname="vogel"
+		pwd="rbTN5/Friq+hNrz+PuIZz2C/PM8="
+		lastname="Vogel"
+		firstname="Harald"
+		email="aikido.harald@arcor.de"
+		roles="Trainer"
+		isalsotrainer="Vogel_Harald_"
+		departments=""
+		/>
+	<user
+		id="wallner"
+		accountname="wallner"
+		pwd="oWb3O6sLe0O++eyHIW6mgqbKRK0="
+		lastname="Wallner"
+		firstname="Nicole"
+		email="nicole.s.wallner@gmail.com"
+		roles="Trainer"
+		isalsotrainer="Wallner_Nicole_"
+		departments="Budo-Club Ismaning/Aikido"
+		/>
+	<user
+		id="wambsganz"
+		accountname="wambsganz"
+		pwd="p2Nx9SRAdCdAhKJyVO+loMYVbus="
+		lastname="Wambsganz"
+		firstname="Annette"
+		email="wambsganz@gmx.de"
+		roles="Trainer"
+		isalsotrainer="Wambsganz_Annette_"
+		departments="Budo-Club Ismaning/Judo"
+		/>
+	<currentbillingperiod
+		id="20180901_20181231"
+		from="20180901"
+		to="20181231"
+		departments="Budo-Club Ismaning/Aikido,Budo-Club Ismaning/Chanbara,Budo-Club Ismaning/Grundschule,Budo-Club Ismaning/Haidong Gumdo,Budo-Club Ismaning/Judo,Budo-Club Ismaning/Tang Soo Do"
+		/>
+</rb:bean>

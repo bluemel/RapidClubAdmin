@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TreeSet;
 
+import javax.swing.event.ListSelectionEvent;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.rapidbeans.clubadmin.domain.ClosingPeriod;
@@ -38,6 +40,7 @@ import org.rapidbeans.clubadmin.test.TestHelper;
 import org.rapidbeans.core.basic.BeanSorter;
 import org.rapidbeans.core.basic.IdGeneratorNumeric;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.common.ReadonlyListCollection;
 import org.rapidbeans.core.exception.BeanDuplicateException;
 import org.rapidbeans.core.type.TypeProperty;
 import org.rapidbeans.core.type.TypePropertyCollection;
@@ -85,8 +88,30 @@ public final class DocumentTest {
 	static final DateFormat DFTIMELONG = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.LONG,
 			Locale.GERMAN);
 
-	public void testMasterdata1() {
+	@Test
+	public void testReadMasterdata() {
 		new Document(new File("src/test/resources/masterdata1.xml"));
+		new Document(new File("src/test/resources/data/masterdata.xml"));
+		final MasterData masterData = (MasterData) new Document(new File("src/test/resources/data/masterdata2.xml")).getRoot();
+		for (final Trainer t : masterData.getTrainers())
+		{
+			final String depList = toString(t.getDepartments());
+			System.out.println(String.format("%s, %s: %s", t.getLastname(), t.getFirstname(), depList));
+		}
+	}
+
+	private String toString(ReadonlyListCollection<Department> departments) {
+		final StringBuilder sb = new StringBuilder();
+		boolean consec = false;
+		for (final Department d : departments)
+		{
+			if (consec) {
+				sb.append(", ");
+			}
+			sb.append(d.getName());
+			consec = true;
+		}
+		return sb.toString();
 	}
 
 	/**
