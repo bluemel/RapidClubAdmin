@@ -23,8 +23,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TreeSet;
 
-import javax.swing.event.ListSelectionEvent;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.rapidbeans.clubadmin.domain.ClosingPeriod;
