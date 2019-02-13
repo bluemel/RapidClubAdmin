@@ -31,6 +31,7 @@ import org.rapidbeans.clubadmin.domain.Department;
 import org.rapidbeans.clubadmin.domain.Location;
 import org.rapidbeans.clubadmin.domain.MasterData;
 import org.rapidbeans.clubadmin.domain.Trainer;
+import org.rapidbeans.clubadmin.domain.TrainerAttribute;
 import org.rapidbeans.clubadmin.domain.TrainingDate;
 import org.rapidbeans.clubadmin.domain.TrainingRegular;
 import org.rapidbeans.clubadmin.domain.TrainingsList;
@@ -90,19 +91,35 @@ public final class DocumentTest {
 	public void testReadMasterdata() {
 		new Document(new File("src/test/resources/masterdata1.xml"));
 		new Document(new File("src/test/resources/data/masterdata.xml"));
-		final MasterData masterData = (MasterData) new Document(new File("src/test/resources/data/masterdata2.xml")).getRoot();
-		for (final Trainer t : masterData.getTrainers())
-		{
-			final String depList = toString(t.getDepartments());
-			System.out.println(String.format("%s, %s: %s", t.getLastname(), t.getFirstname(), depList));
+		final MasterData masterData = (MasterData) new Document(new File("src/test/resources/data/masterdata2.xml"))
+				.getRoot();
+		for (final Trainer t : masterData.getTrainers()) {
+			final String attrList = toStringAttrs(t.getTrainerattributes());
+			final String depList = toStringDeps(t.getDepartments());
+			// System.out.println(String.format("%s, %s%s: %s", t.getLastname(), t.getFirstname(), attrList, depList));
 		}
 	}
 
-	private String toString(ReadonlyListCollection<Department> departments) {
+	private String toStringAttrs(ReadonlyListCollection<TrainerAttribute> attrs) {
+		final StringBuilder sb = new StringBuilder();
+		if (attrs != null) {
+			boolean consec = false;
+			for (final TrainerAttribute ta : attrs) {
+				if (consec) {
+					sb.append(", ");
+				}
+				sb.append(ta.getName());
+				consec = true;
+			}
+		}
+		final String list = sb.toString();
+		return (list.equals("") ? "" : " (" + list + ')');
+	}
+
+	private String toStringDeps(ReadonlyListCollection<Department> departments) {
 		final StringBuilder sb = new StringBuilder();
 		boolean consec = false;
-		for (final Department d : departments)
-		{
+		for (final Department d : departments) {
 			if (consec) {
 				sb.append(", ");
 			}
