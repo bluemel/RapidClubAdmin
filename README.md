@@ -4,9 +4,9 @@ RapidClubAdmin
 My tiny little club admin Java application
 
 Java app start:
-Project: rapidclubadmin-app
-Main class: org.rapidbeans.clubadmin.RapidClubAdmin
-Progam arguments: -server trainer.budo-club-ismaning.de -root rapidclubadmin
+- Project: rapidclubadmin-app
+- Main class: org.rapidbeans.clubadmin.RapidClubAdmin
+- Progam arguments: -server trainer.budo-club-ismaning.de -root rapidclubadmin
 
 TODO next time (Feb 2019):
 - Implement complete Java app zip file build (Maven  plubin for jar Manifes writing, Maven assembly plux-in)
