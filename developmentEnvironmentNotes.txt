@@ -13,7 +13,7 @@ How to set up the development environment for RapidClubAdmin:
    RAPIDBEANS_TOOLS_HOME
      The folder where you install all Java development tools:
        - JDK
-       - Ant (maybe later on Maven)
+       - Maven
        - Eclipse
 
    LOCAL_REPOSITORY
@@ -28,7 +28,6 @@ How to set up the development environment for RapidClubAdmin:
 
 3) Install Java Tools and 3rd-party libraries needed
 
-
   3.1)
      Java Tools
 
@@ -37,7 +36,7 @@ How to set up the development environment for RapidClubAdmin:
       * the Java compiler (javac)
       * the Java virtual machine (JVM, virtual execution platform)
       * Java runtime libraries (rt.jar, ...)
-      version: 1.6.0
+      version: Java 10.2
         Currently we compile for Java 1.5.0 in order to support a
         broader spectrum of user machines (Mac OS X per default only
         delivers Java 1.5).
