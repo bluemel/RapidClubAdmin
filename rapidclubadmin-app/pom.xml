@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>org.rapidbeans</groupId>
 			<artifactId>rapidbeans-runtime</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>1.0.0</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -156,7 +156,7 @@
 			<plugin>
 				<groupId>org.rapidbeans</groupId>
 				<artifactId>rapidbeans-sdk</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
+				<version>1.0.0</version>
 				<executions>
 					<execution>
 						<id>generate-sources-rapidbeans</id>
