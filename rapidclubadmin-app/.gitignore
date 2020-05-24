@@ -1,2 +1,7 @@
 setupenv.cmd
 history
+fileio.php
+antCustomerBci.properties
+antCustomerBluemel.properties
+antCustomerVfrgarching.properties
+antKey.properties
