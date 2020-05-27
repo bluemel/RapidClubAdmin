@@ -7,7 +7,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.rapidbeans.clubadmin.domain.ClosingPeriod;
 import org.rapidbeans.core.basic.PropertyDate;
@@ -17,7 +16,7 @@ public class SchulferienReaderTest {
 
 	@Test
 	public void testReadSchulferienBayern() throws IOException {
-		// http://www.schulferien.org/Bayern/bayern.html
+		// taken from http://www.schulferien.org/Bayern/bayern.html
 		File testfile = new File("src/test/resources/holidays/SchulferienBayern.html");
 		final List<ClosingPeriod> result = new SchulferienReader().readSchulferien(new FileInputStream(testfile),
 				"2014");
@@ -42,11 +41,11 @@ public class SchulferienReaderTest {
 		assertEquals(true, result.get(12).getOneday());
 	}
 
-	@Test
-	@Ignore
-	public void testReadFromSchulferienOrg() {
-		final List<ClosingPeriod> result = new SchulferienReader().readSchulferienAndFeiertage("www.schulferien.org",
-				"bayern", "2014");
-		assertEquals(20, result.size());
-	}
+	// The "real thing" integration test
+//	@Test
+//	public void testReadFromSchulferienOrg() {
+//		final List<ClosingPeriod> result = new SchulferienReader().readSchulferienAndFeiertage("www.schulferien.org",
+//				"bayern", "2020");
+//		assertEquals(20, result.size());
+//	}
 }

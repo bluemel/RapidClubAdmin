@@ -5,3 +5,5 @@ antCustomerBci.properties
 antCustomerBluemel.properties
 antCustomerVfrgarching.properties
 antKey.properties
+dependencies
+security/keystore.jks

@@ -5,10 +5,16 @@
 
 	<groupId>org.rapidbeans.rapidclubadmin</groupId>
 	<artifactId>rapidclubadmin-app</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.2.1-SNAPSHOT</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version.rapidbeans-runtime>1.0.0</version.rapidbeans-runtime>
+		<version.jcalendar>1.4</version.jcalendar>
+		<version.java.develop>1.14</version.java.develop>
+		<version.java.build>1.8</version.java.build>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
 	</properties>
 
 	<dependencies>
@@ -16,14 +22,14 @@
 		<dependency>
 			<groupId>org.rapidbeans</groupId>
 			<artifactId>rapidbeans-runtime</artifactId>
-			<version>1.0.0</version>
+			<version>${version.rapidbeans-runtime}</version>
 			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.toedter</groupId>
 			<artifactId>jcalendar</artifactId>
-			<version>1.4</version>
+			<version>${version.jcalendar}</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -31,20 +37,6 @@
 			<groupId>net.sf.ucanaccess</groupId>
 			<artifactId>ucanaccess</artifactId>
 			<version>4.0.4</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-compress</artifactId>
-			<version>1.19</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.ant</groupId>
-			<artifactId>ant</artifactId>
-			<version>1.9.4</version>
-			<scope>compile</scope>
 		</dependency>
 
 		<dependency>
@@ -81,9 +73,84 @@
 				<version>3.0</version>
 				<configuration>
 					<encoding>${project.build.sourceEncoding}</encoding>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>${version.java.build}</source>
+					<target>${version.java.build}</target>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>org.rapidbeans.clubadmin.RapidClubAdmin</mainClass>
+						</manifest>
+						<manifestEntries>
+							<Implementation-Title>Rapid Club Admin Application"</Implementation-Title>
+							<Implementation-Version>${project.version}"</Implementation-Version>
+							<Implementation-Build-Number>1</Implementation-Build-Number>
+							<Implementation-Build-Date>${timestamp}</Implementation-Build-Date>
+							<Component-rapidbeans-Package>org.rapidbeans</Component-rapidbeans-Package>
+							<Component-rapidbeans-Name>RapidBeans framework</Component-rapidbeans-Name>
+							<Component-rapidbeans-Version>${version.rapidbeans-runtime}</Component-rapidbeans-Version>
+							<Component-jcalendar-Package>com.toedter.calendar</Component-jcalendar-Package>
+							<Component-jcalendar-Name>JCalendar date chooser</Component-jcalendar-Name>
+							<Component-jcalendar-Version>${version.jcalendar}</Component-jcalendar-Version>
+							<Java-Version-Develop>${version.java.develop}</Java-Version-Develop>
+							<Java-Version-Build>${version.java.build}</Java-Version-Build>
+							<Created-By>Martin Bluemel</Created-By>
+							<!-- <Main-Class>org.rapidbeans.clubadmin.RapidClubAdmin</Main-Class> -->
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jarsigner-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<id>sign</id>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<keystore>security/keystore.jks</keystore>
+					<alias>appletcert</alias>
+					<storepass>rapidclubadmin</storepass>
+					<keypass>rapidclubadmin</keypass>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<configuration>
+							<target>
+								<signjar
+									jar="dependencies/rapidbeans-runtime-${version.rapidbeans-runtime}.jar"
+									signedjar="target/rapidbeans-runtime-${version.rapidbeans-runtime}.jar"
+									keystore="security/keystore.jks" alias="appletcert"
+									storepass="rapidclubadmin" keypass="rapidclubadmin" />
+								<signjar
+									jar="dependencies/jcalendar-${version.jcalendar}.jar"
+									signedjar="target/jcalendar-${version.jcalendar}.jar"
+									keystore="security/keystore.jks" alias="appletcert"
+									storepass="rapidclubadmin" keypass="rapidclubadmin" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 
 			<plugin>
@@ -101,7 +168,7 @@
 							<resources>
 								<resource>
 									<directory>src/main/model</directory>
-									<targetPath>classes</targetPath>
+									<targetPath>.</targetPath>
 								</resource>
 							</resources>
 						</configuration>
@@ -121,23 +188,18 @@
 				</executions>
 			</plugin>
 
-			<!-- FIXME figure out why SchulferienReaderTest harms the rest of the 
-				tests -->
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
 				<executions>
 					<execution>
 						<id>default-test</id>
 						<configuration>
 							<excludes>
-								<!-- FIXME figure out why SchulferienReaderTest harms the rest of 
-									the tests -->
 								<exclude>**/SchulferienReaderTest.java</exclude>
 							</excludes>
 						</configuration>
 					</execution>
-					<!-- FIXME figure out why SchulferienReaderTest harms the rest of the 
-						tests -->
 					<execution>
 						<id>extra-test-afterwards</id>
 						<phase>test</phase>
