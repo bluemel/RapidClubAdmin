@@ -323,8 +323,10 @@ public class WebFileManager {
 				return doc;
 			} catch (IOException e) {
 				// ignore and fall back via FTP
+				e.printStackTrace();
 				log.info("Fall back to FTP: " + e.getMessage());
 			} catch (RapidBeansRuntimeException e) {
+				e.printStackTrace();
 				// ignore and fall back via FTP
 				log.info("Fall back to FTP: " + e.getMessage());
 			}
