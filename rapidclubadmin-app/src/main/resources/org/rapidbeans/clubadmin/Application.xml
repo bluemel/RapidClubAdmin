@@ -377,8 +377,8 @@
 				<menuitem name="readclosingdays">
 					<action classname="org.rapidbeans.clubadmin.service.ReadClosingDays"/>
 				</menuitem>
-				<menuitem name="test">
-					<action classname="org.rapidbeans.clubadmin.service.Test"/>
+				<menuitem name="resetpassword">
+					<action classname="org.rapidbeans.clubadmin.service.ResetPassword"/>
 				</menuitem>
 			</menu>
 			<menu name="help">

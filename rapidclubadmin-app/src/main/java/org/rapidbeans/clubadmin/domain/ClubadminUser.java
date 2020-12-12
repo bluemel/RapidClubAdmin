@@ -24,6 +24,8 @@ import org.rapidbeans.security.User;
  */
 public class ClubadminUser extends RapidBeanBaseClubadminUser {
 
+	private final RapidClubAdminClient app = (RapidClubAdminClient) ApplicationManager.getApplication();
+
 	/**
 	 * determines if the user has the role with the given name.
 	 *
@@ -81,40 +83,46 @@ public class ClubadminUser extends RapidBeanBaseClubadminUser {
 	 * Reset the pwd.
 	 */
 	public void resetPwd() {
-		final RapidClubAdminClient app = (RapidClubAdminClient) ApplicationManager.getApplication();
 		if (this.getDepartments() == null || this.getDepartments().size() == 0) {
-			app.messageInfo(app.getCurrentLocale().getStringMessage("warn.user.password.reset", this.getAccountname()));
+			app.messageInfo(
+					app.getCurrentLocale().getStringMessage("warn.user.password.reset.null", this.getAccountname()));
 			this.setPwd(null);
 			return;
 		}
-		if (this.getDepartments().size() == 1
-				&& ((List<Department>) this.getDepartments()).get(0).getDefaultpassword() != null) {
-			this.setPwd(User.hashPwd(((List<Department>) this.getDepartments()).get(0).getDefaultpassword(),
-					app.getConfiguration().getAuthorization().getPwdhashalgorithm()));
-			app.messageInfo("Warnung: Password f�r Anwenderkonto \"" + this.getAccountname() + "\" wurde auf \""
-					+ ((List<Department>) this.getDepartments()).get(0).getDefaultpassword() + "\" zur�ckgesetzt.",
-					"Warnung");
+		final String newPwd = ((List<Department>) this.getDepartments()).get(0).getDefaultpassword();
+		final Club refClub = (Club) ((List<Department>) this.getDepartments()).get(0).getParentBean();
+		if (allDepartmentsAreFromeSameClub(refClub) && refClub.getDefaultpassword() != null) {
+			resetPwd(refClub.getDefaultpassword(), true);
 		} else {
-			final Club refClub = (Club) ((List<Department>) this.getDepartments()).get(0).getParentBean();
-			boolean allDepsHaveEqualClub = true;
-			for (final Department dep : this.getDepartments()) {
-				final Club club = (Club) dep.getParentBean();
-				if (club != refClub) {
-					allDepsHaveEqualClub = false;
-					break;
-				}
-			}
-			if (allDepsHaveEqualClub && refClub.getDefaultpassword() != null) {
-				this.setPwd(User.hashPwd(refClub.getDefaultpassword(),
-						app.getConfiguration().getAuthorization().getPwdhashalgorithm()));
-				app.messageInfo("Warnung: Password f�r Anwenderkonto \"" + this.getAccountname() + "\" wurde auf \""
-						+ refClub.getDefaultpassword() + "\" zur�ckgesetzt.", "Warnung");
-			} else {
-				app.messageInfo("Warnung: Password f�r Anwenderkonto \"" + this.getAccountname() + "\" wurde gel�scht.",
-						"Warnung");
-				this.setPwd(null);
+			resetPwd(newPwd, true);
+		}
+	}
+
+	/**
+	 * Reset the pwd.
+	 */
+	public void resetPwd(final String newPwd, final boolean verbose) {
+		this.setPwd(hashPwd(newPwd));
+		if (verbose) {
+			app.messageInfo(app.getCurrentLocale().getStringMessage("warn.user.password.reset.value.verbose",
+					this.getAccountname(), newPwd), "Warnung");
+		}
+	}
+
+	private String hashPwd(final String newPwd) {
+		return User.hashPwd(newPwd, app.getConfiguration().getAuthorization().getPwdhashalgorithm());
+	}
+
+	private boolean allDepartmentsAreFromeSameClub(final Club refClub) {
+		boolean allDepsHaveEqualClub = true;
+		for (final Department dep : this.getDepartments()) {
+			final Club club = (Club) dep.getParentBean();
+			if (club != refClub) {
+				allDepsHaveEqualClub = false;
+				break;
 			}
 		}
+		return allDepsHaveEqualClub;
 	}
 
 	/**
