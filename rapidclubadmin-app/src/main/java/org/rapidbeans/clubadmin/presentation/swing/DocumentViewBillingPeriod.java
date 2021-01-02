@@ -1,11 +1,10 @@
 /*
- * Rapid Beans Framework: DocumentViewBillingPeriod.java
+ * Rapid Club Admin Application: DocumentViewBillingPeriod.java
  *
- * Copyright Martin Bluemel, 2008
+ * Copyright Martin Bluemel, 2007
  *
- * created 30.03.2008
+ * 08.08.2007
  */
-
 package org.rapidbeans.clubadmin.presentation.swing;
 
 import javax.swing.JInternalFrame;

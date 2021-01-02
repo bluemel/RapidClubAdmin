@@ -19,7 +19,7 @@ import org.rapidbeans.datasource.Document;
  *
  * @author Martin Bluemel
  */
-public final class ModelListTrainings extends DefaultListModel {
+public final class ModelListTrainings extends DefaultListModel<RapidBean> {
 
 	/**
 	 * serialization.
@@ -51,7 +51,7 @@ public final class ModelListTrainings extends DefaultListModel {
 	 * @param index the index
 	 * @return the enum of index
 	 */
-	public Object getElementAt(final int index) {
+	public RapidBean getElementAt(final int index) {
 		return this.trainings.get(index);
 	}
 }

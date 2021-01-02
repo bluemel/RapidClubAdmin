@@ -93,6 +93,7 @@ import com.toedter.calendar.JCalendar;
  * 
  * @author Martin Bluemel
  */
+@SuppressWarnings("rawtypes")
 public class RapidClubAdminClientIntegrationTest {
 
 	private static final Logger log = Logger.getLogger(RapidClubAdminClientIntegrationTest.class.getName());

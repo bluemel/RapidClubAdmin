@@ -9,12 +9,15 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.rapidbeans.clubadmin.domain.ClosingPeriod;
 import org.rapidbeans.core.basic.PropertyDate;
 import org.rapidbeans.core.util.StringHelper;
 
 public class SchulferienReader {
+
+	private static final Logger log = Logger.getLogger(SchulferienReader.class.getName());
 
 	public List<ClosingPeriod> readSchulferienAndFeiertage(final String websiteUrl, final String country,
 			final String year) {
@@ -28,15 +31,15 @@ public class SchulferienReader {
 		try {
 			final URL urlSchulferien = new URL(
 					"http://" + websiteUrl + "/" + StringHelper.upperFirstCharacter(country) + "/" + country + ".html");
-			System.out.println("Opening connection to \"" + urlSchulferien.toString() + "\"...");
+			log.info("Opening connection to \"" + urlSchulferien.toString() + "\"...");
 			final URLConnection conSchulferien = urlSchulferien.openConnection();
-			System.out.println("Reading data from \"" + urlSchulferien.toString() + "\"...");
+			log.info("Reading data from \"" + urlSchulferien.toString() + "\"...");
 			result.addAll(readSchulferien(conSchulferien.getInputStream(), year));
 			final URL urlFeiertage = new URL(
 					"http://" + websiteUrl + "/Feiertage/" + year + "/feiertage_" + year + ".html");
-			System.out.println("Opening connection to \"" + urlFeiertage.toString() + "\"...");
+			log.info("Opening connection to \"" + urlFeiertage.toString() + "\"...");
 			final URLConnection conFeiertage = urlFeiertage.openConnection();
-			System.out.println("Reading data from \"" + urlFeiertage.toString() + "\"...");
+			log.info("Reading data from \"" + urlFeiertage.toString() + "\"...");
 			result.addAll(readFeiertage(conFeiertage.getInputStream(), country));
 		} catch (MalformedURLException e) {
 			throw new RuntimeException(e);
@@ -57,9 +60,9 @@ public class SchulferienReader {
 			while ((c = reader.read()) != -1) {
 				bos.write(c);
 			}
-			// System.out.println(bos.toString());
+			// log.info(bos.toString());
 			final String tableText = cutOutTable(bos.toString(), 3);
-			// System.out.println(tableText);
+			// log.info(tableText);
 			final Table table = Table.fromHtmlText(tableText);
 			evalTableFeiertage(table, result, country);
 		} finally {

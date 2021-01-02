@@ -1,9 +1,9 @@
 /*
- * EasyBiz Application RapidClubAdmin: RendererListTrainers.java
+ * Rapid Beans Application RapidClubAdmin: RendererListOverviewTrainers.java
  *
  * Copyright Martin Bluemel, 2007
  *
- * 10.12.2007
+ * 30.03.2007
  */
 package org.rapidbeans.clubadmin.presentation.swing;
 
@@ -18,11 +18,11 @@ import org.rapidbeans.presentation.swing.RendererHelper;
 /**
  * @author Martin Bluemel
  */
-public class RendererListOverviewTrainers implements ListCellRenderer {
+public class RendererListOverviewTrainers<T extends Trainer> implements ListCellRenderer<Trainer> {
 
-	public Component getListCellRendererComponent(final JList list, final Object value, final int index,
-			final boolean isSelected, final boolean cellHasFocus) {
-		final Trainer trainer = (Trainer) value;
+	@Override
+	public Component getListCellRendererComponent(JList<? extends Trainer> list, Trainer trainer, int index,
+			boolean isSelected, boolean cellHasFocus) {
 		final StringBuffer buf = new StringBuffer(trainer.getLastname());
 		buf.append(", ");
 		buf.append(trainer.getFirstname());

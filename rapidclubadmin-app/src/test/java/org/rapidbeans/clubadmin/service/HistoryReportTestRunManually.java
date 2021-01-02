@@ -30,7 +30,7 @@ import org.rapidbeans.domain.math.DayOfWeek;
 import org.rapidbeans.domain.math.Time;
 import org.rapidbeans.domain.math.UnitTime;
 
-public class HistoryReportTest {
+public class HistoryReportTestRunManually {
 
 	@Test
 	@Ignore

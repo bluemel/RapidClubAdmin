@@ -86,7 +86,7 @@ public class ViewTrainingHeldByTrainer extends JPanel {
 	/**
 	 * the combo box with the trainer's role.
 	 */
-	private JComboBox comboBoxTrainerRole = new JComboBox();
+	private JComboBox<TrainerRole> comboBoxTrainerRole = new JComboBox<>();
 
 	/**
 	 * the button with the trainer's symbol o portrait.
@@ -94,14 +94,14 @@ public class ViewTrainingHeldByTrainer extends JPanel {
 	private JButton buttonTrainer = new JButton();
 
 	/**
-	 * the normal backgound of the combo box with the trainer's name.
+	 * the normal background of the combo box with the trainer's name.
 	 */
 	private Color buttonTrainerBackground = null;
 
 	/**
 	 * the combo box with the trainer's name.
 	 */
-	private JComboBox comboBoxTrainerName = new JComboBox();
+	private JComboBox<String> comboBoxTrainerName = new JComboBox<>();
 
 	/**
 	 * the normal backgound of the combo box with the trainer's name.
@@ -119,17 +119,17 @@ public class ViewTrainingHeldByTrainer extends JPanel {
 	private ViewTrainingHeldByTrainer thizz = null;
 
 	/**
-	 * the editor's popup menu.
+	 * the editor's pop up menu.
 	 */
 	private JPopupMenu popupMenu = new JPopupMenu();
 
 	/**
-	 * the editor's popup new menu.
+	 * the editor's pop up new menu.
 	 */
 	private JMenuItem popupMenuItemNew = new JMenuItem();
 
 	/**
-	 * the editor's popup delete menu.
+	 * the editor's pop up delete menu.
 	 */
 	private JMenuItem popupMenuItemDelete = new JMenuItem();
 
@@ -139,7 +139,7 @@ public class ViewTrainingHeldByTrainer extends JPanel {
 	 * @param trhbt               the TrainingHeldByTrainer object to present
 	 * @param parentTrainingsView the parent view
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ViewTrainingHeldByTrainer(final TrainingHeldByTrainer trhbt,
 			final ViewTrainingHeldByTrainerList parentTrainingsView) {
 		try {
@@ -375,7 +375,7 @@ public class ViewTrainingHeldByTrainer extends JPanel {
 	 *
 	 * @param e the added event
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void beanAdded(final AddedEvent e) {
 		if (e.getBean() instanceof TrainerRole) {
 			this.comboBoxTrainerRole.setModel(new ModelComboBoxCollection(
@@ -391,7 +391,7 @@ public class ViewTrainingHeldByTrainer extends JPanel {
 	 *
 	 * @param e the added event
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void bizBeanChanged(final ChangedEvent e) {
 		try {
 			this.setUiEventLock();

@@ -104,12 +104,12 @@ public final class ViewOverview extends DocumentView {
 	/**
 	 * the trainier's table.
 	 */
-	private JList clubsList = new JList();
+	private JList<RapidBean> clubsList = new JList<>();
 
 	/**
 	 * the trainers table model.
 	 */
-	private ModelListClubs clubsModel = null;
+	private ModelListClubs<Club> clubsModel = null;
 
 	/**
 	 * Title for the trainers table.
@@ -119,7 +119,7 @@ public final class ViewOverview extends DocumentView {
 	/**
 	 * the trainier's table.
 	 */
-	private JList departmentsList = new JList();
+	private JList<RapidBean> departmentsList = new JList<>();
 
 	/**
 	 * the trainers table model.
@@ -134,12 +134,12 @@ public final class ViewOverview extends DocumentView {
 	/**
 	 * the trainier's list.
 	 */
-	private JList trainersList = new JList();
+	private JList<RapidBean> trainersList = new JList<>();
 
 	/**
 	 * @return the trainier's list
 	 */
-	public JList getTrainersList() {
+	public JList<RapidBean> getTrainersList() {
 		return this.trainersList;
 	}
 
@@ -208,6 +208,7 @@ public final class ViewOverview extends DocumentView {
 	 * @param viewconfname the view's configuration name
 	 * @param filter       the filter
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public ViewOverview(final Application client, final Document doc, final String docconfname,
 			final String viewconfname, final Filter filter) {
 		super(client, doc, docconfname, viewconfname, filter);
@@ -218,7 +219,7 @@ public final class ViewOverview extends DocumentView {
 
 		final RapidBeansLocale locale = client.getCurrentLocale();
 
-		this.clubsModel = new ModelListClubs(this.getDocument());
+		this.clubsModel = new ModelListClubs<>(this.getDocument());
 		this.departmentsModel = new ModelListDepartments(this.getDocument());
 		this.trainersModel = new ModelListTrainers(this.getDocument());
 
@@ -446,10 +447,10 @@ public final class ViewOverview extends DocumentView {
 	/**
 	 * close the document view.
 	 * 
-	 * @return if cancelling is desired
+	 * @return if canceling is desired
 	 */
 	public boolean close() {
-		boolean cancel = super.close();
+		final boolean cancel = super.close();
 		if (!cancel) {
 			this.frame.dispose();
 		}
@@ -462,8 +463,8 @@ public final class ViewOverview extends DocumentView {
 	 * @return the selected clubs
 	 */
 	protected List<Club> getSelectedClubs() {
-		List<Club> sels = new ArrayList<Club>();
-		for (Object selValue : this.clubsList.getSelectedValues()) {
+		final List<Club> sels = new ArrayList<Club>();
+		for (RapidBean selValue : this.clubsList.getSelectedValuesList()) {
 			sels.add((Club) selValue);
 		}
 		return sels;
@@ -475,8 +476,8 @@ public final class ViewOverview extends DocumentView {
 	 * @return the selected departments
 	 */
 	private List<Department> getSelectedDepartments() {
-		List<Department> sels = new ArrayList<Department>();
-		for (Object selValue : this.departmentsList.getSelectedValues()) {
+		final List<Department> sels = new ArrayList<Department>();
+		for (RapidBean selValue : this.departmentsList.getSelectedValuesList()) {
 			sels.add((Department) selValue);
 		}
 		return sels;
@@ -488,8 +489,8 @@ public final class ViewOverview extends DocumentView {
 	 * @return the selected trainers
 	 */
 	private List<Trainer> getSelectedTrainers() {
-		List<Trainer> sels = new ArrayList<Trainer>();
-		for (Object selValue : this.trainersList.getSelectedValues()) {
+		final List<Trainer> sels = new ArrayList<Trainer>();
+		for (RapidBean selValue : this.trainersList.getSelectedValuesList()) {
 			sels.add((Trainer) selValue);
 		}
 		return sels;
@@ -664,7 +665,7 @@ public final class ViewOverview extends DocumentView {
 		markAsChanged(true);
 		if (e.getBean() instanceof Trainer) {
 			boolean selChanged = false;
-			if (this.trainersList.getSelectedValues().length == 1) {
+			if (this.trainersList.getSelectedValuesList().size() == 1) {
 				Trainer sel = this.getSelectedTrainers().get(0);
 				if (sel == e.getBean()) {
 					selChanged = true;
@@ -681,7 +682,7 @@ public final class ViewOverview extends DocumentView {
 			}
 		} else if (e.getBean() instanceof Department) {
 			boolean selChanged = false;
-			if (this.trainersList.getSelectedValues().length == 1) {
+			if (this.trainersList.getSelectedValuesList().size() == 1) {
 				Department sel = this.getSelectedDepartments().get(0);
 				if (sel == e.getBean()) {
 					selChanged = true;

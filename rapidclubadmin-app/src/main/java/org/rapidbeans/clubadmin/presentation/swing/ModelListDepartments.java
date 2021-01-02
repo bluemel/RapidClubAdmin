@@ -22,7 +22,7 @@ import org.rapidbeans.datasource.Document;
  *
  * @author Martin Bluemel
  */
-public class ModelListDepartments extends ModelListBeans {
+public class ModelListDepartments extends ModelListBeans<Department> {
 
 	/**
 	 * for serialization.

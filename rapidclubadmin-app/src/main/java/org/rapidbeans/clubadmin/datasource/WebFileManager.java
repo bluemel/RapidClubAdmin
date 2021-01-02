@@ -35,8 +35,6 @@ import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.ApplicationManager;
 import org.rapidbeans.security.CryptoHelper;
 
-import sun.net.ftp.FtpProtocolException;
-
 /**
  * This manager is responsible for processing remote files located on a web
  * server. Basically it supports two kinds of remote file access:
@@ -353,7 +351,8 @@ public class WebFileManager {
 						} else {
 							throw e;
 						}
-					} else if (e.getCause() instanceof FtpProtocolException || e.getCause() instanceof SocketException
+					} else if (e.getCause().getClass().getName().equals("sun.net.ftp.FtpProtocolException")
+							|| e.getCause() instanceof SocketException
 							|| e.getCause() instanceof IOException) {
 						if (!tryHttp) {
 							throw new RapidBeansRuntimeException(e);

@@ -706,7 +706,7 @@ public final class ViewTrainings extends DocumentView {
 			if (selTraining.getState() == TrainingState.checked) {
 				final String sNumber = this.trainingPartcountTextField.getText().trim();
 				if (!sNumber.equals("")) {
-					value = new Integer(sNumber);
+					value = Integer.valueOf(sNumber);
 				}
 				selTraining.setPropValue("partipiciantscount", value);
 				selTraining.setNotes(this.trainingNotesTextArea.getText());

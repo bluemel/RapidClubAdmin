@@ -9,9 +9,13 @@ package org.rapidbeans.clubadmin.presentation.swing;
 
 import java.util.Set;
 
+import javax.swing.ListModel;
+
+import org.rapidbeans.clubadmin.domain.Club;
 import org.rapidbeans.clubadmin.domain.ClubadminUser;
 import org.rapidbeans.clubadmin.domain.Department;
 import org.rapidbeans.clubadmin.domain.Role;
+import org.rapidbeans.core.basic.RapidBean;
 import org.rapidbeans.datasource.Document;
 
 /**
@@ -19,7 +23,7 @@ import org.rapidbeans.datasource.Document;
  *
  * @author Martin Bluemel
  */
-public class ModelListClubs extends ModelListBeans {
+public class ModelListClubs<T extends Club> extends ModelListBeans<RapidBean> implements ListModel<RapidBean> {
 
 	/**
 	 * for serialization
@@ -37,12 +41,15 @@ public class ModelListClubs extends ModelListBeans {
 	}
 
 	/**
-	 * Filter rules for roles: 1) Role Trainer: show only the clubs of the
-	 * departments the trainer (associated to the user) is associated to 2) Role
-	 * Departmentadministrator: show only the clubs of departments the user is
-	 * associated to 3) Role Superadministrator: no filter
+	 * Filter rules for roles:
+	 * 1) Role Trainer: show only the clubs of the
+	 * departments the trainer (associated to the user)
+	 * is associated to
+	 * 2) Role Departmentadministrator: show only the clubs of departments the user
+	 * is associated to
+	 * 3) Role Superadministrator: no filter
 	 */
-	protected void fillAuthorizationFilterPart(ClubadminUser user, Role role, StringBuffer buf) {
+	protected void fillAuthorizationFilterPart(final ClubadminUser user, final Role role, final StringBuffer buf) {
 		switch (role) {
 		case Trainer:
 			if (user.getIsalsotrainer() != null) {

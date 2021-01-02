@@ -217,7 +217,7 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 		return (BillingPeriod) this.getBean();
 	}
 
-	private JList getDepartmentsList() {
+	private JList<?> getDepartmentsList() {
 		return ((EditorPropertyListSwing) this.getPropEditor("departments")).getWidgetList();
 	}
 
@@ -231,7 +231,7 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 
 	private List<Department> getSelectedDepartments() {
 		final ArrayList<Department> deps = new ArrayList<Department>();
-		for (Object obj : this.getDepartmentsList().getSelectedValues()) {
+		for (Object obj : this.getDepartmentsList().getSelectedValuesList()) {
 			deps.add((Department) obj);
 		}
 		return deps;
@@ -254,7 +254,7 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 	}
 
 	private void selectAllDepartments() {
-		final JList list = this.getDepartmentsList();
+		final JList<?> list = this.getDepartmentsList();
 		list.setSelectionInterval(0, list.getModel().getSize() - 1);
 	}
 
@@ -509,7 +509,7 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 
 	/** Simple export as plain text list (currently to stdout). */
 	private void exportDataAsList() {
-		// FIXME (BH): This is nearly a copy of the
+		// TODO (BH): This is nearly a copy of the
 		// printCollectedOverviewReport() method and should be cleaned up
 		FileWriter wr = null;
 		try {
@@ -607,7 +607,7 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 		 * @see javax.swing.ListCellRenderer#getListCellRendererComponent(javax.swing.JList,
 		 *      java.lang.Object, int, boolean, boolean)
 		 */
-		public Component getListCellRendererComponent(final JList list, final Object value, final int index,
+		public Component getListCellRendererComponent(final JList<?> list, final Object value, final int index,
 				final boolean isSelected, final boolean cellHasFocus) {
 			final JPanel panel = new JPanel();
 			panel.setLayout(new GridBagLayout());

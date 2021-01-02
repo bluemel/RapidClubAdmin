@@ -1,11 +1,10 @@
 /*
- * Rapid Club Admin Application: ViewTrainingsKeyController.java
+ * Rapid Club Admin Application: ControllerViewTainingsKeys.java
  *
  * Copyright Martin Bluemel, 2007
  *
  * 08.08.2007
  */
-
 package org.rapidbeans.clubadmin.presentation.swing;
 
 import java.awt.event.KeyEvent;
@@ -92,7 +91,7 @@ public class ControllerViewTainingsKeys {
 	 * @param e the key event
 	 */
 	public void typedS(final KeyEvent e) {
-		if (e.getModifiers() == 2) {
+		if (e.getModifiersEx() == 2) {
 			(new ActionDocumentSave()).execute();
 		}
 	}

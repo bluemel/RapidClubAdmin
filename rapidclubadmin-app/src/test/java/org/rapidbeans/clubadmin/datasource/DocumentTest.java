@@ -96,7 +96,8 @@ public final class DocumentTest {
 		for (final Trainer t : masterData.getTrainers()) {
 			final String attrList = toStringAttrs(t.getTrainerattributes());
 			final String depList = toStringDeps(t.getDepartments());
-			// System.out.println(String.format("%s, %s%s: %s", t.getLastname(), t.getFirstname(), attrList, depList));
+			assertNotNull(attrList);
+			assertNotNull(depList);
 		}
 	}
 

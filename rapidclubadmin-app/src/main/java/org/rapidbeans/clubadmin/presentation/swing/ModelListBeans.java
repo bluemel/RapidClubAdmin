@@ -22,7 +22,7 @@ import org.rapidbeans.presentation.ApplicationManager;
 /**
  * @author Martin Bluemel
  */
-public abstract class ModelListBeans extends AbstractListModel {
+public abstract class ModelListBeans<T extends RapidBean> extends AbstractListModel<RapidBean> {
 
 	/**
 	 * for serialization
@@ -138,7 +138,7 @@ public abstract class ModelListBeans extends AbstractListModel {
 	 *
 	 * @return the trainer at the given row
 	 */
-	public Object getElementAt(final int rowIndex) {
+	public RapidBean getElementAt(final int rowIndex) {
 		return this.beans.get(rowIndex);
 	}
 

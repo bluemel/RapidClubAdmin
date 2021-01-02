@@ -1,9 +1,9 @@
 /*
- * EasyBiz Application RapidClubAdmin: RendererListOverviewDepartments.java
+ * Rapid Beans Application RapidClubAdmin: RendererListOverviewDepartments.java
  *
  * Copyright Martin Bluemel, 2007
  *
- * 10.12.2007
+ * 30.03.2007
  */
 package org.rapidbeans.clubadmin.presentation.swing;
 
@@ -18,7 +18,7 @@ import org.rapidbeans.presentation.swing.RendererHelper;
 /**
  * @author Martin Bluemel
  */
-public class RendererListOverviewDepartments implements ListCellRenderer {
+public class RendererListOverviewDepartments<T extends Department> implements ListCellRenderer<Department> {
 
 	private ViewOverview overview = null;
 
@@ -26,9 +26,8 @@ public class RendererListOverviewDepartments implements ListCellRenderer {
 		this.overview = view;
 	}
 
-	public Component getListCellRendererComponent(final JList list, final Object value, final int index,
+	public Component getListCellRendererComponent(final JList<? extends Department> list, final Department department, final int index,
 			final boolean isSelected, final boolean cellHasFocus) {
-		final Department department = (Department) value;
 		final StringBuffer buf = new StringBuffer();
 		if (overview.getSelectedClubs().size() == 1) {
 			buf.append(department.getName());

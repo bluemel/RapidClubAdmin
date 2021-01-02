@@ -8,12 +8,8 @@
 package org.rapidbeans.clubadmin.domain.export;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Before;
@@ -65,19 +61,21 @@ public class ExportJobTest {
 		assertEquals("1356.00 euro", job.getOverallEarnedMoney(trainer).toString());
 	}
 
-	@Test
-	public void testAccesMsAccess() throws ClassNotFoundException, SQLException {
-		// Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-		// Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+// REACTIVATE IF WE NEED MS ACCESS
+//	@Test
+//	public void testAccesMsAccess() throws ClassNotFoundException, SQLException {
+//		// Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+//		// Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+//
+//		// String database = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
+//		// + "src/test/resources/db/VERDAT.mdb;DriverID=22;READONLY=true}";
+//		// String database = "jdbc:ucanaccess://" + new
+//		// File("src/test/resources/db/VERDAT.mdb").getAbsolutePath()
+//		// + ";memory=true";
+//		String database = "jdbc:ucanaccess://src/test/resources/db/VERDAT.mdb;memory=true";
+//		Connection con = DriverManager.getConnection(database, "", "");
+//		assertNotNull(con);
+//	}
 
-		// String database = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ="
-		// + "src/test/resources/db/VERDAT.mdb;DriverID=22;READONLY=true}";
-		// String database = "jdbc:ucanaccess://" + new
-		// File("src/test/resources/db/VERDAT.mdb").getAbsolutePath()
-		// + ";memory=true";
-		String database = "jdbc:ucanaccess://src/test/resources/db/VERDAT.mdb;memory=true";
-		Connection con = DriverManager.getConnection(database, "", "");
-		assertNotNull(con);
-	}
 }

@@ -14,6 +14,7 @@ import org.rapidbeans.clubadmin.domain.Club;
 import org.rapidbeans.clubadmin.domain.ClubadminUser;
 import org.rapidbeans.clubadmin.domain.Department;
 import org.rapidbeans.clubadmin.domain.Role;
+import org.rapidbeans.clubadmin.domain.Trainer;
 import org.rapidbeans.datasource.Document;
 
 /**
@@ -21,7 +22,7 @@ import org.rapidbeans.datasource.Document;
  *
  * @author Martin Bluemel
  */
-public class ModelListTrainers extends ModelListBeans {
+public class ModelListTrainers extends ModelListBeans<Trainer> {
 
 	/**
 	 * for serialization.

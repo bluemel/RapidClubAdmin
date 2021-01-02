@@ -204,7 +204,7 @@ public class RapidClubAdminSettings extends org.rapidbeans.presentation.settings
 	 * @param argValue value of Property 'defaultdatafileloadinitially' to set
 	 */
 	public void setDefaultdatafileloadinitially(final boolean argValue) {
-		this.defaultdatafileloadinitially.setValue(new Boolean(argValue));
+		this.defaultdatafileloadinitially.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**
@@ -244,7 +244,7 @@ public class RapidClubAdminSettings extends org.rapidbeans.presentation.settings
 	 * @param argValue value of Property 'shareiconsoverweb' to set
 	 */
 	public void setShareiconsoverweb(final boolean argValue) {
-		this.shareiconsoverweb.setValue(new Boolean(argValue));
+		this.shareiconsoverweb.setValue(Boolean.valueOf(argValue));
 	}
 
 	/**
@@ -264,6 +264,6 @@ public class RapidClubAdminSettings extends org.rapidbeans.presentation.settings
 	 * @param argValue value of Property 'pleasedontnag' to set
 	 */
 	public void setPleasedontnag(final boolean argValue) {
-		this.pleasedontnag.setValue(new Boolean(argValue));
+		this.pleasedontnag.setValue(Boolean.valueOf(argValue));
 	}
 }
