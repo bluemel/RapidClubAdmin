@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-
-<enumtype name="org.rapidbeans.clubadmin.domain.AllTrainingState">
-	<enum name="all_asplanned"/>
-	<enum name="one_checkormodified"/>
-	<enum name="all_checked"/>
-</enumtype>

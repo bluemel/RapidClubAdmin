@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-
-<enumtype name="org.rapidbeans.clubadmin.domain.TrainingState">
-	<enum name="asplanned"/>
-	<enum name="modified"/>
-	<enum name="checked"/>
-	<enum name="cancelled"/>
-	<enum name="closed"/>
-</enumtype>

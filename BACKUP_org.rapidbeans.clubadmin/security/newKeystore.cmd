@@ -1,1 +1,0 @@
-keytool -genkey -alias appletcert -keyalg RSA -keysize 1024 -dname "CN=rapidbeans.org,OU=RapidBeans,O=Martin Bluemel,L=Ismaning,S=Bavaria,C=de" -keypass ka19th11 -keystore keystore.jks
