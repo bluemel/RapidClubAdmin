@@ -7,3 +7,7 @@ antCustomerVfrgarching.properties
 antKey.properties
 dependencies
 security/keystore.jks
+/rapidclubadmin-appTests-eclipse.txt
+/rapidclubadmin-appTests-eclipse.xml
+/rapidclubadmin-appTests-maven.txt
+/rapidclubadmin-appTests-maven.xml
