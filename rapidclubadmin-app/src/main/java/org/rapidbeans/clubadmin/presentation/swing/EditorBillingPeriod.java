@@ -19,8 +19,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +66,8 @@ import org.rapidbeans.presentation.Application;
 import org.rapidbeans.presentation.ApplicationManager;
 import org.rapidbeans.presentation.DocumentView;
 import org.rapidbeans.presentation.EditorProperty;
+import org.rapidbeans.presentation.MessageDialog;
+import org.rapidbeans.presentation.config.ApplicationGuiType;
 import org.rapidbeans.presentation.swing.EditorBeanSwing;
 import org.rapidbeans.presentation.swing.EditorPropertyListSwing;
 import org.rapidbeans.presentation.swing.MainWindowSwing;
@@ -85,6 +89,8 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 	private JButton buttonPrintCollectedReportEvidence = new JButton("Sammeldruck Nachweise");
 
 	private JButton buttonExportAsList = new JButton("Listenexport");
+
+	private JButton buttonCloseBillingPeriod = new JButton("Abschluss");
 
 	private JButton buttonBackup = new JButton("Lokale Sicherung");
 
@@ -131,6 +137,11 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 				exportDataAsList();
 			}
 		});
+		this.buttonCloseBillingPeriod.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				closeBillingPeriod();
+			}
+		});
 		this.buttonBackup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				backupIntemediate();
@@ -151,9 +162,11 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 		this.buttonsPanel.add(buttonExportAsList, new GridBagConstraints(0, 4, 1, 1, 0.0, 1.0,
 				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
-		this.buttonsPanel.add(buttonBackup, new GridBagConstraints(0, 5, 1, 1, 0.0, 1.0, GridBagConstraints.CENTER,
+		this.buttonsPanel.add(buttonCloseBillingPeriod, new GridBagConstraints(0, 5, 1, 1, 0.0, 1.0,
+				GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
+		this.buttonsPanel.add(buttonBackup, new GridBagConstraints(0, 6, 1, 1, 0.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
-		this.buttonsPanel.add(buttonRestore, new GridBagConstraints(0, 6, 1, 1, 0.0, 1.0, GridBagConstraints.CENTER,
+		this.buttonsPanel.add(buttonRestore, new GridBagConstraints(0, 7, 1, 1, 0.0, 1.0, GridBagConstraints.CENTER,
 				GridBagConstraints.NONE, new Insets(5, 5, 5, 5), 0, 0));
 		((JPanel) this.getWidget()).add(this.buttonsPanel, BorderLayout.EAST);
 		this.checkTrainingslistsState();
@@ -186,11 +199,7 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 	 */
 	public void handleActionClose() {
 		super.handleActionClose();
-		// do not know anymore why we should need that if statement
-		// if (this.getDocumentView().getName().equals(
-		// "masterdata.billingperiod")) {
 		this.getDocumentView().close();
-		// }
 	}
 
 	private void newModeOkApply() {
@@ -272,18 +281,6 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 			}
 		}
 	}
-
-	// /**
-	// * Reopen this editor for edit.
-	// *
-	// * @param idString the id string of this billing period
-	// */
-	// private void reopenForEdit(final String idString) {
-	// final RapidBean bp = this.getDocumentView().getDocument().findBean(
-	// this.getBean().getClass().getName(), idString);
-	// this.getDocumentView().selectBeanInTreeView(bp);
-	// this.getDocumentView().editBean(bp);
-	// }
 
 	/**
 	 * Generate new TrainingsLists for all selected departments.
@@ -557,6 +554,11 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 								+ PlatformHelper.getOsName() + "\".\n" + "Please open file\n\""
 								+ overviewFile.getAbsolutePath() + "\"\nyourself.");
 			}
+
+			if (this.getBillingPeriod().getDateExportFirst() == null) {
+				this.getBillingPeriod().setDateExportFirst(Date.from(Instant.now()));
+				this.validateAndUpdateButtons(this.getPropEditor("dateExportFirst"));
+			}
 		} catch (IOException e) {
 			throw new RapidBeansRuntimeException(e);
 		} finally {
@@ -567,6 +569,17 @@ public class EditorBillingPeriod extends EditorBeanSwing {
 					throw new RapidBeansRuntimeException(e);
 				}
 			}
+		}
+	}
+
+	private void closeBillingPeriod() {
+		if (getBillingPeriod().getDateClosing() != null) {
+			MessageDialog.createInstance(ApplicationGuiType.swing).messageError(
+					"Dieser Abrechnungszeitraum ist bereits abgeschlossen",
+					"Fehler beim Abschuss des Abrechnungszeitraums");
+		} else {
+			getBillingPeriod().setDateClosing(Date.from(Instant.now()));
+			this.validateAndUpdateButtons(this.getPropEditor("dateClosing"));
 		}
 	}
 
