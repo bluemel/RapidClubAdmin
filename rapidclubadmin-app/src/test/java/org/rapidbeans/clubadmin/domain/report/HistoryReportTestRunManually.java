@@ -1,4 +1,4 @@
-package org.rapidbeans.clubadmin.service;
+package org.rapidbeans.clubadmin.domain.report;
 
 import static org.junit.Assert.assertTrue;
 
@@ -21,6 +21,7 @@ import org.rapidbeans.clubadmin.domain.TrainingDate;
 import org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer;
 import org.rapidbeans.clubadmin.domain.TrainingState;
 import org.rapidbeans.core.basic.RapidBean;
+import org.rapidbeans.core.exception.PropValueNullException;
 import org.rapidbeans.core.type.TypePropertyCollection;
 import org.rapidbeans.core.util.StringHelper;
 import org.rapidbeans.core.util.StringHelper.FillMode;
@@ -30,6 +31,9 @@ import org.rapidbeans.domain.math.DayOfWeek;
 import org.rapidbeans.domain.math.Time;
 import org.rapidbeans.domain.math.UnitTime;
 
+/**
+ * Reports on history for manual execution.
+ */
 public class HistoryReportTestRunManually {
 
 	@Test
@@ -45,7 +49,7 @@ public class HistoryReportTestRunManually {
 		nf.setMaximumFractionDigits(2);
 
 		final List<Trstat> trainings = new ArrayList<Trstat>();
-		readTrainingsFromHistory(histdir, trainings, 2017, 2018);
+		readTrainingsFromHistory(histdir, trainings, 2020, 2022);
 
 		SimpleDateFormat sfmt = new SimpleDateFormat("dd.MM.yyyy");
 		for (final Trstat trstat : trainings) {
@@ -63,9 +67,13 @@ public class HistoryReportTestRunManually {
 				// training.getState()));
 				break;
 			default:
-				System.out.print(
-						String.format("%s %s %s: %d Trainer: ", training.getName(), german(training.getDayofweek()),
-								sfmt.format(training.getDate()), trhbts.size(), training.getState()));
+				final int cTrain = countTrainersInRole("Trainer", training);
+				final int cCotr = countTrainersInRole("Cotrainer", training);
+				String overcoaching = checkOvercoachingRules(training, cTrain, cCotr);
+				System.out.print(String.format("%s %s %s %s: %d Betreuer %d Trainer %d Cotrainer / %s Teilnehmer: ",
+						overcoaching, training.getName(), german(training.getDayofweek()),
+						sfmt.format(training.getDate()), trhbts.size(), cTrain, cCotr,
+						countPaticipiantsAsString(training), training.getState()));
 				int i = 0;
 				for (TrainingHeldByTrainer trhbt : training.getHeldbytrainersSortedByValue()) {
 					final Money moneyEarned = trhbt.getMoneyEarned();
@@ -83,6 +91,72 @@ public class HistoryReportTestRunManually {
 				System.out.println();
 			}
 		}
+	}
+
+	private String checkOvercoachingRules(final Training training, final int cTrain, final int cCotr) {
+		final int cPart = countPaticipiants(training);
+		switch (determineTrainingKind(training)) {
+		case INTEGRATIVE:
+			if (cPart <= 10 && (cTrain > 1 || cCotr > 2) || (cPart > 10 && (cTrain > 1 || cCotr > 3))) {
+				return "!!";
+			}
+			break;
+		case CHILDREN_YOUTH:
+			if (cPart <= 20 && (cTrain > 1 || cCotr > 1) || (cPart > 20 && (cTrain > 1 || cCotr > 2))) {
+				return "!!";
+			}
+			break;
+		case ADULTS:
+			if (cPart <= 15 && (cTrain > 1 || cCotr > 0) || (cPart > 15 && (cTrain > 1 || cCotr > 1))) {
+				return "!!";
+			}
+		}
+		return "OK";
+	}
+
+	enum TrainingKind {
+		ADULTS, CHILDREN_YOUTH, INTEGRATIVE
+	};
+
+	private int countTrainersInRole(final String roleName, final Training training) {
+		int c = 0;
+		for (final TrainingHeldByTrainer trhbt : training.getHeldbytrainers()) {
+			if (trhbt.getRole().getName().equals(roleName)) {
+				c++;
+			}
+		}
+		return c;
+	}
+
+	private TrainingKind determineTrainingKind(final Training training) {
+		if (training.getName().contains("Integrativ")) {
+			return TrainingKind.INTEGRATIVE;
+		} else if (training.getName().contains("Kind") || training.getName().contains("Jugend")) {
+			return TrainingKind.CHILDREN_YOUTH;
+		} else {
+			return TrainingKind.ADULTS;
+		}
+	}
+
+	private int countPaticipiants(final Training training) {
+		Integer participiantscount;
+		try {
+			participiantscount = training.getPartipiciantscount();
+		} catch (PropValueNullException e) {
+			participiantscount = null;
+		}
+		return participiantscount == null ? 0 : participiantscount;
+	}
+
+	private String countPaticipiantsAsString(final Training training) {
+		Integer participiantscount;
+		try {
+			participiantscount = training.getPartipiciantscount();
+		} catch (PropValueNullException e) {
+			participiantscount = null;
+		}
+		String sParticipiantscount = participiantscount == null ? "k.A." : participiantscount.toString();
+		return sParticipiantscount;
 	}
 
 	private String german(DayOfWeek dayofweek) {
@@ -118,7 +192,7 @@ public class HistoryReportTestRunManually {
 		nf.setMaximumFractionDigits(2);
 
 		final List<Trstat> trainings = new ArrayList<Trstat>();
-		final List<Integer> years = readTrainingsFromHistory(histdir, trainings, 2009, 2018);
+		final List<Integer> years = readTrainingsFromHistory(histdir, trainings, 2020, 2022);
 
 		// collect statistics
 		final Map<Integer, Map<Department, Money>> statDepOverYears = new HashMap<Integer, Map<Department, Money>>();
