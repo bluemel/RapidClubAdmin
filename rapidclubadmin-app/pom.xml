@@ -11,6 +11,10 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.rapidbeans-runtime>1.0.0-SNAPSHOT</version.rapidbeans-runtime>
 		<version.jcalendar>1.4</version.jcalendar>
+		<version.httpclient>4.5.13</version.httpclient>
+		<version.httpcore>4.4.13</version.httpcore>
+		<version.commons-logging>1.2</version.commons-logging>
+		<version.commons-codec>1.11</version.commons-codec>
 		<version.java.develop>1.14</version.java.develop>
 		<version.java.build>1.8</version.java.build>
 		<timestamp>${maven.build.timestamp}</timestamp>
@@ -145,6 +149,26 @@
 								<signjar
 									jar="dependencies/jcalendar-${version.jcalendar}.jar"
 									signedjar="target/jcalendar-${version.jcalendar}.jar"
+									keystore="security/keystore.jks" alias="appletcert"
+									storepass="rapidclubadmin" keypass="rapidclubadmin" />
+								<signjar
+									jar="dependencies/httpclient-${version.httpclient}.jar"
+									signedjar="target/httpclient-${version.httpclient}.jar"
+									keystore="security/keystore.jks" alias="appletcert"
+									storepass="rapidclubadmin" keypass="rapidclubadmin" />
+								<signjar
+									jar="dependencies/httpcore-${version.httpcore}.jar"
+									signedjar="target/httpcore-${version.httpcore}.jar"
+									keystore="security/keystore.jks" alias="appletcert"
+									storepass="rapidclubadmin" keypass="rapidclubadmin" />
+								<signjar
+									jar="dependencies/commons-logging-${version.commons-logging}.jar"
+									signedjar="target/commons-logging-${version.commons-logging}.jar"
+									keystore="security/keystore.jks" alias="appletcert"
+									storepass="rapidclubadmin" keypass="rapidclubadmin" />
+								<signjar
+									jar="dependencies/commons-codec-${version.commons-codec}.jar"
+									signedjar="target/commons-codec-${version.commons-codec}.jar"
 									keystore="security/keystore.jks" alias="appletcert"
 									storepass="rapidclubadmin" keypass="rapidclubadmin" />
 							</target>
