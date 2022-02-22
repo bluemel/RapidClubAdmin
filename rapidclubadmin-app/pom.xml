@@ -33,14 +33,14 @@
 			<scope>compile</scope>
 		</dependency>
 
-<!--
-		REACTIVATE IF WE NEED MS ACCESS
 		<dependency>
-			<groupId>net.sf.ucanaccess</groupId>
-			<artifactId>ucanaccess</artifactId>
-			<version>5.0.0</version>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.13</version>
 		</dependency>
--->
+
+		<!-- REACTIVATE IF WE NEED MS ACCESS <dependency> <groupId>net.sf.ucanaccess</groupId> 
+			<artifactId>ucanaccess</artifactId> <version>5.0.0</version> </dependency> -->
 
 		<dependency>
 			<groupId>junit</groupId>

@@ -502,10 +502,10 @@ public class WebFileManager {
 	public void upload(final Document activeDocument, final String defaultEncoding, boolean forceEncoding) {
 		if ("fileio.host".equals(activeDocument.getUrl().getHost())) {
 			final String xml = activeDocument.toXmlString(defaultEncoding, forceEncoding);
-			final String file = activeDocument.getUrl().getPath().substring(1);
+			final String path = activeDocument.getUrl().getPath().substring(1);
 			try {
-				log.info("Storing via fileio: " + file + "...");
-				httpClient.write(file, xml);
+				log.info("Storing via fileio: " + path + "...");
+				httpClient.write(path, xml);
 			} catch (IOException e) {
 				throw new RapidBeansRuntimeException("Could not perform upload!", e);
 			}
@@ -513,6 +513,15 @@ public class WebFileManager {
 			log.info("Stored via URL: " + activeDocument.getUrl());
 			activeDocument.save(defaultEncoding, forceEncoding, null);
 		}
+	}
+
+	public void uploadIcon(File icontargetfile, String iconPath) {
+			try {
+				log.info("Storing via fileio: " + icontargetfile.getAbsolutePath() + "...");
+				httpClient.write(iconPath, icontargetfile);
+			} catch (IOException e) {
+				throw new RapidBeansRuntimeException("Could not perform upload!", e);
+			}
 	}
 
 	public void uploadFileFtp(final File src, final String targetPath, final BillingPeriod bp, final Department dep) {

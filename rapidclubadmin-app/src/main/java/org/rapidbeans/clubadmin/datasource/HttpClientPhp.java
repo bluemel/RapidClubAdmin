@@ -8,19 +8,35 @@
 package org.rapidbeans.clubadmin.datasource;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
+import java.util.logging.Logger;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
+import org.rapidbeans.clubadmin.presentation.swing.TrainerIconManager;
 import org.rapidbeans.clubadmin.service.Obfcte;
+import org.rapidbeans.core.exception.RapidBeansRuntimeException;
 import org.rapidbeans.core.util.StringHelper;
 
 /**
@@ -43,6 +59,8 @@ public class HttpClientPhp {
 		this.password = password;
 	}
 
+	private static final Logger log = Logger.getLogger(TrainerIconManager.class.getName());
+
 	/**
 	 * Reads a remote text file with the given relative path.
 	 * 
@@ -61,7 +79,7 @@ public class HttpClientPhp {
 		return getConnection(file, "read").getInputStream();
 	}
 
-	/** Writes the file of the given name. */
+	/** Uploads / writes the text file of the given name. */
 	public String write(final String path, final String contents) throws IOException {
 		final URLConnection conn = getConnection(path, "write");
 		conn.setDoOutput(true);
@@ -73,6 +91,29 @@ public class HttpClientPhp {
 		final String result = readConnection(conn);
 		wr.close();
 		return result;
+	}
+
+	/** Uploads / writes the binary file of the given name. */
+	public String write(final String path, final File file) throws IOException {
+		log.info(String.format("START upload of File \"%s\" to path \"%s\"", file.getAbsolutePath(), path));
+		try (CloseableHttpClient client = HttpClients.createDefault()) {
+			HttpPost httpPost = new HttpPost(getUri(path, "writebin"));
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+			params.add(new BasicNameValuePair("contents", encode(file)));
+			httpPost.setEntity(new UrlEncodedFormEntity(params));
+			CloseableHttpResponse response = client.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == 200) {
+				log.info(String.format("FINISHED upload of file \"%s\" to path \"%s\" successfully",
+						file.getAbsolutePath(), path));
+				return String.format("FINISHED upload of file \"%s\" to path \"%s\" successfully",
+						file.getAbsolutePath(), path);
+			} else {
+				log.warning(String.format("ERROR %d while uploading file \"%s\"", file.getAbsolutePath()));
+				return String.format("ERROR %d while uploading file \"%s\"", file.getAbsolutePath());
+			}
+		} catch (URISyntaxException e) {
+			throw new RapidBeansRuntimeException(e);
+		}
 	}
 
 	/**
@@ -179,12 +220,18 @@ public class HttpClientPhp {
 		}
 	}
 
-	/** Constructs the URL for a given file name and operation. */
+	private URI getUri(final String file, final String op) throws URISyntaxException, MalformedURLException {
+		final URL url = getUrl(file, op);
+		return url.toURI();
+	}
+
 	private URLConnection getConnection(final String file, final String op) throws MalformedURLException, IOException {
-		final URL url = new URL(
-				fileioUrl + "?password=" + encode(password) + "&file=" + encode(file) + "&op=" + encode(op));
-		final URLConnection conn = url.openConnection();
-		return conn;
+		final URL url = getUrl(file, op);
+		return url.openConnection();
+	}
+
+	private URL getUrl(final String file, final String op) throws MalformedURLException {
+		return new URL(fileioUrl + "?password=" + encode(password) + "&op=" + encode(op) + "&file=" + encode(file));
 	}
 
 	/** Encodes a string as UTF-8. */
@@ -193,6 +240,16 @@ public class HttpClientPhp {
 			return URLEncoder.encode(s, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			throw new IllegalStateException("will not happen for UTF-8");
+		}
+	}
+
+	/** read a file an BASE64 encode its contents */
+	private static String encode(final File f) {
+		try {
+			byte[] bytes = Files.readAllBytes(f.toPath());
+			return Base64.getEncoder().encodeToString(bytes);
+		} catch (IOException e) {
+			throw new IllegalStateException(String.format("IO Problem reading file %s", f.getAbsolutePath()));
 		}
 	}
 }

@@ -224,8 +224,7 @@ public class TrainerIconManager {
 		if (this.application.getSettingsRapidClubAdmin().getShareiconsoverweb()) {
 			final Document iconDoc = getIconDoc();
 			if (this.iconRepositoryType == ICON_REPOSITORY_TYPE_REMOTE) {
-				this.application.getWebFileManager().uploadFileFtp(icontarget,
-						this.iconRepositoryPath + "/" + icontarget.getName(), null, null);
+				this.application.getWebFileManager().uploadIcon(icontarget, this.iconRepositoryPath + "/" + icontarget.getName());
 			} else {
 				FileHelper.copyFile(icontarget, new File(this.iconRepositoryPath, icontarget.getName()), true);
 			}
