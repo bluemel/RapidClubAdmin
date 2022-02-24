@@ -98,9 +98,9 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 .controller('trainingsListCtrl', function($scope, $http, $rcaTrainingsData, $timeout) {
 	$scope.availableDepartments = [];
 	if ($scope.isSuperAdmin()) {
-		$scope.availableDepartments = ['Aikido', 'Chanbara', 'Grundschule', 'Kumdo-Kummooyeh', 'Judo', 'Tang Soo Do'];
+		$scope.availableDepartments = ['Aikido', 'Bujinkan Ninjutsu', 'Judo', 'Judo Integrativ', 'Katori Shinto Ryu', 'Kumdo-Kummooyeh', 'Tang Soo Do'];
 	} else {
-		for (var i = 0; i < $scope.user.departments.length; ++i) {
+		for (var i = 0; i < $scope.user.availableDepartments.length; ++i) {
 			$scope.availableDepartments.push($scope.user.departments[i].split('/')[1]);
 		}
 	}
