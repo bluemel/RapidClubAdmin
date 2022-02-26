@@ -365,6 +365,17 @@
 							classname="org.rapidbeans.clubadmin.service.Restore" />
 					</menuitem>
 				</submenu>
+				<submenu name="reports"
+  				rolesrequired="SuperAdministrator">		
+			    <menuitem name="oversupervisionedtrainings">
+						<action
+							classname="org.rapidbeans.clubadmin.domain.report.OverSupervisedTrainings" />
+					</menuitem>
+			    <menuitem name="trainers">
+						<action
+							classname="org.rapidbeans.clubadmin.domain.report.Trainers" />
+					</menuitem>
+			  </submenu>
 				<menuitem name="myuseraccount">
 					<action
 						classname="org.rapidbeans.clubadmin.service.OpenMyUserAccount" />
