@@ -21,6 +21,7 @@ import org.rapidbeans.clubadmin.domain.Training;
 import org.rapidbeans.clubadmin.domain.TrainingDate;
 import org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer;
 import org.rapidbeans.clubadmin.domain.TrainingRegular;
+import org.rapidbeans.clubadmin.domain.TrainingSpecial;
 import org.rapidbeans.clubadmin.domain.TrainingState;
 import org.rapidbeans.clubadmin.domain.TrainingsList;
 import org.rapidbeans.clubadmin.domain.export.ExportJob;
@@ -57,8 +58,8 @@ public class TrainingsTimeStatistics extends Action {
 		final MasterData masterData = app.getMasterData();
 		final List<Department> departments = new ArrayList<>();
 		for (final Department masterDepartment : masterData.getClubs().get(0).getDepartments()) {
-			final TrainingsList trainingsList =
-					(TrainingsList) app.loadTrainingslistDocument(null, masterDepartment).getRoot();
+			final TrainingsList trainingsList = (TrainingsList) app.loadTrainingslistDocument(null, masterDepartment)
+					.getRoot();
 			final Department department = findDepartmentWithName(trainingsList, masterDepartment);
 			if (department == null) {
 				throw new RapidBeansRuntimeException(
@@ -66,8 +67,11 @@ public class TrainingsTimeStatistics extends Action {
 			}
 			departments.add(department);
 		}
-		final String report = asString(masterData.getTrainers(), departments, app.getCurrentLocale());
-		new ReportPresentationDialogSwing(report, "Bericht: abgehaltene Trainingszeiten").show();
+		final StringBuilder report = new StringBuilder();
+		for (final Trainer trainer : masterData.getTrainers()) {
+			execute(report, trainer, departments, app.getCurrentLocale());
+		}
+		new ReportPresentationDialogSwing(report.toString(), "Bericht: abgehaltene Trainingszeiten").show();
 	}
 
 	private Department findDepartmentWithName(TrainingsList trainingsList, Department masterDepartment) {
@@ -79,167 +83,105 @@ public class TrainingsTimeStatistics extends Action {
 		return null;
 	}
 
-	public static String asString(final List<Trainer> trainers, final List<Department> departments,
+	public static void execute(final StringBuilder sb, final Trainer trainer, final List<Department> departments,
 			final RapidBeansLocale locale) {
-		final StringBuffer sb = new StringBuffer();
-		if (trainers.size() == 0) {
-			sb.append("Kein Trainer ausgew" + Umlaut.L_AUML + "hlt!");
-		} else if (departments.size() == 0) {
-			sb.append("Keine Abteilung ausgew" + Umlaut.L_AUML + "hlt!");
-		} else if (trainers.size() == 1 && departments.size() == 1) {
-			final Trainer trainer = trainers.get(0);
-			final Department department = departments.get(0);
-			List<TrainingHeldByTrainer> res = findTrainigsHeld(trainer, department);
-			sb.append("Trainings" + Umlaut.L_UUML + "bersicht   Trainer: " + trainer.getLastname() + ", "
-					+ trainer.getFirstname() + ",   Abteilung: " + department.toString() + "\n");
-			sb.append("---------------------------------------------------------------------------\n");
-			int i = 1;
-			Money sumMoneyEarned = null;
-			for (final TrainingHeldByTrainer trhbt : res) {
-				final Training training = (Training) trhbt.getParentBean();
-				Money moneyEarned = null;
-				if (training.getState() == TrainingState.checked) {
-					moneyEarned = trhbt.getMoneyEarned();
-				}
-				if (moneyEarned != null) {
-					if (sumMoneyEarned == null) {
-						sumMoneyEarned = new Money(moneyEarned.getMagnitude(), (Currency) moneyEarned.getUnit());
-					} else {
-						if (!(moneyEarned.getUnit() == sumMoneyEarned.getUnit())) {
-							throw new RapidClubAdminBusinessLogicException("xxx", "unexcpected money unit");
-						}
-						sumMoneyEarned = new Money(sumMoneyEarned.getMagnitude().add(moneyEarned.getMagnitude()),
-								(Currency) sumMoneyEarned.getUnit());
-					}
-				}
-				sb.append(StringHelper.fillUp(Integer.toString(i), 3, ' ', StringHelper.FillMode.left));
-				sb.append(". ");
-				sb.append(StringHelper.fillUp(PropertyDate.formatDate(training.getDate(), locale), 11, ' ',
-						StringHelper.FillMode.right));
-				sb.append(StringHelper.fillUp(training.getDayofweek().toStringGui(locale), 11, ' ',
-						StringHelper.FillMode.right));
-				sb.append(StringHelper.fillUp(training.getTimestart().toString(), 6, ' ', StringHelper.FillMode.right));
-				sb.append(StringHelper.fillUp(training.getName().toString(), 30, ' ', StringHelper.FillMode.right));
-				if (moneyEarned != null) {
-					sb.append(StringHelper.fillUp(moneyEarned.toStringGui(locale, 2, 2), 12, ' ',
-							StringHelper.FillMode.left));
-				} else {
-					switch (training.getState()) {
-					case cancelled:
-						sb.append(training.getState().toStringGui(locale));
-						break;
-					case closed:
-						sb.append(training.getState().toStringGui(locale));
-						break;
-					case asplanned:
-					case modified:
-						sb.append(training.getState().toStringGui(locale));
-						break;
-					default:
-						break;
-					}
-				}
-				sb.append('\n');
-				i++;
+		sb.append("Trainings" + Umlaut.L_UUML + "bersicht   Trainer: " + trainer.getLastname() + ", "
+				+ trainer.getFirstname() + ",   Abteilungen: ");
+		boolean firstRun = true;
+		for (final Department dep : departments) {
+			if (!firstRun) {
+				sb.append(", ");
 			}
-			if (sumMoneyEarned == null) {
-				sumMoneyEarned = new Money(BigDecimal.ZERO, Currency.euro);
-			}
-			sb.append("===========================================================================\n");
-			sb.append("                                                               ");
-			sb.append(
-					StringHelper.fillUp(sumMoneyEarned.toStringGui(locale, 2, 2), 12, ' ', StringHelper.FillMode.left));
-			sb.append('\n');
-		} else if (trainers.size() > 1) {
-			sb.append("Mehr als ein Trainer ausgew" + Umlaut.L_AUML + "hlt!");
-		} else if (departments.size() > 1) {
-			final Trainer trainer = trainers.get(0);
-			sb.append("Trainings" + Umlaut.L_UUML + "bersicht   Trainer: " + trainer.getLastname() + ", "
-					+ trainer.getFirstname() + ",   Abteilungen: ");
-			boolean firstRun = true;
-			for (final Department dep : departments) {
-				if (!firstRun) {
-					sb.append(", ");
-				}
-				sb.append(dep.toString());
-				firstRun = false;
-			}
-			sb.append(PlatformHelper.getLineFeed());
-			sb.append("---------------------------------------------------------------------------");
-			sb.append(PlatformHelper.getLineFeed());
-			int n = 1;
-			Money sumMoneyEarned = null;
-
-			final List<TrainingHeldByTrainer> allTrhbts = new ArrayList<TrainingHeldByTrainer>();
-			for (Department dep : departments) {
-				final List<TrainingHeldByTrainer> trhbts = findTrainigsHeld(trainer, dep);
-				for (TrainingHeldByTrainer trhbt : trhbts) {
-					allTrhbts.add(trhbt);
-				}
-			}
-
-			ExportJob.sort(allTrhbts);
-
-			for (final TrainingHeldByTrainer trhbt : allTrhbts) {
-				final TrainingRegular training = (TrainingRegular) trhbt.getParentBean();
-				final TrainingDate trainingDate = (TrainingDate) training.getParentBean();
-				Money moneyEarned = null;
-				if (training.getState() == TrainingState.checked) {
-					moneyEarned = trhbt.getMoneyEarned();
-				}
-				if (moneyEarned != null) {
-					if (sumMoneyEarned == null) {
-						sumMoneyEarned = new Money(moneyEarned.getMagnitude(), (Currency) moneyEarned.getUnit());
-					} else {
-						if (!(moneyEarned.getUnit() == sumMoneyEarned.getUnit())) {
-							throw new RapidClubAdminBusinessLogicException("xxx", "unexcpected money unit");
-						}
-						sumMoneyEarned = new Money(sumMoneyEarned.getMagnitude().add(moneyEarned.getMagnitude()),
-								(Currency) sumMoneyEarned.getUnit());
-					}
-				}
-				sb.append(StringHelper.fillUp(Integer.toString(n), 3, ' ', StringHelper.FillMode.left));
-				sb.append(". ");
-				sb.append(StringHelper.fillUp(PropertyDate.formatDate(training.getDate(), locale), 11, ' ',
-						StringHelper.FillMode.right));
-				sb.append(StringHelper.fillUp(trainingDate.getDayofweek().toStringGui(locale), 11, ' ',
-						StringHelper.FillMode.right));
-				sb.append(StringHelper.fillUp(trainingDate.getTimestart().toString(), 6, ' ',
-						StringHelper.FillMode.right));
-				sb.append(StringHelper.fillUp(trainingDate.getName().toString(), 60, ' ', StringHelper.FillMode.right));
-				if (moneyEarned != null) {
-					sb.append(StringHelper.fillUp(moneyEarned.toStringGui(locale, 2, 2), 12, ' ',
-							StringHelper.FillMode.left));
-				} else {
-					switch (training.getState()) {
-					case cancelled:
-						sb.append(training.getState().toStringGui(locale));
-						break;
-					case closed:
-						sb.append(training.getState().toStringGui(locale));
-						break;
-					case asplanned:
-					case modified:
-						sb.append(training.getState().toStringGui(locale));
-						break;
-					default:
-						break;
-					}
-				}
-				sb.append(PlatformHelper.getLineFeed());
-				n++;
-			}
-			if (sumMoneyEarned == null) {
-				sumMoneyEarned = new Money(BigDecimal.ZERO, Currency.euro);
-			}
-			sb.append("===========================================================================");
-			sb.append(PlatformHelper.getLineFeed());
-			sb.append("                                                               ");
-			sb.append(
-					StringHelper.fillUp(sumMoneyEarned.toStringGui(locale, 2, 2), 12, ' ', StringHelper.FillMode.left));
-			sb.append(PlatformHelper.getLineFeed());
+			sb.append(dep.toString());
+			firstRun = false;
 		}
-		return sb.toString();
+		sb.append(PlatformHelper.getLineFeed());
+		sb.append("---------------------------------------------------------------------------");
+		sb.append(PlatformHelper.getLineFeed());
+		int n = 1;
+		Money sumMoneyEarned = null;
+
+		final List<TrainingHeldByTrainer> allTrhbts = new ArrayList<TrainingHeldByTrainer>();
+		for (Department dep : departments) {
+			final List<TrainingHeldByTrainer> trhbts = findTrainigsHeld(trainer, dep);
+			for (TrainingHeldByTrainer trhbt : trhbts) {
+				allTrhbts.add(trhbt);
+			}
+		}
+
+		ExportJob.sort(allTrhbts);
+
+		for (final TrainingHeldByTrainer trhbt : allTrhbts) {
+			final Training training = (Training) trhbt.getParentBean();
+			TrainingRegular trainingRegular = null;
+			TrainingDate trainingDate = null;
+			TrainingSpecial trainingSpecial = null;
+			if (training instanceof TrainingRegular) {
+				trainingRegular = (TrainingRegular) training;
+				trainingDate = (TrainingDate) trainingRegular.getParentBean();
+			} else if (training instanceof TrainingSpecial) {
+				trainingSpecial = (TrainingSpecial) training;
+			}
+			Money moneyEarned = null;
+			if (training.getState() == TrainingState.checked) {
+				moneyEarned = trhbt.getMoneyEarned();
+			}
+			if (moneyEarned != null) {
+				if (sumMoneyEarned == null) {
+					sumMoneyEarned = new Money(moneyEarned.getMagnitude(), (Currency) moneyEarned.getUnit());
+				} else {
+					if (!(moneyEarned.getUnit() == sumMoneyEarned.getUnit())) {
+						throw new RapidClubAdminBusinessLogicException("xxx", "unexcpected money unit");
+					}
+					sumMoneyEarned = new Money(sumMoneyEarned.getMagnitude().add(moneyEarned.getMagnitude()),
+							(Currency) sumMoneyEarned.getUnit());
+				}
+			}
+			sb.append(StringHelper.fillUp(Integer.toString(n), 3, ' ', StringHelper.FillMode.left));
+			sb.append(". ");
+			sb.append(StringHelper.fillUp(PropertyDate.formatDate(training.getDate(), locale), 11, ' ',
+					StringHelper.FillMode.right));
+			sb.append(
+					StringHelper.fillUp(
+							trainingDate == null ? "(S) " + trainingSpecial.getDayofweek().toStringGui(locale)
+									: trainingDate.getDayofweek().toStringGui(locale),
+							15, ' ', StringHelper.FillMode.right));
+			sb.append(StringHelper.fillUp(trainingDate == null
+					? trainingSpecial.getTimestart().toString() + " - " + trainingSpecial.getTimeend().toString()
+					: trainingDate.getTimestart().toString() + " - " + trainingDate.getTimeend().toString(), 15, ' ', StringHelper.FillMode.right));
+			sb.append(StringHelper.fillUp(
+					trainingDate == null ? trainingSpecial.getName() : trainingDate.getName().toString(), 60, ' ',
+					StringHelper.FillMode.right));
+			if (moneyEarned != null) {
+				sb.append(StringHelper.fillUp(moneyEarned.toStringGui(locale, 2, 2), 12, ' ',
+						StringHelper.FillMode.left));
+			} else {
+				switch (training.getState()) {
+				case cancelled:
+					sb.append(training.getState().toStringGui(locale));
+					break;
+				case closed:
+					sb.append(training.getState().toStringGui(locale));
+					break;
+				case asplanned:
+				case modified:
+					sb.append(training.getState().toStringGui(locale));
+					break;
+				default:
+					break;
+				}
+			}
+			sb.append(PlatformHelper.getLineFeed());
+			n++;
+		}
+		if (sumMoneyEarned == null) {
+			sumMoneyEarned = new Money(BigDecimal.ZERO, Currency.euro);
+		}
+		sb.append("===========================================================================");
+		sb.append(PlatformHelper.getLineFeed());
+		sb.append("                                                               ");
+		sb.append(StringHelper.fillUp(sumMoneyEarned.toStringGui(locale, 2, 2), 12, ' ', StringHelper.FillMode.left));
+		sb.append(PlatformHelper.getLineFeed());
 	}
 
 	public static List<TrainingHeldByTrainer> findTrainigsHeld(final Trainer trainer, final Department department) {
