@@ -45,7 +45,7 @@ public class Overview2 {
 			final Trainer trainer = trainers.get(0);
 			final Department department = departments.get(0);
 			final List<TrainingHeldByTrainer> trhbts = Overview.findTrainigsHeld(trainer, department);
-			sb.append("Trainings�bersicht   Trainer: " + trainer.getLastname() + ", " + trainer.getFirstname()
+			sb.append("Trainingsübersicht   Trainer: " + trainer.getLastname() + ", " + trainer.getFirstname()
 					+ ",   Abteilung: " + department.toString() + LF);
 			sb.append("---------------------------------------------------------------------------" + LF);
 			final List<TrainingHeldByTrainer> allTrhbts = new ArrayList<TrainingHeldByTrainer>();
@@ -54,10 +54,10 @@ public class Overview2 {
 			}
 			dumpTrhbts(allTrhbts, sb, locale);
 		} else if (trainers.size() > 1) {
-			sb.append("Mehr als ein Trainer ausgew�hlt!");
+			sb.append("Mehr als ein Trainer ausgewählt!");
 		} else if (departments.size() > 1) {
 			final Trainer trainer = trainers.get(0);
-			sb.append("Trainings�bersicht   Trainer: " + trainer.getLastname() + ", " + trainer.getFirstname()
+			sb.append("Trainingsübersicht   Trainer: " + trainer.getLastname() + ", " + trainer.getFirstname()
 					+ ",   Abteilungen: ");
 			boolean firstRun = true;
 			for (final Department dep : departments) {

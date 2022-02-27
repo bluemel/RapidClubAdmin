@@ -1,10 +1,8 @@
 package org.rapidbeans.clubadmin.domain.report;
 
-import java.io.File;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
 
 import org.rapidbeans.clubadmin.domain.Department;
 import org.rapidbeans.clubadmin.domain.MasterData;
@@ -41,7 +39,7 @@ public class OverSupervisedTrainings extends Action {
 					.getRoot();
 			reportOverSupervisedTrainings(masterDepartment, trainingsList, report, nf, sfmt);
 		}
-		new ReportPresentationDialogSwing(report.toString(), "Bericht: Überbetreute Trainings").show();
+		new ReportPresentationDialogSwing(report.toString(), "Bericht: Mehrfach betreute Trainings").show();
 	}
 
 	public void reportOverSupervisedTrainings(final Department masterDepartment, final TrainingsList trainingsList,

@@ -57,6 +57,7 @@ public class OverviewTest {
 				training.setState(TrainingState.checked);
 			}
 			String overview = Overview.asString(trainers, departments, locale);
+			// System.out.println(overview);
 			StringTokenizer st = new StringTokenizer(overview, "\n");
 			String token = st.nextToken();
 			String tokenExpected1 = "Trainings" + Umlaut.L_UUML + "bersicht   Trainer: Bl" + Umlaut.L_UUML
@@ -92,6 +93,7 @@ public class OverviewTest {
 				training.setState(TrainingState.checked);
 			}
 			String overview = Overview.asString(trainers, departments, locale);
+			// System.out.println(overview);
 			StringTokenizer st = new StringTokenizer(overview, "\n");
 			assertEquals("Trainings" + Umlaut.L_UUML + "bersicht   Trainer: Bl" + Umlaut.L_UUML
 					+ "mel, Martin,   Abteilung: Budo-Club Ismaning/Aikido", st.nextElement());
