@@ -35,19 +35,17 @@ public class TrainingsTimeStatisticsTest {
 			trainers.add(martin);
 			Department aikido = (Department) testdoc
 					.findBeanByQuery("org.rapidbeans.clubadmin.domain.Department[id = 'Budo-Club Ismaning/Aikido']");
-			ArrayList<Department> departments = new ArrayList<Department>();
-			departments.add(aikido);
 			RapidBeansLocale locale = new RapidBeansLocale("de");
 			locale.init("org.rapidbeans.clubadmin");
 			for (RapidBean bean : testdoc.findBeansByType("org.rapidbeans.clubadmin.domain.Training")) {
 				TrainingRegular training = (TrainingRegular) bean;
 				training.setState(TrainingState.checked);
 			}
-			final StringBuilder overview = new StringBuilder();
+			final TrainingsTimeStat stat = new TrainingsTimeStat();
 			for (final Trainer trainer : trainers) {
-				TrainingsTimeStatistics.execute(overview, trainer, departments, locale);
+				TrainingsTimeStatisticsAction.execute(stat, trainer, aikido, locale);
 			}
-			// System.out.println(overview);
+			System.out.println(stat.getReport());
 //			StringTokenizer st = new StringTokenizer(overview.toString(), "\n");
 //			String token = st.nextToken();
 //			String tokenExpected1 = "Trainings" + Umlaut.L_UUML + "bersicht   Trainer: Bl" + Umlaut.L_UUML

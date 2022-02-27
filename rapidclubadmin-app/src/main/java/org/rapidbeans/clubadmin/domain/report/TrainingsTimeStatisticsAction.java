@@ -46,7 +46,7 @@ import org.rapidbeans.service.Action;
  * 
  * @author Martin Bluemel
  */
-public class TrainingsTimeStatistics extends Action {
+public class TrainingsTimeStatisticsAction extends Action {
 
 	public void execute() {
 		TypePropertyCollection.setDefaultCharSeparator(',');
@@ -56,7 +56,7 @@ public class TrainingsTimeStatistics extends Action {
 		@SuppressWarnings("unused")
 		final RapidClubAdminClient app = (RapidClubAdminClient) ApplicationManager.getApplication();
 		final MasterData masterData = app.getMasterData();
-		final List<Department> departments = new ArrayList<>();
+		final TrainingsTimeStat stat = new TrainingsTimeStat();
 		for (final Department masterDepartment : masterData.getClubs().get(0).getDepartments()) {
 			final TrainingsList trainingsList = (TrainingsList) app.loadTrainingslistDocument(null, masterDepartment)
 					.getRoot();
@@ -65,13 +65,12 @@ public class TrainingsTimeStatistics extends Action {
 				throw new RapidBeansRuntimeException(
 						String.format("Department \"%s\" not found in traings list file", masterDepartment.getName()));
 			}
-			departments.add(department);
+			for (final Trainer trainer : department.getTrainers()) {
+				execute(stat, trainer, department, app.getCurrentLocale());				
+			}
 		}
-		final StringBuilder report = new StringBuilder();
-		for (final Trainer trainer : masterData.getTrainers()) {
-			execute(report, trainer, departments, app.getCurrentLocale());
-		}
-		new ReportPresentationDialogSwing(report.toString(), "Bericht: abgehaltene Trainingszeiten").show();
+		final String report2 = stat.report();
+		new ReportPresentationDialogSwing(stat.getReport() + "\n\n" + report2, "Bericht: abgehaltene Trainingszeiten").show();
 	}
 
 	private Department findDepartmentWithName(TrainingsList trainingsList, Department masterDepartment) {
@@ -83,18 +82,12 @@ public class TrainingsTimeStatistics extends Action {
 		return null;
 	}
 
-	public static void execute(final StringBuilder sb, final Trainer trainer, final List<Department> departments,
+	public static void execute(final TrainingsTimeStat stat, final Trainer trainer, final Department department,
 			final RapidBeansLocale locale) {
+		final StringBuilder sb = stat.getSb();
 		sb.append("Trainings" + Umlaut.L_UUML + "bersicht   Trainer: " + trainer.getLastname() + ", "
-				+ trainer.getFirstname() + ",   Abteilungen: ");
-		boolean firstRun = true;
-		for (final Department dep : departments) {
-			if (!firstRun) {
-				sb.append(", ");
-			}
-			sb.append(dep.toString());
-			firstRun = false;
-		}
+				+ trainer.getFirstname() + ",   Abteilung: ");
+		sb.append(department.toString());
 		sb.append(PlatformHelper.getLineFeed());
 		sb.append("---------------------------------------------------------------------------");
 		sb.append(PlatformHelper.getLineFeed());
@@ -102,11 +95,9 @@ public class TrainingsTimeStatistics extends Action {
 		Money sumMoneyEarned = null;
 
 		final List<TrainingHeldByTrainer> allTrhbts = new ArrayList<TrainingHeldByTrainer>();
-		for (Department dep : departments) {
-			final List<TrainingHeldByTrainer> trhbts = findTrainigsHeld(trainer, dep);
-			for (TrainingHeldByTrainer trhbt : trhbts) {
-				allTrhbts.add(trhbt);
-			}
+		final List<TrainingHeldByTrainer> trhbts = findTrainigsHeld(trainer, department);
+		for (TrainingHeldByTrainer trhbt : trhbts) {
+			allTrhbts.add(trhbt);
 		}
 
 		ExportJob.sort(allTrhbts);
@@ -125,6 +116,7 @@ public class TrainingsTimeStatistics extends Action {
 			Money moneyEarned = null;
 			if (training.getState() == TrainingState.checked) {
 				moneyEarned = trhbt.getMoneyEarned();
+				stat.add(department, trhbt);
 			}
 			if (moneyEarned != null) {
 				if (sumMoneyEarned == null) {

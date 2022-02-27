@@ -368,7 +368,7 @@
 				<submenu name="reports" rolesrequired="SuperAdministrator">
 					<menuitem name="trainingtimestatistics">
 						<action
-							classname="org.rapidbeans.clubadmin.domain.report.TrainingsTimeStatistics" />
+							classname="org.rapidbeans.clubadmin.domain.report.TrainingsTimeStatisticsAction" />
 					</menuitem>
 					<menuitem name="oversupervisionedtrainings">
 						<action
