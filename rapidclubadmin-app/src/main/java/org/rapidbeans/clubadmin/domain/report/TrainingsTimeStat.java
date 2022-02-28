@@ -9,6 +9,8 @@ import org.rapidbeans.clubadmin.domain.Department;
 import org.rapidbeans.clubadmin.domain.Trainer;
 import org.rapidbeans.clubadmin.domain.TrainerRole;
 import org.rapidbeans.clubadmin.domain.TrainingHeldByTrainer;
+import org.rapidbeans.core.util.StringHelper;
+import org.rapidbeans.core.util.StringHelper.FillMode;
 import org.rapidbeans.domain.math.UnitTime;
 
 public class TrainingsTimeStat {
@@ -86,18 +88,21 @@ public class TrainingsTimeStat {
 	public String reportCsv() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("============================== stat CSV report START ==============================\n");
+		sb.append("Trainer;Abteilung;Rolle;Industriezeit [h];Zeit [hh:mm];Verdienst\n");
 		for (final Department department : this.departments) {
-			boolean departmentPrinted = false;
 			for (final Trainer trainer : this.trainers) {
-				boolean trainerPrinted = false;
 				for (final TrainerRole trainerRole : this.trainerRoles) {
 					final TrainingsTimeStatForTrainer stat = this.statMap
 							.get(new TrainerDepRole(trainer, department, trainerRole));
 					if (stat != null && stat.getTime().getMagnitudeLong() > 0) {
 						long hours = stat.getTime().getMagnitudeLong() / 60;
 						long minutes = stat.getTime().getMagnitudeLong() - (hours * 60);
-						sb.append(String.format("%s%s: time: %s:%s / %s, money: %s\n", trainerRole.getName(),
-								hours, minutes, stat.getTime().convert(UnitTime.h), stat.getMoney()));
+						sb.append(String.format("%s, %s;%s;%s;%s;%s:%s;%s\n",
+								trainer.getLastname(), trainer.getFirstname(), department.getName(), trainerRole.getName(),
+								stat.getTime().convert(UnitTime.h).getMagnitude().toString().replace('.', ','),
+								hours,
+								StringHelper.fillUp(Long.toString(minutes), 2, '0', FillMode.left),
+								stat.getMoney().getMagnitude() + " €"));
 					}
 				}
 			}

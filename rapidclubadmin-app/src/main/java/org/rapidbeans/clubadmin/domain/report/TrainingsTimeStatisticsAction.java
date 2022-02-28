@@ -70,7 +70,8 @@ public class TrainingsTimeStatisticsAction extends Action {
 			}
 		}
 		final String report2 = stat.report();
-		new ReportPresentationDialogSwing(stat.getReport() + "\n\n" + report2, "Bericht: abgehaltene Trainingszeiten").show();
+		final String reportCsv = stat.reportCsv();
+		new ReportPresentationDialogSwing(stat.getReport() + "\n\n" + report2+ "\n\n" + reportCsv, "Bericht: abgehaltene Trainingszeiten").show();
 	}
 
 	private Department findDepartmentWithName(TrainingsList trainingsList, Department masterDepartment) {
