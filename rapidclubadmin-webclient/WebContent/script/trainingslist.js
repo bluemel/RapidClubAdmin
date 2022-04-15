@@ -100,7 +100,7 @@ angular.module('rcaTrainingsList', ['rcaFilters', 'rcaUtils'])
 	if ($scope.isSuperAdmin()) {
 		$scope.availableDepartments = ['Aikido', 'Bujinkan Ninjutsu', 'Judo', 'Judo Integrativ', 'Katori Shinto Ryu', 'Kumdo-Kummooyeh', 'Tang Soo Do'];
 	} else {
-		for (var i = 0; i < $scope.user.availableDepartments.length; ++i) {
+		for (var i = 0; i < $scope.user.departments.length; ++i) {
 			$scope.availableDepartments.push($scope.user.departments[i].split('/')[1]);
 		}
 	}
