@@ -66,12 +66,15 @@ public class TrainingsTimeStatisticsAction extends Action {
 						String.format("Department \"%s\" not found in traings list file", masterDepartment.getName()));
 			}
 			for (final Trainer trainer : department.getTrainers()) {
-				execute(stat, trainer, department, app.getCurrentLocale());				
+				execute(stat, trainer, department, app.getCurrentLocale());
 			}
 		}
 		final String report2 = stat.report();
-		final String reportCsv = stat.reportCsv();
-		new ReportPresentationDialogSwing(stat.getReport() + "\n\n" + report2+ "\n\n" + reportCsv, "Bericht: abgehaltene Trainingszeiten").show();
+		final String reportCsv1 = stat.reportCsv1();
+		final String reportCsv2 = stat.reportCsv2();
+		new ReportPresentationDialogSwing(
+				stat.getReport() + "\n\n" + report2 + "\n\n" + reportCsv1 + "\n\n" + reportCsv2,
+				"Bericht: abgehaltene Trainingszeiten").show();
 	}
 
 	private Department findDepartmentWithName(TrainingsList trainingsList, Department masterDepartment) {
@@ -139,9 +142,12 @@ public class TrainingsTimeStatisticsAction extends Action {
 							trainingDate == null ? "(S) " + trainingSpecial.getDayofweek().toStringGui(locale)
 									: trainingDate.getDayofweek().toStringGui(locale),
 							15, ' ', StringHelper.FillMode.right));
-			sb.append(StringHelper.fillUp(trainingDate == null
-					? trainingSpecial.getTimestart().toString() + " - " + trainingSpecial.getTimeend().toString()
-					: trainingDate.getTimestart().toString() + " - " + trainingDate.getTimeend().toString(), 15, ' ', StringHelper.FillMode.right));
+			sb.append(StringHelper.fillUp(
+					trainingDate == null
+							? trainingSpecial.getTimestart().toString() + " - "
+									+ trainingSpecial.getTimeend().toString()
+							: trainingDate.getTimestart().toString() + " - " + trainingDate.getTimeend().toString(),
+					15, ' ', StringHelper.FillMode.right));
 			sb.append(StringHelper.fillUp(
 					trainingDate == null ? trainingSpecial.getName() : trainingDate.getName().toString(), 60, ' ',
 					StringHelper.FillMode.right));
