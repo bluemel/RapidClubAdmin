@@ -141,7 +141,7 @@ public class TrainingsTimeStat {
 	public String reportCsv2() {
 		final StringBuilder sb = new StringBuilder();
 		sb.append("============================== stat CSV report 2 START ==============================\n");
-		sb.append("Name;Abteilung;Rolle;Datum;Zeit;Teilnehmer\n");
+		sb.append("Name;Abteilung;Rolle;Datum;Zeit;Teilnehmer;Eintrager\n");
 		SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy");
 		for (final Trainer trainer : this.trainers) {
 			final Map<Department, List<TrainingHeldByTrainer>> trhbtByDepartmentMap = this.trhbtMap.get(trainer);
@@ -157,9 +157,10 @@ public class TrainingsTimeStat {
 							} catch (PropValueNullException e) {
 								// do intentionally nothing
 							}
-							sb.append(String.format("%s %s;%s;%s;%s;%s;%s\n", trainer.getFirstname(),
+							sb.append(String.format("%s %s;%s;%s;%s;%s;%s;%s %s\n", trainer.getFirstname(),
 									trainer.getLastname(), department.getName(), trhbt.getRole().getName(),
-									df.format(training.getDate()), training.getTimeWorked(UnitTime.h), partipiciantscount));
+									df.format(training.getDate()), training.getTimeWorked(UnitTime.h), partipiciantscount,
+									training.getCheckedByUser().getFirstname(), training.getCheckedByUser().getLastname()));
 						}
 					}
 				}
