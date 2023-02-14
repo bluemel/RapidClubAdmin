@@ -378,6 +378,10 @@
 						<action
 							classname="org.rapidbeans.clubadmin.domain.report.Trainers" />
 					</menuitem>
+					<menuitem name="googledocsexport">
+						<action
+							classname="org.rapidbeans.clubadmin.domain.report.Googledocsexport" />
+					</menuitem>
 				</submenu>
 				<menuitem name="myuseraccount">
 					<action
