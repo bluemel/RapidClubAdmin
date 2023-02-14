@@ -226,6 +226,10 @@
 			classname="org.rapidbeans.clubadmin.presentation.swing.ToolbarTrainingslistSwing">
 			<button name="save"
 				action="org.rapidbeans.clubadmin.service.DocumentSave" />
+			<button name="export">
+				<action
+					classname="org.rapidbeans.clubadmin.domain.report.Googledocsexport" />
+			</button>
 		</toolbar>
 
 		<toolbar name="trainingslistview">
